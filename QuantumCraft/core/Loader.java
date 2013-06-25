@@ -5,14 +5,16 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.BlockOre;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import mods.QuantumCraft.blocks.BlockOreQuantonium;
 import mods.QuantumCraft.items.*;
 
 public class Loader {
 
 	public static Item ItemCrystalQuantonium;
 	public static Item ItemRawQuantonium;
+	public static ItemResearchBook ItemResearchBook;
 	
-	public static BlockOre OreQuantonium;
+	public static BlockOreQuantonium OreQuantonium;
 	
 	public static TabQuantumCraft tabQuantumCraft;
 	
@@ -39,10 +41,14 @@ public class Loader {
 		ItemRawQuantonium = new Item(Config.ItemRawQuantoniumID)
 			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemRawQuantonium);
 		LanguageRegistry.addName(ItemRawQuantonium, "Raw Quantonium");
+		
+		ItemResearchBook = (ItemResearchBook) new ItemResearchBook(Config.ItemResearchBookID)
+			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemResearchBook);
+		LanguageRegistry.addName(ItemResearchBook, "Research Book");
 	}
 
 	public static void initBlocks() {
-		OreQuantonium = (BlockOre) new BlockOre(Config.OreQuantoniumID)
+		OreQuantonium = (BlockOreQuantonium) new BlockOreQuantonium(Config.OreQuantoniumID)
 			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameOreQuantonium);
 		LanguageRegistry.addName(OreQuantonium, "Quantonium Ore");
 		GameRegistry.registerBlock(OreQuantonium, Config.NameOreQuantonium);
