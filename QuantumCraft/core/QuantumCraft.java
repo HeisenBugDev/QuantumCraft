@@ -1,5 +1,6 @@
 package mods.QuantumCraft.core;
 
+import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -20,7 +21,7 @@ public class QuantumCraft {
 
         @PreInit
         public void preInit(FMLPreInitializationEvent event) {
-        	Config.loadConfig();
+        	Config.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
         }
        
         @Init
