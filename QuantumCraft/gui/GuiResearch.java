@@ -73,7 +73,8 @@ public class GuiResearch extends GuiScreen {
         this.field_74117_m = this.guiMapX = this.field_74124_q = (double)(AchievementList.openInventory.displayColumn * 24 - short1 / 2 - 12);
         this.field_74115_n = this.guiMapY = this.field_74123_r = (double)(AchievementList.openInventory.displayRow * 24 - short2 / 2);
         researchItems.clear();
-        researchItems.add(new ResearchItem("test","Test", 1, 1, new ItemStack(Loader.ItemRawQuantonium)));
+        //researchItems.add(new ResearchItem("test","Test", 2, 2, new ItemStack(Loader.ItemRawQuantonium)));
+        researchItems.add(new ResearchItem("test2","Test2", 2, 0, new ItemStack(Loader.ItemCrystalQuantonium)));
     }
 
     /**
@@ -326,40 +327,37 @@ public class GuiResearch extends GuiScreen {
 
         System.out.println(researchItems.size());
         
-        for (k3 = 0; k3 < researchItems.size(); k3++)
+        for (ResearchItem ri : researchItems)
         {
-            ResearchItem ri = researchItems.get(k3);
             System.out.println("RI: " + ri.riDescription);
             j4 = ri.displayColumn * 24 - k;
             l3 = ri.displayRow * 24 - l;
 
-            if (j4 >= -24 && l3 >= -24 && j4 <= 224 && l3 <= 155)
-            {
+            /*if (j4 >= -24 && l3 >= -24 && j4 <= 224 && l3 <= 155)
+            {*/
                 float f2;
 
                 f2 = 1.0F;
                 GL11.glColor4f(f2, f2, f2, 1.0F);
 
-                this.mc.renderEngine.bindTexture("/achievement/bg.png");
+                Minecraft.getMinecraft().renderEngine.bindTexture("/achievement/bg.png");
                 i5 = k1 + j4;
                 l4 = l1 + l3;
-                
+                renderitem.renderWithColor = true;
+                GL11.glEnable(GL11.GL_CULL_FACE);
                 this.drawTexturedModalRect(i5 - 2, l4 - 2, 0, 202, 26, 26);
 
                 GL11.glEnable(GL11.GL_LIGHTING);
-                GL11.glEnable(GL11.GL_CULL_FACE);
                 renderitem.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, ri.theItemStack, i5 + 3, l4 + 3);
                 GL11.glDisable(GL11.GL_LIGHTING);
 
-                renderitem.renderWithColor = true;
-
-                GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+                
                 
                 if (par1 >= k1 && par2 >= l1 && par1 < k1 + 224 && par2 < l1 + 155 && par1 >= i5 && par1 <= i5 + 22 && par2 >= l4 && par2 <= l4 + 22)
                 {
                     achievement1 = ri;
                 }
-            }
+            //}
         }
 
         GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -375,18 +373,12 @@ public class GuiResearch extends GuiScreen {
         super.drawScreen(par1, par2, par3);
         if (achievement1 != null)
         {
-            String s = StatCollector.translateToLocal(achievement1.getName());
-            String s1 = achievement1.riDescription;
+            String s = achievement1.getName();
             j4 = par1 + 12;
             l3 = par2 - 4;
 
             i5 = Math.max(this.fontRenderer.getStringWidth(s), 120);
-            l4 = this.fontRenderer.splitStringWidth(s1, i5);
-            l4 += 12;
-            this.drawGradientRect(j4 - 3, l3 - 3, j4 + i5 + 3, l3 + l4 + 3 + 12, -1073741824, -1073741824);
-            this.fontRenderer.drawSplitString(s1, j4, l3 + 12, i5, -6250336);
-
-            this.fontRenderer.drawStringWithShadow(StatCollector.translateToLocal("achievement.taken"), j4, l3 + l4 + 4, -7302913);
+            //this.drawGradientRect(j4 - 3, l3 - 3, j4 + i5 + 3, l3 + 3 + 12, -1073741824, -1073741824);
 
             this.fontRenderer.drawStringWithShadow(s, j4, l3, -1);
         }
@@ -400,7 +392,7 @@ public class GuiResearch extends GuiScreen {
      */
     public boolean doesGuiPauseGame()
     {
-        return true;
+        return false;
     }
 
 }
