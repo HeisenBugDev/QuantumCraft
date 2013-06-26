@@ -18,6 +18,7 @@ public class ResearchItem {
      * Holds the description of the achievement, ready to be formatted and/or displayed.
      */
     public final String riDescription;
+    public final int index;
     /**
      * Holds the ItemStack that will be used to draw the achievement into the GUI.
      */
@@ -27,6 +28,13 @@ public class ResearchItem {
     
     public final ResearchItem parentAchievement;
     
+    private boolean special = false;
+    
+    public void setSpecial(boolean b)
+    {
+    	special = b;
+    }
+    
     public String getName()
     {
     	return n;
@@ -34,14 +42,15 @@ public class ResearchItem {
 
     public boolean getSpecial()
     {
-    	return false;	
+    	return special;	
     }
     
-    public ResearchItem(String par2Str, String name, int par3, int par4, ItemStack is, ResearchItem parent)
+    public ResearchItem(String name, String desc, int i, int par3, int par4, ItemStack is, ResearchItem parent)
     {
+    	this.index = i;
     	this.parentAchievement = parent;
     	this.n = name;
-        this.riDescription = par2Str;
+        this.riDescription = desc;
         this.displayColumn = par3;
         this.displayRow = par4;
         this.theItemStack = is;

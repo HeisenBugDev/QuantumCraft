@@ -17,7 +17,7 @@ public class ClientProxy extends CommonProxy
 		switch(ID)
 		{
 		case 0: 
-			return new GuiResearch(new ResearchHandler());
+			return new GuiResearch(new ResearchHandler(player));
 		}
 		return null;
 

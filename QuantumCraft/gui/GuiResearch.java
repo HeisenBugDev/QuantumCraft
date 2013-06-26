@@ -76,10 +76,11 @@ public class GuiResearch extends GuiScreen {
         this.field_74117_m = this.guiMapX = this.field_74124_q = (double)(AchievementList.openInventory.displayColumn * 24 - short1 / 2 - 12);
         this.field_74115_n = this.guiMapY = this.field_74123_r = (double)(AchievementList.openInventory.displayRow * 24 - short2 / 2);
         ris.clear();
+        for (ResearchItem r : rHandler.ris)
+        {
+        	ris.add(r);
+        }
         
-        ris.add(new ResearchItem("ASFKGaiuagds", "Test", 0, -2, new ItemStack(Loader.ItemRawQuantonium), null));
-        ris.add(new ResearchItem("BNlagsgdiads", "Test", 0, 0, new ItemStack(Item.axeIron), ris.get(0)));
-        ris.add(new ResearchItem("HUIiugfuzasd", "Test", 2, 0, new ItemStack(Loader.ItemCrystalQuantonium), ris.get(1)));
     }
 
     /**
@@ -89,31 +90,19 @@ public class GuiResearch extends GuiScreen {
     {
         this.buttonList.clear();
         this.buttonList.add(new GuiSmallButton(1, this.width / 2 + 24, this.height / 2 + 74, 80, 20, StatCollector.translateToLocal("gui.done")));
-        this.buttonList.add(button = new GuiSmallButton(2, (width - achievementsPaneWidth) / 2 + 24, height / 2 + 74, 125, 20, AchievementPage.getTitle(currentPage)));
+       // this.buttonList.add(button = new GuiSmallButton(2, (width - achievementsPaneWidth) / 2 + 24, height / 2 + 74, 125, 20, AchievementPage.getTitle(currentPage)));
     }
 
     /**
      * Fired when a control is clicked. This is the equivalent of ActionListener.actionPerformed(ActionEvent e).
      */
     protected void actionPerformed(GuiButton par1GuiButton)
-    {/*
+    {
         if (par1GuiButton.id == 1)
         {
             this.mc.displayGuiScreen((GuiScreen)null);
             this.mc.setIngameFocus();
         }
-
-        if (par1GuiButton.id == 2) 
-        {
-            currentPage++;
-            if (currentPage >= AchievementPage.getAchievementPages().size())
-            {
-                currentPage = -1;
-            }
-            button.displayString = AchievementPage.getTitle(currentPage);
-        }
-
-        super.actionPerformed(par1GuiButton);*/
     }
 
     /**
@@ -274,7 +263,7 @@ public class GuiResearch extends GuiScreen {
         int i3;
         int j3;
         int k3;
-
+        
         for (i3 = 0; i3 * 16 - l2 < 155; ++i3)
         {
             float f1 = 0.6F - (float)(j2 + i3) / 25.0F * 0.3F;
@@ -400,7 +389,6 @@ public class GuiResearch extends GuiScreen {
                 this.mc.renderEngine.bindTexture("/achievement/bg.png");
                 i5 = k1 + j4;
                 l4 = l1 + l3;
-                
                 if (ri2.getSpecial())
                 {
                     this.drawTexturedModalRect(i5 - 2, l4 - 2, 26, 202, 26, 26);
@@ -495,6 +483,6 @@ public class GuiResearch extends GuiScreen {
      */
     public boolean doesGuiPauseGame()
     {
-        return true;
+        return false;
     }
 }
