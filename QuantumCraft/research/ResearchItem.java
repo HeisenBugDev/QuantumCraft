@@ -25,15 +25,23 @@ public class ResearchItem {
 
     public final String n;
     
+    public final ResearchItem parentAchievement;
+    
     public String getName()
     {
     	return n;
     }
-    
-    public ResearchItem(String par2Str, String name, int par3, int par4, ItemStack is)
+
+    public boolean getSpecial()
     {
+    	return false;	
+    }
+    
+    public ResearchItem(String par2Str, String name, int par3, int par4, ItemStack is, ResearchItem parent)
+    {
+    	this.parentAchievement = parent;
     	this.n = name;
-        this.riDescription = "researchItem." + par2Str + ".desc";
+        this.riDescription = par2Str;
         this.displayColumn = par3;
         this.displayRow = par4;
         this.theItemStack = is;

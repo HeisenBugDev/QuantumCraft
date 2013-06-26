@@ -1,6 +1,7 @@
 package mods.QuantumCraft.core;
 
 import mods.QuantumCraft.gui.GuiResearch;
+import mods.QuantumCraft.research.ResearchHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.GuiIngameMenu;
@@ -16,7 +17,7 @@ public class ClientProxy extends CommonProxy
 		switch(ID)
 		{
 		case 0: 
-			return new GuiResearch();
+			return new GuiResearch(new ResearchHandler());
 		}
 		return null;
 

@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import mods.QuantumCraft.core.Loader;
+import mods.QuantumCraft.research.ResearchHandler;
 import mods.QuantumCraft.research.ResearchItem;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -17,6 +18,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSmallButton;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
@@ -60,21 +62,24 @@ public class GuiResearch extends GuiScreen {
 
     /** Whether the Mouse Button is down or not */
     private int isMouseButtonDown = 0;
-    private StatFileWriter statFileWriter;
+    private ResearchHandler rHandler;
 
     private int currentPage = -1;
     private GuiSmallButton button;
-    private LinkedList<ResearchItem> researchItems = new LinkedList<ResearchItem>();
+    private LinkedList<ResearchItem> ris = new LinkedList<ResearchItem>();
 
-    public GuiResearch()
+    public GuiResearch(ResearchHandler rHandler)
     {
+        this.rHandler = rHandler;
         short short1 = 141;
         short short2 = 141;
         this.field_74117_m = this.guiMapX = this.field_74124_q = (double)(AchievementList.openInventory.displayColumn * 24 - short1 / 2 - 12);
         this.field_74115_n = this.guiMapY = this.field_74123_r = (double)(AchievementList.openInventory.displayRow * 24 - short2 / 2);
-        researchItems.clear();
-        //researchItems.add(new ResearchItem("test","Test", 2, 2, new ItemStack(Loader.ItemRawQuantonium)));
-        researchItems.add(new ResearchItem("test2","Test2", 2, 0, new ItemStack(Loader.ItemCrystalQuantonium)));
+        ris.clear();
+        
+        ris.add(new ResearchItem("ASFKGaiuagds", "Test", 0, -2, new ItemStack(Loader.ItemRawQuantonium), null));
+        ris.add(new ResearchItem("BNlagsgdiads", "Test", 0, 0, new ItemStack(Item.axeIron), ris.get(0)));
+        ris.add(new ResearchItem("HUIiugfuzasd", "Test", 2, 0, new ItemStack(Loader.ItemCrystalQuantonium), ris.get(1)));
     }
 
     /**
@@ -83,6 +88,8 @@ public class GuiResearch extends GuiScreen {
     public void initGui()
     {
         this.buttonList.clear();
+        this.buttonList.add(new GuiSmallButton(1, this.width / 2 + 24, this.height / 2 + 74, 80, 20, StatCollector.translateToLocal("gui.done")));
+        this.buttonList.add(button = new GuiSmallButton(2, (width - achievementsPaneWidth) / 2 + 24, height / 2 + 74, 125, 20, AchievementPage.getTitle(currentPage)));
     }
 
     /**
@@ -94,6 +101,16 @@ public class GuiResearch extends GuiScreen {
         {
             this.mc.displayGuiScreen((GuiScreen)null);
             this.mc.setIngameFocus();
+        }
+
+        if (par1GuiButton.id == 2) 
+        {
+            currentPage++;
+            if (currentPage >= AchievementPage.getAchievementPages().size())
+            {
+                currentPage = -1;
+            }
+            button.displayString = AchievementPage.getTitle(currentPage);
         }
 
         super.actionPerformed(par1GuiButton);
@@ -208,7 +225,7 @@ public class GuiResearch extends GuiScreen {
     {
         int i = (this.width - this.achievementsPaneWidth) / 2;
         int j = (this.height - this.achievementsPaneHeight) / 2;
-        this.fontRenderer.drawString("Quantum Craft Research", i + 15, j + 5, 4210752);
+        this.fontRenderer.drawString("Achievements", i + 15, j + 5, 4210752);
     }
 
     protected void genAchievementBackground(int par1, int par2, float par3)
@@ -308,7 +325,7 @@ public class GuiResearch extends GuiScreen {
                 this.drawTexturedModelRectFromIcon(k1 + k3 * 16 - k2, l1 + i3 * 16 - l2, icon, 16, 16);
             }
         }
-        
+
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glDepthFunc(GL11.GL_LEQUAL);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -316,7 +333,36 @@ public class GuiResearch extends GuiScreen {
         int i4;
         int j4;
 
-        ResearchItem achievement1 = null;
+        for (i3 = 0; i3 < ris.size(); ++i3)
+        {
+            ResearchItem ri = ris.get(i3);
+
+            if (ri.parentAchievement != null && ris.contains(ri.parentAchievement))
+            {
+                k3 = ri.displayColumn * 24 - k + 11 + k1;
+                j3 = ri.displayRow * 24 - l + 11 + l1;
+                j4 = ri.parentAchievement.displayColumn * 24 - k + 11 + k1;
+                l3 = ri.parentAchievement.displayRow * 24 - l + 11 + l1;
+                boolean flag = this.rHandler.hasRIUnlocked(ri);
+                boolean flag1 = this.rHandler.canUnlockRI(ri);
+                i4 = Math.sin((double)(Minecraft.getSystemTime() % 600L) / 600.0D * Math.PI * 2.0D) > 0.6D ? 255 : 130;
+                int k4 = -16777216;
+
+                if (flag)
+                {
+                    k4 = -9408400;
+                }
+                else if (flag1)
+                {
+                    k4 = 65280 + (i4 << 24);
+                }
+
+                this.drawHorizontalLine(k3, j4, j3, k4);
+                this.drawVerticalLine(j4, j3, l3, k4);
+            }
+        }
+
+        ResearchItem ri1 = null;
         RenderItem renderitem = new RenderItem();
         RenderHelper.enableGUIStandardItemLighting();
         GL11.glDisable(GL11.GL_LIGHTING);
@@ -325,40 +371,70 @@ public class GuiResearch extends GuiScreen {
         int l4;
         int i5;
 
-        System.out.println(researchItems.size());
-        
-        for (ResearchItem ri : researchItems)
+        for (k3 = 0; k3 < ris.size(); ++k3)
         {
-            System.out.println("RI: " + ri.riDescription);
-            j4 = ri.displayColumn * 24 - k;
-            l3 = ri.displayRow * 24 - l;
+            ResearchItem ri2 = ris.get(k3);
+            j4 = ri2.displayColumn * 24 - k;
+            l3 = ri2.displayRow * 24 - l;
 
             /*if (j4 >= -24 && l3 >= -24 && j4 <= 224 && l3 <= 155)
             {*/
                 float f2;
 
-                f2 = 1.0F;
-                GL11.glColor4f(f2, f2, f2, 1.0F);
+                if (this.rHandler.hasRIUnlocked(ri2))
+                {
+                    f2 = 1.0F;
+                    GL11.glColor4f(f2, f2, f2, 1.0F);
+                }
+                else if (this.rHandler.canUnlockRI(ri2))
+                {
+                    f2 = Math.sin((double)(Minecraft.getSystemTime() % 600L) / 600.0D * Math.PI * 2.0D) < 0.6D ? 0.6F : 0.8F;
+                    GL11.glColor4f(f2, f2, f2, 1.0F);
+                }
+                else
+                {
+                    f2 = 0.3F;
+                    GL11.glColor4f(f2, f2, f2, 1.0F);
+                }
 
-                Minecraft.getMinecraft().renderEngine.bindTexture("/achievement/bg.png");
+                this.mc.renderEngine.bindTexture("/achievement/bg.png");
                 i5 = k1 + j4;
                 l4 = l1 + l3;
-                renderitem.renderWithColor = true;
-                GL11.glEnable(GL11.GL_CULL_FACE);
-                this.drawTexturedModalRect(i5 - 2, l4 - 2, 0, 202, 26, 26);
+                
+                if (ri2.getSpecial())
+                {
+                    this.drawTexturedModalRect(i5 - 2, l4 - 2, 26, 202, 26, 26);
+                }
+                else
+                {
+                    this.drawTexturedModalRect(i5 - 2, l4 - 2, 0, 202, 26, 26);
+                }
+
+                if (!this.rHandler.canUnlockRI(ri2))
+                {
+                    float f3 = 0.1F;
+                    GL11.glColor4f(f3, f3, f3, 1.0F);
+                    renderitem.renderWithColor = false;
+                }
 
                 GL11.glEnable(GL11.GL_LIGHTING);
-                renderitem.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, ri.theItemStack, i5 + 3, l4 + 3);
+                GL11.glEnable(GL11.GL_CULL_FACE);
+                renderitem.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, ri2.theItemStack, i5 + 3, l4 + 3);
                 GL11.glDisable(GL11.GL_LIGHTING);
 
-                
-                
+                if (!this.rHandler.canUnlockRI(ri2))
+                {
+                    renderitem.renderWithColor = true;
+                }
+
+                GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+
                 if (par1 >= k1 && par2 >= l1 && par1 < k1 + 224 && par2 < l1 + 155 && par1 >= i5 && par1 <= i5 + 22 && par2 >= l4 && par2 <= l4 + 22)
                 {
-                    achievement1 = ri;
+                    ri1 = ri2;
                 }
-            //}
-        }
+            }
+        //}
 
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_BLEND);
@@ -371,17 +447,44 @@ public class GuiResearch extends GuiScreen {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         super.drawScreen(par1, par2, par3);
-        if (achievement1 != null)
+
+        if (ri1 != null)
         {
-            String s = achievement1.getName();
+            String s = StatCollector.translateToLocal(ri1.getName());
+            String s1 = ri1.riDescription;
             j4 = par1 + 12;
             l3 = par2 - 4;
 
-            i5 = Math.max(this.fontRenderer.getStringWidth(s), 120);
-            //this.drawGradientRect(j4 - 3, l3 - 3, j4 + i5 + 3, l3 + 3 + 12, -1073741824, -1073741824);
+            if (this.rHandler.canUnlockRI(ri1))
+            {
+                i5 = Math.max(this.fontRenderer.getStringWidth(s), 120);
+                l4 = this.fontRenderer.splitStringWidth(s1, i5);
 
-            this.fontRenderer.drawStringWithShadow(s, j4, l3, -1);
+                if (this.rHandler.hasRIUnlocked(ri1))
+                {
+                    l4 += 12;
+                }
+
+                this.drawGradientRect(j4 - 3, l3 - 3, j4 + i5 + 3, l3 + l4 + 3 + 12, -1073741824, -1073741824);
+                this.fontRenderer.drawSplitString(s1, j4, l3 + 12, i5, -6250336);
+
+                if (this.rHandler.hasRIUnlocked(ri1))
+                {
+                    this.fontRenderer.drawStringWithShadow(StatCollector.translateToLocal("achievement.taken"), j4, l3 + l4 + 4, -7302913);
+                }
+            }
+            else
+            {
+                i5 = Math.max(this.fontRenderer.getStringWidth(s), 120);
+                String s2 = StatCollector.translateToLocalFormatted("achievement.requires", new Object[] {StatCollector.translateToLocal(ri1.parentAchievement.getName())});
+                i4 = this.fontRenderer.splitStringWidth(s2, i5);
+                this.drawGradientRect(j4 - 3, l3 - 3, j4 + i5 + 3, l3 + i4 + 12 + 3, -1073741824, -1073741824);
+                this.fontRenderer.drawSplitString(s2, j4, l3 + 12, i5, -9416624);
+            }
+
+            this.fontRenderer.drawStringWithShadow(s, j4, l3, this.rHandler.canUnlockRI(ri1) ? (ri1.getSpecial() ? -128 : -1) : (ri1.getSpecial() ? -8355776 : -8355712));
         }
+
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_LIGHTING);
         RenderHelper.disableStandardItemLighting();
@@ -392,7 +495,6 @@ public class GuiResearch extends GuiScreen {
      */
     public boolean doesGuiPauseGame()
     {
-        return false;
+        return true;
     }
-
 }
