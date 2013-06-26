@@ -96,7 +96,7 @@ public class GuiResearch extends GuiScreen {
      * Fired when a control is clicked. This is the equivalent of ActionListener.actionPerformed(ActionEvent e).
      */
     protected void actionPerformed(GuiButton par1GuiButton)
-    {
+    {/*
         if (par1GuiButton.id == 1)
         {
             this.mc.displayGuiScreen((GuiScreen)null);
@@ -113,7 +113,7 @@ public class GuiResearch extends GuiScreen {
             button.displayString = AchievementPage.getTitle(currentPage);
         }
 
-        super.actionPerformed(par1GuiButton);
+        super.actionPerformed(par1GuiButton);*/
     }
 
     /**
@@ -225,7 +225,7 @@ public class GuiResearch extends GuiScreen {
     {
         int i = (this.width - this.achievementsPaneWidth) / 2;
         int j = (this.height - this.achievementsPaneHeight) / 2;
-        this.fontRenderer.drawString("Achievements", i + 15, j + 5, 4210752);
+        this.fontRenderer.drawString("Quantum Craft Research", i + 15, j + 5, 4210752);
     }
 
     protected void genAchievementBackground(int par1, int par2, float par3)
