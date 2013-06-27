@@ -6,6 +6,7 @@ import net.minecraft.block.BlockOre;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import mods.QuantumCraft.blocks.BlockOreQuantonium;
+import mods.QuantumCraft.blocks.BlockQDeenergizer;
 import mods.QuantumCraft.items.*;
 
 public class Loader {
@@ -15,6 +16,7 @@ public class Loader {
 	public static ItemResearchBook ItemResearchBook;
 	
 	public static BlockOreQuantonium OreQuantonium;
+	public static BlockQDeenergizer BlockQDeenergizer;
 	
 	public static TabQuantumCraft tabQuantumCraft;
 	
@@ -52,6 +54,11 @@ public class Loader {
 			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameOreQuantonium);
 		LanguageRegistry.addName(OreQuantonium, "Quantonium Ore");
 		GameRegistry.registerBlock(OreQuantonium, Config.NameOreQuantonium);
+		
+		BlockQDeenergizer = (BlockQDeenergizer) new BlockQDeenergizer(Config.BlockQDEID)
+			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDE);
+		LanguageRegistry.addName(BlockQDeenergizer, "Quantum De-Energizer");
+		GameRegistry.registerBlock(BlockQDeenergizer, Config.NameBlockQDE);
 	}
 
 	public static void initRenderers() {

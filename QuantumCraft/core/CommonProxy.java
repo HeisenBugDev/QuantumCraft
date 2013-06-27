@@ -1,5 +1,7 @@
 package mods.QuantumCraft.core;
 
+import mods.QuantumCraft.inventory.ContainerQDeenergizer;
+import mods.QuantumCraft.machine.TileQDeenergizer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -21,7 +23,8 @@ public class CommonProxy implements IGuiHandler
 		{
 			switch(ID)
 			{
-			case 0: /* your Containers go here*/
+			case 1:
+				return new ContainerQDeenergizer(player.inventory, (TileQDeenergizer) world.getBlockTileEntity(x, y, z));
 			}
 		}
 		return null;
