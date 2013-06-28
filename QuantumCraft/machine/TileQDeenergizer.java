@@ -10,7 +10,7 @@ import mods.QuantumCraft.net.IQEnergySource;
 
 public class TileQDeenergizer extends TileEntity implements ISidedInventory, IQEnergySource {
 
-	public int QEnergyBuffer = 40;
+	public int QEnergyBuffer = 36;
 	public int lastItemValue = 100;
 	
 	public ItemStack[] inventory = new ItemStack[2];
@@ -167,8 +167,8 @@ public class TileQDeenergizer extends TileEntity implements ISidedInventory, IQE
      */
     public void writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
-        par1NBTTagCompound.setShort("QEnergyBuffer", (short)this.QEnergyBuffer);
-        par1NBTTagCompound.setShort("LastItemValue", (short)this.lastItemValue);
+        par1NBTTagCompound.setInteger("QEnergyBuffer", (short)this.QEnergyBuffer);
+        par1NBTTagCompound.setInteger("LastItemValue", (short)this.lastItemValue);
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.inventory.length; ++i)
