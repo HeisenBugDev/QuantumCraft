@@ -1,10 +1,10 @@
-package mods.QuantumCraft.core;
+package mods.quantumcraft.core;
 
-import mods.QuantumCraft.gui.GuiQDeenergizer;
-import mods.QuantumCraft.gui.GuiResearch;
-import mods.QuantumCraft.inventory.ContainerQDeenergizer;
-import mods.QuantumCraft.machine.TileQDeenergizer;
-import mods.QuantumCraft.research.ResearchHandler;
+import mods.quantumcraft.gui.GuiQDeenergizer;
+import mods.quantumcraft.gui.GuiResearch;
+import mods.quantumcraft.inventory.ContainerQDeenergizer;
+import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.research.ResearchHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.GuiIngameMenu;

@@ -1,9 +1,9 @@
-package mods.QuantumCraft.gui;
+package mods.quantumcraft.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import mods.QuantumCraft.machine.TileQDeenergizer;
-import mods.QuantumCraft.inventory.*;
+import mods.quantumcraft.inventory.*;
+import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.StatCollector;

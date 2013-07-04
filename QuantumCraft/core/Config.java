@@ -1,4 +1,4 @@
-package mods.QuantumCraft.core;
+package mods.quantumcraft.core;
 
 import net.minecraftforge.common.Configuration;
 

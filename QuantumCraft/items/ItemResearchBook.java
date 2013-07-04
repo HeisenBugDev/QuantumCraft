@@ -1,6 +1,6 @@
-package mods.QuantumCraft.items;
+package mods.quantumcraft.items;
 
-import mods.QuantumCraft.core.QuantumCraft;
+import mods.quantumcraft.core.QuantumCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.achievement.GuiAchievements;

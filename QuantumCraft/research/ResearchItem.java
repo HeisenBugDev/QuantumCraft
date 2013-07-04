@@ -1,4 +1,4 @@
-package mods.QuantumCraft.research;
+package mods.quantumcraft.research;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;

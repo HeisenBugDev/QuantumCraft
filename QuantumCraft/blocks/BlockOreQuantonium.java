@@ -1,8 +1,8 @@
-package mods.QuantumCraft.blocks;
+package mods.quantumcraft.blocks;
 
 import java.util.Random;
 
-import mods.QuantumCraft.core.Loader;
+import mods.quantumcraft.core.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;

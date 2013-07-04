@@ -1,4 +1,4 @@
-package mods.QuantumCraft.machine;
+package mods.quantumcraft.machine;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import mods.QuantumCraft.net.IQEnergySource;
+import mods.quantumcraft.net.IQEnergySource;
 
 public class TileQDeenergizer extends TileEntity implements ISidedInventory, IQEnergySource {
 

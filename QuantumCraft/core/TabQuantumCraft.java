@@ -1,4 +1,4 @@
-package mods.QuantumCraft.core;
+package mods.quantumcraft.core;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.StringTranslate;

@@ -1,4 +1,4 @@
-package mods.QuantumCraft.research;
+package mods.quantumcraft.research;
 
 import java.util.ArrayList;
 import java.util.List;

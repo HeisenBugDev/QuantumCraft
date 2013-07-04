@@ -1,4 +1,4 @@
-package mods.QuantumCraft.inventory;
+package mods.quantumcraft.inventory;
 
 import java.util.List;
 

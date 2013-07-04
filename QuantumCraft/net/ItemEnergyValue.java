@@ -1,6 +1,6 @@
-package mods.QuantumCraft.net;
+package mods.quantumcraft.net;
 
-import mods.QuantumCraft.core.Loader;
+import mods.quantumcraft.core.Loader;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

@@ -1,7 +1,7 @@
-package mods.QuantumCraft.blocks;
+package mods.quantumcraft.blocks;
 
-import mods.QuantumCraft.core.QuantumCraft;
-import mods.QuantumCraft.machine.TileQDeenergizer;
+import mods.quantumcraft.core.QuantumCraft;
+import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

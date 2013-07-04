@@ -1,6 +1,6 @@
-package mods.QuantumCraft.inventory;
+package mods.quantumcraft.inventory;
 
-import mods.QuantumCraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

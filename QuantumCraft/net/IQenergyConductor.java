@@ -1,4 +1,4 @@
-package mods.QuantumCraft.net;
+package mods.quantumcraft.net;
 
 public interface IQenergyConductor {
 

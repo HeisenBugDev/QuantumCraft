@@ -1,7 +1,7 @@
-package mods.QuantumCraft.core;
+package mods.quantumcraft.core;
 
-import mods.QuantumCraft.inventory.ContainerQDeenergizer;
-import mods.QuantumCraft.machine.TileQDeenergizer;
+import mods.quantumcraft.inventory.ContainerQDeenergizer;
+import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

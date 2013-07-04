@@ -1,9 +1,9 @@
-package mods.QuantumCraft.research;
+package mods.quantumcraft.research;
 
 import java.awt.List;
 import java.util.LinkedList;
 
-import mods.QuantumCraft.core.Loader;
+import mods.quantumcraft.core.Loader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

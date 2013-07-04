@@ -1,4 +1,4 @@
-package mods.QuantumCraft.research;
+package mods.quantumcraft.research;
 
 import net.minecraft.entity.Entity;
 import java.util.HashMap;

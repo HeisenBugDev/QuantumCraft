@@ -1,4 +1,4 @@
-package mods.QuantumCraft.gui;
+package mods.quantumcraft.gui;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import mods.QuantumCraft.core.Loader;
-import mods.QuantumCraft.research.ResearchHandler;
-import mods.QuantumCraft.research.ResearchItem;
+import mods.quantumcraft.core.Loader;
+import mods.quantumcraft.research.ResearchHandler;
+import mods.quantumcraft.research.ResearchItem;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
