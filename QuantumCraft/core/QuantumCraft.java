@@ -17,7 +17,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class QuantumCraft {
 
-		@SidedProxy(clientSide = "mods.QuantumCraft.core.ClientProxy", serverSide = "mods.QuantumCraft.core.CommonProxy")
+		@SidedProxy(clientSide = "mods.quantumcraft.core.ClientProxy", serverSide = "mods.quantumcraft.core.CommonProxy")
 		public static ClientProxy proxy;
 
         @Instance("QuantumCraft")
