@@ -16,7 +16,6 @@ public class ResearchEntityProperties implements IExtendedEntityProperties {
 	private boolean[] researchItems = new boolean[100];
 	
 	public ResearchEntityProperties() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public boolean getUnlocked(int index)
@@ -53,7 +52,6 @@ public class ResearchEntityProperties implements IExtendedEntityProperties {
 
 	@Override
 	public void init(Entity entity, World world) {
-		// TODO Auto-generated method stub
 
 	}
 
