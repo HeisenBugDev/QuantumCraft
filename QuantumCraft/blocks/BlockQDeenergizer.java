@@ -58,9 +58,9 @@ public class BlockQDeenergizer extends BlockRotatable {
 		case 1:
 			return iconTop;
 		case 2:
-			return iconFront;
-		case 3:
 			return iconBack;
+		case 3:
+			return iconFront;
 		case 4:
 			return iconSide;
 		case 5:

@@ -36,11 +36,11 @@ public abstract class TileMachineBase extends TileEntity implements
 	public int getRotatedSide(int side) {
 		if (side < 2) {
 			return side;
-		} else if (_forwardDirection == ForgeDirection.WEST) {
-			return addToSide(side, 1);
-		} else if (_forwardDirection == ForgeDirection.NORTH) {
-			return addToSide(side, 2);
 		} else if (_forwardDirection == ForgeDirection.EAST) {
+			return addToSide(side, 1);
+		} else if (_forwardDirection == ForgeDirection.SOUTH) {
+			return addToSide(side, 2);
+		} else if (_forwardDirection == ForgeDirection.WEST) {
 			return addToSide(side, 3);
 		}
 		return side;
