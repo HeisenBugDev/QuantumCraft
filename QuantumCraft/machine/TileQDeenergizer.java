@@ -1,14 +1,15 @@
 package mods.quantumcraft.machine;
 
+import mods.quantumcraft.net.IQEnergySource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import mods.quantumcraft.net.IQEnergySource;
+import net.minecraftforge.common.ForgeDirection;
 
-public class TileQDeenergizer extends TileEntity implements ISidedInventory,
+public class TileQDeenergizer extends TileMachineBase implements ISidedInventory,
 		IQEnergySource {
 
 	public int QEnergyBuffer = 36;
@@ -16,6 +17,11 @@ public class TileQDeenergizer extends TileEntity implements ISidedInventory,
 
 	public ItemStack[] inventory = new ItemStack[2];
 
+	@Override
+	public boolean canRotate(){
+		return true;
+	}
+	
 	@Override
 	public int getSizeInventory() {
 		return inventory.length;
@@ -106,7 +112,6 @@ public class TileQDeenergizer extends TileEntity implements ISidedInventory,
 	public void closeChest() {
 	}
 
-	
 	@Override
 	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
 		return true;
@@ -139,6 +144,7 @@ public class TileQDeenergizer extends TileEntity implements ISidedInventory,
 	public void onInventoryChanged() {
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
 		super.readFromNBT(par1NBTTagCompound);
 		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
@@ -162,6 +168,8 @@ public class TileQDeenergizer extends TileEntity implements ISidedInventory,
 	/**
 	 * Writes a tile entity to NBT.
 	 */
+	
+	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
 		par1NBTTagCompound.setInteger("QEnergyBuffer",
 				(short) this.QEnergyBuffer);
@@ -180,6 +188,16 @@ public class TileQDeenergizer extends TileEntity implements ISidedInventory,
 
 		par1NBTTagCompound.setTag("Items", nbttaglist);
 		super.writeToNBT(par1NBTTagCompound);
+	}
+
+	@Override
+	public void rotate() {
+		
+	}
+
+	@Override
+	public ForgeDirection getDirectionFacing() {
+		return null;
 	}
 
 }

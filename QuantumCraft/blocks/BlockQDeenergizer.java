@@ -2,24 +2,27 @@ package mods.quantumcraft.blocks;
 
 import mods.quantumcraft.core.QuantumCraft;
 import mods.quantumcraft.machine.TileQDeenergizer;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
-import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockQDeenergizer extends BlockContainer {
+public class BlockQDeenergizer extends BlockRotatable {
 
 	private Icon iconFront;
-	private Icon iconDefault;
+	private Icon iconSide;
+	private Icon iconBack;
+	private Icon iconBottom;
+	private Icon iconTop;
 
 	public BlockQDeenergizer(int id) {
 		super(id, Material.iron);
+		setHardness(10F);
+		setResistance(5F);
 	}
 
 	@Override
@@ -29,44 +32,57 @@ public class BlockQDeenergizer extends BlockContainer {
 
 	public void registerIcons(IconRegister iconRegister) {
 		iconFront = iconRegister.registerIcon("QuantumCraft:machineQDE_front");
-		iconDefault = iconRegister.registerIcon("QuantumCraft:machineQDE_side");
+		iconTop = iconRegister.registerIcon("QuantumCraft:machineQDE_top");
+		iconSide = iconRegister.registerIcon("QuantumCraft:machineQDE_side");
+		iconBottom = iconRegister
+				.registerIcon("QuantumCraft:machineQDE_bottom");
+		iconSide = iconRegister.registerIcon("QuantumCraft:machineQDE_side");
+		iconBack = iconRegister.registerIcon("QuantumCraft:machineQDE_back");
+	}
+
+	@Override
+	public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
+			int side) {
+		int md = iblockaccess.getBlockMetadata(x, y, z);
+		TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
+		if (te instanceof TileQDeenergizer) {
+			side = ((TileQDeenergizer) te).getRotatedSide(side);
+		}
+		return getIconFromSide(side);
+	}
+
+	public Icon getIconFromSide(int side) {
+		switch (side) {
+		case 0:
+			return iconBottom;
+		case 1:
+			return iconTop;
+		case 2:
+			return iconFront;
+		case 3:
+			return iconBack;
+		case 4:
+			return iconSide;
+		case 5:
+			return iconSide;
+		default:
+			return Block.stone.getIcon(0, 0);
+		}
 	}
 
 	@Override
 	public Icon getIcon(int side, int meta) {
-		if (meta == 0 && side == 3)
+		System.out.println(side + "|" + meta);
+		if (meta == side) {
 			return iconFront;
-		else
-			return iconDefault;
-	}
-
-	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z,
-			EntityLiving entityLiving, ItemStack itemStack) {
-
-		TileEntity entity = world.getBlockTileEntity(x, y, z);
-		if ((entity == null) || (!(entity instanceof TileQDeenergizer)))
-			return;
-
-		byte facing = 0;
-		int facingI = MathHelper
-				.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-
-		if (facingI == 0) {
-			facing = 2;
-		}
-		if (facingI == 1) {
-			facing = 5;
-		}
-		if (facingI == 2) {
-			facing = 3;
-		}
-		if (facingI == 3) {
-			facing = 4;
+		} else if (side == side - 2) {
+			return getIconFromSide(side - 2);
+		} else if (side == side - 3) {
+			return getIconFromSide(side - 3);
+		} else {
+			return getIconFromSide(side);
 		}
 
-		System.out.println("metadata!");
-		world.setBlockMetadataWithNotify(x, y, z, facing, 2);
 	}
 
 	public boolean onBlockActivated(World world, int x, int y, int z,
