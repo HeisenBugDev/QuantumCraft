@@ -2,6 +2,7 @@ package mods.quantumcraft.core;
 
 import mods.quantumcraft.blocks.BlockOreQuantonium;
 import mods.quantumcraft.blocks.BlockQDeenergizer;
+import mods.quantumcraft.items.ItemBase;
 import mods.quantumcraft.items.ItemResearchBook;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -11,6 +12,7 @@ public class Loader {
 
 	public static Item ItemCrystalQuantonium;
 	public static Item ItemRawQuantonium;
+	public static Item ItemMultiTool;
 	public static ItemResearchBook ItemResearchBook;
 	
 	public static BlockOreQuantonium OreQuantonium;
@@ -41,6 +43,9 @@ public class Loader {
 		ItemRawQuantonium = new Item(Config.ItemRawQuantoniumID)
 			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemRawQuantonium);
 		LanguageRegistry.addName(ItemRawQuantonium, "Raw Quantonium");
+		
+		ItemMultiTool = new ItemBase(Config.ItemMultiTool).setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemMultiTool);
+		LanguageRegistry.addName(ItemMultiTool, "Multi Tool");
 		
 		ItemResearchBook = (ItemResearchBook) new ItemResearchBook(Config.ItemResearchBookID)
 			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemResearchBook);

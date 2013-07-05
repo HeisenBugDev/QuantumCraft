@@ -72,7 +72,6 @@ public class BlockQDeenergizer extends BlockRotatable {
 
 	@Override
 	public Icon getIcon(int side, int meta) {
-		System.out.println(side + "|" + meta);
 		if (meta == side) {
 			return iconFront;
 		} else if (side == side - 2) {

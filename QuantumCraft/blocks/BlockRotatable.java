@@ -1,5 +1,6 @@
 package mods.quantumcraft.blocks;
 
+import mods.quantumcraft.machine.TileMachineBase;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -7,11 +8,15 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 
 public abstract class BlockRotatable extends BlockContainer {
+	/*
+	 * TileEntity te = world.getBlockTileEntity(x, y, z);
+	 * if(Util.isHoldingHammer(entityplayer) && te instanceof TileEntityFactory
+	 * && ((TileEntityFactory)te).canRotate()) { ((TileMachineBase)te).rotate();
+	 * world.markBlockForUpdate(x, y, z); return true; }
+	 */
 
 	public BlockRotatable(int id, Material material) {
 		super(id, material);

@@ -9,8 +9,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileQDeenergizer extends TileMachineBase implements ISidedInventory,
-		IQEnergySource {
+public class TileQDeenergizer extends TileMachineBase implements
+		ISidedInventory, IQEnergySource {
 
 	public int QEnergyBuffer = 36;
 	public int lastItemValue = 100;
@@ -18,10 +18,10 @@ public class TileQDeenergizer extends TileMachineBase implements ISidedInventory
 	public ItemStack[] inventory = new ItemStack[2];
 
 	@Override
-	public boolean canRotate(){
+	public boolean canRotate() {
 		return true;
 	}
-	
+
 	@Override
 	public int getSizeInventory() {
 		return inventory.length;
@@ -146,6 +146,7 @@ public class TileQDeenergizer extends TileMachineBase implements ISidedInventory
 
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
+		System.out.println("NBT sucks more ballz");
 		super.readFromNBT(par1NBTTagCompound);
 		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
 		this.inventory = new ItemStack[this.getSizeInventory()];
@@ -168,7 +169,7 @@ public class TileQDeenergizer extends TileMachineBase implements ISidedInventory
 	/**
 	 * Writes a tile entity to NBT.
 	 */
-	
+
 	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
 		par1NBTTagCompound.setInteger("QEnergyBuffer",
@@ -192,7 +193,7 @@ public class TileQDeenergizer extends TileMachineBase implements ISidedInventory
 
 	@Override
 	public void rotate() {
-		
+
 	}
 
 	@Override
