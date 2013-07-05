@@ -2,7 +2,6 @@ package mods.quantumcraft.blocks;
 
 import mods.quantumcraft.core.QuantumCraft;
 import mods.quantumcraft.machine.TileQDeenergizer;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -13,52 +12,67 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 
-public class BlockQDeenergizer extends BlockRotatable{
+public class BlockQDeenergizer extends BlockContainer {
 
-	public BlockQDeenergizer(int par1) {
-		super(par1, Material.rock);
+	private Icon iconFront;
+	private Icon iconDefault;
+
+	public BlockQDeenergizer(int id) {
+		super(id, Material.iron);
 	}
 
-	Icon top, front, back, side, bottom, temp;
-
-	/*
-	 * 0 == bottom 1 == top 2 == north 3 == south 4 == west 5 == east
-	 */
-	public Icon getIcon(int side, int meta) {
-		if (side == 3)
-			return this.front;
-		else
-			return this.bottom;
-	}
-
-	/**
-	 * Returns a new instance of a block's tile entity class. Called on placing
-	 * the block.
-	 */
-	public TileEntity createNewTileEntity(World par1World) {
+	@Override
+	public TileEntity createNewTileEntity(World world) {
 		return new TileQDeenergizer();
 	}
 
-	public void registerIcons(IconRegister par1IconRegister) {
-		this.temp = Block.stone.getIcon(0, 0);
-		this.top = par1IconRegister.registerIcon("QuantumCraft:machineQDE_top");
-		this.front = par1IconRegister
-				.registerIcon("QuantumCraft:machineQDE_front");
-		this.back = par1IconRegister
-				.registerIcon("QuantumCraft:machineQDE_back");
-		this.side = par1IconRegister
-				.registerIcon("QuantumCraft:machineQDE_side");
-		this.bottom = par1IconRegister
-				.registerIcon("QuantumCraft:machineQDE_bottom");
+	public void registerIcons(IconRegister iconRegister) {
+		iconFront = iconRegister.registerIcon("QuantumCraft:machineQDE_front");
+		iconDefault = iconRegister.registerIcon("QuantumCraft:machineQDE_side");
 	}
 
+	@Override
+	public Icon getIcon(int side, int meta) {
+		if (meta == 0 && side == 3)
+			return iconFront;
+		else
+			return iconDefault;
+	}
 
-	public boolean onBlockActivated(World par1World, int x, int y, int z,
-			EntityPlayer par5EntityPlayer, int par6, float par7, float par8,
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z,
+			EntityLiving entityLiving, ItemStack itemStack) {
+
+		TileEntity entity = world.getBlockTileEntity(x, y, z);
+		if ((entity == null) || (!(entity instanceof TileQDeenergizer)))
+			return;
+
+		byte facing = 0;
+		int facingI = MathHelper
+				.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+
+		if (facingI == 0) {
+			facing = 2;
+		}
+		if (facingI == 1) {
+			facing = 5;
+		}
+		if (facingI == 2) {
+			facing = 3;
+		}
+		if (facingI == 3) {
+			facing = 4;
+		}
+
+		System.out.println("metadata!");
+		world.setBlockMetadataWithNotify(x, y, z, facing, 2);
+	}
+
+	public boolean onBlockActivated(World world, int x, int y, int z,
+			EntityPlayer entityPlayer, int par6, float par7, float par8,
 			float par9) {
-		par5EntityPlayer.openGui(QuantumCraft.instance, 1, par1World, x, y, z);
+		entityPlayer.openGui(QuantumCraft.instance, 1, world, x, y, z);
 		return true;
 	}
 }

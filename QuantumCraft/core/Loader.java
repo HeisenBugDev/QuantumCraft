@@ -1,13 +1,11 @@
 package mods.quantumcraft.core;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraft.block.BlockOre;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import mods.quantumcraft.blocks.BlockOreQuantonium;
 import mods.quantumcraft.blocks.BlockQDeenergizer;
-import mods.quantumcraft.items.*;
+import mods.quantumcraft.items.ItemResearchBook;
+import net.minecraft.item.Item;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class Loader {
 
