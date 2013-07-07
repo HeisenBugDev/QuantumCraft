@@ -6,13 +6,16 @@ public class Config {
 
 	public static String NameItemCrystalQuantonium = "QuantumCraft:crystalQuantonium";
 	public static String NameItemRawQuantonium = "QuantumCraft:rawQuantonium";
+	public static String NameItemDepletedCrystal = "QuantumCraft:depletedCrystal";
 	public static String NameItemResearchBook = "QuantumCraft:researchBook";
 	public static String NameItemMultiTool = "QuantumCraft:multiTool";
+	
 	public static String NameOreQuantonium = "QuantumCraft:oreQuantonium";
 	public static String NameBlockQDE = "QuantumCraft:machineQDE";
 
 	public static int ItemCrystallizedQuantoniumID;
 	public static int ItemRawQuantoniumID;
+	public static int ItemDepletedCrystalID;
 	public static int ItemResearchBookID;
 	public static int ItemMultiTool;
 
@@ -31,7 +34,9 @@ public class Config {
 		ItemMultiTool = config.get("Items", "ItemMultiTool", 5003).getInt();
 		OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500)
 				.getInt();
+
 		BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 2501).getInt();
+		
 		config.save();
 	}
 

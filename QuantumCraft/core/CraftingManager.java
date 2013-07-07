@@ -14,4 +14,9 @@ public class CraftingManager {
 		GameRegistry.addSmelting(Loader.ItemRawQuantonium.itemID, new ItemStack(Loader.ItemCrystalQuantonium), 2);
 	}
 	
+	public static void addQDE()
+	{
+		QRecipeHandler.addQDERecipe(new QDERecipe(new ItemStack(Loader.ItemCrystalQuantonium), 100));
+	}
+	
 }

@@ -14,6 +14,8 @@ public class Loader {
 	public static Item ItemRawQuantonium;
 	public static Item ItemMultiTool;
 	public static ItemResearchBook ItemResearchBook;
+	public static Item ItemDepletedCrystal;
+	
 	
 	public static BlockOreQuantonium OreQuantonium;
 	public static BlockQDeenergizer BlockQDeenergizer;
@@ -28,6 +30,7 @@ public class Loader {
 		initWGen();
 		CraftingManager.addCrafting();
 		CraftingManager.addSmelting();
+		CraftingManager.addQDE();
 	}
 
 	public static void initTabs()
@@ -43,13 +46,19 @@ public class Loader {
 		ItemRawQuantonium = new Item(Config.ItemRawQuantoniumID)
 			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemRawQuantonium);
 		LanguageRegistry.addName(ItemRawQuantonium, "Raw Quantonium");
-		
-		ItemMultiTool = new ItemBase(Config.ItemMultiTool).setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemMultiTool);
+
+		ItemMultiTool = new ItemBase(Config.ItemMultiTool)
+			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemMultiTool);
 		LanguageRegistry.addName(ItemMultiTool, "Multi Tool");
+
+		ItemDepletedCrystal = new Item(Config.ItemDepletedCrystalID)
+			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemDepletedCrystal);
+		LanguageRegistry.addName(ItemDepletedCrystal, "Depleted Crystal");
 		
 		ItemResearchBook = (ItemResearchBook) new ItemResearchBook(Config.ItemResearchBookID)
 			.setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemResearchBook);
 		LanguageRegistry.addName(ItemResearchBook, "Research Book");
+
 	}
 
 	public static void initBlocks() {

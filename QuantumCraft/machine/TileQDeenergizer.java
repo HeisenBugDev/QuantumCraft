@@ -1,6 +1,7 @@
 package mods.quantumcraft.machine;
 
 import mods.quantumcraft.net.IQEnergySource;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -8,13 +9,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import mods.quantumcraft.core.QRecipeHandler;
+import mods.quantumcraft.net.IQEnergySource;
 
 public class TileQDeenergizer extends TileMachineBase implements
 		ISidedInventory, IQEnergySource {
 
-	public int QEnergyBuffer = 36;
-	public int lastItemValue = 100;
 
+	public int QEnergyBuffer = 0;
+	public int lastItemValue = 0;
+	
 	public ItemStack[] inventory = new ItemStack[2];
 
 	@Override
@@ -55,6 +59,40 @@ public class TileQDeenergizer extends TileMachineBase implements
 		}
 	}
 
+	int processTime = 0;
+	
+	private void process()
+	{
+		//we need to put in the QEnergyOutput here
+		processTime = -1;
+		this.decrStackSize(0, 1);
+		if (inventory[1] == null)
+		{
+			inventory[1] = QRecipeHandler.getQDERecipeFromInput(inventory[0]).getOutputItem();
+		} else inventory[1].stackSize++;
+	}
+	
+	private boolean canProcess()
+	{
+		return QRecipeHandler.getQDERecipeFromInput(inventory[0]) != null
+				&& inventory[1].stackSize < inventory[1].getMaxStackSize()
+				&& (inventory[1].itemID == QRecipeHandler.getQDERecipeFromInput(inventory[0]).getOutputItem().itemID
+				|| inventory[1] == null);
+	}
+	
+	@Override
+	public void updateEntity()
+	{
+        if (this.canProcess())
+        {
+        	this.lastItemValue = QRecipeHandler.getQDERecipeFromInput(inventory[0]).getEnergyValue();
+        	this.QEnergyBuffer = this.lastItemValue;
+        	if (this.processTime == 0) process();
+        	if (this.processTime == -1) processTime = QRecipeHandler.getQDERecipeFromInput(inventory[0]).getProcessTime();
+        	else processTime--;
+        	this.QEnergyBuffer = this.QEnergyBuffer - (this.lastItemValue / QRecipeHandler.getQDERecipeFromInput(inventory[0]).getProcessTime());
+        }
+    }
 	@Override
 	public ItemStack getStackInSlotOnClosing(int i) {
 		if (this.inventory[i] != null) {
