@@ -11,7 +11,6 @@ public abstract class TileMachineBase extends TileEntity implements
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
-		System.out.println("NBT DATA SUCKS BALLS");
 		super.readFromNBT(nbttagcompound);
 		int rotation = nbttagcompound.getInteger("rotation");
 		rotateDirectlyTo(rotation);
