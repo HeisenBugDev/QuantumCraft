@@ -4,6 +4,7 @@ import mods.quantumcraft.blocks.BlockOreQuantonium;
 import mods.quantumcraft.blocks.BlockQDeenergizer;
 import mods.quantumcraft.items.ItemBase;
 import mods.quantumcraft.items.ItemResearchBook;
+import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -28,11 +29,12 @@ public class Loader {
 		initBlocks();
 		initRenderers();
 		initWGen();
+		initTEs();
 		CraftingManager.addCrafting();
 		CraftingManager.addSmelting();
 		CraftingManager.addQDE();
 	}
-
+	
 	public static void initTabs()
 	{
 		tabQuantumCraft = new TabQuantumCraft();
@@ -79,6 +81,10 @@ public class Loader {
 
 	public static void initWGen() {
 
+	}
+	
+	public static void initTEs(){
+		GameRegistry.registerTileEntity(TileQDeenergizer.class, "QDeenergizerTE");
 	}
 
 }
