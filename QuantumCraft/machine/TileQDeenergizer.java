@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import mods.quantumcraft.core.QDERecipe;
 import mods.quantumcraft.core.QRecipeHandler;
 import mods.quantumcraft.net.IQEnergySource;
 
@@ -65,32 +66,47 @@ public class TileQDeenergizer extends TileMachineBase implements
 	{
 		//we need to put in the QEnergyOutput here
 		processTime = -1;
-		this.decrStackSize(0, 1);
 		if (inventory[1] == null)
 		{
-			inventory[1] = QRecipeHandler.getQDERecipeFromInput(inventory[0]).getOutputItem();
+			inventory[1] = r.getOutputItem().copy();
 		} else inventory[1].stackSize++;
+
+		this.decrStackSize(0, 1);
 	}
 	
 	private boolean canProcess()
 	{
-		return QRecipeHandler.getQDERecipeFromInput(inventory[0]) != null
-				&& inventory[1].stackSize < inventory[1].getMaxStackSize()
-				&& (inventory[1].itemID == QRecipeHandler.getQDERecipeFromInput(inventory[0]).getOutputItem().itemID
-				|| inventory[1] == null);
+
+    	r = QRecipeHandler.getQDERecipeFromInput(inventory[0]);
+		boolean flag = true;
+		
+		if (inventory[0] == null) flag = false;
+		if (inventory[0] != null)
+		{
+			if (r == null) flag = false;
+			if (inventory[1] != null)
+			{
+				if (inventory[1].itemID != r.getOutputItem().itemID) flag = false;
+			}
+		}
+
+		return flag;
+		
 	}
+	
+	QDERecipe r;
 	
 	@Override
 	public void updateEntity()
 	{
         if (this.canProcess())
         {
-        	this.lastItemValue = QRecipeHandler.getQDERecipeFromInput(inventory[0]).getEnergyValue();
+        	this.lastItemValue = r.getEnergyValue();
         	this.QEnergyBuffer = this.lastItemValue;
         	if (this.processTime == 0) process();
-        	if (this.processTime == -1) processTime = QRecipeHandler.getQDERecipeFromInput(inventory[0]).getProcessTime();
+        	if (this.processTime == -1) processTime = r.getProcessTime();
         	else processTime--;
-        	this.QEnergyBuffer = this.QEnergyBuffer - (this.lastItemValue / QRecipeHandler.getQDERecipeFromInput(inventory[0]).getProcessTime());
+        	this.QEnergyBuffer = this.QEnergyBuffer - (this.lastItemValue / r.getProcessTime());
         }
     }
 	@Override
