@@ -250,9 +250,6 @@ public class TileQDeenergizer extends TileMachineBase implements
 
 	}
 
-	@Override
-	public ForgeDirection getDirectionFacing() {
-		return null;
-	}
+	
 
 }

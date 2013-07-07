@@ -9,7 +9,7 @@ public class Config {
 	public static String NameItemDepletedCrystal = "QuantumCraft:depletedCrystal";
 	public static String NameItemResearchBook = "QuantumCraft:researchBook";
 	public static String NameItemMultiTool = "QuantumCraft:multiTool";
-	
+
 	public static String NameOreQuantonium = "QuantumCraft:oreQuantonium";
 	public static String NameBlockQDE = "QuantumCraft:machineQDE";
 
@@ -32,11 +32,13 @@ public class Config {
 		ItemResearchBookID = config.get("Items", "ItemResearchBookID", 5002)
 				.getInt();
 		ItemMultiTool = config.get("Items", "ItemMultiTool", 5003).getInt();
+		ItemDepletedCrystalID = config
+				.get("Items", "ItemDepletedCrystal", 5004).getInt();
 		OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500)
 				.getInt();
 
 		BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 2501).getInt();
-		
+
 		config.save();
 	}
 
