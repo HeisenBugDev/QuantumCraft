@@ -9,6 +9,12 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 public abstract class TileMachineBase extends TileEntity implements
 		IRotateableTile {
 
+	private ForgeDirection _forwardDirection;
+
+	protected TileMachineBase() {
+		_forwardDirection = ForgeDirection.NORTH;
+	}
+
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		super.readFromNBT(nbttagcompound);
@@ -26,8 +32,6 @@ public abstract class TileMachineBase extends TileEntity implements
 	public ForgeDirection getDirectionFacing() {
 		return _forwardDirection;
 	}
-
-	private ForgeDirection _forwardDirection;
 
 	public ForgeDirection getDropDirection() {
 		return getDirectionFacing().getOpposite();
