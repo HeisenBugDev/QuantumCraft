@@ -19,13 +19,12 @@ public class QuantumCraft {
 
     @SidedProxy(clientSide = "mods.quantumcraft.core.ClientProxy", serverSide = "mods.quantumcraft.core.CommonProxy")
     public static ClientProxy proxy;
-
     @Instance("QuantumCraft")
     public static QuantumCraft instance;
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
-        NetworkRegistry.instance().registerGuiHandler(this.instance, this.proxy);
+        NetworkRegistry.instance().registerGuiHandler(this, new CommonProxy());
         Config.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
     }
 
