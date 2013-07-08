@@ -93,12 +93,14 @@ public class TileQDeenergizer extends TileMachineBase implements
 		if (this.canProcess()) {
 			this.lastItemValue = r.getEnergyValue();
 			this.QEnergyBuffer = this.lastItemValue;
+
+			if (processTime > 0)processTime--;
+
+			this.QEnergyBuffer = (int)(((float)processTime / (float)r.getProcessTime())*(float)this.lastItemValue);
 			if (this.processTime == 0) process();
 
 			if (this.processTime == -1) processTime = r.getProcessTime();
 			
-			processTime--;
-			this.QEnergyBuffer = (int)(((float)processTime / (float)r.getProcessTime())*(float)this.lastItemValue);
 				/*
 				this.QEnergyBuffer = this.QEnergyBuffer
 						- (this.lastItemValue / r.getProcessTime());*/
