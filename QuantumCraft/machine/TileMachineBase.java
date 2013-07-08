@@ -15,8 +15,6 @@ public abstract class TileMachineBase extends TileEntity implements
         _forwardDirection = ForgeDirection.NORTH;
     }
 
-
-
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);

@@ -1,17 +1,11 @@
 package mods.quantumcraft.machine;
 
-import mods.quantumcraft.net.IQEnergySource;
-import net.minecraft.block.BlockFurnace;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
 import mods.quantumcraft.core.QDERecipe;
 import mods.quantumcraft.core.QRecipeHandler;
 import mods.quantumcraft.net.IQEnergySource;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
 
 public class TileQDeenergizer extends TileMachineBase implements
 		ISidedInventory, IQEnergySource {
