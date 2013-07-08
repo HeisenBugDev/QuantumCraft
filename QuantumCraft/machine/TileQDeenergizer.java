@@ -198,7 +198,7 @@ public class TileQDeenergizer extends TileMachineBase implements
 	@Override
 	public void onInventoryChanged() {
 	}
-
+/*
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
 		super.readFromNBT(par1NBTTagCompound);
@@ -216,13 +216,13 @@ public class TileQDeenergizer extends TileMachineBase implements
 			}
 		}
 
-		this.QEnergyBuffer = par1NBTTagCompound.getShort("QEnergyBuffer");
-		this.lastItemValue = par1NBTTagCompound.getShort("LastItemValue");
+		this.QEnergyBuffer = par1NBTTagCompound.getInteger("QEnergyBuffer");
+		this.lastItemValue = par1NBTTagCompound.getInteger("LastItemValue");
 	}
 
-	/**
+	*//**
 	 * Writes a tile entity to NBT.
-	 */
+	 *//*
 
 	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
@@ -241,7 +241,7 @@ public class TileQDeenergizer extends TileMachineBase implements
 
 		par1NBTTagCompound.setTag("Items", nbttaglist);
 		super.writeToNBT(par1NBTTagCompound);
-	}
+	}*/
 
 	@Override
 	public void rotate() {
