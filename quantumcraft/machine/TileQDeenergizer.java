@@ -53,7 +53,7 @@ public class TileQDeenergizer extends TileMachineBase implements
 		}
 	}
 
-	int processTime = 0;
+	int processTime = -1;
 
 	private void process() {
 		// we need to put in the QEnergyOutput here
@@ -93,14 +93,18 @@ public class TileQDeenergizer extends TileMachineBase implements
 		if (this.canProcess()) {
 			this.lastItemValue = r.getEnergyValue();
 			this.QEnergyBuffer = this.lastItemValue;
-			if (this.processTime == 0)
-				process();
-			if (this.processTime == -1)
-				processTime = r.getProcessTime();
-			else
-				processTime--;
-			this.QEnergyBuffer = this.QEnergyBuffer
-					- (this.lastItemValue / r.getProcessTime());
+			if (this.processTime == 0) process();
+
+			if (this.processTime == -1) processTime = r.getProcessTime();
+			
+			processTime--;
+			this.QEnergyBuffer = (int)(((float)processTime / (float)r.getProcessTime())*(float)this.lastItemValue);
+				/*
+				this.QEnergyBuffer = this.QEnergyBuffer
+						- (this.lastItemValue / r.getProcessTime());*/
+			} else {
+			processTime = -1;
+			QEnergyBuffer = 0;
 		}
 	}
 
@@ -168,10 +172,11 @@ public class TileQDeenergizer extends TileMachineBase implements
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int var1) {
-		if (var1 == 2 || var1 == 3 || var1 == 4 || var1 == 5) {
-			return new int[] { 0, 1 };
-		} else
-			return null;
+		if (var1 == 0)
+		{
+			return new int[] { 1 };
+		}
+		else return new int[] { 0 };
 	}
 
 	@Override
