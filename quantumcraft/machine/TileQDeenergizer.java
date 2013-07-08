@@ -8,197 +8,191 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 
 public class TileQDeenergizer extends TileMachineBase implements
-		ISidedInventory, IQEnergySource {
+        ISidedInventory, IQEnergySource {
 
-	public int QEnergyBuffer = 0;
-	public int lastItemValue = 0;
+    public int QEnergyBuffer = 0;
+    public int lastItemValue = 0;
 
-	public ItemStack[] inventory = new ItemStack[2];
+    public ItemStack[] inventory = new ItemStack[2];
 
-	@Override
-	public boolean canRotate() {
-		return true;
-	}
+    @Override
+    public boolean canRotate() {
+        return true;
+    }
 
-	@Override
-	public int getSizeInventory() {
-		return inventory.length;
-	}
+    @Override
+    public int getSizeInventory() {
+        return inventory.length;
+    }
 
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		return inventory[i];
-	}
 
-	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		if (this.inventory[i] != null) {
-			ItemStack itemstack;
+    @Override
+    public ItemStack getStackInSlot(int i) {
+        return inventory[i];
+    }
 
-			if (this.inventory[i].stackSize <= j) {
-				itemstack = this.inventory[i];
-				this.inventory[i] = null;
-				return itemstack;
-			} else {
-				itemstack = this.inventory[i].splitStack(j);
+    @Override
+    public ItemStack decrStackSize(int i, int j) {
+        if (this.inventory[i] != null) {
+            ItemStack itemstack;
 
-				if (this.inventory[i].stackSize == 0) {
-					this.inventory[i] = null;
-				}
+            if (this.inventory[i].stackSize <= j) {
+                itemstack = this.inventory[i];
+                this.inventory[i] = null;
+                return itemstack;
+            } else {
+                itemstack = this.inventory[i].splitStack(j);
 
-				return itemstack;
-			}
-		} else {
-			return null;
-		}
-	}
+                if (this.inventory[i].stackSize == 0) {
+                    this.inventory[i] = null;
+                }
 
-	int processTime = -1;
+                return itemstack;
+            }
+        } else {
+            return null;
+        }
+    }
 
-	private void process() {
-		// we need to put in the QEnergyOutput here
-		processTime = -1;
-		if (inventory[1] == null) {
-			inventory[1] = r.getOutputItem().copy();
-		} else
-			inventory[1].stackSize++;
+    int processTime = -1;
 
-		this.decrStackSize(0, 1);
-	}
+    private void process() {
+        // we need to put in the QEnergyOutput here
+        processTime = -1;
+        if (inventory[1] == null) {
+            inventory[1] = r.getOutputItem().copy();
+        } else
+            inventory[1].stackSize++;
 
-	private boolean canProcess() {
+        this.decrStackSize(0, 1);
+    }
 
-		r = QRecipeHandler.getQDERecipeFromInput(inventory[0]);
-		boolean flag = true;
+    private boolean canProcess() {
 
-		if (inventory[0] == null)
-			flag = false;
-		if (inventory[0] != null) {
-			if (r == null)
-				flag = false;
-			if (inventory[1] != null) {
-				if (inventory[1].itemID != r.getOutputItem().itemID)
-					flag = false;
-			}
-		}
+        r = QRecipeHandler.getQDERecipeFromInput(inventory[0]);
+        boolean flag = true;
 
-		return flag;
+        if (inventory[0] == null)
+            flag = false;
+        if (inventory[0] != null) {
+            if (r == null)
+                flag = false;
+            if (inventory[1] != null) {
+                assert r != null;
+                if (inventory[1].itemID != r.getOutputItem().itemID)
+                    flag = false;
+            }
+        }
 
-	}
+        return flag;
 
-	QDERecipe r;
+    }
 
-	@Override
-	public void updateEntity() {
-		if (this.canProcess()) {
-			this.lastItemValue = r.getEnergyValue();
-			this.QEnergyBuffer = this.lastItemValue;
+    QDERecipe r;
+    @Override
+    public void updateEntity() {
+        if (this.canProcess()) {
+            this.lastItemValue = r.getEnergyValue();
+            this.QEnergyBuffer = this.lastItemValue;
 
-			if (processTime > 0)processTime--;
+            if (processTime > 0) processTime--;
 
-			this.QEnergyBuffer = (int)(((float)processTime / (float)r.getProcessTime())*(float)this.lastItemValue);
-			if (this.processTime == 0) process();
+            this.QEnergyBuffer = (int) (((float) processTime / (float) r.getProcessTime()) * (float) this.lastItemValue);
+            if (this.processTime == 0) process();
 
-			if (this.processTime == -1) processTime = r.getProcessTime();
-			
+            if (this.processTime == -1) processTime = r.getProcessTime();
+
 				/*
 				this.QEnergyBuffer = this.QEnergyBuffer
 						- (this.lastItemValue / r.getProcessTime());*/
-			} else {
-			processTime = -1;
-			QEnergyBuffer = 0;
-		}
-	}
+        } else {
+            processTime = -1;
+            QEnergyBuffer = 0;
+        }
+    }
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int i) {
-		if (this.inventory[i] != null) {
-			ItemStack itemstack = this.inventory[i];
-			this.inventory[i] = null;
-			return itemstack;
-		} else {
-			return null;
-		}
-	}
+    @Override
+    public ItemStack getStackInSlotOnClosing(int i) {
+        if (this.inventory[i] != null) {
+            ItemStack itemstack = this.inventory[i];
+            this.inventory[i] = null;
+            return itemstack;
+        } else {
+            return null;
+        }
+    }
 
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
-		this.inventory[i] = itemstack;
+    @Override
+    public void setInventorySlotContents(int i, ItemStack itemstack) {
+        this.inventory[i] = itemstack;
 
-		if (itemstack != null
-				&& itemstack.stackSize > this.getInventoryStackLimit()) {
-			itemstack.stackSize = this.getInventoryStackLimit();
-		}
+        if (itemstack != null
+                && itemstack.stackSize > this.getInventoryStackLimit()) {
+            itemstack.stackSize = this.getInventoryStackLimit();
+        }
 
-	}
+    }
 
-	@Override
-	public String getInvName() {
+    @Override
+    public String getInvName() {
 
-		return "Quantum De-Energizer";
-	}
+        return "Quantum De-Energizer";
+    }
 
-	@Override
-	public boolean isInvNameLocalized() {
+    @Override
+    public boolean isInvNameLocalized() {
 
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	public int getInventoryStackLimit() {
+    @Override
+    public int getInventoryStackLimit() {
 
-		return 64;
-	}
+        return 64;
+    }
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 
-		return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-				this.zCoord) != this ? false : entityplayer.getDistanceSq(
-				(double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-				(double) this.zCoord + 0.5D) <= 64.0D;
-	}
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
+                this.zCoord) == this && entityplayer.getDistanceSq(
+                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
+                (double) this.zCoord + 0.5D) <= 64.0D;
+    }
 
-	@Override
-	public void openChest() {
-	}
+    @Override
+    public void openChest() {
+    }
 
-	@Override
-	public void closeChest() {
-	}
+    @Override
+    public void closeChest() {
+    }
 
-	@Override
-	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
-		return true;
-	}
+    @Override
+    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+        return true;
+    }
 
-	@Override
-	public int[] getAccessibleSlotsFromSide(int var1) {
-		if (var1 == 0)
-		{
-			return new int[] { 1 };
-		}
-		else return new int[] { 0 };
-	}
+    @Override
+    public int[] getAccessibleSlotsFromSide(int var1) {
+        if (var1 == 0) {
+            return new int[]{1};
+        } else return new int[]{0};
+    }
 
-	@Override
-	public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-		if (j == 0 || j == 1) {
-			return false; // no top & bottom
-		} else
-			return true; // ask the slot :D
-	}
+    @Override
+    public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+        return !(j == 0 || j == 1);
+    }
 
-	@Override
-	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
-		if (i == 0)
-			return false; // no out from input;
-		return true;
-	}
+    @Override
+    public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+        return i != 0;
+    }
 
-	@Override
-	public void onInventoryChanged() {
-	}
+    @Override
+    public void onInventoryChanged() {
+    }
 /*
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
@@ -221,9 +215,11 @@ public class TileQDeenergizer extends TileMachineBase implements
 		this.lastItemValue = par1NBTTagCompound.getInteger("LastItemValue");
 	}
 
-	*//**
-	 * Writes a tile entity to NBT.
-	 *//*
+	*/
+
+    /**
+     * Writes a tile entity to NBT.
+     *//*
 
 	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
@@ -243,10 +239,9 @@ public class TileQDeenergizer extends TileMachineBase implements
 		par1NBTTagCompound.setTag("Items", nbttaglist);
 		super.writeToNBT(par1NBTTagCompound);
 	}*/
+    @Override
+    public void rotate() {
 
-	@Override
-	public void rotate() {
-
-	}
+    }
 
 }
