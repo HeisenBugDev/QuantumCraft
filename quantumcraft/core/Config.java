@@ -9,7 +9,8 @@ public class Config {
     public static String NameItemDepletedCrystal = "QuantumCraft:depletedCrystal";
     public static String NameItemResearchBook = "QuantumCraft:researchBook";
     public static String NameItemMultiTool = "QuantumCraft:multiTool";
-
+    public static String NameItemLocationCard = "QuantumCraft:locationCard";
+    
     public static String NameOreQuantonium = "QuantumCraft:oreQuantonium";
     public static String NameBlockQDE = "QuantumCraft:machineQDE";
 
@@ -17,8 +18,9 @@ public class Config {
     public static int ItemRawQuantoniumID;
     public static int ItemDepletedCrystalID;
     public static int ItemResearchBookID;
-    public static int ItemMultiTool;
-
+    public static int ItemMultiToolID;
+    public static int ItemLocationCardID;
+    
     public static int OreQuantoniumID;
     public static int BlockQDEID;
 
@@ -29,8 +31,9 @@ public class Config {
         ItemRawQuantoniumID = config.get("Items", "ItemRawQuantonium", 5001).getInt();
         ItemDepletedCrystalID = config.get("Items", "ItemDepletedCrystal", 5002).getInt();
         ItemResearchBookID = config.get("Items", "ItemResearchBookID", 5003).getInt();
-        ItemMultiTool = config.get("Items", "ItemMultiTool", 5004).getInt();
-        
+        ItemMultiToolID = config.get("Items", "ItemMultiTool", 5004).getInt();
+        ItemLocationCardID = config.get("Items", "ItemLocationCard", 5005).getInt();
+
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
 

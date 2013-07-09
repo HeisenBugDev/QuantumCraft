@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.quantumcraft.blocks.BlockOreQuantonium;
 import mods.quantumcraft.blocks.BlockQDeenergizer;
 import mods.quantumcraft.items.ItemBase;
+import mods.quantumcraft.items.ItemLocationCard;
 import mods.quantumcraft.items.ItemResearchBook;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.item.Item;
@@ -16,7 +17,7 @@ public class Loader {
     public static Item ItemMultiTool;
     public static ItemResearchBook ItemResearchBook;
     public static Item ItemDepletedCrystal;
-
+    public static ItemLocationCard ItemLocationCard;
 
     public static BlockOreQuantonium OreQuantonium;
     public static BlockQDeenergizer BlockQDeenergizer;
@@ -48,7 +49,7 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemRawQuantonium);
         LanguageRegistry.addName(ItemRawQuantonium, "Raw Quantonium");
 
-        ItemMultiTool = new ItemBase(Config.ItemMultiTool)
+        ItemMultiTool = new ItemBase(Config.ItemMultiToolID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemMultiTool);
         LanguageRegistry.addName(ItemMultiTool, "Multi Tool");
 
@@ -59,6 +60,10 @@ public class Loader {
         ItemResearchBook = (ItemResearchBook) new ItemResearchBook(Config.ItemResearchBookID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemResearchBook);
         LanguageRegistry.addName(ItemResearchBook, "Research Book");
+
+        ItemLocationCard = (ItemLocationCard) new ItemLocationCard(Config.ItemLocationCardID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCard);
+        LanguageRegistry.addName(ItemLocationCard, "Location Card");
 
     }
 
