@@ -29,7 +29,7 @@ public class QDeenergizerInitPacket extends CoordinatesPacket {
 		TileQDeenergizer tile = getTile(player.worldObj, TileQDeenergizer.class);
 		if (tile != null) {
 			tile.readFromNBT(tiledata);
-			//tile.updateNextTick = true;
+			tile.updateNextTick = true;
 		}
 	}
 

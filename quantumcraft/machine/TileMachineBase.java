@@ -10,7 +10,9 @@ import net.minecraftforge.common.ForgeDirection;
 public abstract class TileMachineBase extends TileEntity implements
         IRotateableTile {
 
+    public boolean updateNextTick = false;
     private ForgeDirection _forwardDirection;
+
 
     protected TileMachineBase() {
         _forwardDirection = ForgeDirection.NORTH;
@@ -92,6 +94,9 @@ public abstract class TileMachineBase extends TileEntity implements
                     worldObj.provider.dimensionId, getDescriptionPacket());
         }
     }
+
+    @Override
+    public abstract void updateEntity();
 
     @Override
     public abstract Packet getDescriptionPacket();

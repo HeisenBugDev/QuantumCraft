@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
 public class TileQDeenergizer extends TileMachineBase implements
@@ -98,7 +99,8 @@ public class TileQDeenergizer extends TileMachineBase implements
 
             if (processTime > 0) processTime--;
 
-            this.QEnergyBuffer = (int) (((float) processTime / (float) r.getProcessTime()) * (float) this.lastItemValue);
+            this.QEnergyBuffer =
+                    (int) (((float) processTime / (float) r.getProcessTime()) * (float) this.lastItemValue);
             if (this.processTime == 0) process();
 
             if (this.processTime == -1) processTime = r.getProcessTime();
@@ -110,6 +112,17 @@ public class TileQDeenergizer extends TileMachineBase implements
             processTime = -1;
             QEnergyBuffer = 0;
         }
+
+
+        if (updateNextTick) {
+            // All nearby players need to be updated if the status of work
+            // changes, or if heat runs out / starts up, in order to change
+            // texture.
+            updateNextTick = false;
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+        }
+
     }
 
     @Override
@@ -194,52 +207,52 @@ public class TileQDeenergizer extends TileMachineBase implements
     @Override
     public void onInventoryChanged() {
     }
-/*
+
     @Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
-		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
-		this.inventory = new ItemStack[this.getSizeInventory()];
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
+        super.readFromNBT(par1NBTTagCompound);
+        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+        this.inventory = new ItemStack[this.getSizeInventory()];
 
-		for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-					.tagAt(i);
-			byte b0 = nbttagcompound1.getByte("Slot");
+        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
+                    .tagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
 
-			if (b0 >= 0 && b0 < this.inventory.length) {
-				this.inventory[b0] = ItemStack
-						.loadItemStackFromNBT(nbttagcompound1);
-			}
-		}
+            if (b0 >= 0 && b0 < this.inventory.length) {
+                this.inventory[b0] = ItemStack
+                        .loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
 
-		this.QEnergyBuffer = par1NBTTagCompound.getInteger("QEnergyBuffer");
-		this.lastItemValue = par1NBTTagCompound.getInteger("LastItemValue");
-	}
-
-	*/
+        this.QEnergyBuffer = par1NBTTagCompound.getInteger("QEnergyBuffer");
+        this.lastItemValue = par1NBTTagCompound.getInteger("LastItemValue");
+        updateNextTick = true;
+    }
 
     /**
      * Writes a tile entity to NBT.
-     *//*
+     */
 
-	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-		par1NBTTagCompound.setInteger("QEnergyBuffer", this.QEnergyBuffer);
-		par1NBTTagCompound.setInteger("LastItemValue", this.lastItemValue);
-		NBTTagList nbttaglist = new NBTTagList();
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
+        par1NBTTagCompound.setInteger("QEnergyBuffer", this.QEnergyBuffer);
+        par1NBTTagCompound.setInteger("LastItemValue", this.lastItemValue);
+        NBTTagList nbttaglist = new NBTTagList();
 
-		for (int i = 0; i < this.inventory.length; ++i) {
-			if (this.inventory[i] != null) {
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte) i);
-				this.inventory[i].writeToNBT(nbttagcompound1);
-				nbttaglist.appendTag(nbttagcompound1);
-			}
-		}
+        for (int i = 0; i < this.inventory.length; ++i) {
+            if (this.inventory[i] != null) {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte) i);
+                this.inventory[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
 
-		par1NBTTagCompound.setTag("Items", nbttaglist);
-		super.writeToNBT(par1NBTTagCompound);
-	}*/
+        par1NBTTagCompound.setTag("Items", nbttaglist);
+        super.writeToNBT(par1NBTTagCompound);
+    }
+
     @Override
     public void rotate() {
 
