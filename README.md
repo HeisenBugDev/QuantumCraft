@@ -7,8 +7,6 @@ We took some of our code from MineFactory Reloaded if you are wondering why thin
 
 *PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF*
 
-THIS BRANCH IS HERE ONLY FOR THE LOCATION CARD FEATURE.
-
 Todo important things:
  - get CI setup.
 
