@@ -11,10 +11,11 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import net.minecraftforge.common.Configuration;
+import mods.quantumcraft.core.network.PacketHandler;
 
 @Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "0.0.0")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Config.modNetworkChannel},
+        packetHandler = PacketHandler.class)
 public class QuantumCraft {
 
     @SidedProxy(clientSide = "mods.quantumcraft.core.ClientProxy", serverSide = "mods.quantumcraft.core.CommonProxy")

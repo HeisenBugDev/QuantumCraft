@@ -54,6 +54,15 @@ public class PacketHandler implements IPacketHandler {
 
     @SuppressWarnings("unchecked")
     public static <T extends ModernPacket> T getPacket(Class<T> clazz) {
+        System.out.println("fhudksghfjhdskfjhjds" + clazz);
+        System.out.println(packetmap + " some stuff " + packetmap.get(clazz));
+
+        //  throw new Exception(packetmap.get(clazz).toString() + packetmap.toString() + "3241234");
+       /* if (packetmap.get(clazz) == null) {
+            return null;
+        } else {
+            return (T) packetmap.get(clazz).template();
+        }*/
         return (T) packetmap.get(clazz).template();
     }
 

@@ -91,6 +91,8 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     }
 
+
+
     @Override
     public void updateEntity() {
         if (this.canProcess()) {
@@ -196,7 +198,7 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        return !(j == 0 || j == 1);
+        return j != 0;
     }
 
     @Override
