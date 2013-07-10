@@ -25,7 +25,7 @@ public class QuantumCraft {
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
         NetworkRegistry.instance().registerGuiHandler(this, new ClientProxy());
-        Config.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
+        Config.initConfig(event);
     }
 
     @Init

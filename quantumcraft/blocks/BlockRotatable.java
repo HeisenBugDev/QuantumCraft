@@ -10,12 +10,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public abstract class BlockRotatable extends BlockContainer {
-    /*
-	 * TileEntity te = world.getBlockTileEntity(x, y, z);
-	 * if(Util.isHoldingHammer(entityplayer) && te instanceof TileEntityFactory
-	 * && ((TileEntityFactory)te).canRotate()) { ((TileMachineBase)te).rotate();
-	 * world.markBlockForUpdate(x, y, z); return true; }
-	 */
+
 
     public BlockRotatable(int id, Material material) {
         super(id, material);

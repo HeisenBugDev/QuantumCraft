@@ -2,18 +2,23 @@ package mods.quantumcraft.machine;
 
 import mods.quantumcraft.core.QDERecipe;
 import mods.quantumcraft.core.QRecipeHandler;
+import mods.quantumcraft.core.network.PacketHandler;
+import mods.quantumcraft.core.network.packets.QDeenergizerInitPacket;
 import mods.quantumcraft.net.IQEnergySource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.packet.Packet;
 
 public class TileQDeenergizer extends TileMachineBase implements
         ISidedInventory, IQEnergySource {
 
     public int QEnergyBuffer = 0;
     public int lastItemValue = 0;
-
     public ItemStack[] inventory = new ItemStack[2];
+    int processTime = -1;
+    QDERecipe r;
 
     @Override
     public boolean canRotate() {
@@ -24,7 +29,6 @@ public class TileQDeenergizer extends TileMachineBase implements
     public int getSizeInventory() {
         return inventory.length;
     }
-
 
     @Override
     public ItemStack getStackInSlot(int i) {
@@ -53,8 +57,6 @@ public class TileQDeenergizer extends TileMachineBase implements
             return null;
         }
     }
-
-    int processTime = -1;
 
     private void process() {
         // we need to put in the QEnergyOutput here
@@ -88,7 +90,6 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     }
 
-    QDERecipe r;
     @Override
     public void updateEntity() {
         if (this.canProcess()) {
@@ -103,7 +104,7 @@ public class TileQDeenergizer extends TileMachineBase implements
             if (this.processTime == -1) processTime = r.getProcessTime();
 
 				/*
-				this.QEnergyBuffer = this.QEnergyBuffer
+                this.QEnergyBuffer = this.QEnergyBuffer
 						- (this.lastItemValue / r.getProcessTime());*/
         } else {
             processTime = -1;
@@ -194,7 +195,7 @@ public class TileQDeenergizer extends TileMachineBase implements
     public void onInventoryChanged() {
     }
 /*
-	@Override
+    @Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
 		super.readFromNBT(par1NBTTagCompound);
 		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
@@ -241,6 +242,21 @@ public class TileQDeenergizer extends TileMachineBase implements
 	}*/
     @Override
     public void rotate() {
+
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+
+        QDeenergizerInitPacket packet = PacketHandler.getPacket(QDeenergizerInitPacket.class);
+        packet.posX = xCoord;
+        packet.posY = yCoord;
+        packet.posZ = zCoord;
+        NBTTagCompound nbt = new NBTTagCompound();
+        writeToNBT(nbt);
+        packet.tiledata = nbt;
+        return packet.getPacket();
+
 
     }
 
