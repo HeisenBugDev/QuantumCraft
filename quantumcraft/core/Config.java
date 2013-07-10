@@ -21,7 +21,6 @@ public class Config {
 
     public static String NameOreQuantonium = "QuantumCraft:oreQuantonium";
     public static String NameBlockQDE = "QuantumCraft:machineQDE";
->>>>>>> e0cf0354ff78b21352cff471eaba56fdb6530ab5
 
     public static final String modNetworkChannel = "QuantumCraft";
 
