@@ -12,6 +12,7 @@ public class ItemLocationCard extends Item {
 
     public ItemLocationCard(int id) {
         super(id);
+        this.setMaxStackSize(1);
     }
 
     public boolean getShareTag()
@@ -19,11 +20,15 @@ public class ItemLocationCard extends Item {
         return true;
     }
 
-
     public void addInformation(ItemStack itemstack, EntityPlayer player,
                                List list, boolean flag) {
         if (itemstack != null) {
-
+            list.add("Shift r-click on a block");
+            if (itemstack.getTagCompound() == null)
+            {
+                list.add("NO DATA");
+                return;
+            }
             list.add("x: " + itemstack.getTagCompound().getCompoundTag("LOC").getInteger("x"));
             list.add("y: " + itemstack.getTagCompound().getCompoundTag("LOC").getInteger("y"));
             list.add("z: " + itemstack.getTagCompound().getCompoundTag("LOC").getInteger("z"));
