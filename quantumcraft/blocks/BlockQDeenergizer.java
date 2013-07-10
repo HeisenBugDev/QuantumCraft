@@ -86,7 +86,10 @@ public class BlockQDeenergizer extends BlockRotatable {
     public boolean onBlockActivated(World world, int x, int y, int z,
                                     EntityPlayer entityPlayer, int par6, float par7, float par8,
                                     float par9) {
-        entityPlayer.openGui(QuantumCraft.instance, 1, world, x, y, z);
-        return true;
+        if (!entityPlayer.isSneaking()) {
+            entityPlayer.openGui(QuantumCraft.instance, 1, world, x, y, z);
+            return true;
+        }
+        return false;
     }
 }

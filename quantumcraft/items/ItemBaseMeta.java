@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class ItemBase extends Item {
+public class ItemBaseMeta extends Item {
 
-    public ItemBase(int id) {
+    public ItemBaseMeta(int id) {
         super(id);
     }
 
