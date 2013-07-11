@@ -4,6 +4,7 @@ import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -18,7 +19,7 @@ public abstract class BlockRotatable extends BlockContainer {
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z,
-                                EntityLiving entity, ItemStack stack) {
+                                EntityLivingBase entity, ItemStack stack) {
         if (entity == null) {
             return;
         }

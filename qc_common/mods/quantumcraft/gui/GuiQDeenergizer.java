@@ -4,6 +4,7 @@ import mods.quantumcraft.inventory.ContainerQDeenergizer;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
 public class GuiQDeenergizer extends GuiContainer {
@@ -25,7 +26,8 @@ public class GuiQDeenergizer extends GuiContainer {
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/mods/QuantumCraft/textures/gui/deenergizer.png");
+        //this.mc.renderEngine.func_110577_a("/mods/QuantumCraft/textures/gui/deenergizer.png");
+        this.mc.renderEngine.func_110577_a(new ResourceLocation("/mods/QuantumCraft/textures/gui/deenergizer.png"));
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
