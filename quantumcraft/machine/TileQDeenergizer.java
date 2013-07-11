@@ -91,8 +91,6 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     }
 
-
-
     @Override
     public void updateEntity() {
         if (this.canProcess()) {
@@ -270,6 +268,7 @@ public class TileQDeenergizer extends TileMachineBase implements
         NBTTagCompound nbt = new NBTTagCompound();
         writeToNBT(nbt);
         packet.tiledata = nbt;
+
         return packet.getPacket();
 
 

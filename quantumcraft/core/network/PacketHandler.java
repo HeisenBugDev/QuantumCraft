@@ -23,7 +23,7 @@ public class PacketHandler implements IPacketHandler {
         try {
 
             final List<ClassInfo> classes = new ArrayList<ClassInfo>(ClassPath.from(this.getClass().getClassLoader())
-                    .getTopLevelClassesRecursive("quantumcraft.core.network.packets"));
+                    .getTopLevelClassesRecursive("mods.quantumcraft.core.network.packets"));
             Collections.sort(classes, new Comparator<ClassInfo>() {
                 @Override
                 public int compare(ClassInfo o1, ClassInfo o2) {
@@ -54,15 +54,7 @@ public class PacketHandler implements IPacketHandler {
 
     @SuppressWarnings("unchecked")
     public static <T extends ModernPacket> T getPacket(Class<T> clazz) {
-        System.out.println("fhudksghfjhdskfjhjds" + clazz);
-        System.out.println(packetmap + " some stuff " + packetmap.get(clazz));
 
-        //  throw new Exception(packetmap.get(clazz).toString() + packetmap.toString() + "3241234");
-       /* if (packetmap.get(clazz) == null) {
-            return null;
-        } else {
-            return (T) packetmap.get(clazz).template();
-        }*/
         return (T) packetmap.get(clazz).template();
     }
 
