@@ -16,13 +16,7 @@ public class ItemBase extends Item {
     public ItemBase(int id) {
         super(id);
     }
-
     private int _metaMax = 0;
-
-    @Override
-    public Icon getIcon(ItemStack stack, int pass) {
-        return null;
-    }
 
     protected void setMetaMax(int max) {
         _metaMax = max;
