@@ -68,6 +68,7 @@
         <exec executable="git" dir="${src.dir}" outputproperty="git.revision" failifexecutionfails="false" errorproperty="">
             <arg value="describe"/>
 
+
         </exec>
         <loadresource property="git.clean.revision">
             <propertyresource name="git.revision"/>
