@@ -23,18 +23,18 @@ public class QuantumCraft {
     @Instance("QuantumCraft")
     public static QuantumCraft instance;
 
-    @PreInit
+    @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         NetworkRegistry.instance().registerGuiHandler(this, new ClientProxy());
         Config.initConfig(event);
     }
 
-    @Init
+    @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         Loader.initAll();
     }
 
-    @PostInit
+    @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
     }
