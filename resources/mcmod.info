@@ -1,23 +1,12 @@
 {
-  "modinfoversion": 1,
+  "modinfoversion": 2,
   "modlist": [{
-    "modid": “Quantumcraft”,
-    "name": “QuantumCraft”,
-    "description": “Yet another minecraft tech mod that ends with -craft”,
-    "version": “@VERSION@.@BUILD@“,
-    "mcversion": “1.6.2”,
-    "url": "",
-    "updateUrl": "",
-    "authors": [ “hunterboerner”, "sammko" ],
-    "credits": “Powercrystals and MrTJP for letting us use their code.”,
-    "logoFile": "",
-    "screenshots": [],
-    "requiredMods": [
-    ],
-    "dependencies": [
-        "Forge",
-    ],
-    "dependants": [],
-    "useDependencyInformation": "true"
+    "modid": "QuantumCraft",
+    "name": "QuantumCraft",
+    "description": "Yet another minecraft tech mod that ends with -craft.",
+    "version": "0.2.2",
+    "mcversion": "1.6.2",
+    "authors": [ "hunterboerner", "sammko" ],
+    "credits": "Help from MrTJP and some of PowerCrystal's code"
   }]
 }
