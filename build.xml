@@ -2,10 +2,11 @@
     <property environment="env"/>
     <!-- Properties -->
 
+    <dirname property="imported.basedir" file="${ant.file.QuantumCraft}"/>
     <property name="build.dir" value="build"/>
-    <property name="src.dir" value="${basedir}"/>
+    <property name="src.dir" value="${imported.basedir}"/>
     <property name="lang.dir" value="../buildcraft.localization"/>
-    <property name="resources.dir" value="${basedir}/buildcraft_resources"/>
+    <property name="resources.dir" value="${imported.basedir}/resources"/>
 
     <property name="download.dir" value="download"/>
 
@@ -17,11 +18,11 @@
 
     <property name="mcpsrc.dir" value="${mcp.dir}/src"/>
 
-    <property name="mc.version" value="1.5.2"/>
-    <property name="forge.version" value="7.8.0.686"/>
+    <property name="mc.version" value="1.6.2"/>
+    <property name="forge.version" value="9.10.0.789"/>
     <!--	<property name="project.version" value="0.0.0"/>-->
 
-    <property name="buildcraft.name" value="buildcraft"/>
+    <property name="quantumcraft.name" value="quantumcraft"/>
 
     <property name="forge.name" value="minecraftforge-src-${mc.version}-${forge.version}.zip"/>
 
@@ -62,7 +63,8 @@
     </target>
 
     <target name="git.revision">
-        <exec executable="git" dir="${src.dir}" outputproperty="git.revision" failifexecutionfails="false" errorproperty="">
+        <exec executable="git" dir="${src.dir}" outputproperty="git.revision" failifexecutionfails="false"
+              errorproperty="">
             <arg value="describe"/>
             <arg line="--match &quot;[^(jenkins)]*&quot;"/>
             <arg value="--tags"/>
@@ -90,7 +92,7 @@
                 <length string="${git.revision}" trim="yes" length="0" when="greater"/>
             </and>
         </condition>
-        <echo>Building buildcraft version ${project.complete.version} (${project.version})</echo>
+        <echo>Building quantumcraft version ${project.complete.version} (${project.version})</echo>
     </target>
 
     <!-- Download necessary files -->
@@ -125,17 +127,17 @@
     <target name="clean-src">
         <delete verbose="true">
             <fileset dir="${mcpsrc.dir}/minecraft">
-                <present present="both" targetdir="${src.dir}/common" />
+                <present present="both" targetdir="${src.dir}/qc_common"/>
             </fileset>
         </delete>
     </target>
     <target name="copy-src" depends="clean-src,initialize-version">
         <!-- Copy sources -->
         <copy todir="${mcpsrc.dir}/minecraft" verbose="true">
-            <fileset dir="${src.dir}/common"/>
+            <fileset dir="${src.dir}/qc_common"/>
             <filterset>
-                <filter token="VERSION" value="${project.complete.version}" />
-                <filter token="BUILD_NUMBER" value="${build.number}" />
+                <filter token="VERSION" value="${project.complete.version}"/>
+                <filter token="BUILD_NUMBER" value="${build.number}"/>
             </filterset>
         </copy>
     </target>
@@ -196,7 +198,7 @@
         </copy>
 
         <!-- Reset src dir to post-forge-install state -->
-        <delete dir="${mcpsrc.dir}/minecraft/buildcraft"/>
+        <delete dir="${mcpsrc.dir}/minecraft/quantumcraft"/>
 
     </target>
 
@@ -207,16 +209,13 @@
         <delete includeemptydirs="true">
             <fileset dir="${jar.dir}" includes="**/*"/>
         </delete>
-        <condition property="jar.file.name" value="${jar.dir}/${buildcraft.name}-${mc.version}-${project.version.full}.jar" else="${jar.dir}/${buildcraft.name}-universal-${mc.version}-${project.version.full}.jar">
+        <condition property="jar.file.name"
+                   value="${jar.dir}/${quantumcraft.name}-${mc.version}-${project.version.full}.jar"
+                   else="${jar.dir}/${quantumcraft.name}-universal-${mc.version}-${project.version.full}.jar">
             <isset property="forge-long-name"/>
         </condition>
 
         <jar destfile="${jar.file.name}" basedir="${classes.dir}"/>
-        <copy todir="${jar.dir}/changelog">
-            <fileset dir="${resources.dir}/changelog">
-                <include name="*" />
-            </fileset>
-        </copy>
 
     </target>
 
