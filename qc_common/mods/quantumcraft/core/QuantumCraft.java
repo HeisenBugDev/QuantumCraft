@@ -1,10 +1,7 @@
 package mods.quantumcraft.core;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -23,18 +20,18 @@ public class QuantumCraft {
     @Instance("QuantumCraft")
     public static QuantumCraft instance;
 
-    @PreInit
+    @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         NetworkRegistry.instance().registerGuiHandler(this, new ClientProxy());
         Config.initConfig(event);
     }
 
-    @Init
+    @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         Loader.initAll();
     }
 
-    @PostInit
+    @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
     }

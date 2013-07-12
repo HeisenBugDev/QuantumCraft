@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class ItemMultiTool extends ItemBaseMeta implements IMultiTool {
+public class ItemMultiTool extends ItemBase implements IMultiTool {
 
     public ItemMultiTool(int i) {
         super(i);

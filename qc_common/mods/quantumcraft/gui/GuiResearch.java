@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -26,54 +27,45 @@ public class GuiResearch extends GuiScreen {
      * The top x coordinate of the achievement map
      */
     private static final int guiMapTop = AchievementList.minDisplayColumn * 24 - 112;
-
     /**
      * The left y coordinate of the achievement map
      */
     private static final int guiMapLeft = AchievementList.minDisplayRow * 24 - 112;
-
     /**
      * The bottom x coordinate of the achievement map
      */
     private static final int guiMapBottom = AchievementList.maxDisplayColumn * 24 - 77;
-
     /**
      * The right y coordinate of the achievement map
      */
     private static final int guiMapRight = AchievementList.maxDisplayRow * 24 - 77;
     protected int achievementsPaneWidth = 256;
     protected int achievementsPaneHeight = 202;
-
     /**
      * The current mouse x coordinate
      */
     protected int mouseX = 0;
-
     /**
      * The current mouse y coordinate
      */
     protected int mouseY = 0;
     protected double field_74117_m;
     protected double field_74115_n;
-
     /**
      * The x position of the achievement map
      */
     protected double guiMapX;
-
     /**
      * The y position of the achievement map
      */
     protected double guiMapY;
     protected double field_74124_q;
     protected double field_74123_r;
-
     /**
      * Whether the Mouse Button is down or not
      */
     private int isMouseButtonDown = 0;
     private ResearchHandler rHandler;
-
     private int currentPage = -1;
     private GuiSmallButton button;
     private LinkedList<ResearchItem> ris = new LinkedList<ResearchItem>();
@@ -233,7 +225,7 @@ public class GuiResearch extends GuiScreen {
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);
-        this.mc.renderEngine.bindTexture("/terrain.png");
+        this.mc.renderEngine.func_110577_a(new ResourceLocation("/terrain.png"));
         int i2 = k + 288 >> 4;
         int j2 = l + 288 >> 4;
         int k2 = (k + 288) % 16;
@@ -337,7 +329,7 @@ public class GuiResearch extends GuiScreen {
                 GL11.glColor4f(f2, f2, f2, 1.0F);
             }
 
-            this.mc.renderEngine.bindTexture("/achievement/bg.png");
+            this.mc.renderEngine.func_110577_a(new ResourceLocation("/achievement/bg.png"));
             i5 = k1 + j4;
             l4 = l1 + l3;
             if (ri2.getSpecial()) {
@@ -372,7 +364,7 @@ public class GuiResearch extends GuiScreen {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/achievement/bg.png");
+        this.mc.renderEngine.func_110577_a(new ResourceLocation("/achievement/bg.png"));
         this.drawTexturedModalRect(i1, j1, 0, 0, this.achievementsPaneWidth, this.achievementsPaneHeight);
         GL11.glPopMatrix();
         this.zLevel = 0.0F;
