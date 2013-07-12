@@ -62,12 +62,12 @@
         <property name="build.number" value="${env.BUILD_NUMBER}"/>
     </target>
 
+    <available file="${src.dir}/.git" type="dir" property="git.present"/>
+
     <target name="git.revision">
-        <exec executable="git" dir="${src.dir}" outputproperty="git.revision" failifexecutionfails="false"
-              errorproperty="">
+        <exec executable="git" dir="${src.dir}" outputproperty="git.revision" failifexecutionfails="false" errorproperty="">
             <arg value="describe"/>
-            <arg line="--match &quot;[^(jenkins)]*&quot;"/>
-            <arg value="--tags"/>
+
         </exec>
         <loadresource property="git.clean.revision">
             <propertyresource name="git.revision"/>
