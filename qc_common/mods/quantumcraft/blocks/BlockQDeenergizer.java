@@ -1,5 +1,7 @@
 package mods.quantumcraft.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.quantumcraft.core.QuantumCraft;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.block.Block;
@@ -30,6 +32,7 @@ public class BlockQDeenergizer extends BlockRotatable {
         return new TileQDeenergizer();
     }
 
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineQDE_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineQDE_top");

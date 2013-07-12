@@ -18,10 +18,8 @@ public class Loader {
     public static ItemResearchBook ItemResearchBook;
     public static Item ItemDepletedCrystal;
     public static ItemLocationCard ItemLocationCard;
-
     public static BlockOreQuantonium OreQuantonium;
     public static BlockQDeenergizer BlockQDeenergizer;
-
     public static TabQuantumCraft tabQuantumCraft;
 
     public static void initAll() {
