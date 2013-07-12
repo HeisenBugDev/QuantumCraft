@@ -17,6 +17,6 @@ We would love feedback so just send it on over!
 *PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF*
 
 Todo important things:
- - 1.6.2 Update
  - get CI setup with an ant script.
+ - REFACTOR the crap @sammko put in. Eww it's gross, we need to move some stuff around so that all the items and block extend our base class rather than remaking it all over again each time.
 
