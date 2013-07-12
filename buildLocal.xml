@@ -1,4 +1,4 @@
-<project name="QuantumCraft" default="main">
+<project name="QuantumCraft" basedir="..//" default="main">
     <property environment="env"/>
     <!-- Properties -->
 
