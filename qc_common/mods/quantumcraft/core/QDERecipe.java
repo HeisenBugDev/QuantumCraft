@@ -54,10 +54,7 @@ public class QDERecipe {
      * @param energyValue
      */
     public QDERecipe(ItemStack inputItem, int energyValue) {
-        this._inputItem = inputItem;
-        this._outputItem = new ItemStack(Loader.ItemDepletedCrystal);
-        this._energyValue = energyValue;
-        this._processTime = 60; //3 seconds
+        new QDERecipe(inputItem,new ItemStack(Loader.ItemDepletedCrystal),energyValue);
     }
 
 }
