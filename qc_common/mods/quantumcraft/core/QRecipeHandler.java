@@ -10,7 +10,7 @@ public class QRecipeHandler {
     private static LinkedList<QDERecipe> QDERecipes = new LinkedList<QDERecipe>();
 
     public static void addQDERecipe(QDERecipe r) {
-        if (QDERecipes == null) FMLLog.severe("QDE Recipes list seeems to be null!");
+        if (QDERecipes == null) FMLLog.severe("QDE Recipes list seems to be null!");
         QDERecipes.add(r);
     }
 
