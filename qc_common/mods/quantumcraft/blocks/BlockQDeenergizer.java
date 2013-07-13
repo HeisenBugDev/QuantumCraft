@@ -2,7 +2,10 @@ package mods.quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.quantumcraft.core.BasicUtils;
+import mods.quantumcraft.core.Coords;
 import mods.quantumcraft.core.QuantumCraft;
+import mods.quantumcraft.machine.TileMachineBase;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -30,6 +33,20 @@ public class BlockQDeenergizer extends BlockRotatable {
     @Override
     public TileEntity createNewTileEntity(World world) {
         return new TileQDeenergizer();
+    }
+
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
+
+        TileMachineBase tile =
+                (TileMachineBase) BasicUtils.getTileEntity(world, new Coords(x, y, z), TileMachineBase.class);
+        if (tile != null) {
+            System.out.println("block was broken");
+            tile.onBlockBreak();
+        }
+        super.breakBlock(world, x, y, z, par5, par6);
+        world.removeBlockTileEntity(x, y, z);
     }
 
     @SideOnly(Side.CLIENT)

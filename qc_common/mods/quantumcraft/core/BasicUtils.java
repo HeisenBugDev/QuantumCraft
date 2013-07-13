@@ -124,6 +124,7 @@ public class BasicUtils {
 			double var11 = (double) world.rand.nextFloat() * var5 + (1.0D - var5) * 0.5D;
 			EntityItem var13 = new EntityItem(world, (double) x + var7, (double) y + var9, (double) z + var11, itemStack);
 			var13.delayBeforeCanPickup = 10;
+            System.out.println("spawning drop entity");
 			world.spawnEntityInWorld(var13);
 		}
 	}
