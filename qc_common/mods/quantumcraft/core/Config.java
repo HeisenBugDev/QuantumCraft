@@ -32,7 +32,7 @@ public class Config {
     public static int ItemResearchBookID;
     public static int ItemMultiToolID;
     public static int ItemLocationCardID;
-    
+
     public static int OreQuantoniumID;
     public static int BlockQDEID;
 
@@ -60,7 +60,8 @@ public class Config {
 
 
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
-        networkUpdateRange.comment = "This is the distance in which players will be notified.  Lower if you experience lag.";
+        networkUpdateRange.comment =
+                "This is the distance in which players will be notified.  Lower if you experience lag.";
 
         config.save();
     }

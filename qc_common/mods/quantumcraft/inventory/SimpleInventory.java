@@ -139,14 +139,14 @@ public class SimpleInventory implements IInventory {
     }
 
     public void dropContents(World worldObj, int posX, int posY, int posZ) {
-        System.out.println("0");
+
         if (BasicUtils.isServer(worldObj)) {
-            System.out.println("1");
+
             for (int i = 0; i < _contents.length; i++) {
-                System.out.println("2");
+
                 while (_contents[i] != null) {
                     ItemStack todrop = decrStackSize(i, _contents[i].getMaxStackSize());
-                    System.out.println("called dropContents");
+
                     BasicUtils.dropItem(worldObj, posX, posY, posZ, todrop);
                 }
             }

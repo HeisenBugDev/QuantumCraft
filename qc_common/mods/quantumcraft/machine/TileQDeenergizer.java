@@ -40,7 +40,6 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     @Override
     public void onBlockBreak() {
-        System.out.println("dropping contents");
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
@@ -267,10 +266,6 @@ public class TileQDeenergizer extends TileMachineBase implements
         super.writeToNBT(par1NBTTagCompound);
     }
 
-    @Override
-    public void rotate() {
-
-    }
 
     @Override
     public Packet getDescriptionPacket() {

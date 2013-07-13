@@ -4,8 +4,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.quantumcraft.blocks.BlockOreQuantonium;
 import mods.quantumcraft.blocks.BlockQDeenergizer;
-import mods.quantumcraft.items.ItemBase;
 import mods.quantumcraft.items.ItemLocationCard;
+import mods.quantumcraft.items.ItemMultiTool;
 import mods.quantumcraft.items.ItemResearchBook;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.item.Item;
@@ -49,9 +49,10 @@ public class Loader {
                 .func_111206_d(Config.NameItemRawQuantonium);
         LanguageRegistry.addName(ItemRawQuantonium, "Raw Quantonium");
 
-        ItemMultiTool = new ItemBase(Config.ItemMultiToolID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemMultiTool)
+        ItemMultiTool = (new ItemMultiTool(Config.ItemMultiToolID)).setUnlocalizedName(Config.NameItemMultiTool)
+                .setCreativeTab(tabQuantumCraft)
                 .func_111206_d(Config.NameItemMultiTool);
+
         LanguageRegistry.addName(ItemMultiTool, "Multi Tool");
 
         ItemDepletedCrystal = new Item(Config.ItemDepletedCrystalID)

@@ -2,13 +2,13 @@ package mods.quantumcraft.items;
 
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
-import net.minecraft.world.World;
-
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import java.util.List;
+
 public class ItemLocationCard extends Item {
 
     public ItemLocationCard(int id) {
@@ -16,8 +16,7 @@ public class ItemLocationCard extends Item {
         this.setMaxStackSize(1);
     }
 
-    public boolean getShareTag()
-    {
+    public boolean getShareTag() {
         return true;
     }
 
@@ -25,8 +24,7 @@ public class ItemLocationCard extends Item {
                                List list, boolean flag) {
         if (itemstack != null) {
             list.add("Shift r-click on a block");
-            if (itemstack.getTagCompound() == null)
-            {
+            if (itemstack.getTagCompound() == null) {
                 list.add("NO DATA");
                 return;
             }
@@ -39,10 +37,10 @@ public class ItemLocationCard extends Item {
     }
 
     @Override
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4,
+                             int par5, int par6, int par7, float par8, float par9, float par10) {
 
-        if (par2EntityPlayer.isSneaking())
-        {
+        if (par2EntityPlayer.isSneaking()) {
             FMLLog.fine("Location card just got R-CLICKED");
 
             NBTTagCompound t = new NBTTagCompound();
@@ -50,8 +48,7 @@ public class ItemLocationCard extends Item {
             t.setInteger("y", par5);
             t.setInteger("z", par6);
             NBTTagCompound pt = par1ItemStack.getTagCompound();
-            if (pt == null)
-            {
+            if (pt == null) {
                 par1ItemStack.setTagCompound(new NBTTagCompound());
                 pt = par1ItemStack.getTagCompound();
             }

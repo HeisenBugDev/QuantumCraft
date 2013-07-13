@@ -16,6 +16,7 @@ public abstract class BlockRotatable extends BlockContainer {
         super(id, material);
     }
 
+
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z,
                                 EntityLivingBase entity, ItemStack stack) {
