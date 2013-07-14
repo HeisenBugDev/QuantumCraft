@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemLocationCard extends Item {
+public class ItemLocationCard extends ItemBase {
 
     public ItemLocationCard(int id) {
         super(id);
