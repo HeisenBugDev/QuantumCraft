@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 public class CraftingManager {
 
     public static void addCrafting() {
+        GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemLocationCard), Loader.ItemLocationCard);
+
     }
 
     public static void addSmelting() {

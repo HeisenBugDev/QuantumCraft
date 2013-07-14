@@ -18,6 +18,7 @@ public class Config {
     public static String NameItemMultiTool = "quantumcraft:multiTool";
 
     public static String NameItemLocationCard = "quantumcraft:locationCard";
+    public static String NameItemLocationCardBlank = "quantumcraft:locationCardBlank";
 
     public static String NameOreQuantonium = "quantumcraft:oreQuantonium";
     public static String NameBlockQDE = "quantumcraft:machineQDE";
