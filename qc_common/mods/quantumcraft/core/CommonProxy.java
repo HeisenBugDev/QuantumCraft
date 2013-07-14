@@ -20,7 +20,8 @@ public class CommonProxy implements IGuiHandler {
         if (tileEntity != null) {
             switch (ID) {
                 case 1:
-                    return new ContainerQDeenergizer(player.inventory, (TileQDeenergizer) world.getBlockTileEntity(x, y, z));
+                    return new ContainerQDeenergizer(player.inventory,
+                            (TileQDeenergizer) world.getBlockTileEntity(x, y, z));
             }
         }
         return null;

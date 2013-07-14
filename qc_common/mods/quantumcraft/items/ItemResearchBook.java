@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemResearchBook extends Item {
+public class ItemResearchBook extends ItemBase {
 
     public ItemResearchBook(int par1) {
         super(par1);

@@ -9,6 +9,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSmallButton;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
@@ -74,8 +75,10 @@ public class GuiResearch extends GuiScreen {
         this.rHandler = rHandler;
         short short1 = 141;
         short short2 = 141;
-        this.field_74117_m = this.guiMapX = this.field_74124_q = (double) (AchievementList.openInventory.displayColumn * 24 - short1 / 2 - 12);
-        this.field_74115_n = this.guiMapY = this.field_74123_r = (double) (AchievementList.openInventory.displayRow * 24 - short2 / 2);
+        this.field_74117_m = this.guiMapX =
+                this.field_74124_q = (double) (AchievementList.openInventory.displayColumn * 24 - short1 / 2 - 12);
+        this.field_74115_n = this.guiMapY =
+                this.field_74123_r = (double) (AchievementList.openInventory.displayRow * 24 - short2 / 2);
         ris.clear();
         for (ResearchItem r : rHandler.ris) {
             ris.add(r);
@@ -88,7 +91,8 @@ public class GuiResearch extends GuiScreen {
      */
     public void initGui() {
         this.buttonList.clear();
-        this.buttonList.add(new GuiSmallButton(1, this.width / 2 + 24, this.height / 2 + 74, 80, 20, StatCollector.translateToLocal("gui.done")));
+        this.buttonList.add(new GuiSmallButton(1, this.width / 2 + 24, this.height / 2 + 74, 80, 20,
+                StatCollector.translateToLocal("gui.done")));
         // this.buttonList.add(button = new GuiSmallButton(2, (width - achievementsPaneWidth) / 2 + 24, height / 2 + 74, 125, 20, AchievementPage.getTitle(currentPage)));
     }
 
@@ -124,7 +128,8 @@ public class GuiResearch extends GuiScreen {
             int i1 = k + 8;
             int j1 = l + 17;
 
-            if ((this.isMouseButtonDown == 0 || this.isMouseButtonDown == 1) && par1 >= i1 && par1 < i1 + 224 && par2 >= j1 && par2 < j1 + 155) {
+            if ((this.isMouseButtonDown == 0 || this.isMouseButtonDown == 1) && par1 >= i1 && par1 < i1 + 224 &&
+                    par2 >= j1 && par2 < j1 + 155) {
                 if (this.isMouseButtonDown == 0) {
                     this.isMouseButtonDown = 1;
                 } else {
@@ -264,6 +269,8 @@ public class GuiResearch extends GuiScreen {
                 } else {
                     icon = Block.bedrock.getIcon(0, 0);
                 }
+                //Draws the textures instead of using a static png RANDOMNESS FTW
+                this.mc.func_110434_K().func_110577_a(TextureMap.field_110575_b);
 
                 this.drawTexturedModelRectFromIcon(k1 + k3 * 16 - k2, l1 + i3 * 16 - l2, icon, 16, 16);
             }
@@ -322,14 +329,16 @@ public class GuiResearch extends GuiScreen {
                 f2 = 1.0F;
                 GL11.glColor4f(f2, f2, f2, 1.0F);
             } else if (this.rHandler.canUnlockRI(ri2)) {
-                f2 = Math.sin((double) (Minecraft.getSystemTime() % 600L) / 600.0D * Math.PI * 2.0D) < 0.6D ? 0.6F : 0.8F;
+                f2 = Math.sin((double) (Minecraft.getSystemTime() % 600L) / 600.0D * Math.PI * 2.0D) < 0.6D ? 0.6F :
+                        0.8F;
                 GL11.glColor4f(f2, f2, f2, 1.0F);
             } else {
                 f2 = 0.3F;
                 GL11.glColor4f(f2, f2, f2, 1.0F);
             }
 
-            this.mc.renderEngine.func_110577_a(new ResourceLocation("/achievement/bg.png"));
+            this.mc.renderEngine.func_110577_a(
+                    new ResourceLocation("textures/gui/achievement/achievement_background.png"));
             i5 = k1 + j4;
             l4 = l1 + l3;
             if (ri2.getSpecial()) {
@@ -346,7 +355,8 @@ public class GuiResearch extends GuiScreen {
 
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_CULL_FACE);
-            renderitem.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, ri2.theItemStack, i5 + 3, l4 + 3);
+            renderitem.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, ri2.theItemStack, i5 + 3,
+                    l4 + 3);
             GL11.glDisable(GL11.GL_LIGHTING);
 
             if (!this.rHandler.canUnlockRI(ri2)) {
@@ -355,7 +365,8 @@ public class GuiResearch extends GuiScreen {
 
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-            if (par1 >= k1 && par2 >= l1 && par1 < k1 + 224 && par2 < l1 + 155 && par1 >= i5 && par1 <= i5 + 22 && par2 >= l4 && par2 <= l4 + 22) {
+            if (par1 >= k1 && par2 >= l1 && par1 < k1 + 224 && par2 < l1 + 155 && par1 >= i5 && par1 <= i5 + 22 &&
+                    par2 >= l4 && par2 <= l4 + 22) {
                 ri1 = ri2;
             }
         }
@@ -364,7 +375,8 @@ public class GuiResearch extends GuiScreen {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.func_110577_a(new ResourceLocation("/achievement/bg.png"));
+
+        this.mc.renderEngine.func_110577_a(new ResourceLocation("textures/gui/achievement/achievement_background.png"));
         this.drawTexturedModalRect(i1, j1, 0, 0, this.achievementsPaneWidth, this.achievementsPaneHeight);
         GL11.glPopMatrix();
         this.zLevel = 0.0F;
@@ -391,17 +403,22 @@ public class GuiResearch extends GuiScreen {
                 this.fontRenderer.drawSplitString(s1, j4, l3 + 12, i5, -6250336);
 
                 if (this.rHandler.hasRIUnlocked(ri1)) {
-                    this.fontRenderer.drawStringWithShadow(StatCollector.translateToLocal("achievement.taken"), j4, l3 + l4 + 4, -7302913);
+                    this.fontRenderer
+                            .drawStringWithShadow(StatCollector.translateToLocal("achievement.taken"), j4, l3 + l4 + 4,
+                                    -7302913);
                 }
             } else {
                 i5 = Math.max(this.fontRenderer.getStringWidth(s), 120);
-                String s2 = StatCollector.translateToLocalFormatted("achievement.requires", new Object[]{StatCollector.translateToLocal(ri1.parentAchievement.getName())});
+                String s2 = StatCollector.translateToLocalFormatted("achievement.requires",
+                        new Object[]{StatCollector.translateToLocal(ri1.parentAchievement.getName())});
                 i4 = this.fontRenderer.splitStringWidth(s2, i5);
                 this.drawGradientRect(j4 - 3, l3 - 3, j4 + i5 + 3, l3 + i4 + 12 + 3, -1073741824, -1073741824);
                 this.fontRenderer.drawSplitString(s2, j4, l3 + 12, i5, -9416624);
             }
 
-            this.fontRenderer.drawStringWithShadow(s, j4, l3, this.rHandler.canUnlockRI(ri1) ? (ri1.getSpecial() ? -128 : -1) : (ri1.getSpecial() ? -8355776 : -8355712));
+            this.fontRenderer.drawStringWithShadow(s, j4, l3,
+                    this.rHandler.canUnlockRI(ri1) ? (ri1.getSpecial() ? -128 : -1) :
+                            (ri1.getSpecial() ? -8355776 : -8355712));
         }
 
         GL11.glEnable(GL11.GL_DEPTH_TEST);

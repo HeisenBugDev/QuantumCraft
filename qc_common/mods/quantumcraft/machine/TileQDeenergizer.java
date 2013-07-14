@@ -4,6 +4,7 @@ import mods.quantumcraft.core.QDERecipe;
 import mods.quantumcraft.core.QRecipeHandler;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QDeenergizerInitPacket;
+import mods.quantumcraft.inventory.SimpleInventory;
 import mods.quantumcraft.net.IQEnergySource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -20,6 +21,7 @@ public class TileQDeenergizer extends TileMachineBase implements
     public ItemStack[] inventory = new ItemStack[2];
     int processTime = -1;
     QDERecipe r;
+    private SimpleInventory _inv = new SimpleInventory(2, "qde", 64);
 
     @Override
     public boolean canRotate() {
@@ -35,6 +37,12 @@ public class TileQDeenergizer extends TileMachineBase implements
     public ItemStack getStackInSlot(int i) {
         return inventory[i];
     }
+
+    @Override
+    public void onBlockBreak() {
+        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
+    }
+
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
@@ -68,6 +76,7 @@ public class TileQDeenergizer extends TileMachineBase implements
             inventory[1].stackSize++;
 
         this.decrStackSize(0, 1);
+        _inv.setInventorySlotContents(1, inventory[1]);
     }
 
     private boolean canProcess() {
@@ -108,6 +117,8 @@ public class TileQDeenergizer extends TileMachineBase implements
 				/*
                 this.QEnergyBuffer = this.QEnergyBuffer
 						- (this.lastItemValue / r.getProcessTime());*/
+            //_inv.setInventorySlotContents(1, inslot);
+
         } else {
             processTime = -1;
             QEnergyBuffer = 0;
@@ -144,6 +155,8 @@ public class TileQDeenergizer extends TileMachineBase implements
                 && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
+
+        _inv.setInventorySlotContents(i, itemstack);
 
     }
 
@@ -251,11 +264,6 @@ public class TileQDeenergizer extends TileMachineBase implements
 
         par1NBTTagCompound.setTag("Items", nbttaglist);
         super.writeToNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    public void rotate() {
-
     }
 
     @Override
