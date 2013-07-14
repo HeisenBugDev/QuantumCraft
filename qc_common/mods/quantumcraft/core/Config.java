@@ -39,7 +39,7 @@ public class Config {
 
     public static void initConfig(FMLPreInitializationEvent event) {
         _configFolder = event.getModConfigurationDirectory();
-        _configFile = new File(_configFolder.getAbsolutePath() + "/ProjectRed.cfg");
+        _configFile = new File(_configFolder.getAbsolutePath() + "/QuantumCraft.cfg");
         loadPropertiesFromFile(_configFile);
     }
 
