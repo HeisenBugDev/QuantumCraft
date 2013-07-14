@@ -266,7 +266,6 @@ public class TileQDeenergizer extends TileMachineBase implements
         super.writeToNBT(par1NBTTagCompound);
     }
 
-
     @Override
     public Packet getDescriptionPacket() {
 
