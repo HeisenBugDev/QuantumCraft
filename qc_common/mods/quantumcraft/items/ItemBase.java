@@ -31,7 +31,6 @@ public class ItemBase extends Item {
                                List list, boolean flag) {
         if (itemstack != null) {
 
-            list.add("QuantumCraft");
 
         }
 
