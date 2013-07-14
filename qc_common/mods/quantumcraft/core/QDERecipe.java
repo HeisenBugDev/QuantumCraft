@@ -44,7 +44,10 @@ public class QDERecipe {
      * Default process time (60 ticks = 3s)
      */
     public QDERecipe(ItemStack inputItem, ItemStack outputItem, int energyValue) {
-        new QDERecipe(inputItem,outputItem,energyValue,60);
+        this._inputItem = inputItem;
+        this._outputItem = outputItem;
+        this._energyValue = energyValue;
+        this._processTime = 60; //3 seconds
     }
 
     /**
