@@ -52,7 +52,6 @@ public class Loader {
         ItemMultiTool = (new ItemMultiTool(Config.ItemMultiToolID)).setUnlocalizedName(Config.NameItemMultiTool)
                 .setCreativeTab(tabQuantumCraft)
                 .func_111206_d(Config.NameItemMultiTool);
-
         LanguageRegistry.addName(ItemMultiTool, "Multi Tool");
 
         ItemDepletedCrystal = new Item(Config.ItemDepletedCrystalID)
