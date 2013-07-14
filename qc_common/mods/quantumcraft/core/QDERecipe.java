@@ -53,8 +53,8 @@ public class QDERecipe {
     /**
      * OutputItem = Depleted Crystal
      *
-     * @param inputItem
-     * @param energyValue
+     * @param inputItem   - Input Item in the recipe.
+     * @param energyValue - QEnergy Value of the item, Quantonium = 100
      */
     public QDERecipe(ItemStack inputItem, int energyValue) {
         this._inputItem = inputItem;
