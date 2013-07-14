@@ -11,7 +11,7 @@ public class QRecipeHandler {
 
     public static void addQDERecipe(QDERecipe r) {
         if (QDERecipes == null) {
-            FMLLog.severe("QDE Recipes list seeems to be null! NOT ADDING");
+            FMLLog.severe("QDE Recipes list seems to be null! NOT ADDING");
         } else {
             QDERecipes.add(r);
         }
