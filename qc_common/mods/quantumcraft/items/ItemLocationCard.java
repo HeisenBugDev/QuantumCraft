@@ -32,7 +32,7 @@ public class ItemLocationCard extends ItemBase {
         return StatCollector.translateToLocal(this.getUnlocalizedName(par1ItemStack) + ".name") + e;
     }
 
-    public Icon getIcon(ItemStack stack, int pass)
+    public Icon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
     {
         return stack.hasTagCompound() ? this.itemIcon : this.iconBlank;
     }
