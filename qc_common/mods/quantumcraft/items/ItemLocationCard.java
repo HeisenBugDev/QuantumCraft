@@ -16,7 +16,7 @@ import java.util.List;
 public class ItemLocationCard extends ItemBase {
 
     private Icon iconBlank;
-
+    private Icon iconFilled;
     public ItemLocationCard(int id) {
         super(id);
         this.setMaxStackSize(1);
@@ -26,21 +26,28 @@ public class ItemLocationCard extends ItemBase {
         return true;
     }
 
-    public Icon getIcon(ItemStack stack, int renderPass)
+    public Icon getIconFromDamage(int par1)
     {
-        return stack.hasTagCompound() ? this.itemIcon : this.iconBlank;
+        switch(par1) {
+            case 0:
+                return this.iconBlank;
+            case 1:
+                return this.iconFilled;
+            default:
+                return this.itemIcon;
+        }
     }
 
     public void registerIcons(IconRegister par1IconRegister)
     {
-        super.registerIcons(par1IconRegister);
+        this.iconFilled = par1IconRegister.registerIcon(Config.NameItemLocationCard);
         this.iconBlank = par1IconRegister.registerIcon(Config.NameItemLocationCardBlank);
+        this.itemIcon = iconBlank;
     }
 
     public void addInformation(ItemStack itemstack, EntityPlayer player,
                                List list, boolean flag) {
         if (itemstack != null) {
-
             if (itemstack.getTagCompound() == null) {
                 list.add("Shift r-click on a block");
                 list.add("Blank");
@@ -62,6 +69,7 @@ public class ItemLocationCard extends ItemBase {
         if (par2EntityPlayer.isSneaking() && !par1ItemStack.hasTagCompound()) {
             FMLLog.fine("Location card just got S-R-CLICKED");
 
+
             NBTTagCompound t = new NBTTagCompound();
             t.setInteger("x", par4);
             t.setInteger("y", par5);
@@ -71,7 +79,6 @@ public class ItemLocationCard extends ItemBase {
                 par1ItemStack.setTagCompound(new NBTTagCompound());
                 pt = par1ItemStack.getTagCompound();
             }
-
             pt.setCompoundTag("LOC", t);
             par1ItemStack.setTagCompound(pt);
         }
