@@ -26,13 +26,7 @@ public class ItemLocationCard extends ItemBase {
         return true;
     }
 
-    public String getItemStackDisplayName(ItemStack par1ItemStack)
-    {
-        String e = par1ItemStack.hasTagCompound() ? ": Filled" : ": Blank";
-        return StatCollector.translateToLocal(this.getUnlocalizedName(par1ItemStack) + ".name") + e;
-    }
-
-    public Icon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
+    public Icon getIcon(ItemStack stack, int renderPass)
     {
         return stack.hasTagCompound() ? this.itemIcon : this.iconBlank;
     }
