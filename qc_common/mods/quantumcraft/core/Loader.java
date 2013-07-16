@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.quantumcraft.blocks.BlockOreQuantonium;
 import mods.quantumcraft.blocks.BlockQDeenergizer;
+import mods.quantumcraft.blocks.BlockQEInjector;
 import mods.quantumcraft.items.ItemLocationCard;
 import mods.quantumcraft.items.ItemMultiTool;
 import mods.quantumcraft.items.ItemResearchBook;
@@ -12,14 +13,19 @@ import net.minecraft.item.Item;
 
 public class Loader {
 
+    /* ITEMS */
     public static Item ItemCrystalQuantonium;
     public static Item ItemRawQuantonium;
     public static Item ItemMultiTool;
     public static ItemResearchBook ItemResearchBook;
     public static Item ItemDepletedCrystal;
     public static ItemLocationCard ItemLocationCard;
+    /* BLOCKS */
     public static BlockOreQuantonium OreQuantonium;
+    /* MACHINE BLOCKS */
     public static BlockQDeenergizer BlockQDeenergizer;
+    public static BlockQEInjector BlockQEInjector;
+    /* CREATIVE TABS */
     public static TabQuantumCraft tabQuantumCraft;
 
     public static void initAll() {
@@ -83,6 +89,12 @@ public class Loader {
                 .func_111022_d(Config.NameBlockQDE);
         LanguageRegistry.addName(BlockQDeenergizer, "Quantum De-Energizer");
         GameRegistry.registerBlock(BlockQDeenergizer, Config.NameBlockQDE);
+
+        BlockQEInjector = (BlockQEInjector) new BlockQEInjector(Config.BlockQEIID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQEI)
+                .func_111022_d(Config.NameBlockQEI);
+        LanguageRegistry.addName(BlockQEInjector, "Quantum Energy Injector");
+        GameRegistry.registerBlock(BlockQEInjector, Config.NameBlockQEI);
     }
 
     public static void initRenderers() {

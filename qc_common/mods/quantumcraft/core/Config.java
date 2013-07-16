@@ -22,6 +22,7 @@ public class Config {
 
     public static String NameOreQuantonium = "quantumcraft:oreQuantonium";
     public static String NameBlockQDE = "quantumcraft:machineQDE";
+    public static String NameBlockQEI = "quantumcraft:machineQEI";
 
     public static final String modNetworkChannel = "QuantumCraft";
 
@@ -36,6 +37,7 @@ public class Config {
 
     public static int OreQuantoniumID;
     public static int BlockQDEID;
+    public static int BlockQEIID;
 
     public static void initConfig(FMLPreInitializationEvent event) {
         _configFolder = event.getModConfigurationDirectory();
@@ -56,7 +58,7 @@ public class Config {
 
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
-
+        BlockQEIID = config.get("Blocks", "BlockQEInjector", 3601).getInt();
 
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =
