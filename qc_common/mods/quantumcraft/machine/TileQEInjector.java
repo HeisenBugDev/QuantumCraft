@@ -11,6 +11,8 @@ import net.minecraft.network.packet.Packet;
 public class TileQEInjector extends TileMachineBase implements
         ISidedInventory, IQEnergySink {
 
+    public int currentival = 0;
+    public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
 
@@ -140,18 +142,22 @@ public class TileQEInjector extends TileMachineBase implements
 
     @Override
     public void updateEntity() {
-        if (inventory[0].getItem() instanceof IQEnergizable) {
-            IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
-            int cycle = 5;
-            if (e.getCurrentQEnergyBuffer() <= (e.getMaxQEnergyValue()-cycle)) {
-                e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
-            } else {
-                cycle = e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer();
-                e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
-            }
-            //this.QEnergyBuffer -= cycle;
-            if (e.getCurrentQEnergyBuffer() == e.getMaxQEnergyValue()) {
-               process();
+        if (inventory[0] != null) {
+            if (inventory[0].getItem() instanceof IQEnergizable) {
+                IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
+                int cycle = 5;
+                this.maxival = e.getMaxQEnergyValue();
+                this.currentival = e.getCurrentQEnergyBuffer();
+                if (e.getCurrentQEnergyBuffer() <= (e.getMaxQEnergyValue()-cycle)) {
+                    e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                } else {
+                    cycle = e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer();
+                    e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                }
+                //this.QEnergyBuffer -= cycle;
+                if (e.getCurrentQEnergyBuffer() == e.getMaxQEnergyValue()) {
+                    process();
+                }
             }
         }
     }
