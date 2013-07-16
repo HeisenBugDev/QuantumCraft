@@ -94,7 +94,7 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQEI)
                 .func_111022_d(Config.NameBlockQEI);
         LanguageRegistry.addName(BlockQEInjector, "Quantum Energy Injector");
-        GameRegistry.registerBlock(BlockQDeenergizer, Config.NameBlockQEI);
+        GameRegistry.registerBlock(BlockQEInjector, Config.NameBlockQEI);
     }
 
     public static void initRenderers() {

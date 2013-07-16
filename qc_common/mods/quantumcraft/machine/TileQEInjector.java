@@ -1,11 +1,16 @@
 package mods.quantumcraft.machine;
 
 import mods.quantumcraft.core.interfaces.IQEnergizable;
+import mods.quantumcraft.core.network.PacketHandler;
+import mods.quantumcraft.core.network.packets.QDeenergizerInitPacket;
+import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
 import mods.quantumcraft.net.IQEnergySink;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
 public class TileQEInjector extends TileMachineBase implements
@@ -163,7 +168,60 @@ public class TileQEInjector extends TileMachineBase implements
     }
 
     @Override
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
+        super.readFromNBT(par1NBTTagCompound);
+        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+        this.inventory = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
+                    .tagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
+
+            if (b0 >= 0 && b0 < this.inventory.length) {
+                this.inventory[b0] = ItemStack
+                        .loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
+
+        this.currentival = par1NBTTagCompound.getInteger("currentival");
+        this.maxival = par1NBTTagCompound.getInteger("maxival");
+        updateNextTick = true;
+    }
+
+    /**
+     * Writes a tile entity to NBT.
+     */
+
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
+        par1NBTTagCompound.setInteger("currentival", this.currentival);
+        par1NBTTagCompound.setInteger("maxival", this.maxival);
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.inventory.length; ++i) {
+            if (this.inventory[i] != null) {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte) i);
+                this.inventory[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+
+        par1NBTTagCompound.setTag("Items", nbttaglist);
+        super.writeToNBT(par1NBTTagCompound);
+    }
+
+    @Override
     public Packet getDescriptionPacket() {
-        return null; //TODO: packeting for QEI
+        QEInjectorInitPacket packet = PacketHandler.getPacket(QEInjectorInitPacket.class);
+        packet.posX = xCoord;
+        packet.posY = yCoord;
+        packet.posZ = zCoord;
+        NBTTagCompound nbt = new NBTTagCompound();
+        writeToNBT(nbt);
+        packet.tiledata = nbt;
+
+        return packet.getPacket();
     }
 }
