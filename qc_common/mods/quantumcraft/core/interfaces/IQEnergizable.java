@@ -16,7 +16,7 @@ public interface IQEnergizable {
 
     /**
      *
-     * @param value value to set the buffer to
+     * @param value to set the buffer to
      * @return value AFTER the change
      */
     public int setCurrentQEnergyBuffer(int value);
