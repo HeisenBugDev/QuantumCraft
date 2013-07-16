@@ -109,7 +109,7 @@ public class BlockQEInjector extends BlockMachine {
             return true;
         } else if (te instanceof TileMachineBase) {
             if (!world.isRemote) {
-                entityplayer.openGui(QuantumCraft.instance, 1, world, x, y, z);
+                entityplayer.openGui(QuantumCraft.instance, 2, world, x, y, z);
             }
             return true;
         }
