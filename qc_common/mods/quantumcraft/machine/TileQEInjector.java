@@ -214,7 +214,7 @@ public class TileQEInjector extends TileMachineBase implements
 
     @Override
     public Packet getDescriptionPacket() {
-        QEInjectorInitPacket packet = PacketHandler.getPacket(QEInjectorInitPacket.class);
+ /*     QEInjectorInitPacket packet = PacketHandler.getPacket(QEInjectorInitPacket.class);
         packet.posX = xCoord;
         packet.posY = yCoord;
         packet.posZ = zCoord;
@@ -222,6 +222,7 @@ public class TileQEInjector extends TileMachineBase implements
         writeToNBT(nbt);
         packet.tiledata = nbt;
 
-        return packet.getPacket();
+        return packet.getPacket();    */
+        return null;
     }
 }

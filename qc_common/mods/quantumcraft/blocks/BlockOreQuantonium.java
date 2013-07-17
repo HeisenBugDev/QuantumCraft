@@ -19,7 +19,7 @@ public class BlockOreQuantonium extends BlockOre {
 
     @Override
     public int quantityDropped(Random par1Random) {
-        return 1 + par1Random.nextInt(3);
+        return 1 + par1Random.nextInt(4);
     }
 
 }

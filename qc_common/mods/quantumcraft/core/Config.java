@@ -11,6 +11,7 @@ public class Config {
     protected static File _configFolder;
     protected static File _configFile;
 
+    public static String NameItemPlutoniumIngot = "quantumcraft:ingotPlutonium";
     public static String NameItemCrystalQuantonium = "quantumcraft:crystalQuantonium";
     public static String NameItemRawQuantonium = "quantumcraft:rawQuantonium";
     public static String NameItemDepletedCrystal = "quantumcraft:depletedCrystal";
@@ -20,6 +21,7 @@ public class Config {
     public static String NameItemLocationCard = "quantumcraft:locationCard";
     public static String NameItemLocationCardBlank = "quantumcraft:locationCardBlank";
 
+    public static String NameOrePlutonium = "quantumcraft:orePlutonium";
     public static String NameOreQuantonium = "quantumcraft:oreQuantonium";
     public static String NameBlockQDE = "quantumcraft:machineQDE";
     public static String NameBlockQEI = "quantumcraft:machineQEI";
@@ -28,6 +30,7 @@ public class Config {
 
     public static Property networkUpdateRange;
 
+    public static int ItemPlutoniumIngotID;
     public static int ItemCrystallizedQuantoniumID;
     public static int ItemRawQuantoniumID;
     public static int ItemDepletedCrystalID;
@@ -35,6 +38,7 @@ public class Config {
     public static int ItemMultiToolID;
     public static int ItemLocationCardID;
 
+    public static int OrePlutoniumID;
     public static int OreQuantoniumID;
     public static int BlockQDEID;
     public static int BlockQEIID;
@@ -49,6 +53,7 @@ public class Config {
         Configuration config = new Configuration(file);
         config.load();
 
+        ItemPlutoniumIngotID = config.get("Items", "ItemIngotPlutonium", 4999).getInt();
         ItemCrystallizedQuantoniumID = config.get("Items", "ItemCrystallizedQuantonium", 5000).getInt();
         ItemRawQuantoniumID = config.get("Items", "ItemRawQuantonium", 5001).getInt();
         ItemDepletedCrystalID = config.get("Items", "ItemDepletedCrystal", 5002).getInt();
@@ -56,6 +61,7 @@ public class Config {
         ItemMultiToolID = config.get("Items", "ItemMultiTool", 5004).getInt();
         ItemLocationCardID = config.get("Items", "ItemLocationCard", 5005).getInt();
 
+        OrePlutoniumID = config.get("Blocks", "BlockOrePlutonium", 3499).getInt();
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
         BlockQEIID = config.get("Blocks", "BlockQEInjector", 3601).getInt();
