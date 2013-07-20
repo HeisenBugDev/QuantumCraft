@@ -5,10 +5,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.quantumcraft.blocks.BlockOreQuantonium;
 import mods.quantumcraft.blocks.BlockQDeenergizer;
 import mods.quantumcraft.blocks.BlockQEInjector;
-import mods.quantumcraft.items.ItemBase;
-import mods.quantumcraft.items.ItemLocationCard;
-import mods.quantumcraft.items.ItemMultiTool;
-import mods.quantumcraft.items.ItemResearchBook;
+import mods.quantumcraft.items.*;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import mods.quantumcraft.machine.TileQEInjector;
 import net.minecraft.block.BlockOre;
@@ -24,6 +21,8 @@ public class Loader {
     public static ItemResearchBook ItemResearchBook;
     public static ItemBase ItemDepletedCrystal;
     public static ItemLocationCard ItemLocationCard;
+
+    public static ItemPlaceholder ItemRPlaceHolder;
     /* BLOCKS */
     public static BlockOre OrePlutonium;
     public static BlockOreQuantonium OreQuantonium;
@@ -84,6 +83,12 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCard)
                 .func_111206_d(Config.NameItemLocationCard);
         LanguageRegistry.addName(ItemLocationCard, "Location Card");
+
+        ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder(Config.ItemRPlaceHolderID)
+                .setCreativeTab(null).setUnlocalizedName(Config.NameItemRPlaceHolder)
+                .func_111206_d(Config.NameItemRPlaceHolder);
+        LanguageRegistry.addName(ItemRPlaceHolder, "Research Placeholder");
+
 
     }
 

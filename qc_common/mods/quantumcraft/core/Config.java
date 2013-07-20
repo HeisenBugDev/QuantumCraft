@@ -26,6 +26,8 @@ public class Config {
     public static String NameBlockQDE = "quantumcraft:machineQDE";
     public static String NameBlockQEI = "quantumcraft:machineQEI";
 
+    public static String NameItemRPlaceHolder = "quantumcraft:temp";
+
     public static final String modNetworkChannel = "QuantumCraft";
 
     public static Property networkUpdateRange;
@@ -38,10 +40,15 @@ public class Config {
     public static int ItemMultiToolID;
     public static int ItemLocationCardID;
 
+    public static int ItemRPlaceHolderID;
+
     public static int OrePlutoniumID;
     public static int OreQuantoniumID;
     public static int BlockQDEID;
     public static int BlockQEIID;
+
+    public static String RIconPrefix = "quantumcraft:research.";
+    public static String NameRIconTest = RIconPrefix + "test";
 
     public static void initConfig(FMLPreInitializationEvent event) {
         _configFolder = event.getModConfigurationDirectory();
@@ -60,6 +67,8 @@ public class Config {
         ItemResearchBookID = config.get("Items", "ItemResearchBookID", 5003).getInt();
         ItemMultiToolID = config.get("Items", "ItemMultiTool", 5004).getInt();
         ItemLocationCardID = config.get("Items", "ItemLocationCard", 5005).getInt();
+
+        ItemRPlaceHolderID = config.get("Items", "ItemRPlaceHolder", 4995).getInt();
 
         OrePlutoniumID = config.get("Blocks", "BlockOrePlutonium", 3499).getInt();
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();

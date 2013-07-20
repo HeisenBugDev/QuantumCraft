@@ -1,6 +1,8 @@
 package mods.quantumcraft.research;
 
+import mods.quantumcraft.core.Loader;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 public class ResearchItem {
     /**
@@ -20,7 +22,7 @@ public class ResearchItem {
     /**
      * Holds the ItemStack that will be used to draw the achievement into the GUI.
      */
-    public final ItemStack theItemStack;
+    public final Icon theIcon;
 
     public final String n;
 
@@ -40,14 +42,20 @@ public class ResearchItem {
         return special;
     }
 
-    public ResearchItem(String name, String desc, int i, int par3, int par4, ItemStack is, ResearchItem parent) {
+    public ItemStack getItemStack()
+    {
+        Loader.ItemRPlaceHolder.setTexture(theIcon);
+        return new ItemStack(Loader.ItemRPlaceHolder);
+    }
+
+    public ResearchItem(String name, String desc, int i, int par3, int par4, Icon is, ResearchItem parent) {
         this.index = i;
         this.parentAchievement = parent;
         this.n = name;
         this.riDescription = desc;
         this.displayColumn = par3;
         this.displayRow = par4;
-        this.theItemStack = is;
+        this.theIcon = is;
         if (par3 < ResearchItemList.minDisplayColumn) {
             ResearchItemList.minDisplayColumn = par3;
         }
