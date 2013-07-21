@@ -21,7 +21,7 @@ public class QEInjectorInitPacket extends CoordinatesPacket {
 
     @Override
     public ModernPacket template() {
-        return new QDeenergizerInitPacket(getID());
+        return new QEInjectorInitPacket(getID());
     }
 
     @Override
