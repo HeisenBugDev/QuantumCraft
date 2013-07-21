@@ -25,6 +25,7 @@ public class BlockQDeenergizer extends BlockMachine {
     private Icon iconBack;
     private Icon iconBottom;
     private Icon iconTop;
+    private Icon iconTopR;
 
     public BlockQDeenergizer(int id) {
         super(id, Material.iron);
@@ -41,6 +42,7 @@ public class BlockQDeenergizer extends BlockMachine {
     public void registerIcons(IconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineQDE_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineQDE_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDE_top_r");
         iconSide = iconRegister.registerIcon("QuantumCraft:machineQDE_side");
         iconBottom = iconRegister
                 .registerIcon("QuantumCraft:machineQDE_bottom");
@@ -55,15 +57,19 @@ public class BlockQDeenergizer extends BlockMachine {
         if (te instanceof TileQDeenergizer) {
             side = ((TileQDeenergizer) te).getRotatedSide(side);
         }
-        return getIconFromSide(side);
+        return getIconFromSide(side, ((TileQDeenergizer) te).useRotated());
     }
 
     public Icon getIconFromSide(int side) {
+        return getIconFromSide(side, false);
+    }
+
+    public Icon getIconFromSide(int side, boolean talt) {
         switch (side) {
             case 0:
                 return iconBottom;
             case 1:
-                return iconTop;
+                return (talt ? iconTop : iconTopR);
             case 2:
                 return iconBack;
             case 3:

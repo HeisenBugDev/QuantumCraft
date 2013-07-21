@@ -25,6 +25,7 @@ public class BlockQEInjector extends BlockMachine {
     private Icon iconBack;
     private Icon iconBottom;
     private Icon iconTop;
+    private Icon iconTopR;
 
     public BlockQEInjector(int id) {
         super(id, Material.iron);
@@ -41,6 +42,7 @@ public class BlockQEInjector extends BlockMachine {
     public void registerIcons(IconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineQEI_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineQEI_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQEI_top_r");
         iconSide = iconRegister.registerIcon("QuantumCraft:machineQEI_side");
         iconBottom = iconRegister.registerIcon("QuantumCraft:machineQEI_bottom");
         iconSide = iconRegister.registerIcon("QuantumCraft:machineQEI_side");
@@ -54,15 +56,19 @@ public class BlockQEInjector extends BlockMachine {
         if (te instanceof TileQEInjector) {
             side = ((TileQEInjector) te).getRotatedSide(side);
         }
-        return getIconFromSide(side);
+        return getIconFromSide(side,((TileQEInjector) te).useRotated());
     }
 
     public Icon getIconFromSide(int side) {
+        return getIconFromSide(side, false);
+    }
+
+    public Icon getIconFromSide(int side, boolean talt) {
         switch (side) {
             case 0:
                 return iconBottom;
             case 1:
-                return iconTop;
+                return (talt ? iconTop : iconTopR);
             case 2:
                 return iconBack;
             case 3:
