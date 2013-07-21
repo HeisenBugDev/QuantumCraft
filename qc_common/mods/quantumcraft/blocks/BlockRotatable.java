@@ -1,6 +1,7 @@
 package mods.quantumcraft.blocks;
 
 import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQEInjector;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,6 +25,7 @@ public abstract class BlockRotatable extends BlockContainer {
             return;
         }
         TileEntity te = world.getBlockTileEntity(x, y, z);
+        //WTF? -sammko
         if (stack.getTagCompound() != null) {
             stack.getTagCompound().setInteger("x", x);
             stack.getTagCompound().setInteger("y", y);
@@ -44,7 +46,21 @@ public abstract class BlockRotatable extends BlockContainer {
             } else if (facing == 3) {
                 ((TileQDeenergizer) te).rotateDirectlyTo(5);
             }
+        }
 
+        if (te instanceof TileQEInjector
+                && ((TileQEInjector) te).canRotate()) {
+            int facing = MathHelper
+                    .floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
+            if (facing == 0) {
+                ((TileQEInjector) te).rotateDirectlyTo(3);
+            } else if (facing == 1) {
+                ((TileQEInjector) te).rotateDirectlyTo(4);
+            } else if (facing == 2) {
+                ((TileQEInjector) te).rotateDirectlyTo(2);
+            } else if (facing == 3) {
+                ((TileQEInjector) te).rotateDirectlyTo(5);
+            }
         }
     }
 
