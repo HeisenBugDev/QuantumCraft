@@ -48,6 +48,8 @@ If you would like to help out with coding, you can fork the branch and do some c
 
 _PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF_
 
+**If it is possible to mark an issue in code, do it the following way: //ISSUE #n.**
+
 ## Legal crap
 
 	Minecraft Mod Public License
