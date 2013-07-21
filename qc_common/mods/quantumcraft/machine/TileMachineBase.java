@@ -103,6 +103,13 @@ public abstract class TileMachineBase extends TileEntity implements
     @Override
     public abstract Packet getDescriptionPacket();
 
+    public boolean useRotated() {
+        //NORTH and SOUTH = false
+        //WEST and EAST = true
+        if (_forwardDirection == ForgeDirection.WEST || _forwardDirection == ForgeDirection.EAST ) return false;
+        else return true;
+    }
+
     public void rotateDirectlyTo(int rotation) {
         _forwardDirection = ForgeDirection.getOrientation(rotation);
         if (worldObj != null) {

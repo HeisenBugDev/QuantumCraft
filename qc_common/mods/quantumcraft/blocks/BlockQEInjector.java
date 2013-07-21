@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.QuantumCraft;
 import mods.quantumcraft.machine.TileMachineBase;
-import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQEInjector;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -18,7 +18,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class BlockQDeenergizer extends BlockMachine {
+public class BlockQEInjector extends BlockMachine {
 
     private Icon iconFront;
     private Icon iconSide;
@@ -27,7 +27,7 @@ public class BlockQDeenergizer extends BlockMachine {
     private Icon iconTop;
     private Icon iconTopR;
 
-    public BlockQDeenergizer(int id) {
+    public BlockQEInjector(int id) {
         super(id, Material.iron);
         setHardness(10F);
         setResistance(5F);
@@ -35,29 +35,28 @@ public class BlockQDeenergizer extends BlockMachine {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileQDeenergizer();
+        return new TileQEInjector();
     }
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        iconFront = iconRegister.registerIcon("QuantumCraft:machineQDE_front");
-        iconTop = iconRegister.registerIcon("QuantumCraft:machineQDE_top");
-        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDE_top_r");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDE_side");
-        iconBottom = iconRegister
-                .registerIcon("QuantumCraft:machineQDE_bottom");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDE_side");
-        iconBack = iconRegister.registerIcon("QuantumCraft:machineQDE_back");
+        iconFront = iconRegister.registerIcon("QuantumCraft:machineQEI_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machineQEI_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQEI_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQEI_side");
+        iconBottom = iconRegister.registerIcon("QuantumCraft:machineQEI_bottom");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQEI_side");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machineQEI_back");
     }
 
     @Override
     public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
                                 int side) {
         TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
-        if (te instanceof TileQDeenergizer) {
-            side = ((TileQDeenergizer) te).getRotatedSide(side);
+        if (te instanceof TileQEInjector) {
+            side = ((TileQEInjector) te).getRotatedSide(side);
         }
-        return getIconFromSide(side, ((TileQDeenergizer) te).useRotated());
+        return getIconFromSide(side,((TileQEInjector) te).useRotated());
     }
 
     public Icon getIconFromSide(int side) {
@@ -116,7 +115,7 @@ public class BlockQDeenergizer extends BlockMachine {
             return true;
         } else if (te instanceof TileMachineBase) {
             if (!world.isRemote) {
-                entityplayer.openGui(QuantumCraft.instance, 1, world, x, y, z);
+                entityplayer.openGui(QuantumCraft.instance, 2, world, x, y, z);
             }
             return true;
         }

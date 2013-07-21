@@ -355,7 +355,7 @@ public class GuiResearch extends GuiScreen {
 
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_CULL_FACE);
-            renderitem.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, ri2.theItemStack, i5 + 3,
+            renderitem.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, ri2.getItemStack(), i5 + 3,
                     l4 + 3);
             GL11.glDisable(GL11.GL_LIGHTING);
 

@@ -21,13 +21,9 @@ public class ResearchHandler {
                     .getExtendedProperties("QC_Research");
         }
 
-        ris.add(new ResearchItem("Quantonium Ore", "Mine Quantonium Ore", 0, 0,
-                -2, new ItemStack(Loader.OreQuantonium), null));
-        ris.add(new ResearchItem("Raw Quantonium", "Pick up Raw Quantonium", 1,
-                0, 0, new ItemStack(Loader.ItemRawQuantonium), ris.get(0)));
-        ris.add(new ResearchItem("Crystallized Quantonium",
-                "Smelt your Raw Quantonium", 2, 2, 0, new ItemStack(
-                Loader.ItemCrystalQuantonium), ris.get(1)));
+        ris.add(new ResearchItem("Quantonium Ore", "Mine Quantonium Ore", 0, 0, -2, ResearchIcons.test, null));
+        ris.add(new ResearchItem("Raw Quantonium", "Pick up Raw Quantonium", 1,0, 0, Loader.ItemRawQuantonium.getIconFromDamage(0), ris.get(0)));
+        ris.add(new ResearchItem("Crystallized Quantonium", "Smelt your Raw Quantonium", 2, 2, 0, Loader.ItemCrystalQuantonium.getIconFromDamage(0), ris.get(1)));
         // rep.setUnlocked(0);
     }
 
