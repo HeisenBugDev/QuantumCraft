@@ -19,6 +19,7 @@ public class QEInjectorInitPacket extends CoordinatesPacket {
         super(id);
     }
 
+
     @Override
     public ModernPacket template() {
         return new QEInjectorInitPacket(getID());
