@@ -40,8 +40,8 @@ public class ItemLocationCard extends ItemBase {
 
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.iconFilled = par1IconRegister.registerIcon(Config.NameItemLocationCard);
-        this.iconBlank = par1IconRegister.registerIcon(Config.NameItemLocationCardBlank);
+        this.iconFilled = par1IconRegister.registerIcon(Config.getTextureName(Config.NameItemLocationCard));
+        this.iconBlank = par1IconRegister.registerIcon(Config.getTextureName(Config.NameItemLocationCardBlank));
         this.itemIcon = iconBlank;
     }
 
@@ -69,6 +69,8 @@ public class ItemLocationCard extends ItemBase {
         if (par2EntityPlayer.isSneaking() && !par1ItemStack.hasTagCompound()) {
             FMLLog.fine("Location card just got S-R-CLICKED");
 
+            //ISSUE #27
+            par1ItemStack.setItemDamage(1);
 
             NBTTagCompound t = new NBTTagCompound();
             t.setInteger("x", par4);

@@ -5,32 +5,41 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 
 import java.io.File;
+import java.util.LinkedList;
 
 public class Config {
 
     protected static File _configFolder;
     protected static File _configFile;
 
-    public static String NameItemPlutoniumIngot = "quantumcraft:ingotPlutonium";
-    public static String NameItemCrystalQuantonium = "quantumcraft:crystalQuantonium";
-    public static String NameItemRawQuantonium = "quantumcraft:rawQuantonium";
-    public static String NameItemDepletedCrystal = "quantumcraft:depletedCrystal";
-    public static String NameItemResearchBook = "quantumcraft:researchBook";
-    public static String NameItemMultiTool = "quantumcraft:multiTool";
 
-    public static String NameItemLocationCard = "quantumcraft:locationCard";
-    public static String NameItemLocationCardBlank = "quantumcraft:locationCardBlank";
+    public static String texturePrefix = "quantumcraft:";
+    public static String RIconPrefix = texturePrefix + "research.";
 
-    public static String NameOrePlutonium = "quantumcraft:orePlutonium";
-    public static String NameOreQuantonium = "quantumcraft:oreQuantonium";
-    public static String NameBlockQDE = "quantumcraft:machineQDE";
-    public static String NameBlockQEI = "quantumcraft:machineQEI";
+    public static String NameItemPlutoniumIngot = "ingotPlutonium";
+    public static String NameItemCrystalQuantonium = "crystalQuantonium";
+    public static String NameItemRawQuantonium = "rawQuantonium";
+    public static String NameItemDepletedCrystal = "depletedCrystal";
+    public static String NameItemResearchBook = "researchBook";
+    public static String NameItemMultiTool = "multiTool";
 
-    public static String NameItemRPlaceHolder = "quantumcraft:temp";
+    public static String NameItemLocationCard = "locationCard";
+    public static String NameItemLocationCardBlank = "locationCardBlank";
+
+    public static String NameOrePlutonium = "orePlutonium";
+    public static String NameOreQuantonium = "oreQuantonium";
+    public static String NameBlockQDE = "machineQDE";
+    public static String NameBlockQEI = "machineQEI";
+
+    public static String NameItemRPlaceHolder = "temp";
+
+    public static LinkedList<String> supports32x = new LinkedList<String>();
 
     public static final String modNetworkChannel = "QuantumCraft";
 
     public static Property networkUpdateRange;
+
+    public static Boolean use32x;
 
     public static int ItemPlutoniumIngotID;
     public static int ItemCrystallizedQuantoniumID;
@@ -47,13 +56,26 @@ public class Config {
     public static int BlockQDEID;
     public static int BlockQEIID;
 
-    public static String RIconPrefix = "quantumcraft:research.";
     public static String NameRIconTest = RIconPrefix + "test";
+
+    public static String getTextureName(String name) {
+        for (String s : supports32x) {
+            if (s == name) return texturePrefix + name + ".32";
+        }
+        return texturePrefix + name;
+    }
 
     public static void initConfig(FMLPreInitializationEvent event) {
         _configFolder = event.getModConfigurationDirectory();
         _configFile = new File(_configFolder.getAbsolutePath() + "/QuantumCraft.cfg");
+        add32x();
         loadPropertiesFromFile(_configFile);
+    }
+
+    public static void add32x()
+    {
+        //PUT TEXTURES THAT HAVE 32X VERSION HERE:
+        supports32x.add(NameOreQuantonium);
     }
 
     public static void loadPropertiesFromFile(File file) {
@@ -78,6 +100,8 @@ public class Config {
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =
                 "This is the distance in which players will be notified.  Lower if you experience lag.";
+
+        use32x = config.get("general", "Use 32x32 textures", true).getBoolean(true);
 
         config.save();
     }
