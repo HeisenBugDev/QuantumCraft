@@ -21,7 +21,7 @@ public class QEInjectorUpdatePacket extends CoordinatesPacket {
 
     @Override
     public ModernPacket template() {
-        return new QDislocatorUpdatePacket(getID());
+        return new QEInjectorUpdatePacket(getID());
     }
 
     @Override
