@@ -1,5 +1,6 @@
 package mods.quantumcraft.core;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.quantumcraft.blocks.BlockOreQuantonium;
@@ -10,8 +11,11 @@ import mods.quantumcraft.items.*;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import mods.quantumcraft.machine.TileQDislocator;
 import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.render.RenderOre;
 import net.minecraft.block.BlockOre;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
+import net.minecraft.util.Icon;
 
 public class Loader {
 
@@ -34,6 +38,18 @@ public class Loader {
     public static BlockQDislocator BlockQDislocator;
     /* CREATIVE TABS */
     public static TabQuantumCraft tabQuantumCraft;
+
+    public static class IconLoader {
+
+        public static void loadAll(IconRegister i) {
+            System.out.println(Config.getTextureName(Config.NameTextureQOre));
+            oreQuantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQOre));
+            System.out.println(Config.getTextureName(Config.NameTextureQBase));
+            oreQuantonium_base = i.registerIcon(Config.getTextureName(Config.NameTextureQBase));
+        }
+        public static Icon oreQuantonium_ore;
+        public static Icon oreQuantonium_base;
+    }
 
     public static void initAll() {
         initTabs();
@@ -128,7 +144,7 @@ public class Loader {
     }
 
     public static void initRenderers() {
-
+        RenderingRegistry.registerBlockHandler(RenderOre.instance().getRenderId(), RenderOre.instance());
     }
 
     public static void initWGen() {

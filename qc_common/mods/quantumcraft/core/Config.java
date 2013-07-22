@@ -64,8 +64,10 @@ public class Config {
     public static String NameRIconTest = RIconPrefix + "test";
 
     public static String getTextureName(String name) {
-        for (String s : supports32x) {
-            if (s == name) return texturePrefix + name + ".32";
+        if (use32x) {
+            for (String s : supports32x) {
+                if (s == name) return texturePrefix + name + ".32";
+            }
         }
         return texturePrefix + name;
     }

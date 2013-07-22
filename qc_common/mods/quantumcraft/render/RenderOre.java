@@ -2,6 +2,7 @@ package mods.quantumcraft.render;
 
 import mods.quantumcraft.blocks.BlockOreQuantonium;
 import mods.quantumcraft.core.Config;
+import mods.quantumcraft.core.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -24,14 +25,10 @@ public class RenderOre extends BaseBlockRenderer {
     Icon base;
     Icon ore;
 
-    public void registerIcons(IconRegister ir) {
-        base = ir.registerIcon(Config.getTextureName(Config.NameTextureQBase));
-        ore = ir.registerIcon(Config.getTextureName(Config.NameTextureQOre));
-    }
-
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks r){
-
+        base = Loader.IconLoader.oreQuantonium_base;
+        ore = Loader.IconLoader.oreQuantonium_ore;
         r.overrideBlockTexture = base;
         r.renderStandardBlock(block, x, y, z);
         r.overrideBlockTexture = null;

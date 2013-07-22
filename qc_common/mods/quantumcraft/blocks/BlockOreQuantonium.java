@@ -16,8 +16,16 @@ public class BlockOreQuantonium extends BlockOre {
         this.setHardness(2.5F);
     }
 
-    private Icon iconore;
-    private Icon iconbase;
+    public void setIcon(Icon i) {
+        this.blockIcon = i;
+    }
+
+    @Override
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        super.registerIcons(par1IconRegister);
+        Loader.IconLoader.loadAll(par1IconRegister);
+    }
 
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
@@ -29,11 +37,8 @@ public class BlockOreQuantonium extends BlockOre {
         return 1 + par1Random.nextInt(4);
     }
 
-    public Icon getIconbase() {
-        return iconbase;
-    }
-
-    public Icon getIconore() {
-        return iconore;
+    @Override
+    public int getRenderType(){
+        return RenderOre.instance().getRenderId();
     }
 }
