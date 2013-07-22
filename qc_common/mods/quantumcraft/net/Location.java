@@ -50,4 +50,13 @@ public class Location{
 	public int getZCoord(){
 		return z;
 	}
+	
+	@Override
+	public boolean equals(Object o){
+		if(o instanceof Location){
+			Location l = (Location) o;
+			return (x == l.x && y == l.y && z == l.z);
+		}
+		return false;
+	}
 }
