@@ -2,20 +2,20 @@ package mods.quantumcraft.core.network.packets;
 
 import mods.quantumcraft.core.network.abstractpackets.CoordinatesPacket;
 import mods.quantumcraft.core.network.abstractpackets.ModernPacket;
-import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class QEInjectorUpdatePacket extends CoordinatesPacket {
+public class QDislocatorUpdatePacket extends CoordinatesPacket {
 
 
     public int heat;
     public int progress;
 
-    public QEInjectorUpdatePacket(int id) {
+    public QDislocatorUpdatePacket(int id) {
         super(id);
     }
 
@@ -26,7 +26,7 @@ public class QEInjectorUpdatePacket extends CoordinatesPacket {
 
     @Override
     public void processPacket(EntityPlayer player) {
-        TileQEInjector tile = getTile(player.worldObj, TileQEInjector.class);
+        TileQDeenergizer tile = getTile(player.worldObj, TileQDeenergizer.class);
 
     }
 

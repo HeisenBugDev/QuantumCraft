@@ -7,6 +7,7 @@ import mods.quantumcraft.blocks.BlockQDeenergizer;
 import mods.quantumcraft.blocks.BlockQEInjector;
 import mods.quantumcraft.items.*;
 import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQDislocator;
 import mods.quantumcraft.machine.TileQEInjector;
 import net.minecraft.block.BlockOre;
 import net.minecraft.item.Item;
@@ -129,6 +130,7 @@ public class Loader {
     public static void initTEs() {
         GameRegistry.registerTileEntity(TileQDeenergizer.class, "QDeenergizerTE");
         GameRegistry.registerTileEntity(TileQEInjector.class, "QEInjectorTE");
+        GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
     }
 
 }

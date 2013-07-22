@@ -1,47 +1,48 @@
 package mods.quantumcraft.core.network.packets;
 
+import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.network.abstractpackets.CoordinatesPacket;
 import mods.quantumcraft.core.network.abstractpackets.ModernPacket;
-import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.machine.TileQDislocator;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class QEInjectorUpdatePacket extends CoordinatesPacket {
+public class QDislocatorInitPacket extends CoordinatesPacket {
 
+    public NBTTagCompound tiledata;
 
-    public int heat;
-    public int progress;
-
-    public QEInjectorUpdatePacket(int id) {
+    public QDislocatorInitPacket(int id) {
         super(id);
     }
 
+
     @Override
     public ModernPacket template() {
-        return new QDislocatorUpdatePacket(getID());
+        return new QDislocatorInitPacket(getID());
     }
 
     @Override
     public void processPacket(EntityPlayer player) {
-        TileQEInjector tile = getTile(player.worldObj, TileQEInjector.class);
-
+        TileQDislocator tile = getTile(player.worldObj, TileQDislocator.class);
+        if (tile != null) {
+            tile.readFromNBT(tiledata);
+            tile.updateNextTick = true;
+        }
     }
 
     @Override
     public void writeData(DataOutputStream data) throws IOException {
         super.writeData(data);
-        data.writeInt(heat);
-        data.writeInt(progress);
+        BasicUtils.writeNBTToData(tiledata, data);
     }
 
     @Override
     public void readData(DataInputStream data) throws IOException {
         super.readData(data);
-        heat = data.readInt();
-        progress = data.readInt();
+        tiledata = (NBTTagCompound) BasicUtils.readNBTFromData(data);
     }
 }
-

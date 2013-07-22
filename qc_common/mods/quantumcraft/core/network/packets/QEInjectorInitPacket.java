@@ -22,7 +22,7 @@ public class QEInjectorInitPacket extends CoordinatesPacket {
 
     @Override
     public ModernPacket template() {
-        return new QEInjectorInitPacket(getID());
+        return new QDislocatorInitPacket(getID());
     }
 
     @Override
