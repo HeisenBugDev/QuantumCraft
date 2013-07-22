@@ -21,8 +21,9 @@ public class SlotCustomInput extends Slot {
         itemList.add(i);
     }
 
-    public void addItem(ItemStack i) {
+    public SlotCustomInput addItem(ItemStack i) {
         itemList.add(i);
+        return this;
     }
 
     public boolean isItemValid(ItemStack par1ItemStack) {

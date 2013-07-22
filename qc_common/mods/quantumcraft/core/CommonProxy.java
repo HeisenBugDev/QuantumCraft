@@ -2,8 +2,10 @@ package mods.quantumcraft.core;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import mods.quantumcraft.inventory.ContainerQDeenergizer;
+import mods.quantumcraft.inventory.ContainerQDislocator;
 import mods.quantumcraft.inventory.ContainerQEInjector;
 import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQDislocator;
 import mods.quantumcraft.machine.TileQEInjector;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -27,6 +29,9 @@ public class CommonProxy implements IGuiHandler {
                 case 2:
                     return new ContainerQEInjector(player.inventory,
                             (TileQEInjector) world.getBlockTileEntity(x, y, z));
+                case 3:
+                    return new ContainerQDislocator(player.inventory,
+                            (TileQDislocator) world.getBlockTileEntity(x, y, z));
             }
         }
         return null;
