@@ -30,6 +30,10 @@ public class Config {
     public static String NameOreQuantonium = "oreQuantonium";
     public static String NameBlockQDE = "machineQDE";
     public static String NameBlockQEI = "machineQEI";
+    public static String NameBlockQDS = "machineQDS";
+
+    public static String NameTextureQOre = "oreQuantonium.ore";
+    public static String NameTextureQBase = "oreQuantonium.base";
 
     public static String NameItemRPlaceHolder = "temp";
 
@@ -55,12 +59,15 @@ public class Config {
     public static int OreQuantoniumID;
     public static int BlockQDEID;
     public static int BlockQEIID;
+    public static int BlockQDSID;
 
     public static String NameRIconTest = RIconPrefix + "test";
 
     public static String getTextureName(String name) {
-        for (String s : supports32x) {
-            if (s == name) return texturePrefix + name + ".32";
+        if (use32x) {
+            for (String s : supports32x) {
+                if (s == name) return texturePrefix + name + ".32";
+            }
         }
         return texturePrefix + name;
     }
@@ -76,6 +83,8 @@ public class Config {
     {
         //PUT TEXTURES THAT HAVE 32X VERSION HERE:
         supports32x.add(NameOreQuantonium);
+        supports32x.add(NameTextureQOre);
+        supports32x.add(NameTextureQBase);
     }
 
     public static void loadPropertiesFromFile(File file) {
@@ -96,6 +105,7 @@ public class Config {
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
         BlockQEIID = config.get("Blocks", "BlockQEInjector", 3601).getInt();
+        BlockQDSID = config.get("Blocks", "BlockQDislocator", 3602).getInt();
 
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =

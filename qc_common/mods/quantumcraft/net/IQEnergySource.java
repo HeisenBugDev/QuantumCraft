@@ -1,5 +1,5 @@
 package mods.quantumcraft.net;
 
-public interface IQEnergySource {
-
+public interface IQEnergySource extends IQEnergyComponent{
+	public int getQuantumEnergy(int request);
 }

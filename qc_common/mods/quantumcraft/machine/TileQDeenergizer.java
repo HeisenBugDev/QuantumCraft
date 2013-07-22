@@ -5,7 +5,6 @@ import mods.quantumcraft.core.QRecipeHandler;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QDeenergizerInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
-import mods.quantumcraft.net.IQEnergySource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -14,7 +13,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
 public class TileQDeenergizer extends TileMachineBase implements
-        ISidedInventory, IQEnergySource {
+        ISidedInventory{
 
     public int QEnergyBuffer = 0;
     public int lastItemValue = 0;

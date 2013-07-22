@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.QuantumCraft;
 import mods.quantumcraft.machine.TileMachineBase;
-import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.machine.TileQDislocator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -18,7 +18,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class BlockQEInjector extends BlockMachine {
+public class BlockQDislocator extends BlockMachine {
 
     private Icon iconFront;
     private Icon iconSide;
@@ -27,7 +27,7 @@ public class BlockQEInjector extends BlockMachine {
     private Icon iconTop;
     private Icon iconTopR;
 
-    public BlockQEInjector(int id) {
+    public BlockQDislocator(int id) {
         super(id, Material.iron);
         setHardness(10F);
         setResistance(5F);
@@ -35,28 +35,28 @@ public class BlockQEInjector extends BlockMachine {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileQEInjector();
+        return new TileQDislocator();
     }
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        iconFront = iconRegister.registerIcon("QuantumCraft:machineQEI_front");
-        iconTop = iconRegister.registerIcon("QuantumCraft:machineQEI_top");
-        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQEI_top_r");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQEI_side");
-        iconBottom = iconRegister.registerIcon("QuantumCraft:machineQEI_bottom");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQEI_side");
-        iconBack = iconRegister.registerIcon("QuantumCraft:machineQEI_back");
+        iconFront = iconRegister.registerIcon("QuantumCraft:machineQDS_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machineQDS_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDS_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDS_side");
+        iconBottom = iconRegister.registerIcon("QuantumCraft:machineQDS_bottom");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDS_side");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machineQDS_back");
     }
 
     @Override
     public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
                                 int side) {
         TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
-        if (te instanceof TileQEInjector) {
-            side = ((TileQEInjector) te).getRotatedSide(side);
+        if (te instanceof TileQDislocator) {
+            side = ((TileQDislocator) te).getRotatedSide(side);
         }
-        return getIconFromSide(side,((TileQEInjector) te).useRotated());
+        return getIconFromSide(side,((TileQDislocator) te).useRotated());
     }
 
     public Icon getIconFromSide(int side) {
@@ -115,7 +115,7 @@ public class BlockQEInjector extends BlockMachine {
             return true;
         } else if (te instanceof TileMachineBase) {
             if (!world.isRemote) {
-                entityplayer.openGui(QuantumCraft.instance, 2, world, x, y, z);
+                entityplayer.openGui(QuantumCraft.instance, 3, world, x, y, z);
             }
             return true;
         }
