@@ -12,7 +12,7 @@ import net.minecraft.world.IBlockAccess;
 
 /**
  * Renders Naquadah and Naquadria ore blocks.
- *
+ *            ^ not anymore :D -sammko
  * @author LordFokas
  */
 public class RenderOre extends BaseBlockRenderer {
