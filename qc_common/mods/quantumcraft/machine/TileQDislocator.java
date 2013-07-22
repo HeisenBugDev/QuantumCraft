@@ -4,7 +4,6 @@ import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QDislocatorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -24,8 +23,7 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        if (itemstack.getItem().itemID == Loader.ItemLocationCard.itemID) return true;
-        return false;
+        return itemstack.getItem().itemID == Loader.ItemLocationCard.itemID;
     }
 
     @Override
@@ -139,86 +137,88 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
     }
 
     public boolean areCardsIn() {
-        if (inventory[0] == null || inventory[1] == null) return false;
-        return (inventory[0].hasTagCompound() && inventory[1].hasTagCompound());
+        return !(inventory[0] == null || inventory[1] == null) && (inventory[0].hasTagCompound() && inventory[1].hasTagCompound());
     }
 
     public int getCardBID(int index) {
-        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
-        int x = t.getInteger("x");
-        int y = t.getInteger("y");
-        int z = t.getInteger("z");
-
-        return worldObj.getBlockId(x,y,z);
+        return worldObj.getBlockId(getx(index),gety(index),getz(index));
     }
 
     public int getCardBMT(int index) {
-        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
-        int x = t.getInteger("x");
-        int y = t.getInteger("y");
-        int z = t.getInteger("z");
-
-        return worldObj.getBlockMetadata(x,y,z);
+        return worldObj.getBlockMetadata(getx(index),gety(index),getz(index));
     }
 
     public TileEntity getCardTE(int index) {
-        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
-        int x = t.getInteger("x");
-        int y = t.getInteger("y");
-        int z = t.getInteger("z");
-
-        return worldObj.getBlockTileEntity(x,y,z);
+        return worldObj.getBlockTileEntity(getx(index),gety(index),getz(index));
     }
 
     public void setB(int index, int id, int mt) {
-        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
-        int x = t.getInteger("x");
-        int y = t.getInteger("y");
-        int z = t.getInteger("z");
+        worldObj.setBlock(getx(index),gety(index),getz(index),id,mt,3);
+    }
 
-        worldObj.setBlock(x,y,z,id,mt,3);
+    public int getx(int index) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        return t.getInteger("x");
+    }
+
+    public int gety(int index) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        return t.getInteger("y");
+    }
+
+    public int getz(int index) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        return t.getInteger("z");
     }
 
     public void setTE(int index, TileEntity te) {
-        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
-        int x = t.getInteger("x");
-        int y = t.getInteger("y");
-        int z = t.getInteger("z");
-
-        worldObj.setBlockTileEntity(x,y,z,te);
+        worldObj.setBlockTileEntity(getx(index),gety(index),getz(index),te);
     }
 
     private int prevAid;
     private int prevBid;
     private int prevAmt;
     private int prevBmt;
+    private int prevAte;
+    private int prevBte;
 
-    private int currAid;
-    private int currBid;
-    private int currAmt;
-    private int currBmt;
+    private int currAte;
+    private int currBte;
 
     boolean isFirstCycle = true;
 
     @Override
     public void updateEntity() {
         if (areCardsIn() && worldObj != null) {
-            currAid = getCardBID(0);
-            currAmt = getCardBMT(0);
-            currBid = getCardBID(1);
-            currBmt = getCardBMT(1);
+            int currAid = getCardBID(0);
+            int currAmt = getCardBMT(0);
+            int currBid = getCardBID(1);
+            int currBmt = getCardBMT(1);
+            if (getCardTE(0) != null && getCardTE(1) != null) {
+                currAte = getCardTE(0).hashCode();
+                currBte = getCardTE(1).hashCode();
+            }
             if (isFirstCycle) {
                 isFirstCycle = false;
             }
             else
             {
                 if (getCardTE(0) != null && getCardTE(1) != null) {
-                    if (!getCardTE(0).equals(getCardTE(1))) {
-                        setTE(1, getCardTE(0));
-
+                    if (currAte != prevAte) { //A TE has changed
+                        TileEntity tte = getCardTE(0);
+                        tte.xCoord = getx(1);
+                        tte.yCoord = gety(1);
+                        tte.zCoord = getz(1);
+                        setTE(1, tte);
+                    }
+                    if (currBte != prevBte) { //B TE has changed
+                        TileEntity tte = getCardTE(1);
+                        tte.xCoord = getx(0);
+                        tte.yCoord = gety(0);
+                        tte.zCoord = getz(0);
+                        setTE(0, tte);
                     }
                 }
-
                 if (currAid != prevAid || currAmt != prevAmt) { //A has changed
                     setB(1, currAid, currAmt);
                 }
@@ -230,6 +230,8 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
             prevAmt = currAmt;
             prevBid = currBid;
             prevBmt = currBmt;
+            prevAte = currAte;
+            prevBte = currBte;
         }
     }
 
