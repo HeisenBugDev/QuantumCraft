@@ -87,11 +87,11 @@ public class BlockQEInjector extends BlockMachine {
         if (meta == side) {
             return iconFront;
         } else if (side == side - 2) {
-            return getIconFromSide(side - 2);
+            return getIconFromSide(side - 2, true);
         } else if (side == side - 3) {
-            return getIconFromSide(side - 3);
+            return getIconFromSide(side - 3, true);
         } else {
-            return getIconFromSide(side);
+            return getIconFromSide(side, true);
         }
 
     }
