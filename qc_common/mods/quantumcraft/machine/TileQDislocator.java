@@ -1,36 +1,31 @@
 package mods.quantumcraft.machine;
 
-import mods.quantumcraft.core.interfaces.IQEnergizable;
+import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QDislocatorInitPacket;
-import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
-import mods.quantumcraft.net.IQEnergySink;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.tileentity.TileEntity;
 
-public class TileQEInjector extends TileMachineBase implements
-        ISidedInventory, IQEnergySink {
-
-    public int currentival = 0;
-    public int maxival = 0;
+public class TileQDislocator extends TileMachineBase implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
-        if (var1 == 0) {
-            return new int[]{1};
-        } else return new int[]{0};
+        return new int[] {0,1};
     }
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        return j != 0;
+        if (itemstack.getItem().itemID == Loader.ItemLocationCard.itemID) return true;
+        return false;
     }
 
     @Override
@@ -99,15 +94,9 @@ public class TileQEInjector extends TileMachineBase implements
 
     }
 
-    public void process()
-    {
-        inventory[1] = inventory[0].copy();
-        decrStackSize(0,1);
-    }
-
     @Override
     public String getInvName() {
-        return "Quantum Energy Injector";
+        return "Quantum Dislocator";
     }
 
     @Override
@@ -149,26 +138,98 @@ public class TileQEInjector extends TileMachineBase implements
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
+    public boolean areCardsIn() {
+        if (inventory[0] == null || inventory[1] == null) return false;
+        return (inventory[0].hasTagCompound() && inventory[1].hasTagCompound());
+    }
+
+    public int getCardBID(int index) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        int x = t.getInteger("x");
+        int y = t.getInteger("y");
+        int z = t.getInteger("z");
+
+        return worldObj.getBlockId(x,y,z);
+    }
+
+    public int getCardBMT(int index) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        int x = t.getInteger("x");
+        int y = t.getInteger("y");
+        int z = t.getInteger("z");
+
+        return worldObj.getBlockMetadata(x,y,z);
+    }
+
+    public TileEntity getCardTE(int index) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        int x = t.getInteger("x");
+        int y = t.getInteger("y");
+        int z = t.getInteger("z");
+
+        return worldObj.getBlockTileEntity(x,y,z);
+    }
+
+    public void setB(int index, int id, int mt) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        int x = t.getInteger("x");
+        int y = t.getInteger("y");
+        int z = t.getInteger("z");
+
+        worldObj.setBlock(x,y,z,id,mt,3);
+    }
+
+    public void setTE(int index, TileEntity te) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        int x = t.getInteger("x");
+        int y = t.getInteger("y");
+        int z = t.getInteger("z");
+
+        worldObj.setBlockTileEntity(x,y,z,te);
+    }
+
+    private int prevAid;
+    private int prevBid;
+    private int prevAmt;
+    private int prevBmt;
+
+    private int currAid;
+    private int currBid;
+    private int currAmt;
+    private int currBmt;
+
+    boolean isFirstCycle = true;
 
     @Override
     public void updateEntity() {
-        if (inventory[0] != null) {
-            if (inventory[0].getItem() instanceof IQEnergizable) {
-                IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
-                int cycle = 5;
-                this.maxival = e.getMaxQEnergyValue();
-                this.currentival = e.getCurrentQEnergyBuffer();
-                if (e.getCurrentQEnergyBuffer() <= (e.getMaxQEnergyValue()-cycle)) {
-                    e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
-                } else {
-                    cycle = e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer();
-                    e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+        if (areCardsIn() && worldObj != null) {
+            currAid = getCardBID(0);
+            currAmt = getCardBMT(0);
+            currBid = getCardBID(1);
+            currBmt = getCardBMT(1);
+            if (isFirstCycle) {
+                isFirstCycle = false;
+            }
+            else
+            {
+                if (getCardTE(0) != null && getCardTE(1) != null) {
+                    if (!getCardTE(0).equals(getCardTE(1))) {
+                        setTE(1, getCardTE(0));
+
+                    }
                 }
-                //this.QEnergyBuffer -= cycle;
-                if (e.getCurrentQEnergyBuffer() == e.getMaxQEnergyValue()) {
-                    process();
+
+                if (currAid != prevAid || currAmt != prevAmt) { //A has changed
+                    setB(1, currAid, currAmt);
+                }
+                if (currBid != prevBid || currBmt != prevBmt) { //B has changed
+                    setB(0, currBid, currBmt);
                 }
             }
+            prevAid = currAid;
+            prevAmt = currAmt;
+            prevBid = currBid;
+            prevBmt = currBmt;
         }
     }
 
@@ -188,9 +249,6 @@ public class TileQEInjector extends TileMachineBase implements
                         .loadItemStackFromNBT(nbttagcompound1);
             }
         }
-
-        this.currentival = par1NBTTagCompound.getInteger("currentival");
-        this.maxival = par1NBTTagCompound.getInteger("maxival");
         updateNextTick = true;
     }
 
@@ -200,8 +258,6 @@ public class TileQEInjector extends TileMachineBase implements
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("currentival", this.currentival);
-        par1NBTTagCompound.setInteger("maxival", this.maxival);
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.inventory.length; ++i) {
@@ -219,7 +275,7 @@ public class TileQEInjector extends TileMachineBase implements
 
     @Override
     public Packet getDescriptionPacket() {
-        QEInjectorInitPacket packet = PacketHandler.getPacket(QEInjectorInitPacket.class);
+        QDislocatorInitPacket packet = PacketHandler.getPacket(QDislocatorInitPacket.class);
         packet.posX = xCoord;
         packet.posY = yCoord;
         packet.posZ = zCoord;

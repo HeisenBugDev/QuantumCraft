@@ -30,6 +30,7 @@ public class Config {
     public static String NameOreQuantonium = "oreQuantonium";
     public static String NameBlockQDE = "machineQDE";
     public static String NameBlockQEI = "machineQEI";
+    public static String NameBlockQDS = "machineQDS";
 
     public static String NameItemRPlaceHolder = "temp";
 
@@ -55,6 +56,7 @@ public class Config {
     public static int OreQuantoniumID;
     public static int BlockQDEID;
     public static int BlockQEIID;
+    public static int BlockQDSID;
 
     public static String NameRIconTest = RIconPrefix + "test";
 
@@ -96,6 +98,7 @@ public class Config {
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
         BlockQEIID = config.get("Blocks", "BlockQEInjector", 3601).getInt();
+        BlockQDSID = config.get("Blocks", "BlockQDislocator", 3602).getInt();
 
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =
