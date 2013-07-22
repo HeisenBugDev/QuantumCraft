@@ -32,6 +32,9 @@ public class Config {
     public static String NameBlockQEI = "machineQEI";
     public static String NameBlockQDS = "machineQDS";
 
+    public static String NameTextureQOre = "oreQuantonium.ore";
+    public static String NameTextureQBase = "oreQuantonium.base";
+
     public static String NameItemRPlaceHolder = "temp";
 
     public static LinkedList<String> supports32x = new LinkedList<String>();
@@ -78,6 +81,8 @@ public class Config {
     {
         //PUT TEXTURES THAT HAVE 32X VERSION HERE:
         supports32x.add(NameOreQuantonium);
+        supports32x.add(NameTextureQOre);
+        supports32x.add(NameTextureQBase);
     }
 
     public static void loadPropertiesFromFile(File file) {
