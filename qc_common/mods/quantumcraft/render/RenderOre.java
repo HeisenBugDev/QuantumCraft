@@ -41,7 +41,6 @@ public class RenderOre extends BaseBlockRenderer {
         r.renderFaceYNeg(block, x, y, z, ore);
         r.renderFaceZPos(block, x, y, z, ore);
         r.renderFaceZNeg(block, x, y, z, ore);
-        r.overrideBlockTexture = null;
         return false;
     }
 }
