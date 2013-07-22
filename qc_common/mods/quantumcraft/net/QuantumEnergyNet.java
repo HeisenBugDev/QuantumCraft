@@ -85,6 +85,7 @@ public class QuantumEnergyNet {
 		for(Location tip : tips){
 			BrokenLinkDG dataGatherer = new BrokenLinkDG();
 			RecursiveScanner.scan(w, tip, dataGatherer, memory);
+			dataGatherer.addAllSourcesToAllSinks(w);
 		}
 	}
 }
