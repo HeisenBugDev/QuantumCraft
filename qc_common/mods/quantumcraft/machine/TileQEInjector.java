@@ -2,10 +2,8 @@ package mods.quantumcraft.machine;
 
 import mods.quantumcraft.core.interfaces.IQEnergizable;
 import mods.quantumcraft.core.network.PacketHandler;
-import mods.quantumcraft.core.network.packets.QDeenergizerInitPacket;
 import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
-import mods.quantumcraft.net.IQEnergySink;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -14,7 +12,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
 public class TileQEInjector extends TileMachineBase implements
-        ISidedInventory, IQEnergySink {
+        ISidedInventory{
 
     public int currentival = 0;
     public int maxival = 0;
