@@ -1,7 +1,9 @@
 package mods.quantumcraft.gui;
 
 import mods.quantumcraft.inventory.ContainerQDeenergizer;
+import mods.quantumcraft.inventory.ContainerQDislocator;
 import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQDislocator;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
@@ -9,11 +11,11 @@ import net.minecraft.util.StatCollector;
 
 public class GuiQDislocator extends GuiContainer {
 
-    private TileQDeenergizer tile;
+    private TileQDislocator tile;
 
     public GuiQDislocator(Container par1Container) {
         super(par1Container);
-        tile = ((ContainerQDeenergizer) par1Container).tile;
+        tile = ((ContainerQDislocator) par1Container).tile;
     }
 
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {

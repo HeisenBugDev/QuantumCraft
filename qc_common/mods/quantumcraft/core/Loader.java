@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.quantumcraft.blocks.BlockOreQuantonium;
 import mods.quantumcraft.blocks.BlockQDeenergizer;
+import mods.quantumcraft.blocks.BlockQDislocator;
 import mods.quantumcraft.blocks.BlockQEInjector;
 import mods.quantumcraft.items.*;
 import mods.quantumcraft.machine.TileQDeenergizer;
@@ -30,6 +31,7 @@ public class Loader {
     /* MACHINE BLOCKS */
     public static BlockQDeenergizer BlockQDeenergizer;
     public static BlockQEInjector BlockQEInjector;
+    public static BlockQDislocator BlockQDislocator;
     /* CREATIVE TABS */
     public static TabQuantumCraft tabQuantumCraft;
 
@@ -117,6 +119,12 @@ public class Loader {
                 .func_111022_d(Config.getTextureName(Config.NameBlockQEI));
         LanguageRegistry.addName(BlockQEInjector, "Quantum Energy Injector");
         GameRegistry.registerBlock(BlockQEInjector, Config.NameBlockQEI);
+
+        BlockQDislocator = (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDS)
+                .func_111022_d(Config.getTextureName(Config.NameBlockQDS));
+        LanguageRegistry.addName(BlockQDislocator, "Quantum Dislocator");
+        GameRegistry.registerBlock(BlockQDislocator, Config.NameBlockQDS);
     }
 
     public static void initRenderers() {
