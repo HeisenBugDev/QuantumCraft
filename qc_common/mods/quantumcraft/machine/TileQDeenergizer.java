@@ -5,6 +5,9 @@ import mods.quantumcraft.core.QRecipeHandler;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QDeenergizerInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
+import mods.quantumcraft.machine.abstractmachines.TileEnergySource;
+import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
+import mods.quantumcraft.net.Location;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -12,7 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
-public class TileQDeenergizer extends TileMachineBase implements
+public class TileQDeenergizer extends TileEnergySource implements
         ISidedInventory{
 
     public int QEnergyBuffer = 0;
@@ -71,10 +74,12 @@ public class TileQDeenergizer extends TileMachineBase implements
         processTime = -1;
         if (inventory[1] == null) {
             inventory[1] = r.getOutputItem().copy();
-        } else
+        } else {
             inventory[1].stackSize++;
-
+        }
+        this.addEnergy(r.getEnergyValue());
         this.decrStackSize(0, 1);
+        _inv.setInventorySlotContents(0, inventory[0]);
         _inv.setInventorySlotContents(1, inventory[1]);
     }
 
@@ -179,7 +184,6 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-
         return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
                 this.zCoord) == this && entityplayer.getDistanceSq(
                 (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
@@ -281,4 +285,23 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     }
 
+    public int energyBuffer;
+
+    @Override
+    public int getMaxEnergy() {
+        return 100000;
+    }
+
+    @Override
+    public int getCurrentEnergy() {
+        return energyBuffer;
+    }
+
+    @Override
+    public int subtractEnergy(int req) {
+        energyBuffer -=req;
+        if (energyBuffer <0) energyBuffer = 0;
+        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
+        return energyBuffer;
+    }
 }

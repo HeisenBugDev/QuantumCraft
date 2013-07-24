@@ -2,9 +2,10 @@ package mods.quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.quantumcraft.blocks.abstractblocks.BlockMachine;
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.QuantumCraft;
-import mods.quantumcraft.machine.TileMachineBase;
+import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

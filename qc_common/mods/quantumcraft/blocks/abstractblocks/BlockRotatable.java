@@ -1,4 +1,4 @@
-package mods.quantumcraft.blocks;
+package mods.quantumcraft.blocks.abstractblocks;
 
 import mods.quantumcraft.machine.TileQDeenergizer;
 import mods.quantumcraft.machine.TileQEInjector;

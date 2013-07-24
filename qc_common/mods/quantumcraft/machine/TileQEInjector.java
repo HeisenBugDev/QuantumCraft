@@ -4,6 +4,7 @@ import mods.quantumcraft.core.interfaces.IQEnergizable;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
+import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
