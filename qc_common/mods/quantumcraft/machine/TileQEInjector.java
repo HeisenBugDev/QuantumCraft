@@ -4,6 +4,7 @@ import mods.quantumcraft.core.interfaces.IQEnergizable;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
+import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
 import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -12,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
-public class TileQEInjector extends TileMachineBase implements
+public class TileQEInjector extends TileEnergySink implements
         ISidedInventory{
 
     public int currentival = 0;
@@ -148,7 +149,7 @@ public class TileQEInjector extends TileMachineBase implements
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
-
+    //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
         if (inventory[0] != null) {
@@ -158,18 +159,31 @@ public class TileQEInjector extends TileMachineBase implements
                 this.maxival = e.getMaxQEnergyValue();
                 this.currentival = e.getCurrentQEnergyBuffer();
                 if (e.getCurrentQEnergyBuffer() <= (e.getMaxQEnergyValue()-cycle)) {
-                    e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                    if (this.getCurrentEnergy() < cycle) {
+                        cycle = this.getCurrentEnergy();
+                    }
+                    if (cycle != 0) {
+                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                    }
                 } else {
                     cycle = e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer();
-                    e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                    if (this.getCurrentEnergy() < cycle) {
+                        cycle = this.getCurrentEnergy();
+                    }
+                    if (cycle != 0) {
+                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                    }
                 }
-                //this.QEnergyBuffer -= cycle;
+                this.subtractEnergy(cycle);
+                this.addEnergy(this.requestPacket(this.getMaxEnergy() - this.getCurrentEnergy()));
                 if (e.getCurrentQEnergyBuffer() == e.getMaxQEnergyValue()) {
                     process();
                 }
             }
         }
     }
+
+    private int energyBuffer;
 
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
@@ -227,5 +241,23 @@ public class TileQEInjector extends TileMachineBase implements
         packet.tiledata = nbt;
 
         return packet.getPacket();
+    }
+
+    @Override
+    public int getMaxEnergy() {
+        return 5000;
+    }
+
+    @Override
+    public int getCurrentEnergy() {
+        return energyBuffer;
+    }
+
+    @Override
+    public int subtractEnergy(int req) {
+        energyBuffer -=req;
+        if (energyBuffer <0) energyBuffer = 0;
+        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
+        return energyBuffer;
     }
 }

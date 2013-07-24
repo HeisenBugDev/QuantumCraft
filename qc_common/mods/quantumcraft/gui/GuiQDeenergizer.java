@@ -19,7 +19,7 @@ public class GuiQDeenergizer extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         String s = this.tile.getInvName();
         this.fontRenderer.drawString(s, this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
-        this.fontRenderer.drawString("LIV: " + tile.lastItemValue + "; CBV: " + tile.QEnergyBuffer,
+        this.fontRenderer.drawString("LIV: " + tile.lastItemValue + "; CBV: " + tile.QEnergyItemBuffer,
                 this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 15, 4210752);
         this.fontRenderer
                 .drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
@@ -35,7 +35,7 @@ public class GuiQDeenergizer extends GuiContainer {
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
         if (tile.lastItemValue != 0) {
-            int h = (int) (16 - ((float) tile.QEnergyBuffer / (float) tile.lastItemValue * 16));
+            int h = (int) (16 - ((float) tile.QEnergyItemBuffer / (float) tile.lastItemValue * 16));
             this.drawTexturedModalRect(k + 69, l + 34 + h, 176, 0 + h, 16, 16 - h);
         }
 
