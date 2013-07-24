@@ -292,7 +292,7 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public int getMaxEnergy() {
-        return 200;
+        return 5000;
     }
 
     @Override
