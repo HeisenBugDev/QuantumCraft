@@ -8,11 +8,13 @@ public abstract class TileEnergySink extends TileMachineBase {
     private EnergySourceList sourceList;
 
     public void addSourceToList(Location l, Location source) {
+        if (sourceList == null) sourceList = new EnergySourceList();
         sourceList.addSource(source);
     }
 
     public void replaceSourceList(Location l, EnergySourceList sources) {
         sourceList = sources;
+        System.out.println("REPLACING SOURCE LIST");
     }
 
     /**
@@ -47,6 +49,8 @@ public abstract class TileEnergySink extends TileMachineBase {
      * @return actual amount of energy received
      */
     public int requestPacket(int size) {
-        return sourceList.getQuantumEnergy(worldObj, size);
+        if (sourceList != null) return sourceList.getQuantumEnergy(worldObj, size);
+        System.out.println("NULL!!!!!!!!!!!!!!!!!!!!!!!!");
+        return 0;
     }
 }

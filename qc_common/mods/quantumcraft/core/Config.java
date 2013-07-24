@@ -31,6 +31,9 @@ public class Config {
     public static String NameBlockQDE = "machineQDE";
     public static String NameBlockQEI = "machineQEI";
     public static String NameBlockQDS = "machineQDS";
+    public static String NameBlockQES = "machineQES";
+
+    public static String NameBlockQFiberWire = "blockFiberWire";
 
     public static String NameTextureQOre = "oreQuantonium.ore";
     public static String NameTextureQBase = "oreQuantonium.base";
@@ -60,6 +63,9 @@ public class Config {
     public static int BlockQDEID;
     public static int BlockQEIID;
     public static int BlockQDSID;
+    public static int BlockQESID;
+
+    public static int BlockFiberWireID;
 
     public static String NameRIconTest = RIconPrefix + "test";
 
@@ -106,6 +112,9 @@ public class Config {
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
         BlockQEIID = config.get("Blocks", "BlockQEInjector", 3601).getInt();
         BlockQDSID = config.get("Blocks", "BlockQDislocator", 3602).getInt();
+        BlockQESID = config.get("Blocks", "BlockQESucker", 3603).getInt();
+
+        BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
 
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =

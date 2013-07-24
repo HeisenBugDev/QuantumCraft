@@ -2,12 +2,11 @@ package mods.quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.quantumcraft.blocks.abstractblocks.BlockEnergySource;
-import mods.quantumcraft.blocks.abstractblocks.BlockMachine;
+import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.QuantumCraft;
+import mods.quantumcraft.machine.TileQEnergySucker;
 import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
-import mods.quantumcraft.machine.TileQDeenergizer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -20,7 +19,13 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class BlockQDeenergizer extends BlockEnergySource {
+public class BlockQEnergySucker extends BlockEnergySink {
+
+    public BlockQEnergySucker(int id) {
+        super(id, Material.iron);
+        setHardness(10F);
+        setResistance(5F);
+    }
 
     private Icon iconFront;
     private Icon iconSide;
@@ -29,37 +34,30 @@ public class BlockQDeenergizer extends BlockEnergySource {
     private Icon iconTop;
     private Icon iconTopR;
 
-    public BlockQDeenergizer(int id) {
-        super(id, Material.iron);
-        setHardness(10F);
-        setResistance(5F);
-    }
-
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileQDeenergizer();
+        return new TileQEnergySucker();
     }
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        iconFront = iconRegister.registerIcon("QuantumCraft:machineQDE_front");
-        iconTop = iconRegister.registerIcon("QuantumCraft:machineQDE_top");
-        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDE_top_r");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDE_side");
-        iconBottom = iconRegister
-                .registerIcon("QuantumCraft:machineQDE_bottom");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDE_side");
-        iconBack = iconRegister.registerIcon("QuantumCraft:machineQDE_back");
+        iconFront = iconRegister.registerIcon("QuantumCraft:machineQES_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machineQES_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQES_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQES_side");
+        iconBottom = iconRegister.registerIcon("QuantumCraft:machineQES_bottom");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQES_side");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machineQES_back");
     }
 
     @Override
     public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
                                 int side) {
         TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
-        if (te instanceof TileQDeenergizer) {
-            side = ((TileQDeenergizer) te).getRotatedSide(side);
+        if (te instanceof TileQEnergySucker) {
+            side = ((TileQEnergySucker) te).getRotatedSide(side);
         }
-        return getIconFromSide(side, ((TileQDeenergizer) te).useRotated());
+        return getIconFromSide(side, ((TileQEnergySucker) te).useRotated());
     }
 
     public Icon getIconFromSide(int side) {
@@ -118,11 +116,13 @@ public class BlockQDeenergizer extends BlockEnergySource {
             return true;
         } else if (te instanceof TileMachineBase) {
             if (!world.isRemote) {
-                entityplayer.openGui(QuantumCraft.instance, 1, world, x, y, z);
+                //entityplayer.openGui(QuantumCraft.instance, 1, world, x, y, z);
+                //THIS MACHINE DOESNT (AND WONT) HAVE A GUI
             }
             return true;
         }
 
         return false;
     }
+
 }

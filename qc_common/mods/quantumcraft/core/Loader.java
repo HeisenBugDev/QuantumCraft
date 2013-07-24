@@ -3,14 +3,12 @@ package mods.quantumcraft.core;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import mods.quantumcraft.blocks.BlockOreQuantonium;
-import mods.quantumcraft.blocks.BlockQDeenergizer;
-import mods.quantumcraft.blocks.BlockQDislocator;
-import mods.quantumcraft.blocks.BlockQEInjector;
+import mods.quantumcraft.blocks.*;
 import mods.quantumcraft.items.*;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import mods.quantumcraft.machine.TileQDislocator;
 import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.machine.TileQEnergySucker;
 import mods.quantumcraft.render.RenderOre;
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -36,6 +34,9 @@ public class Loader {
     public static BlockQDeenergizer BlockQDeenergizer;
     public static BlockQEInjector BlockQEInjector;
     public static BlockQDislocator BlockQDislocator;
+    public static BlockQEnergySucker BlockQEnergySucker;
+    /* OTHER BLOCKS */
+    public static BlockQuantumFiberWire BlockQuantumFiberWire;
     /* CREATIVE TABS */
     public static TabQuantumCraft tabQuantumCraft;
 
@@ -141,6 +142,18 @@ public class Loader {
                 .func_111022_d(Config.getTextureName(Config.NameBlockQDS));
         LanguageRegistry.addName(BlockQDislocator, "Quantum Dislocator");
         GameRegistry.registerBlock(BlockQDislocator, Config.NameBlockQDS);
+
+        BlockQEnergySucker = (BlockQEnergySucker) new BlockQEnergySucker(Config.BlockQESID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQES)
+                .func_111022_d(Config.getTextureName(Config.NameBlockQES));
+        LanguageRegistry.addName(BlockQEnergySucker, "Quantum Energy Sucker");
+        GameRegistry.registerBlock(BlockQEnergySucker, Config.NameBlockQES);
+
+        BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQFiberWire)
+                .func_111022_d(Config.getTextureName(Config.NameBlockQFiberWire));
+        LanguageRegistry.addName(BlockQuantumFiberWire, "Quantum Fiber-Wire");
+        GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
     }
 
     public static void initRenderers() {
@@ -155,6 +168,7 @@ public class Loader {
         GameRegistry.registerTileEntity(TileQDeenergizer.class, "QDeenergizerTE");
         GameRegistry.registerTileEntity(TileQEInjector.class, "QEInjectorTE");
         GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
+        GameRegistry.registerTileEntity(TileQEnergySucker.class, "QESuckerTE");
     }
 
 }
