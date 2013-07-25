@@ -21,8 +21,8 @@ import java.util.Random;
  */
 public class TileQDematerializer extends TileEnergySource implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[1];
-    int energyBuffer = 0;
     public int processTime = -1;
+    int energyBuffer = 0;
     Random rand = new Random();
     private SimpleInventory _inv = new SimpleInventory(1, "qdm", 64);
 
@@ -110,9 +110,9 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     private void process() {
         processTime = -1;
         if (rand.nextInt(2) == 1) {
-            this.decrStackSize(0, 1);
             this.addEnergy(rand.nextInt(5));
         }
+        this.decrStackSize(0, 1);
     }
 
     @Override
