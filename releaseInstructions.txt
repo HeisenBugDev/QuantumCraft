@@ -2,6 +2,9 @@ How to release a new version of QuantumCraft!
 
 Step one, be hunterboerner. Please, nobody else do this.
 
+Version should be x.x.x NEVER EVER x.x
+EX: 0.4.0 NOT 0.4, Build script will get funky
+
 Before release:
 Make sure all issues on GitHub for that version are closed
 Test!!!!
