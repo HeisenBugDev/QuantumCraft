@@ -2,7 +2,6 @@ package mods.quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import mods.quantumcraft.blocks.abstractblocks.BlockEnergySource;
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.QuantumCraft;
@@ -127,7 +126,6 @@ public class BlockQDematerializer extends BlockEnergySource {
 
         return false;
     }
-
 
 
 }
