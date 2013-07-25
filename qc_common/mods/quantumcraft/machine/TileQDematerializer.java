@@ -257,4 +257,9 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
         return i != 0;
     }
+
+    @Override
+    public boolean canRotate() {
+        return true;
+    }
 }
