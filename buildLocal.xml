@@ -19,7 +19,7 @@
     <property name="mcpsrc.dir" value="${mcp.dir}/src"/>
 
     <property name="mc.version" value="1.6.2"/>
-    <property name="forge.version" value="9.10.0.789"/>
+    <property name="forge.version" value="9.10.0.803"/>
     <!--	<property name="project.version" value="0.0.0"/>-->
 
     <property name="quantumcraft.name" value="quantumcraft"/>
