@@ -3,18 +3,12 @@ package mods.quantumcraft.core;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import mods.quantumcraft.blocks.BlockOreQuantonium;
-import mods.quantumcraft.blocks.BlockQDeenergizer;
-import mods.quantumcraft.blocks.BlockQDislocator;
-import mods.quantumcraft.blocks.BlockQEInjector;
+import mods.quantumcraft.blocks.*;
 import mods.quantumcraft.items.*;
-import mods.quantumcraft.machine.TileQDeenergizer;
-import mods.quantumcraft.machine.TileQDislocator;
-import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.machine.*;
 import mods.quantumcraft.render.RenderOre;
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.item.Item;
 import net.minecraft.util.Icon;
 
 public class Loader {
@@ -27,7 +21,6 @@ public class Loader {
     public static ItemResearchBook ItemResearchBook;
     public static ItemBase ItemDepletedCrystal;
     public static ItemLocationCard ItemLocationCard;
-
     public static ItemPlaceholder ItemRPlaceHolder;
     /* BLOCKS */
     public static BlockOre OrePlutonium;
@@ -36,20 +29,12 @@ public class Loader {
     public static BlockQDeenergizer BlockQDeenergizer;
     public static BlockQEInjector BlockQEInjector;
     public static BlockQDislocator BlockQDislocator;
+    public static BlockQEnergySucker BlockQEnergySucker;
+    public static BlockQDematerializer BlockQDematerializer;
+    /* OTHER BLOCKS */
+    public static BlockQuantumFiberWire BlockQuantumFiberWire;
     /* CREATIVE TABS */
     public static TabQuantumCraft tabQuantumCraft;
-
-    public static class IconLoader {
-
-        public static void loadAll(IconRegister i) {
-            System.out.println(Config.getTextureName(Config.NameTextureQOre));
-            oreQuantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQOre));
-            System.out.println(Config.getTextureName(Config.NameTextureQBase));
-            oreQuantonium_base = i.registerIcon(Config.getTextureName(Config.NameTextureQBase));
-        }
-        public static Icon oreQuantonium_ore;
-        public static Icon oreQuantonium_base;
-    }
 
     public static void initAll() {
         initTabs();
@@ -67,7 +52,7 @@ public class Loader {
         tabQuantumCraft = new TabQuantumCraft();
     }
 
-        public static void initItems() {
+    public static void initItems() {
         ItemIngotPlutonium = (ItemBase) new ItemBase(Config.ItemPlutoniumIngotID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemPlutoniumIngot)
                 .func_111206_d(Config.getTextureName(Config.NameItemPlutoniumIngot));
@@ -83,9 +68,10 @@ public class Loader {
                 .func_111206_d(Config.getTextureName(Config.NameItemRawQuantonium));
         LanguageRegistry.addName(ItemRawQuantonium, "Raw Quantonium");
 
-        ItemMultiTool = (ItemMultiTool) new ItemMultiTool(Config.ItemMultiToolID).setUnlocalizedName(Config.NameItemMultiTool)
-                .setCreativeTab(tabQuantumCraft)
-                .func_111206_d(Config.getTextureName(Config.NameItemMultiTool));
+        ItemMultiTool =
+                (ItemMultiTool) new ItemMultiTool(Config.ItemMultiToolID).setUnlocalizedName(Config.NameItemMultiTool)
+                        .setCreativeTab(tabQuantumCraft)
+                        .func_111206_d(Config.getTextureName(Config.NameItemMultiTool));
         LanguageRegistry.addName(ItemMultiTool, "Multi Tool");
 
         ItemDepletedCrystal = (ItemBase) new ItemBase(Config.ItemDepletedCrystalID)
@@ -130,6 +116,13 @@ public class Loader {
         LanguageRegistry.addName(BlockQDeenergizer, "Quantum De-Energizer");
         GameRegistry.registerBlock(BlockQDeenergizer, Config.NameBlockQDE);
 
+        BlockQDematerializer =
+                (BlockQDematerializer) new BlockQDematerializer(Config.BlockQDMID).setCreativeTab(tabQuantumCraft)
+                        .setUnlocalizedName(Config.NameBlockQDM)
+                        .func_111022_d(Config.getTextureName(Config.NameBlockQDM));
+        LanguageRegistry.addName(BlockQDematerializer, "Quantum De-Materializer");
+        GameRegistry.registerBlock(BlockQDematerializer, Config.NameBlockQDM);
+
         BlockQEInjector = (BlockQEInjector) new BlockQEInjector(Config.BlockQEIID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQEI)
                 .func_111022_d(Config.getTextureName(Config.NameBlockQEI));
@@ -141,6 +134,18 @@ public class Loader {
                 .func_111022_d(Config.getTextureName(Config.NameBlockQDS));
         LanguageRegistry.addName(BlockQDislocator, "Quantum Dislocator");
         GameRegistry.registerBlock(BlockQDislocator, Config.NameBlockQDS);
+
+        BlockQEnergySucker = (BlockQEnergySucker) new BlockQEnergySucker(Config.BlockQESID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQES)
+                .func_111022_d(Config.getTextureName(Config.NameBlockQES));
+        LanguageRegistry.addName(BlockQEnergySucker, "Quantum Energy Sucker");
+        GameRegistry.registerBlock(BlockQEnergySucker, Config.NameBlockQES);
+
+        BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQFiberWire)
+                .func_111022_d(Config.getTextureName(Config.NameBlockQFiberWire));
+        LanguageRegistry.addName(BlockQuantumFiberWire, "Quantum Fiber-Wire");
+        GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
     }
 
     public static void initRenderers() {
@@ -155,6 +160,21 @@ public class Loader {
         GameRegistry.registerTileEntity(TileQDeenergizer.class, "QDeenergizerTE");
         GameRegistry.registerTileEntity(TileQEInjector.class, "QEInjectorTE");
         GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
+        GameRegistry.registerTileEntity(TileQEnergySucker.class, "QESuckerTE");
+        GameRegistry.registerTileEntity(TileQDematerializer.class, "QDematerializerTE");
+    }
+
+    public static class IconLoader {
+
+        public static Icon oreQuantonium_ore;
+        public static Icon oreQuantonium_base;
+
+        public static void loadAll(IconRegister i) {
+            System.out.println(Config.getTextureName(Config.NameTextureQOre));
+            oreQuantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQOre));
+            System.out.println(Config.getTextureName(Config.NameTextureQBase));
+            oreQuantonium_base = i.registerIcon(Config.getTextureName(Config.NameTextureQBase));
+        }
     }
 
 }

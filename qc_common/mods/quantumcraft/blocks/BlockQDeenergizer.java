@@ -2,10 +2,11 @@ package mods.quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.quantumcraft.blocks.abstractblocks.BlockEnergySource;
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.QuantumCraft;
-import mods.quantumcraft.machine.TileMachineBase;
 import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -18,7 +19,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class BlockQDeenergizer extends BlockMachine {
+public class BlockQDeenergizer extends BlockEnergySource {
 
     private Icon iconFront;
     private Icon iconSide;
@@ -58,10 +59,6 @@ public class BlockQDeenergizer extends BlockMachine {
             side = ((TileQDeenergizer) te).getRotatedSide(side);
         }
         return getIconFromSide(side, ((TileQDeenergizer) te).useRotated());
-    }
-
-    public Icon getIconFromSide(int side) {
-        return getIconFromSide(side, false);
     }
 
     public Icon getIconFromSide(int side, boolean talt) {

@@ -1,19 +1,21 @@
 package mods.quantumcraft.gui;
 
 import mods.quantumcraft.inventory.ContainerQDeenergizer;
+import mods.quantumcraft.inventory.ContainerQDematerializer;
 import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQDematerializer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class GuiQDeenergizer extends GuiContainer {
+public class GuiQDematerializer extends GuiContainer {
 
-    private TileQDeenergizer tile;
+    private TileQDematerializer tile;
 
-    public GuiQDeenergizer(Container par1Container) {
+    public GuiQDematerializer(Container par1Container) {
         super(par1Container);
-        tile = ((ContainerQDeenergizer) par1Container).tile;
+        tile = ((ContainerQDematerializer) par1Container).tile;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class GuiQDeenergizer extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         //this.mc.renderEngine.func_110577_a("/mods/QuantumCraft/textures/gui/deenergizer.png");
-        this.mc.renderEngine.func_110577_a(new ResourceLocation("quantumcraft", "textures/gui/deenergizer.png"));
+        this.mc.renderEngine.func_110577_a(new ResourceLocation("quantumcraft", "textures/gui/dematerializer.png"));
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
@@ -48,9 +50,9 @@ public class GuiQDeenergizer extends GuiContainer {
 
         this.drawTexturedModalRect(k + 177, l + 37 + h2, 195, 16 + h2, 12, 76 - h2);
         this.drawTexturedModalRect(k + 177, l + 37, 207, 16, 12, 76);
-        if (tile.lastItemValue != 0) {
-            int h = (int) (16 - ((float) tile.QEnergyItemBuffer / (float) tile.lastItemValue * 16));
-            this.drawTexturedModalRect(k + 69, l + 34 + h, 195, 0 + h, 16, 16 - h);
+        if (tile.processTime > 0) {
+            int h = (int) (16 - ((float) tile.processTime / (float) 40 * 16));
+            this.drawTexturedModalRect(k + 101, l + 34 + h, 195, 0 + h, 16, 16 - h);
         }
 
 

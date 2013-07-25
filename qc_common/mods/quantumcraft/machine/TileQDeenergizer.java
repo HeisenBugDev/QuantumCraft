@@ -5,6 +5,9 @@ import mods.quantumcraft.core.QRecipeHandler;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QDeenergizerInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
+import mods.quantumcraft.machine.abstractmachines.TileEnergySource;
+import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
+import mods.quantumcraft.net.Location;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -12,20 +15,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
-public class TileQDeenergizer extends TileMachineBase implements
+public class TileQDeenergizer extends TileEnergySource implements
         ISidedInventory{
 
-    public int QEnergyBuffer = 0;
+    public int QEnergyItemBuffer = 0;
     public int lastItemValue = 0;
     public ItemStack[] inventory = new ItemStack[2];
     int processTime = -1;
     QDERecipe r;
     private SimpleInventory _inv = new SimpleInventory(2, "qde", 64);
 
-    @Override
-    public boolean canRotate() {
-        return true;
-    }
+
 
     @Override
     public int getSizeInventory() {
@@ -71,10 +71,12 @@ public class TileQDeenergizer extends TileMachineBase implements
         processTime = -1;
         if (inventory[1] == null) {
             inventory[1] = r.getOutputItem().copy();
-        } else
+        } else {
             inventory[1].stackSize++;
-
+        }
+        this.addEnergy(r.getEnergyValue());
         this.decrStackSize(0, 1);
+        _inv.setInventorySlotContents(0, inventory[0]);
         _inv.setInventorySlotContents(1, inventory[1]);
     }
 
@@ -82,6 +84,8 @@ public class TileQDeenergizer extends TileMachineBase implements
 
         r = QRecipeHandler.getQDERecipeFromInput(inventory[0]);
         boolean flag = true;
+
+        if (r == null) return false;
 
         if (inventory[0] == null)
             flag = false;
@@ -94,7 +98,7 @@ public class TileQDeenergizer extends TileMachineBase implements
                     flag = false;
             }
         }
-
+        if (this.getMaxEnergy() - this.getCurrentEnergy() < r.getEnergyValue()) flag = false;
         return flag;
 
     }
@@ -103,11 +107,11 @@ public class TileQDeenergizer extends TileMachineBase implements
     public void updateEntity() {
         if (this.canProcess()) {
             this.lastItemValue = r.getEnergyValue();
-            this.QEnergyBuffer = this.lastItemValue;
+            this.QEnergyItemBuffer = this.lastItemValue;
 
             if (processTime > 0) processTime--;
 
-            this.QEnergyBuffer =
+            this.QEnergyItemBuffer =
                     (int) (((float) processTime / (float) r.getProcessTime()) * (float) this.lastItemValue);
             if (this.processTime == 0) process();
 
@@ -120,7 +124,7 @@ public class TileQDeenergizer extends TileMachineBase implements
 
         } else {
             processTime = -1;
-            QEnergyBuffer = 0;
+            QEnergyItemBuffer = 0;
         }
 
 
@@ -179,7 +183,6 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-
         return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
                 this.zCoord) == this && entityplayer.getDistanceSq(
                 (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
@@ -236,8 +239,8 @@ public class TileQDeenergizer extends TileMachineBase implements
                         .loadItemStackFromNBT(nbttagcompound1);
             }
         }
-
-        this.QEnergyBuffer = par1NBTTagCompound.getInteger("QEnergyBuffer");
+        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
+        this.QEnergyItemBuffer = par1NBTTagCompound.getInteger("QEnergyItemBuffer");
         this.lastItemValue = par1NBTTagCompound.getInteger("LastItemValue");
         updateNextTick = true;
     }
@@ -248,7 +251,8 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("QEnergyBuffer", this.QEnergyBuffer);
+        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
+        par1NBTTagCompound.setInteger("QEnergyItemBuffer", this.QEnergyItemBuffer);
         par1NBTTagCompound.setInteger("LastItemValue", this.lastItemValue);
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -281,4 +285,23 @@ public class TileQDeenergizer extends TileMachineBase implements
 
     }
 
+    public int energyBuffer;
+
+    @Override
+    public int getMaxEnergy() {
+        return 5000;
+    }
+
+    @Override
+    public int getCurrentEnergy() {
+        return energyBuffer;
+    }
+
+    @Override
+    public int subtractEnergy(int req) {
+        energyBuffer -=req;
+        if (energyBuffer <0) energyBuffer = 0;
+        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
+        return energyBuffer;
+    }
 }

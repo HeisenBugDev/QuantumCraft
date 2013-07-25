@@ -1,8 +1,8 @@
-package mods.quantumcraft.blocks;
+package mods.quantumcraft.blocks.abstractblocks;
 
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.Coords;
-import mods.quantumcraft.machine.TileMachineBase;
+import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 

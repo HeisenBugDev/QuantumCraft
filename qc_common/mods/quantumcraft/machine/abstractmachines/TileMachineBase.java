@@ -1,4 +1,4 @@
-package mods.quantumcraft.machine;
+package mods.quantumcraft.machine.abstractmachines;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 import mods.quantumcraft.core.interfaces.IRotateableTile;
@@ -73,7 +73,7 @@ public abstract class TileMachineBase extends TileEntity implements
     }
 
     public boolean canRotate() {
-        return false;
+        return true;
     }
 
     @Override

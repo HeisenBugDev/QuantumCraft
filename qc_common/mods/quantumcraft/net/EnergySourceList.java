@@ -22,7 +22,7 @@ public class EnergySourceList{
 			int id = w.getBlockId(source.getXCoord(), source.getYCoord(), source.getZCoord());
 			Block b = Block.blocksList[id];
 			if(b instanceof IQEnergySource){
-				retrieved += ((IQEnergySource)b).getQuantumEnergy(request - retrieved);
+				retrieved += ((IQEnergySource)b).getQuantumEnergy(w, source, request - retrieved);
 			}
 		}
 		return retrieved;

@@ -1,6 +1,8 @@
-package mods.quantumcraft.blocks;
+package mods.quantumcraft.blocks.abstractblocks;
 
 import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQDematerializer;
+import mods.quantumcraft.machine.TileQDislocator;
 import mods.quantumcraft.machine.TileQEInjector;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -16,7 +18,6 @@ public abstract class BlockRotatable extends BlockContainer {
     public BlockRotatable(int id, Material material) {
         super(id, material);
     }
-
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z,
@@ -60,6 +61,34 @@ public abstract class BlockRotatable extends BlockContainer {
                 ((TileQEInjector) te).rotateDirectlyTo(2);
             } else if (facing == 3) {
                 ((TileQEInjector) te).rotateDirectlyTo(5);
+            }
+        }
+        if (te instanceof TileQDematerializer
+                && ((TileQDematerializer) te).canRotate()) {
+            int facing = MathHelper
+                    .floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
+            if (facing == 0) {
+                ((TileQDematerializer) te).rotateDirectlyTo(3);
+            } else if (facing == 1) {
+                ((TileQDematerializer) te).rotateDirectlyTo(4);
+            } else if (facing == 2) {
+                ((TileQDematerializer) te).rotateDirectlyTo(2);
+            } else if (facing == 3) {
+                ((TileQDematerializer) te).rotateDirectlyTo(5);
+            }
+        }
+        if (te instanceof TileQDislocator
+                && ((TileQDislocator) te).canRotate()) {
+            int facing = MathHelper
+                    .floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
+            if (facing == 0) {
+                ((TileQDislocator) te).rotateDirectlyTo(3);
+            } else if (facing == 1) {
+                ((TileQDislocator) te).rotateDirectlyTo(4);
+            } else if (facing == 2) {
+                ((TileQDislocator) te).rotateDirectlyTo(2);
+            } else if (facing == 3) {
+                ((TileQDislocator) te).rotateDirectlyTo(5);
             }
         }
     }

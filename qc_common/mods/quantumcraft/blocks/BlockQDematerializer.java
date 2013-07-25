@@ -2,11 +2,11 @@ package mods.quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.quantumcraft.blocks.abstractblocks.BlockMachine;
+import mods.quantumcraft.blocks.abstractblocks.BlockEnergySource;
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.QuantumCraft;
+import mods.quantumcraft.machine.TileQDematerializer;
 import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
-import mods.quantumcraft.machine.TileQDislocator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -19,7 +19,13 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class BlockQDislocator extends BlockMachine {
+/**
+ * Created with IntelliJ IDEA.
+ * User: theron
+ * Date: 7/24/13
+ * Time: 8:50 PM
+ */
+public class BlockQDematerializer extends BlockEnergySource {
 
     private Icon iconFront;
     private Icon iconSide;
@@ -28,7 +34,7 @@ public class BlockQDislocator extends BlockMachine {
     private Icon iconTop;
     private Icon iconTopR;
 
-    public BlockQDislocator(int id) {
+    public BlockQDematerializer(int id) {
         super(id, Material.iron);
         setHardness(10F);
         setResistance(5F);
@@ -36,32 +42,29 @@ public class BlockQDislocator extends BlockMachine {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileQDislocator();
+        return new TileQDematerializer();
     }
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        iconFront = iconRegister.registerIcon("QuantumCraft:machineQDS_front");
-        iconTop = iconRegister.registerIcon("QuantumCraft:machineQDS_top");
-        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDS_top_r");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDS_side");
-        iconBottom = iconRegister.registerIcon("QuantumCraft:machineQDS_bottom");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDS_side");
-        iconBack = iconRegister.registerIcon("QuantumCraft:machineQDS_back");
+        iconFront = iconRegister.registerIcon("QuantumCraft:machineQDM_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machineQDM_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDM_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDM_side");
+        iconBottom = iconRegister
+                .registerIcon("QuantumCraft:machineQDM_bottom");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDM_side");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machineQDM_back");
     }
 
     @Override
     public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
                                 int side) {
         TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
-        if (te instanceof TileQDislocator) {
-            side = ((TileQDislocator) te).getRotatedSide(side);
+        if (te instanceof TileQDematerializer) {
+            side = ((TileQDematerializer) te).getRotatedSide(side);
         }
-        return getIconFromSide(side,((TileQDislocator) te).useRotated());
-    }
-
-    public Icon getIconFromSide(int side) {
-        return getIconFromSide(side, false);
+        return getIconFromSide(side, ((TileQDematerializer) te).useRotated());
     }
 
     public Icon getIconFromSide(int side, boolean talt) {
@@ -116,11 +119,13 @@ public class BlockQDislocator extends BlockMachine {
             return true;
         } else if (te instanceof TileMachineBase) {
             if (!world.isRemote) {
-                entityplayer.openGui(QuantumCraft.instance, 3, world, x, y, z);
+                entityplayer.openGui(QuantumCraft.instance, 4, world, x, y, z);
             }
             return true;
         }
 
         return false;
     }
+
+
 }
