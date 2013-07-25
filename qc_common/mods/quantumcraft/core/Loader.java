@@ -5,10 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.quantumcraft.blocks.*;
 import mods.quantumcraft.items.*;
-import mods.quantumcraft.machine.TileQDeenergizer;
-import mods.quantumcraft.machine.TileQDislocator;
-import mods.quantumcraft.machine.TileQEInjector;
-import mods.quantumcraft.machine.TileQEnergySucker;
+import mods.quantumcraft.machine.*;
 import mods.quantumcraft.render.RenderOre;
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -164,6 +161,7 @@ public class Loader {
         GameRegistry.registerTileEntity(TileQEInjector.class, "QEInjectorTE");
         GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         GameRegistry.registerTileEntity(TileQEnergySucker.class, "QESuckerTE");
+        GameRegistry.registerTileEntity(TileQDematerializer.class, "QDematerializerTE");
     }
 
     public static class IconLoader {

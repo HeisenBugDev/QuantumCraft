@@ -26,7 +26,7 @@ public class QDematerializerInitPacket extends CoordinatesPacket {
 
     @Override
     public ModernPacket template() {
-        return new QDeenergizerInitPacket(getID());
+        return new QDematerializerInitPacket(getID());
     }
 
     @Override

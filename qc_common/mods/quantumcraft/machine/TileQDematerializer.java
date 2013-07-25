@@ -20,9 +20,9 @@ import java.util.Random;
  * Time: 8:48 PM
  */
 public class TileQDematerializer extends TileEnergySource implements ISidedInventory {
-    public ItemStack[] inventory = new ItemStack[2];
+    public ItemStack[] inventory = new ItemStack[1];
     int energyBuffer = 0;
-    int processTime = -1;
+    public int processTime = -1;
     Random rand = new Random();
     private SimpleInventory _inv = new SimpleInventory(1, "qdm", 64);
 
@@ -38,7 +38,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public int getSizeInventory() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -111,6 +111,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
         processTime = -1;
         if (rand.nextInt(2) == 1) {
             this.decrStackSize(0, 1);
+            this.addEnergy(rand.nextInt(5));
         }
     }
 
@@ -244,7 +245,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
-        return new int[0];
+        return new int[]{0};
     }
 
     @Override

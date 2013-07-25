@@ -1,13 +1,12 @@
 package mods.quantumcraft.core;
 
-import mods.quantumcraft.gui.GuiQDeenergizer;
-import mods.quantumcraft.gui.GuiQDislocator;
-import mods.quantumcraft.gui.GuiQEInjector;
-import mods.quantumcraft.gui.GuiResearch;
+import mods.quantumcraft.gui.*;
 import mods.quantumcraft.inventory.ContainerQDeenergizer;
+import mods.quantumcraft.inventory.ContainerQDematerializer;
 import mods.quantumcraft.inventory.ContainerQDislocator;
 import mods.quantumcraft.inventory.ContainerQEInjector;
 import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQDematerializer;
 import mods.quantumcraft.machine.TileQDislocator;
 import mods.quantumcraft.machine.TileQEInjector;
 import mods.quantumcraft.research.ResearchHandler;
@@ -29,9 +28,9 @@ public class ClientProxy extends CommonProxy {
             case 3:
                 TileQDislocator te3 = (TileQDislocator) world.getBlockTileEntity(x, y, z);
                 return new GuiQDislocator(new ContainerQDislocator(player.inventory, te3));
-            //case 4:
-            // TileQDislocator te4 = (TileQDematerializer) world.getBlockTileEntity(x, y, z);
-            //  return new GuiQDematerializer(new ContainerQDematerizalier(player.inventory, te));
+            case 4:
+                TileQDematerializer te4 = (TileQDematerializer) world.getBlockTileEntity(x, y, z);
+              return new GuiQDematerializer(new ContainerQDematerializer(player.inventory, te4));
 
         }
         return null;
