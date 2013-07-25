@@ -34,11 +34,6 @@ public class TileQEInjector extends TileEnergySink implements
     }
 
     @Override
-    public boolean canRotate() {
-        return true;
-    }
-
-    @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
         return i != 0;
     }

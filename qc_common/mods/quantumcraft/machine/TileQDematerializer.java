@@ -258,8 +258,5 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
         return i != 0;
     }
 
-    @Override
-    public boolean canRotate() {
-        return true;
-    }
+
 }

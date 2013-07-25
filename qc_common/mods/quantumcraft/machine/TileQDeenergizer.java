@@ -25,10 +25,7 @@ public class TileQDeenergizer extends TileEnergySource implements
     QDERecipe r;
     private SimpleInventory _inv = new SimpleInventory(2, "qde", 64);
 
-    @Override
-    public boolean canRotate() {
-        return true;
-    }
+
 
     @Override
     public int getSizeInventory() {

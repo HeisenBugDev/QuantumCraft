@@ -27,10 +27,6 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
         return itemstack.getItem().itemID == Loader.ItemLocationCard.itemID;
     }
 
-    @Override
-    public boolean canRotate() {
-        return true;
-    }
 
     @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {

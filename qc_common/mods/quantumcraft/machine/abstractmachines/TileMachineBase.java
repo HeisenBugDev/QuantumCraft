@@ -73,7 +73,7 @@ public abstract class TileMachineBase extends TileEntity implements
     }
 
     public boolean canRotate() {
-        return false;
+        return true;
     }
 
     @Override
