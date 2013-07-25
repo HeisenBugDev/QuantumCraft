@@ -1,15 +1,22 @@
 package mods.quantumcraft.blocks.abstractblocks;
 
+import mods.quantumcraft.core.BasicUtils;
+import mods.quantumcraft.core.QuantumCraft;
 import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
+import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import mods.quantumcraft.net.EnergySourceList;
 import mods.quantumcraft.net.IQEnergySink;
 import mods.quantumcraft.net.Location;
 import mods.quantumcraft.net.QuantumEnergyNet;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.Event;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public abstract class BlockEnergySink extends BlockEnergyComponent implements IQEnergySink {
     public BlockEnergySink(int id, Material material) {
@@ -28,6 +35,8 @@ public abstract class BlockEnergySink extends BlockEnergyComponent implements IQ
         Location l = new Location(x,y,z);
         replaceSourceList(world, l, new EnergySourceList(QuantumEnergyNet.getSourceLocations(world, l)));
     }
+
+
 
     @Override
     public void replaceSourceList(World w, Location l, EnergySourceList sources) {

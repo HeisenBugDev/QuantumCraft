@@ -1,9 +1,24 @@
 package mods.quantumcraft.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
+import mods.quantumcraft.blocks.abstractblocks.BlockEnergySource;
+import mods.quantumcraft.core.BasicUtils;
+import mods.quantumcraft.core.QuantumCraft;
+import mods.quantumcraft.machine.TileQDematerializer;
+import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.Event;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,13 +26,106 @@ import net.minecraft.world.World;
  * Date: 7/24/13
  * Time: 8:50 PM
  */
-public class BlockQDematerializer extends BlockEnergySink {
-    public BlockQDematerializer(int id, Material material) {
-        super(id, material);
+public class BlockQDematerializer extends BlockEnergySource {
+
+    private Icon iconFront;
+    private Icon iconSide;
+    private Icon iconBack;
+    private Icon iconBottom;
+    private Icon iconTop;
+    private Icon iconTopR;
+
+    public BlockQDematerializer(int id) {
+        super(id, Material.iron);
+        setHardness(10F);
+        setResistance(5F);
     }
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return null;
+        return new TileQDematerializer();
     }
+
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconRegister) {
+        iconFront = iconRegister.registerIcon("QuantumCraft:machineQDM_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machineQDM_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDM_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDM_side");
+        iconBottom = iconRegister
+                .registerIcon("QuantumCraft:machineQDM_bottom");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDM_side");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machineQDM_back");
+    }
+
+    @Override
+    public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
+                                int side) {
+        TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
+        if (te instanceof TileQDematerializer) {
+            side = ((TileQDematerializer) te).getRotatedSide(side);
+        }
+        return getIconFromSide(side, ((TileQDematerializer) te).useRotated());
+    }
+
+    public Icon getIconFromSide(int side, boolean talt) {
+        switch (side) {
+            case 0:
+                return iconBottom;
+            case 1:
+                return (talt ? iconTop : iconTopR);
+            case 2:
+                return iconBack;
+            case 3:
+                return iconFront;
+            case 4:
+                return iconSide;
+            case 5:
+                return iconSide;
+            default:
+                return Block.stone.getIcon(0, 0);
+        }
+    }
+
+    @Override
+    public Icon getIcon(int side, int meta) {
+        if (meta == side) {
+            return iconFront;
+        } else if (side == side - 2) {
+            return getIconFromSide(side - 2, true);
+        } else if (side == side - 3) {
+            return getIconFromSide(side - 3, true);
+        } else {
+            return getIconFromSide(side, true);
+        }
+
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
+                                    float xOffset, float yOffset, float zOffset) {
+        PlayerInteractEvent e =
+                new PlayerInteractEvent(entityplayer, PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK, x, y, z, side);
+        if (MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Event.Result.DENY || e.useBlock == Event.Result.DENY) {
+            return false;
+        }
+        TileEntity te = world.getBlockTileEntity(x, y, z);
+        if (te == null) {
+            return false;
+        }
+        if (BasicUtils.isHoldingWrench(entityplayer) && te instanceof TileMachineBase &&
+                ((TileMachineBase) te).canRotate()) {
+            ((TileMachineBase) te).rotate();
+            world.markBlockForUpdate(x, y, z);
+            return true;
+        } else if (te instanceof TileMachineBase) {
+            if (!world.isRemote) {
+                entityplayer.openGui(QuantumCraft.instance, 4, world, x, y, z);
+            }
+            return true;
+        }
+
+        return false;
+    }
+
 }

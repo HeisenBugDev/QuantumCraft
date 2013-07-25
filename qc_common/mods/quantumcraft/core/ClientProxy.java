@@ -29,6 +29,9 @@ public class ClientProxy extends CommonProxy {
             case 3:
                 TileQDislocator te3 = (TileQDislocator) world.getBlockTileEntity(x, y, z);
                 return new GuiQDislocator(new ContainerQDislocator(player.inventory, te3));
+            //case 4:
+            // TileQDislocator te4 = (TileQDematerializer) world.getBlockTileEntity(x, y, z);
+            //  return new GuiQDematerializer(new ContainerQDematerizalier(player.inventory, te));
 
         }
         return null;
