@@ -5,7 +5,6 @@ import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
 import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
-import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -14,12 +13,13 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
 public class TileQEInjector extends TileEnergySink implements
-        ISidedInventory{
+        ISidedInventory {
 
     public int currentival = 0;
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
+    private int energyBuffer;
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
@@ -37,6 +37,7 @@ public class TileQEInjector extends TileEnergySink implements
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
         return i != 0;
     }
+
     @Override
     public int getSizeInventory() {
         return 2;
@@ -94,10 +95,9 @@ public class TileQEInjector extends TileEnergySink implements
 
     }
 
-    public void process()
-    {
+    public void process() {
         inventory[1] = inventory[0].copy();
-        decrStackSize(0,1);
+        decrStackSize(0, 1);
     }
 
     @Override
@@ -138,7 +138,6 @@ public class TileQEInjector extends TileEnergySink implements
         return true;
     }
 
-
     @Override
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
@@ -153,12 +152,12 @@ public class TileQEInjector extends TileEnergySink implements
                 int cycle = 5;
                 this.maxival = e.getMaxQEnergyValue();
                 this.currentival = e.getCurrentQEnergyBuffer();
-                if (e.getCurrentQEnergyBuffer() <= (e.getMaxQEnergyValue()-cycle)) {
+                if (e.getCurrentQEnergyBuffer() <= (e.getMaxQEnergyValue() - cycle)) {
                     if (this.getCurrentEnergy() < cycle) {
                         cycle = this.getCurrentEnergy();
                     }
                     if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer() + cycle);
                     }
                 } else {
                     cycle = e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer();
@@ -166,7 +165,7 @@ public class TileQEInjector extends TileEnergySink implements
                         cycle = this.getCurrentEnergy();
                     }
                     if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer() + cycle);
                     }
                 }
                 this.subtractEnergy(cycle);
@@ -177,8 +176,6 @@ public class TileQEInjector extends TileEnergySink implements
             }
         }
     }
-
-    private int energyBuffer;
 
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
@@ -250,8 +247,8 @@ public class TileQEInjector extends TileEnergySink implements
 
     @Override
     public int subtractEnergy(int req) {
-        energyBuffer -=req;
-        if (energyBuffer <0) energyBuffer = 0;
+        energyBuffer -= req;
+        if (energyBuffer < 0) energyBuffer = 0;
         if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
         return energyBuffer;
     }
