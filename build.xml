@@ -5,6 +5,7 @@
     <dirname property="imported.basedir" file="${ant.file.QuantumCraft}"/>
     <property name="build.dir" value="build"/>
     <property name="src.dir" value="${imported.basedir}"/>
+    <property name="commonsrc.dir" value="${src.dir}/qc_common"/>
     <property name="lang.dir" value="../buildcraft.localization"/>
     <property name="resources.dir" value="${imported.basedir}/resources"/>
 
@@ -15,11 +16,13 @@
 
     <property name="forge.dir" value="${build.dir}/forge"/>
     <property name="mcp.dir" value="${forge.dir}/mcp"/>
-
+    <property name="buildcraft.dir" value="${mcp.dir}/unpack/buildcraft"/>
     <property name="mcpsrc.dir" value="${mcp.dir}/src"/>
-
+    <property name="buildcraft.src.path"
+              value="https://dl.dropboxusercontent.com/u/5444078/QuantumCraft/apis/BuildCraft-mc16.zip"/>
+    <property name="buildcraft.src" value="BuildCraft-mc16.zip"/>
     <property name="mc.version" value="1.6.2"/>
-    <property name="forge.version" value="9.10.0.803"/>
+    <property name="forge.version" value="9.10.0.804"/>
     <!--	<property name="project.version" value="0.0.0"/>-->
 
     <property name="quantumcraft.name" value="quantumcraft"/>
@@ -65,7 +68,8 @@
     <available file="${src.dir}/.git" type="dir" property="git.present"/>
 
     <target name="git.revision">
-        <exec executable="git" dir="${src.dir}" outputproperty="git.revision" failifexecutionfails="false" errorproperty="">
+        <exec executable="git" dir="${src.dir}" outputproperty="git.revision" failifexecutionfails="false"
+              errorproperty="">
             <arg value="describe"/>
 
 
@@ -122,6 +126,23 @@
         <exec dir="${forge.dir}" executable="sh" osfamily="unix">
             <arg value="install.sh"/>
         </exec>
+        <get src="${buildcraft.src.path}" dest="${download.dir}" usetimestamp="True"/>
+        <unzip dest="${buildcraft.dir}" failOnEmptyArchive="true">
+            <fileset dir="${download.dir}">
+                <include name="${buildcraft.src}"/>
+            </fileset>
+        </unzip>
+        <copy todir="${commonsrc.dir}">
+            <fileset dir="${buildcraft.dir}/common">
+                <exclude name="**/buildcraft/devel"/>
+            </fileset>
+        </copy>
+        <copy todir="${commonsrc.dir}">
+            <fileset dir="${buildcraft.dir}/buildcraft_resources">
+            </fileset>
+        </copy>
+
+        <echo message="Copied BC files"/>
 
     </target>
 
