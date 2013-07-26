@@ -3,7 +3,7 @@ package mods.quantumcraft.core.network.packets;
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.network.abstractpackets.CoordinatesPacket;
 import mods.quantumcraft.core.network.abstractpackets.ModernPacket;
-import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.machine.TileQElectrifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -28,12 +28,12 @@ public class QElectrifierInitPacket extends CoordinatesPacket {
 
     @Override
     public ModernPacket template() {
-        return new QEInjectorInitPacket(getID());
+        return new QElectrifierInitPacket(getID());
     }
 
     @Override
     public void processPacket(EntityPlayer player) {
-        TileQEInjector tile = getTile(player.worldObj, TileQEInjector.class);
+        TileQElectrifier tile = getTile(player.worldObj, TileQElectrifier.class);
         if (tile != null) {
             tile.readFromNBT(tiledata);
             tile.updateNextTick = true;

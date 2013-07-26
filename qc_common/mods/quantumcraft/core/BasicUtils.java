@@ -1,5 +1,7 @@
 package mods.quantumcraft.core;
 
+import buildcraft.api.power.IPowerEmitter;
+import buildcraft.api.power.IPowerReceptor;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import mods.quantumcraft.core.interfaces.IMultiTool;
@@ -32,6 +34,7 @@ public class BasicUtils {
 
 
     public static Random rand = new Random();
+
 
     public static boolean isServer(World world) {
         if (world != null) {

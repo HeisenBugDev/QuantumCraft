@@ -6,8 +6,6 @@ import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QDeenergizerInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
 import mods.quantumcraft.machine.abstractmachines.TileEnergySource;
-import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
-import mods.quantumcraft.net.Location;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -16,16 +14,15 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
 public class TileQDeenergizer extends TileEnergySource implements
-        ISidedInventory{
+        ISidedInventory {
 
     public int QEnergyItemBuffer = 0;
     public int lastItemValue = 0;
     public ItemStack[] inventory = new ItemStack[2];
+    public int energyBuffer;
     int processTime = -1;
     QDERecipe r;
     private SimpleInventory _inv = new SimpleInventory(2, "qde", 64);
-
-
 
     @Override
     public int getSizeInventory() {
@@ -41,7 +38,6 @@ public class TileQDeenergizer extends TileEnergySource implements
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
-
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
@@ -285,8 +281,6 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     }
 
-    public int energyBuffer;
-
     @Override
     public int getMaxEnergy() {
         return 5000;
@@ -299,8 +293,8 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public int subtractEnergy(int req) {
-        energyBuffer -=req;
-        if (energyBuffer <0) energyBuffer = 0;
+        energyBuffer -= req;
+        if (energyBuffer < 0) energyBuffer = 0;
         if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
         return energyBuffer;
     }

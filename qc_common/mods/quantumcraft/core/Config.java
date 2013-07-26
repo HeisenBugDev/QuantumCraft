@@ -33,6 +33,7 @@ public class Config {
     public static String NameBlockQDS = "machineQDS";
     public static String NameBlockQES = "machineQES";
     public static String NameBlockQDM = "machineQDM";
+    public static String NameBlockQElectrifier = "machineQElectrifier";
 
     public static String NameBlockQFiberWire = "blockFiberWire";
 
@@ -66,6 +67,7 @@ public class Config {
     public static int BlockQEIID;
     public static int BlockQDSID;
     public static int BlockQESID;
+    public static int BlockQElectrifierID;
 
     public static int BlockFiberWireID;
 
@@ -116,6 +118,7 @@ public class Config {
         BlockQDSID = config.get("Blocks", "BlockQDislocator", 3602).getInt();
         BlockQESID = config.get("Blocks", "BlockQESucker", 3603).getInt();
         BlockQDMID = config.get("Blocks", "BlockQDematerializer", 3606).getInt();
+        BlockQElectrifierID = config.get("Blocks","BlockQElectrifier",3607).getInt();
 
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
 

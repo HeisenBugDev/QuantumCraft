@@ -46,6 +46,7 @@ We will also be setting up some documentation soon with a todo list on what we a
 ## Helping out with the coding
 
 If you would like to help out with coding, you can fork the branch and do some coding and the whole git routine. We are using git flow for our branching model. I may put some more stuff here eventually.
+Buildcraft API is required.
 
 _PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF_
 
