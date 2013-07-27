@@ -16,11 +16,15 @@
 
     <property name="forge.dir" value="${build.dir}/forge"/>
     <property name="mcp.dir" value="${forge.dir}/mcp"/>
-    <property name="buildcraft.dir" value="${mcp.dir}/unpack/buildcraft"/>
-    <property name="mcpsrc.dir" value="${mcp.dir}/src"/>
     <property name="buildcraft.src.path"
               value="https://dl.dropboxusercontent.com/u/5444078/QuantumCraft/apis/BuildCraft-mc16.zip"/>
-    <property name="buildcraft.src" value="BuildCraft-mc16.zip"/>
+
+    <property name="buildcraft.name" value="BuildCraft-mc16"/>
+
+    <property name="buildcraft.src" value="${buildcraft.name}.zip"/>
+    <property name="buildcraft.dir" value="${mcp.dir}/unpack/buildcraft/${buildcraft.name}"/>
+    <property name="mcpsrc.dir" value="${mcp.dir}/src"/>
+
     <property name="mc.version" value="1.6.2"/>
     <property name="forge.version" value="9.10.0.804"/>
     <!--	<property name="project.version" value="0.0.0"/>-->
