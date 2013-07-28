@@ -220,7 +220,9 @@
 
         <!-- Copy classes -->
         <copy todir="${classes.dir}">
-            <fileset dir="${mcp.dir}/reobf/minecraft"/>
+            <fileset dir="${mcp.dir}/reobf/minecraft">
+                <exclude name="buildcraft/"/>
+            </fileset>
         </copy>
 
         <!-- Copy resources -->
