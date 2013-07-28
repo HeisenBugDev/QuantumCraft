@@ -25,7 +25,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     public boolean isRedstonePowered = false;
     public float currentOutput = 0;
     protected PowerHandler powerHandler;
-    private int energyBuffer;
+    private int energyBuffer = 1000;
     private boolean init = false;
 
     public TileQElectrifier(){
@@ -40,7 +40,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     @Override
     public int getCurrentEnergy() {
-        return 1000;
+        return energyBuffer;
     }
 
     public boolean isPoweredTile(TileEntity tile, ForgeDirection side) {
@@ -59,6 +59,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
                     ((IPowerReceptor) tile).getPowerReceiver(getDirectionFacing().getOpposite());
 
             float extracted = getPowerToExtract();
+            System.out.println("extracted" + extracted);
             if (extracted > 0) {
                 System.out.println("2");
                 float needed =
@@ -81,8 +82,9 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     private float getPowerToExtract() {
         TileEntity tile = tileCache[getDirectionFacing().ordinal()].getTile();
         PowerHandler.PowerReceiver receptor = ((IPowerReceptor) tile).getPowerReceiver(getDirectionFacing().getOpposite());
-        // return extractEnergy(receptor.getMinEnergyReceived(), receptor.getMaxEnergyReceived(), false); // Comment out for constant power
-        return extractEnergy(0, 100, false); // Uncomment for constant power
+        System.out.println(receptor.getMinEnergyReceived() + "|" + receptor.getMaxEnergyReceived());
+        //return extractEnergy(receptor.getMinEnergyReceived(), receptor.getMaxEnergyReceived(), false); // Comment out for constant power
+        return extractEnergy(0, receptor.getMaxEnergyReceived(), false); // Uncomment for constant power
     }
 
     @Override
@@ -91,10 +93,11 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     }
 
     public float maxEnergyExtracted() {
-        return 1;
+        return 10;
     }
 
     public float extractEnergy(float min, float max, boolean doExtract) {
+        System.out.println("energy buffer" + energyBuffer);
         if (energyBuffer < min)
             return 0;
 
@@ -110,6 +113,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
             return 0;
 
         float extracted;
+
 
         if (energyBuffer >= actualMax) {
             extracted = actualMax;
@@ -128,13 +132,16 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     @Override
     public void updateEntity() {
-        if (!init && !isInvalid()) {
+        if (!init) {
             initialize();
             init = true;
         }
         if (isRedstonePowered) {
             sendPower();
-        } else currentOutput = 0;
+        } else {
+            currentOutput = 0;
+            checkRedstonePower();
+        }
 
     }
 
