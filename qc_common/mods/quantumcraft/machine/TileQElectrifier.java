@@ -132,16 +132,13 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     @Override
     public void updateEntity() {
-        if (!init) {
+        if (!init && !isInvalid()) {
             initialize();
             init = true;
         }
         if (isRedstonePowered) {
             sendPower();
-        } else {
-            currentOutput = 0;
-            checkRedstonePower();
-        }
+        } else currentOutput = 0;
 
     }
 
