@@ -167,7 +167,7 @@ public class TileQEExtractor  extends TileEnergySource implements
 
                 this.maxival = e.getMaxQEnergyValue(inventory[0]);
                 this.currentival = e.getCurrentQEnergyBuffer(inventory[0]);
-                if (e.getCurrentQEnergyBuffer(inventory[0]) == e.getMaxQEnergyValue(inventory[0])) {
+                if (e.getCurrentQEnergyBuffer(inventory[0]) == 0) {
                     process();
                 }
             }
