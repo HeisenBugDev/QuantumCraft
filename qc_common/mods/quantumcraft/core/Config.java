@@ -23,6 +23,8 @@ public class Config {
     public static String NameItemResearchBook = "researchBook";
     public static String NameItemMultiTool = "multiTool";
 
+    public static String NameItemQSword = "quantumSword";
+
     public static String NameItemLocationCard = "locationCard";
     public static String NameItemLocationCardBlank = "locationCardBlank";
 
@@ -57,6 +59,8 @@ public class Config {
     public static int ItemResearchBookID;
     public static int ItemMultiToolID;
     public static int ItemLocationCardID;
+
+    public static int ItemQSwordID;
 
     public static int ItemRPlaceHolderID;
 
@@ -108,6 +112,8 @@ public class Config {
         ItemResearchBookID = config.get("Items", "ItemResearchBookID", 5003).getInt();
         ItemMultiToolID = config.get("Items", "ItemMultiTool", 5004).getInt();
         ItemLocationCardID = config.get("Items", "ItemLocationCard", 5005).getInt();
+
+        ItemQSwordID = config.get("Items", "ItemQuantumSword", 5006).getInt();
 
         ItemRPlaceHolderID = config.get("Items", "ItemRPlaceHolder", 4995).getInt();
 

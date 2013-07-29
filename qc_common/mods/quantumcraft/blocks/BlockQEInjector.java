@@ -2,6 +2,7 @@ package mods.quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import mods.quantumcraft.blocks.abstractblocks.BlockMachine;
 import mods.quantumcraft.core.BasicUtils;
 import mods.quantumcraft.core.QuantumCraft;
@@ -19,7 +20,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class BlockQEInjector extends BlockMachine {
+public class BlockQEInjector extends BlockEnergySink {
 
     private Icon iconFront;
     private Icon iconSide;

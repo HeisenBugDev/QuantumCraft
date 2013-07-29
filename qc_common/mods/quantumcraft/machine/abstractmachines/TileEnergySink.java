@@ -2,6 +2,9 @@ package mods.quantumcraft.machine.abstractmachines;
 
 import mods.quantumcraft.net.EnergySourceList;
 import mods.quantumcraft.net.Location;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 public abstract class TileEnergySink extends TileMachineBase {
 
@@ -52,5 +55,21 @@ public abstract class TileEnergySink extends TileMachineBase {
         if (sourceList != null) return sourceList.getQuantumEnergy(worldObj, size);
         System.out.println("NULL!!!!!!!!!!!!!!!!!!!!!!!!");
         return 0;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
+        super.readFromNBT(par1NBTTagCompound);
+        sourceList = EnergySourceList.read(par1NBTTagCompound.getCompoundTag("ENET"));
+    }
+
+    /**
+     * Writes a tile entity to NBT.
+     */
+
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
+        par1NBTTagCompound.setCompoundTag("ENET", sourceList.write());
+        super.writeToNBT(par1NBTTagCompound);
     }
 }

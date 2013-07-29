@@ -98,6 +98,7 @@ public class TileQEInjector extends TileEnergySink implements
     public void process() {
         inventory[1] = inventory[0].copy();
         decrStackSize(0, 1);
+        this.currentival = 0;
     }
 
     @Override
@@ -146,31 +147,34 @@ public class TileQEInjector extends TileEnergySink implements
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
+        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
+            this.addEnergy(this.requestPacket(5));
+        }
         if (inventory[0] != null) {
             if (inventory[0].getItem() instanceof IQEnergizable) {
                 IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
                 int cycle = 5;
-                this.maxival = e.getMaxQEnergyValue();
-                this.currentival = e.getCurrentQEnergyBuffer();
-                if (e.getCurrentQEnergyBuffer() <= (e.getMaxQEnergyValue() - cycle)) {
+                if (e.getCurrentQEnergyBuffer(inventory[0]) <= (e.getMaxQEnergyValue(inventory[0]) - cycle)) {
                     if (this.getCurrentEnergy() < cycle) {
                         cycle = this.getCurrentEnergy();
                     }
                     if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer() + cycle);
+                        e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) + cycle);
                     }
                 } else {
-                    cycle = e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer();
+                    cycle = e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]);
                     if (this.getCurrentEnergy() < cycle) {
                         cycle = this.getCurrentEnergy();
                     }
                     if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer() + cycle);
+                        e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) + cycle);
                     }
                 }
                 this.subtractEnergy(cycle);
-                this.addEnergy(this.requestPacket(this.getMaxEnergy() - this.getCurrentEnergy()));
-                if (e.getCurrentQEnergyBuffer() == e.getMaxQEnergyValue()) {
+
+                this.maxival = e.getMaxQEnergyValue(inventory[0]);
+                this.currentival = e.getCurrentQEnergyBuffer(inventory[0]);
+                if (e.getCurrentQEnergyBuffer(inventory[0]) == e.getMaxQEnergyValue(inventory[0])) {
                     process();
                 }
             }
@@ -237,7 +241,7 @@ public class TileQEInjector extends TileEnergySink implements
 
     @Override
     public int getMaxEnergy() {
-        return 5000;
+        return 100; //this is supposed to be a very small buffer
     }
 
     @Override

@@ -21,6 +21,9 @@ public class Loader {
     public static ItemResearchBook ItemResearchBook;
     public static ItemBase ItemDepletedCrystal;
     public static ItemLocationCard ItemLocationCard;
+
+    public static ItemQuantumSword ItemQuantumSword;
+
     public static ItemPlaceholder ItemRPlaceHolder;
     /* BLOCKS */
     public static BlockOre OrePlutonium;
@@ -89,6 +92,11 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCard)
                 .func_111206_d(Config.getTextureName(Config.NameItemLocationCard));
         LanguageRegistry.addName(ItemLocationCard, "Location Card");
+
+        ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword(Config.ItemQSwordID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQSword)
+                .func_111206_d(Config.getTextureName(Config.NameItemQSword));
+        LanguageRegistry.addName(ItemQuantumSword, "Quantum Sword");
 
         ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder(Config.ItemRPlaceHolderID)
                 .setCreativeTab(null).setUnlocalizedName(Config.NameItemRPlaceHolder)
