@@ -148,10 +148,9 @@ public class Loader {
         LanguageRegistry.addName(BlockQuantumFiberWire, "Quantum Fiber-Wire");
         GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
 
-        BlockQElectrifier =
-                (BlockQElectrifier) new BlockQElectrifier(Config.BlockQElectrifierID).setCreativeTab(tabQuantumCraft)
-                        .setUnlocalizedName(Config.NameBlockQElectrifier).func_111022_d(Config.getTextureName(
-                                Config.NameBlockQElectrifier));
+        BlockQElectrifier = (BlockQElectrifier) new BlockQElectrifier(Config.BlockQElectrifierID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQElectrifier)
+                .func_111022_d(Config.getTextureName(Config.NameBlockQElectrifier));
         LanguageRegistry.addName(BlockQElectrifier, "Quantum Electrifier");
         GameRegistry.registerBlock(BlockQElectrifier, Config.NameBlockQElectrifier);
 
