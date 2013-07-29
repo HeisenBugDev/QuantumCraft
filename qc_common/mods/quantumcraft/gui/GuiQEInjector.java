@@ -30,7 +30,7 @@ public class GuiQEInjector  extends GuiContainer {
 
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         String s = this.tile.getInvName();
-        this.fontRenderer.drawString(s, this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRenderer.drawString(s, (this.xSize-19) / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
         //this.fontRenderer.drawString("MAX: " + tile.maxival + "; CUR: " + tile.currentival,
         //        this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 15, 4210752);
         this.fontRenderer

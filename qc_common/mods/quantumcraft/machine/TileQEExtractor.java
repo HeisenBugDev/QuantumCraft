@@ -2,6 +2,7 @@ package mods.quantumcraft.machine;
 
 import mods.quantumcraft.core.interfaces.IQEnergizable;
 import mods.quantumcraft.core.network.PacketHandler;
+import mods.quantumcraft.core.network.packets.QEExtractorInitPacket;
 import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
 import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
@@ -220,7 +221,7 @@ public class TileQEExtractor  extends TileEnergySource implements
 
     @Override
     public Packet getDescriptionPacket() {
-        QEInjectorInitPacket packet = PacketHandler.getPacket(QEInjectorInitPacket.class);
+        QEExtractorInitPacket packet = PacketHandler.getPacket(QEExtractorInitPacket.class);
         packet.posX = xCoord;
         packet.posY = yCoord;
         packet.posZ = zCoord;
