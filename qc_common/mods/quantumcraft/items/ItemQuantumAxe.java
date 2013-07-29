@@ -10,7 +10,7 @@ public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
 
     public ItemQuantumAxe(int par1) {
         super(par1, Loader.ToolMaterials.QUANTUMTOOL);
-        this.setMaxDamage(maxQenergyValue);
+        this.setMaxDamage(maxQenergyValue+1);
     }
 
     int maxQenergyValue = 1000;

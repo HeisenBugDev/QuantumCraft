@@ -9,7 +9,7 @@ public class ItemQuantumSword extends ItemSword implements IQEnergizable {
 
     public ItemQuantumSword(int id) {
         super(id, Loader.ToolMaterials.QUANTUMTOOL);
-        this.setMaxDamage(maxQenergyValue);
+        this.setMaxDamage(maxQenergyValue+1);
     }
 
     int maxQenergyValue = 1000;
