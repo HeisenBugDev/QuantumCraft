@@ -25,6 +25,9 @@ public class Loader {
     public static ItemLocationCard ItemLocationCard;
 
     public static ItemQuantumSword ItemQuantumSword;
+    public static ItemQuantumAxe ItemQuantumAxe;
+    public static ItemQuantumPick ItemQuantumPick;
+    public static ItemQuantumShovel ItemQuantumShovel;
 
     public static ItemPlaceholder ItemRPlaceHolder;
     /* BLOCKS */
@@ -100,6 +103,21 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQSword)
                 .func_111206_d(Config.getTextureName(Config.NameItemQSword));
         LanguageRegistry.addName(ItemQuantumSword, "Quantum Sword");
+
+        ItemQuantumAxe = (ItemQuantumAxe) new ItemQuantumAxe(Config.ItemQAxeID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQAxe)
+                .func_111206_d(Config.getTextureName(Config.NameItemQAxe));
+        LanguageRegistry.addName(ItemQuantumAxe, "Quantum Axe");
+
+        ItemQuantumPick = (ItemQuantumPick) new ItemQuantumPick(Config.ItemQPickID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQPick)
+                .func_111206_d(Config.getTextureName(Config.NameItemQPick));
+        LanguageRegistry.addName(ItemQuantumPick, "Quantum Pickaxe");
+
+        ItemQuantumShovel = (ItemQuantumShovel) new ItemQuantumShovel(Config.ItemQShovelID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQShovel)
+                .func_111206_d(Config.getTextureName(Config.NameItemQShovel));
+        LanguageRegistry.addName(ItemQuantumShovel, "Quantum Shovel");
 
         ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder(Config.ItemRPlaceHolderID)
                 .setCreativeTab(null).setUnlocalizedName(Config.NameItemRPlaceHolder)
@@ -193,7 +211,8 @@ public class Loader {
 
     public static class ToolMaterials {
         //The following values are subject to change.
-        public static EnumToolMaterial QUANTUMTOOL = EnumHelper.addToolMaterial("QUANTUMTOOL", 3, 950, 7.0F, 2, 30);
+        public static EnumToolMaterial QUANTUMTOOL = EnumHelper.addToolMaterial("QUANTUMTOOL", 3, 0, 7.0F, 2, 30);
+        //the 3rd argument (0) is not used...
     }
 
     public static class IconLoader {
