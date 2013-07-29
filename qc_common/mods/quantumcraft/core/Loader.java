@@ -35,6 +35,7 @@ public class Loader {
     public static BlockQEnergySucker BlockQEnergySucker;
     public static BlockQDematerializer BlockQDematerializer;
     public static BlockQElectrifier BlockQElectrifier;
+    public static BlockQEExtractor BlockQEExtractor;
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
     /* CREATIVE TABS */
@@ -162,6 +163,12 @@ public class Loader {
         LanguageRegistry.addName(BlockQElectrifier, "Quantum Electrifier");
         GameRegistry.registerBlock(BlockQElectrifier, Config.NameBlockQElectrifier);
 
+        BlockQEExtractor = (BlockQEExtractor) new BlockQEExtractor(Config.BlockQEEID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQEE)
+                .func_111022_d(Config.getTextureName(Config.NameBlockQEE));
+        LanguageRegistry.addName(BlockQEExtractor, "Quantum Energy Extractor");
+        GameRegistry.registerBlock(BlockQEExtractor, Config.NameBlockQEE);
+
     }
 
     public static void initRenderers() {
@@ -179,6 +186,7 @@ public class Loader {
         GameRegistry.registerTileEntity(TileQEnergySucker.class, "QESuckerTE");
         GameRegistry.registerTileEntity(TileQDematerializer.class, "QDematerializerTE");
         GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
+        GameRegistry.registerTileEntity(TileQEExtractor.class, "QEExtractorTE");
     }
 
     public static class IconLoader {

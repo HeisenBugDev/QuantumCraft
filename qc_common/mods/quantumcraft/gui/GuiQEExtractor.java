@@ -1,21 +1,21 @@
 package mods.quantumcraft.gui;
 
-import mods.quantumcraft.inventory.ContainerQDeenergizer;
+import mods.quantumcraft.inventory.ContainerQEExtractor;
 import mods.quantumcraft.inventory.ContainerQEInjector;
-import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.machine.TileQEExtractor;
 import mods.quantumcraft.machine.TileQEInjector;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class GuiQEInjector  extends GuiContainer {
+public class GuiQEExtractor extends GuiContainer {
 
-    private TileQEInjector tile;
+    private TileQEExtractor tile;
 
-    public GuiQEInjector(Container par1Container) {
+    public GuiQEExtractor(Container par1Container) {
         super(par1Container);
-        tile = ((ContainerQEInjector) par1Container).tile;
+        tile = ((ContainerQEExtractor) par1Container).tile;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class GuiQEInjector  extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         //this.mc.renderEngine.func_110577_a("/mods/QuantumCraft/textures/gui/deenergizer.png");
-        this.mc.renderEngine.func_110577_a(new ResourceLocation("quantumcraft", "textures/gui/einjector.png"));
+        this.mc.renderEngine.func_110577_a(new ResourceLocation("quantumcraft", "textures/gui/eextractor.png"));
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
