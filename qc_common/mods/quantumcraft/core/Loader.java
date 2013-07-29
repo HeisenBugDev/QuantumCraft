@@ -9,7 +9,9 @@ import mods.quantumcraft.machine.*;
 import mods.quantumcraft.render.RenderOre;
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.util.Icon;
+import net.minecraftforge.common.EnumHelper;
 
 public class Loader {
 
@@ -187,6 +189,11 @@ public class Loader {
         GameRegistry.registerTileEntity(TileQDematerializer.class, "QDematerializerTE");
         GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
         GameRegistry.registerTileEntity(TileQEExtractor.class, "QEExtractorTE");
+    }
+
+    public static class ToolMaterials {
+        //The following values are subject to change.
+        public static EnumToolMaterial QUANTUMTOOL = EnumHelper.addToolMaterial("QUANTUMTOOL", 3, 950, 7.0F, 2, 30);
     }
 
     public static class IconLoader {

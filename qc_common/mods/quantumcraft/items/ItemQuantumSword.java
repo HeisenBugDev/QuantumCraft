@@ -1,15 +1,17 @@
 package mods.quantumcraft.items;
 
+import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.interfaces.IQEnergizable;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 
-public class ItemQuantumSword extends ItemBase implements IQEnergizable {
+public class ItemQuantumSword extends ItemSword implements IQEnergizable {
 
     public ItemQuantumSword(int id) {
-        super(id);
+        super(id, Loader.ToolMaterials.QUANTUMTOOL);
         this.setMaxDamage(maxQenergyValue);
 
-        this.maxStackSize = 1;
+
     }
 
     int maxQenergyValue = 1000;
@@ -27,6 +29,13 @@ public class ItemQuantumSword extends ItemBase implements IQEnergizable {
     @Override
     public int getCurrentQEnergyBuffer(ItemStack itemStack) {
         return getMaxQEnergyValue(itemStack)-itemStack.getItemDamage();
+
+    }
+
+    @Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return false;
     }
 
     @Override
