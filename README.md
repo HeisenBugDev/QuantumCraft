@@ -1,6 +1,7 @@
 # QuantumCraft
 
 Yet another minecraft tech mod that ends with -craft.
+IRC: irc.esper.net #QuantumCraft
 
 ## Intro
 Visit the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-quantumcraft-wip/)
