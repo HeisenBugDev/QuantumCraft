@@ -28,10 +28,9 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     private int energyBuffer = 1000;
     private boolean init = false;
 
-    public TileQElectrifier(){
+    public TileQElectrifier() {
         powerHandler = new PowerHandler(this, PowerHandler.Type.ENGINE);
     }
-
 
     @Override
     public int getMaxEnergy() {
@@ -54,19 +53,16 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     private void sendPower() {
         TileEntity tile = tileCache[getDirectionFacing().ordinal()].getTile();
         if (isPoweredTile(tile, getDirectionFacing())) {
-            System.out.println("1");
+
             PowerHandler.PowerReceiver receptor =
                     ((IPowerReceptor) tile).getPowerReceiver(getDirectionFacing().getOpposite());
-
             float extracted = getPowerToExtract();
-            System.out.println("extracted" + extracted);
             if (extracted > 0) {
-                System.out.println("2");
                 float needed =
                         receptor.receiveEnergy(PowerHandler.Type.ENGINE, extracted, getDirectionFacing().getOpposite());
                 //extractEnergy(receptor.getMinEnergyReceived(), needed, true); // Comment out for constant power
-				currentOutput = extractEnergy(0, needed, true); // Uncomment for constant power
-                System.out.println(currentOutput);
+                currentOutput = extractEnergy(0, needed, true); // Uncomment for constant power
+
             }
         }
     }
@@ -81,8 +77,8 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     private float getPowerToExtract() {
         TileEntity tile = tileCache[getDirectionFacing().ordinal()].getTile();
-        PowerHandler.PowerReceiver receptor = ((IPowerReceptor) tile).getPowerReceiver(getDirectionFacing().getOpposite());
-        System.out.println(receptor.getMinEnergyReceived() + "|" + receptor.getMaxEnergyReceived());
+        PowerHandler.PowerReceiver receptor =
+                ((IPowerReceptor) tile).getPowerReceiver(getDirectionFacing().getOpposite());
         //return extractEnergy(receptor.getMinEnergyReceived(), receptor.getMaxEnergyReceived(), false); // Comment out for constant power
         return extractEnergy(0, receptor.getMaxEnergyReceived(), false); // Uncomment for constant power
     }
@@ -97,7 +93,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     }
 
     public float extractEnergy(float min, float max, boolean doExtract) {
-        System.out.println("energy buffer" + energyBuffer);
         if (energyBuffer < min)
             return 0;
 
