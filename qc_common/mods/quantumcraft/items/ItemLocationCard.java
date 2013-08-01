@@ -49,8 +49,8 @@ public class ItemLocationCard extends ItemBase {
                                List list, boolean flag) {
         if (itemstack != null) {
             if (itemstack.getTagCompound() == null) {
-                list.add("Shift r-click on a block");
-                list.add("Blank");
+                list.add("Shift right click on a block");
+                list.add("NO DATA");
                 return;
             }
             list.add("Put in a crafting menu to clear");
