@@ -24,3 +24,4 @@ Reply to the post on MCForums and have:
     A link to the changelog
     The actual changelog (for the lazy)
     And obviously the version number!
+Go to #notenoughmods in irc.esper.net and give them the info for the new version
