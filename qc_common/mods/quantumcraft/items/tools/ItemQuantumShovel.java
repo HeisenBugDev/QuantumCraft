@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemQuantumShovel extends ItemSpade implements IQEnergizable {
-    int maxQenergyValue = 5;
+    int maxQenergyValue = 1000;
 
     public ItemQuantumShovel(int par1) {
         super(par1, Loader.ToolMaterials.QUANTUMTOOL);
