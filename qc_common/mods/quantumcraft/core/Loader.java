@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.quantumcraft.blocks.*;
 import mods.quantumcraft.items.*;
+import mods.quantumcraft.items.tools.*;
 import mods.quantumcraft.machine.*;
 import mods.quantumcraft.render.RenderOre;
 import net.minecraft.block.BlockOre;
@@ -26,10 +27,10 @@ public class Loader {
     public static ItemLocationCardBlank ItemLocationCardBlank;
     public static ItemPortableQCapacitor ItemPortableQCapacitor;
     public static ItemUpgrade ItemUpgrade;
-    public static mods.quantumcraft.items.tools.ItemQuantumSword ItemQuantumSword;
-    public static mods.quantumcraft.items.tools.ItemQuantumAxe ItemQuantumAxe;
-    public static mods.quantumcraft.items.tools.ItemQuantumPick ItemQuantumPick;
-    public static mods.quantumcraft.items.tools.ItemQuantumShovel ItemQuantumShovel;
+    public static ItemQuantumSword ItemQuantumSword;
+    public static ItemQuantumAxe ItemQuantumAxe;
+    public static ItemQuantumPick ItemQuantumPick;
+    public static ItemQuantumShovel ItemQuantumShovel;
 
     public static ItemPlaceholder ItemRPlaceHolder;
     /* BLOCKS */
@@ -114,7 +115,6 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemUpgrade_)
                 .func_111206_d("USELESS");
 
-        /*
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword(Config.ItemQSwordID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQSword)
                 .func_111206_d(Config.getTextureName(Config.NameItemQSword));
@@ -134,7 +134,6 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQShovel)
                 .func_111206_d(Config.getTextureName(Config.NameItemQShovel));
         LanguageRegistry.addName(ItemQuantumShovel, "Quantum Shovel");
-        */
         ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder(Config.ItemRPlaceHolderID)
                 .setCreativeTab(null).setUnlocalizedName(Config.NameItemRPlaceHolder)
                 .func_111206_d(Config.getTextureName(Config.NameItemRPlaceHolder));
