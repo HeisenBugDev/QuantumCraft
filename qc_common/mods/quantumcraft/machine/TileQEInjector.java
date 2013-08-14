@@ -102,6 +102,7 @@ public class TileQEInjector extends TileEnergySink implements
     public void process() {
         inventory[1] = inventory[0].copy();
         decrStackSize(0, 1);
+        inventory[1].getItem().setDamage(inventory[1],1);
         this.currentival = 0;
     }
 
