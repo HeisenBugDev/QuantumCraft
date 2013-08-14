@@ -147,6 +147,7 @@ public class TileQEInjector extends TileEnergySink implements
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
+        if (inventory[0] == null && currentival != 0) { currentival = 0; }
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
             this.addEnergy(this.requestPacket(5));
         }

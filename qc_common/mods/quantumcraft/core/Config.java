@@ -23,6 +23,8 @@ public class Config {
     public static String NameItemResearchBook = "researchBook";
     public static String NameItemMultiTool = "multiTool";
 
+    public static String NameItemPortableQCapacitor = "portQCapacitor";
+
     public static String NameItemQSword = "quantumSword";
     public static String NameItemQAxe = "quantumAxe";
     public static String NameItemQPick = "quantumPick";
@@ -64,6 +66,7 @@ public class Config {
     public static int ItemMultiToolID;
     public static int ItemLocationCardID;
     public static int ItemLocationdCardBlankID;
+    public static int ItemPortQCapacitorID;
     public static int ItemQSwordID;
     public static int ItemQAxeID;
     public static int ItemQPickID;
@@ -121,6 +124,8 @@ public class Config {
         ItemMultiToolID = config.get("Items", "ItemMultiTool", 5004).getInt();
         ItemLocationdCardBlankID = config.get("Items", "ItemLocationCardBlank", 5005).getInt();
         ItemLocationCardID = config.get("Items", "ItemLocationCard", 5006).getInt();
+
+        ItemPortQCapacitorID = config.get("Items", "ItemPortableQuantumCapacitor", 5007).getInt();
 
         ItemQSwordID = config.get("Items", "ItemQuantumSword", 5020).getInt();
         ItemQAxeID = config.get("Items", "ItemQuantumAxe", 5021).getInt();

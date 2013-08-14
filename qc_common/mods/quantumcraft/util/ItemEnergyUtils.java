@@ -10,6 +10,7 @@ public class ItemEnergyUtils {
      * @return CURRENT ENERGY VALUE
      */
     public static int getEnergy(ItemStack is) {
+        if (is.getTagCompound() == null) { return 0; }
         NBTTagCompound IS = is.getTagCompound();
         return IS.getCompoundTag("QEV").getInteger("VALUE");
     }
@@ -23,11 +24,18 @@ public class ItemEnergyUtils {
         NBTTagCompound QEV = new NBTTagCompound("QEV");
         QEV.setInteger("VALUE", e);
         NBTTagCompound IS = is.getTagCompound();
+        if (IS == null) {
+            IS = new NBTTagCompound();
+        }
         IS.setCompoundTag("QEV", QEV);
         is.setTagCompound(IS);
     }
 
     public static int getDamageFromEnergy(int currentEnergy, int maxEnergy) {
         return currentEnergy/maxEnergy*31;
+    }
+
+    public static void setDamage(ItemStack is, int currentEnergy, int maxEnergy) {
+        is.setItemDamage(getDamageFromEnergy(currentEnergy, maxEnergy));
     }
 }

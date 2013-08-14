@@ -24,7 +24,7 @@ public class Loader {
     public static ItemBase ItemDepletedCrystal;
     public static ItemLocationCard ItemLocationCard;
     public static ItemLocationCardBlank ItemLocationCardBlank;
-
+    public static ItemPortableQCapacitor ItemPortableQCapacitor;
 
     public static mods.quantumcraft.items.tools.ItemQuantumSword ItemQuantumSword;
     public static mods.quantumcraft.items.tools.ItemQuantumAxe ItemQuantumAxe;
@@ -80,10 +80,9 @@ public class Loader {
                 .func_111206_d(Config.getTextureName(Config.NameItemRawQuantonium));
         LanguageRegistry.addName(ItemRawQuantonium, "Raw Quantonium");
 
-        ItemMultiTool =
-                (ItemMultiTool) new ItemMultiTool(Config.ItemMultiToolID).setUnlocalizedName(Config.NameItemMultiTool)
-                        .setCreativeTab(tabQuantumCraft)
-                        .func_111206_d(Config.getTextureName(Config.NameItemMultiTool));
+        ItemMultiTool = (ItemMultiTool) new ItemMultiTool(Config.ItemMultiToolID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemMultiTool)
+                .func_111206_d(Config.getTextureName(Config.NameItemMultiTool));
         LanguageRegistry.addName(ItemMultiTool, "Quantum Multi Tool");
 
         ItemDepletedCrystal = (ItemBase) new ItemBase(Config.ItemDepletedCrystalID)
@@ -105,6 +104,11 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCardBlank)
                 .func_111206_d(Config.getTextureName(Config.NameItemLocationCardBlank));
         LanguageRegistry.addName(ItemLocationCardBlank, "Location Card");
+
+        ItemPortableQCapacitor = (ItemPortableQCapacitor) new ItemPortableQCapacitor(Config.ItemPortQCapacitorID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemPortableQCapacitor)
+                .func_111206_d(Config.getTextureName(Config.NameItemPortableQCapacitor));
+        LanguageRegistry.addName(ItemPortableQCapacitor, "Portable Quantum Capacitor");
         /*
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword(Config.ItemQSwordID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQSword)
@@ -129,9 +133,7 @@ public class Loader {
         ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder(Config.ItemRPlaceHolderID)
                 .setCreativeTab(null).setUnlocalizedName(Config.NameItemRPlaceHolder)
                 .func_111206_d(Config.getTextureName(Config.NameItemRPlaceHolder));
-        LanguageRegistry.addName(ItemRPlaceHolder, "Research Placeholder");
-
-
+        LanguageRegistry.addName(ItemRPlaceHolder, "Render Placeholder");
     }
 
     public static void initBlocks() {
