@@ -119,8 +119,8 @@ public class Config {
         ItemDepletedCrystalID = config.get("Items", "ItemDepletedCrystal", 5002).getInt();
         ItemResearchBookID = config.get("Items", "ItemResearchBookID", 5003).getInt();
         ItemMultiToolID = config.get("Items", "ItemMultiTool", 5004).getInt();
-        ItemLocationCardID = config.get("Items", "ItemLocationCard", 5005).getInt();
-        ItemLocationdCardBlankID = config.get("Items", "ItemLocationCardBlank", 5006).getInt();
+        ItemLocationdCardBlankID = config.get("Items", "ItemLocationCardBlank", 5005).getInt();
+        ItemLocationCardID = config.get("Items", "ItemLocationCard", 5006).getInt();
 
         ItemQSwordID = config.get("Items", "ItemQuantumSword", 5020).getInt();
         ItemQAxeID = config.get("Items", "ItemQuantumAxe", 5021).getInt();
