@@ -17,7 +17,7 @@ public class ItemChargable extends ItemBase implements IQEnergizable {
      */
     public ItemChargable(int id, int maxenergy, boolean displayEnergy) {
         super(id);
-        this.setMaxDamage(32);
+        this.setMaxDamage(maxenergy);
         this.maxenergy = maxenergy;
         this.displayEnergy = displayEnergy;
     }
