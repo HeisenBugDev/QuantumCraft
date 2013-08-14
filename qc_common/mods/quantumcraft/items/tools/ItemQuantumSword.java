@@ -30,6 +30,7 @@ public class ItemQuantumSword extends ItemSword implements IQEnergizable {
         return true;
     }
 
+
     @Override
     public int getCurrentQEnergyBuffer(ItemStack itemStack) {
         return ItemEnergyUtils.getEnergy(itemStack);
