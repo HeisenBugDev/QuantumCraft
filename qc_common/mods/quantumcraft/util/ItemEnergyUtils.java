@@ -36,6 +36,11 @@ public class ItemEnergyUtils {
     }
 
     public static void setDamage(ItemStack is, int currentEnergy, int maxEnergy) {
-        is.setItemDamage(getDamageFromEnergy(currentEnergy, maxEnergy));
+        is.setItemDamage(maxEnergy - currentEnergy);
     }
+
+    public static void emptyEnergy(ItemStack is, int maxEnergy){
+        is.setItemDamage(maxEnergy);
+    }
+
 }
