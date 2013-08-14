@@ -35,6 +35,11 @@ public class TileQDeenergizer extends TileEnergySource implements
     }
 
     @Override
+    public int guiID() {
+        return 1;
+    }
+
+    @Override
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }

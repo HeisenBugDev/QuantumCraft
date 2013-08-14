@@ -1,6 +1,6 @@
 package mods.quantumcraft.core.network.packets;
 
-import mods.quantumcraft.core.BasicUtils;
+import mods.quantumcraft.util.BasicUtils;
 import mods.quantumcraft.core.network.abstractpackets.CoordinatesPacket;
 import mods.quantumcraft.core.network.abstractpackets.ModernPacket;
 import mods.quantumcraft.machine.TileQElectrifier;

@@ -142,6 +142,11 @@ public class TileQEExtractor  extends TileEnergySource implements
     }
 
     @Override
+    public int guiID() {
+        return 5;
+    }
+
+    @Override
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }

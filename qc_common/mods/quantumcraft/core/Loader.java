@@ -25,7 +25,7 @@ public class Loader {
     public static ItemLocationCard ItemLocationCard;
     public static ItemLocationCardBlank ItemLocationCardBlank;
     public static ItemPortableQCapacitor ItemPortableQCapacitor;
-
+    public static ItemUpgrade ItemUpgrade;
     public static mods.quantumcraft.items.tools.ItemQuantumSword ItemQuantumSword;
     public static mods.quantumcraft.items.tools.ItemQuantumAxe ItemQuantumAxe;
     public static mods.quantumcraft.items.tools.ItemQuantumPick ItemQuantumPick;
@@ -109,6 +109,11 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemPortableQCapacitor)
                 .func_111206_d(Config.getTextureName(Config.NameItemPortableQCapacitor));
         LanguageRegistry.addName(ItemPortableQCapacitor, "Portable Quantum Capacitor");
+
+        ItemUpgrade = (ItemUpgrade) new ItemUpgrade(Config.ItemUpgradeID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemUpgrade_)
+                .func_111206_d("USELESS");
+
         /*
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword(Config.ItemQSwordID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQSword)

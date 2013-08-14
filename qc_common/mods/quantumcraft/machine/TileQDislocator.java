@@ -127,6 +127,10 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
         return true;
     }
 
+    @Override
+    public int guiID() {
+        return 3;
+    }
 
     @Override
     public void onBlockBreak() {

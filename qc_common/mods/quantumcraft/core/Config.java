@@ -25,6 +25,9 @@ public class Config {
 
     public static String NameItemPortableQCapacitor = "portQCapacitor";
 
+    public static String NameItemUpgrade_ = "upgradeNONE";
+    public static String[] NameItemUpgrade = { "upgradeTemplate", "upgradeOverclock" };
+
     public static String NameItemQSword = "quantumSword";
     public static String NameItemQAxe = "quantumAxe";
     public static String NameItemQPick = "quantumPick";
@@ -67,6 +70,9 @@ public class Config {
     public static int ItemLocationCardID;
     public static int ItemLocationdCardBlankID;
     public static int ItemPortQCapacitorID;
+
+    public static int ItemUpgradeID;
+
     public static int ItemQSwordID;
     public static int ItemQAxeID;
     public static int ItemQPickID;
@@ -126,12 +132,12 @@ public class Config {
         ItemLocationCardID = config.get("Items", "ItemLocationCard", 5006).getInt();
 
         ItemPortQCapacitorID = config.get("Items", "ItemPortableQuantumCapacitor", 5007).getInt();
+        ItemUpgradeID = config.get("Items", "ItemUpgrade", 5008).getInt();
 
         ItemQSwordID = config.get("Items", "ItemQuantumSword", 5020).getInt();
         ItemQAxeID = config.get("Items", "ItemQuantumAxe", 5021).getInt();
         ItemQPickID = config.get("Items", "ItemQuantumPick", 5022).getInt();
         ItemQShovelID = config.get("Items", "ItemQuantumShovel", 5023).getInt();
-
 
         ItemRPlaceHolderID = config.get("Items", "ItemRPlaceHolder", 4995).getInt();
 

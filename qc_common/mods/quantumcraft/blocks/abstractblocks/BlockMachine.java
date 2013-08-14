@@ -1,10 +1,17 @@
 package mods.quantumcraft.blocks.abstractblocks;
 
-import mods.quantumcraft.core.BasicUtils;
+import mods.quantumcraft.core.QuantumCraft;
+import mods.quantumcraft.core.interfaces.IUpgradable;
+import mods.quantumcraft.util.BasicUtils;
 import mods.quantumcraft.core.Coords;
 import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.Event;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,5 +34,35 @@ public abstract class BlockMachine extends BlockRotatable {
         }
         super.breakBlock(world, x, y, z, par5, par6);
         world.removeBlockTileEntity(x, y, z);
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
+                                    float xOffset, float yOffset, float zOffset) {
+        PlayerInteractEvent e =
+                new PlayerInteractEvent(entityplayer, PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK, x, y, z, side);
+        if (MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Event.Result.DENY || e.useBlock == Event.Result.DENY) {
+            return false;
+        }
+        TileEntity te = world.getBlockTileEntity(x, y, z);
+        if (te == null) {
+            return false;
+        }
+        if (BasicUtils.isHoldingUpgrade(entityplayer) && te instanceof IUpgradable) { //UPGRADING
+            if (((IUpgradable)te).eatUpgrade(entityplayer.getCurrentEquippedItem().getItemDamage())) {
+            entityplayer.getCurrentEquippedItem().stackSize--;
+            if (entityplayer.getCurrentEquippedItem().stackSize < 1) entityplayer.destroyCurrentEquippedItem();}
+        } else
+        if (BasicUtils.isHoldingWrench(entityplayer) && te instanceof TileMachineBase && //MULTITOOL HANDLING
+                ((TileMachineBase) te).canRotate()) {
+            ((TileMachineBase) te).rotate();
+            world.markBlockForUpdate(x, y, z);
+            return true;
+        } else
+        if (te instanceof TileMachineBase && (!world.isRemote && !entityplayer.isSneaking())) {  //GUI HANDLING
+            entityplayer.openGui(QuantumCraft.instance, ((TileMachineBase)te).guiID(), world, x, y, z);
+            return true;
+        }
+        return false;
     }
 }

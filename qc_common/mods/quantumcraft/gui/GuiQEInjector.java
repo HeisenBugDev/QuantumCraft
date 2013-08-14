@@ -1,11 +1,13 @@
 package mods.quantumcraft.gui;
 
+import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.inventory.ContainerQDeenergizer;
 import mods.quantumcraft.inventory.ContainerQEInjector;
 import mods.quantumcraft.machine.TileQDeenergizer;
 import mods.quantumcraft.machine.TileQEInjector;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -50,6 +52,10 @@ public class GuiQEInjector  extends GuiContainer {
 
         this.drawTexturedModalRect(k + 177, l + 37 + h2, 195, 16 + h2, 12, 76 - h2);
         this.drawTexturedModalRect(k + 177, l + 37, 207, 16, 12, 76);
+
+        if (tile.upgradeID != 0) {
+            itemRenderer.renderItemAndEffectIntoGUI(this.fontRenderer, this.mc.renderEngine, new ItemStack(Loader.ItemUpgrade, 1, tile.upgradeID), k+174, l+129);
+        }
 
         if (tile.maxival != 0) {
             int h = (int) (16 - ((float) tile.currentival / (float) tile.maxival * 16));

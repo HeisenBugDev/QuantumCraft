@@ -1,10 +1,14 @@
-package mods.quantumcraft.core;
+package mods.quantumcraft.util;
 
 import buildcraft.api.power.IPowerEmitter;
 import buildcraft.api.power.IPowerReceptor;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
+import mods.quantumcraft.core.Config;
+import mods.quantumcraft.core.Coords;
+import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.interfaces.IMultiTool;
+import mods.quantumcraft.items.ItemUpgrade;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -51,18 +55,12 @@ public class BasicUtils {
     }
 
     public static boolean isHoldingWrench(EntityPlayer player) {
-        if (player.inventory.getCurrentItem() == null) {
-            return false;
-        }
-        Item currentItem = Item.itemsList[player.inventory.getCurrentItem().itemID];
-
-        if (currentItem instanceof IMultiTool) {
-            return true;
-        }
-
-        return false;
+        return player.inventory.getCurrentItem() != null && Item.itemsList[player.inventory.getCurrentItem().itemID] instanceof IMultiTool;
     }
 
+    public static boolean isHoldingUpgrade(EntityPlayer player) {
+        return player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().itemID == Loader.ItemUpgrade.itemID;
+}
     public static void sendPacketToServer(Packet packet) {
         PacketDispatcher.sendPacketToServer(packet);
     }

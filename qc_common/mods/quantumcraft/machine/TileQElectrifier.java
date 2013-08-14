@@ -33,6 +33,11 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     }
 
     @Override
+    public int guiID() {
+        return -1;
+    }
+
+    @Override
     public int getMaxEnergy() {
         return 1000;
     }

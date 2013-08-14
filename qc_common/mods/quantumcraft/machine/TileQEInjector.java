@@ -1,10 +1,13 @@
 package mods.quantumcraft.machine;
 
+import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.interfaces.IQEnergizable;
+import mods.quantumcraft.core.interfaces.IUpgradable;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
 import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
+import mods.quantumcraft.util.BasicUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -13,13 +16,14 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
 public class TileQEInjector extends TileEnergySink implements
-        ISidedInventory {
+        ISidedInventory, IUpgradable {
 
     public int currentival = 0;
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
     private int energyBuffer;
+    public int upgradeID;
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
@@ -140,8 +144,15 @@ public class TileQEInjector extends TileEnergySink implements
     }
 
     @Override
+    public int guiID() {
+        return 2;
+    }
+
+    @Override
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
+        if (upgradeID > 0) BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
+                new ItemStack(Loader.ItemUpgrade, 1, upgradeID)); //DROP DA UPGRADE
     }
 
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
@@ -149,12 +160,12 @@ public class TileQEInjector extends TileEnergySink implements
     public void updateEntity() {
         if (inventory[0] == null && currentival != 0) { currentival = 0; }
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
-            this.addEnergy(this.requestPacket(5));
+            this.addEnergy(this.requestPacket(10));
         }
         if (inventory[0] != null && inventory[1] == null) {
             if (inventory[0].getItem() instanceof IQEnergizable) {
                 IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
-                int cycle = 5;
+                int cycle = 5 + (upgradeID == 1 ? 5 : 0);
                 if (e.getCurrentQEnergyBuffer(inventory[0]) <= (e.getMaxQEnergyValue(inventory[0]) - cycle)) {
                     if (this.getCurrentEnergy() < cycle) {
                         cycle = this.getCurrentEnergy();
@@ -256,5 +267,13 @@ public class TileQEInjector extends TileEnergySink implements
         if (energyBuffer < 0) energyBuffer = 0;
         if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
         return energyBuffer;
+    }
+
+    @Override
+    public boolean eatUpgrade(int id) {
+        if (this.upgradeID == 0 && id >0) {
+            this.upgradeID = id;
+            return true;
+        } else return false;
     }
 }

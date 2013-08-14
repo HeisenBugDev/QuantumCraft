@@ -19,6 +19,10 @@ public class ItemBase extends Item {
         _metaMax = max;
     }
 
+    public int getMetaMax() {
+        return _metaMax;
+    }
+
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes) {
