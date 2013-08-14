@@ -43,4 +43,35 @@ public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable {
         itemStack.setItemDamage(getMaxQEnergyValue(itemStack)-value);
         return value;
     }
+
+    @Override
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6,
+                                    EntityLivingBase par7EntityLivingBase) {
+        if ((double) Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
+            if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
+                par1ItemStack.damageItem(1, par7EntityLivingBase);
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
+        if (!(par2Block.blockMaterial == Material.ground || par2Block.blockMaterial == Material.grass || par2Block.blockMaterial == Material.sand)) {
+            if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
+                return (par2Block.blockMaterial == Material.iron || par2Block.blockMaterial == Material.anvil ||
+                        par2Block.blockMaterial == Material.rock) ? this.efficiencyOnProperMaterial :
+                        super.getStrVsBlock(par1ItemStack, par2Block);
+            } else {
+                return 0.01F;
+            }
+        } else {
+            return 0.001F;
+        }
+
+
+    }
+
+
 }
