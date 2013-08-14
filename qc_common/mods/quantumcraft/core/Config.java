@@ -63,7 +63,7 @@ public class Config {
     public static int ItemResearchBookID;
     public static int ItemMultiToolID;
     public static int ItemLocationCardID;
-
+    public static int ItemLocationdCardBlankID;
     public static int ItemQSwordID;
     public static int ItemQAxeID;
     public static int ItemQPickID;
@@ -120,11 +120,12 @@ public class Config {
         ItemResearchBookID = config.get("Items", "ItemResearchBookID", 5003).getInt();
         ItemMultiToolID = config.get("Items", "ItemMultiTool", 5004).getInt();
         ItemLocationCardID = config.get("Items", "ItemLocationCard", 5005).getInt();
+        ItemLocationdCardBlankID = config.get("Items", "ItemLocationCardBlank", 5006).getInt();
 
-        ItemQSwordID = config.get("Items", "ItemQuantumSword", 5006).getInt();
-        ItemQAxeID = config.get("Items", "ItemQuantumAxe", 5007).getInt();
-        ItemQPickID = config.get("Items", "ItemQuantumPick", 5008).getInt();
-        ItemQShovelID = config.get("Items", "ItemQuantumShovel", 5009).getInt();
+        ItemQSwordID = config.get("Items", "ItemQuantumSword", 5020).getInt();
+        ItemQAxeID = config.get("Items", "ItemQuantumAxe", 5021).getInt();
+        ItemQPickID = config.get("Items", "ItemQuantumPick", 5022).getInt();
+        ItemQShovelID = config.get("Items", "ItemQuantumShovel", 5023).getInt();
 
 
         ItemRPlaceHolderID = config.get("Items", "ItemRPlaceHolder", 4995).getInt();

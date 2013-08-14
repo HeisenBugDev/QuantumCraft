@@ -23,6 +23,8 @@ public class Loader {
     public static ItemResearchBook ItemResearchBook;
     public static ItemBase ItemDepletedCrystal;
     public static ItemLocationCard ItemLocationCard;
+    public static ItemLocationCardBlank ItemLocationCardBlank;
+
 
     public static ItemQuantumSword ItemQuantumSword;
     public static ItemQuantumAxe ItemQuantumAxe;
@@ -98,6 +100,11 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCard)
                 .func_111206_d(Config.getTextureName(Config.NameItemLocationCard));
         LanguageRegistry.addName(ItemLocationCard, "Location Card");
+
+        ItemLocationCardBlank = (ItemLocationCardBlank) new ItemLocationCardBlank(Config.ItemLocationdCardBlankID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCardBlank)
+                .func_111206_d(Config.getTextureName(Config.NameItemLocationCardBlank));
+        LanguageRegistry.addName(ItemLocationCardBlank, "Location Card");
 
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword(Config.ItemQSwordID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQSword)
