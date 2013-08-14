@@ -55,6 +55,9 @@ public abstract class BlockMachine extends BlockRotatable {
         } else
         if (BasicUtils.isHoldingWrench(entityplayer) && te instanceof TileMachineBase && //MULTITOOL HANDLING
                 ((TileMachineBase) te).canRotate()) {
+            if (entityplayer.isSneaking() && te instanceof IUpgradable) {
+                ((IUpgradable)te).dropUpgrades();
+            }
             ((TileMachineBase) te).rotate();
             world.markBlockForUpdate(x, y, z);
             return true;

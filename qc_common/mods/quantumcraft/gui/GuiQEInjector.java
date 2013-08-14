@@ -1,6 +1,7 @@
 package mods.quantumcraft.gui;
 
 import mods.quantumcraft.core.Loader;
+import mods.quantumcraft.gui.abstractguis.GuiBase;
 import mods.quantumcraft.inventory.ContainerQDeenergizer;
 import mods.quantumcraft.inventory.ContainerQEInjector;
 import mods.quantumcraft.machine.TileQDeenergizer;
@@ -11,12 +12,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class GuiQEInjector  extends GuiContainer {
+public class GuiQEInjector  extends GuiBase {
 
     private TileQEInjector tile;
 
     public GuiQEInjector(Container par1Container) {
-        super(par1Container);
+        super(par1Container, 200, 170);
         tile = ((ContainerQEInjector) par1Container).tile;
     }
 
@@ -24,12 +25,11 @@ public class GuiQEInjector  extends GuiContainer {
     public void initGui()
     {
         super.initGui();
-        this.xSize = 176+19;
         this.mc.thePlayer.openContainer = this.inventorySlots;
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
     }
-
+      /*
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         String s = this.tile.getInvName();
         this.fontRenderer.drawString(s, (this.xSize-19) / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
@@ -64,5 +64,5 @@ public class GuiQEInjector  extends GuiContainer {
 
 
     }
-
+       */
 }
