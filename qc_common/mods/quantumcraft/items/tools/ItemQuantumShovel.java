@@ -1,14 +1,14 @@
-package mods.quantumcraft.items;
+package mods.quantumcraft.items.tools;
 
 import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.interfaces.IQEnergizable;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 
-public class ItemQuantumSword extends ItemSword implements IQEnergizable {
-
-    public ItemQuantumSword(int id) {
-        super(id, Loader.ToolMaterials.QUANTUMTOOL);
+public class ItemQuantumShovel extends ItemSpade implements IQEnergizable {
+    public ItemQuantumShovel(int par1) {
+        super(par1, Loader.ToolMaterials.QUANTUMTOOL);
         this.setMaxDamage(maxQenergyValue+1);
     }
 

@@ -1,15 +1,17 @@
-package mods.quantumcraft.items;
+package mods.quantumcraft.items.tools;
 
 import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.interfaces.IQEnergizable;
+import mods.quantumcraft.util.ItemEnergyUtils;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 
-public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable {
-    public ItemQuantumPick(int par1) {
+public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
+
+    public ItemQuantumAxe(int par1) {
         super(par1, Loader.ToolMaterials.QUANTUMTOOL);
-        this.setMaxDamage(maxQenergyValue+1);
+        this.setMaxDamage(32);
     }
 
     int maxQenergyValue = 1000;
@@ -21,13 +23,12 @@ public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable {
 
     @Override
     public boolean isDamageable() {
-        return true;
+        return false;
     }
 
     @Override
     public int getCurrentQEnergyBuffer(ItemStack itemStack) {
-        return getMaxQEnergyValue(itemStack)-itemStack.getItemDamage();
-
+        return ItemEnergyUtils.getEnergy(itemStack);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable {
     public int setCurrentQEnergyBuffer(ItemStack itemStack, int value) {
         if (value < 0) value = 0;
         if (value > getMaxQEnergyValue(itemStack)) value = getMaxQEnergyValue(itemStack);
-        itemStack.setItemDamage(getMaxQEnergyValue(itemStack)-value);
+        ItemEnergyUtils.setEnergy(itemStack, value);
         return value;
     }
 }

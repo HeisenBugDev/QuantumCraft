@@ -26,10 +26,10 @@ public class Loader {
     public static ItemLocationCardBlank ItemLocationCardBlank;
 
 
-    public static ItemQuantumSword ItemQuantumSword;
-    public static ItemQuantumAxe ItemQuantumAxe;
-    public static ItemQuantumPick ItemQuantumPick;
-    public static ItemQuantumShovel ItemQuantumShovel;
+    public static mods.quantumcraft.items.tools.ItemQuantumSword ItemQuantumSword;
+    public static mods.quantumcraft.items.tools.ItemQuantumAxe ItemQuantumAxe;
+    public static mods.quantumcraft.items.tools.ItemQuantumPick ItemQuantumPick;
+    public static mods.quantumcraft.items.tools.ItemQuantumShovel ItemQuantumShovel;
 
     public static ItemPlaceholder ItemRPlaceHolder;
     /* BLOCKS */
@@ -84,7 +84,7 @@ public class Loader {
                 (ItemMultiTool) new ItemMultiTool(Config.ItemMultiToolID).setUnlocalizedName(Config.NameItemMultiTool)
                         .setCreativeTab(tabQuantumCraft)
                         .func_111206_d(Config.getTextureName(Config.NameItemMultiTool));
-        LanguageRegistry.addName(ItemMultiTool, "Multi Tool");
+        LanguageRegistry.addName(ItemMultiTool, "Quantum Multi Tool");
 
         ItemDepletedCrystal = (ItemBase) new ItemBase(Config.ItemDepletedCrystalID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemDepletedCrystal)
@@ -105,7 +105,7 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCardBlank)
                 .func_111206_d(Config.getTextureName(Config.NameItemLocationCardBlank));
         LanguageRegistry.addName(ItemLocationCardBlank, "Location Card");
-
+        /*
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword(Config.ItemQSwordID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQSword)
                 .func_111206_d(Config.getTextureName(Config.NameItemQSword));
@@ -125,7 +125,7 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQShovel)
                 .func_111206_d(Config.getTextureName(Config.NameItemQShovel));
         LanguageRegistry.addName(ItemQuantumShovel, "Quantum Shovel");
-
+        */
         ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder(Config.ItemRPlaceHolderID)
                 .setCreativeTab(null).setUnlocalizedName(Config.NameItemRPlaceHolder)
                 .func_111206_d(Config.getTextureName(Config.NameItemRPlaceHolder));
