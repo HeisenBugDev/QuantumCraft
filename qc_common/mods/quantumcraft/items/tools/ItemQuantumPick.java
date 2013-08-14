@@ -2,7 +2,7 @@ package mods.quantumcraft.items.tools;
 
 import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.interfaces.IQEnergizable;
-import mods.quantumcraft.items.abstractitems.QuantumTool;
+import mods.quantumcraft.util.ItemEnergyUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable, QuantumTool {
+public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable {
     int maxQenergyValue = 1000;
 
     public ItemQuantumPick(int par1) {
@@ -30,7 +30,7 @@ public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable, Quant
 
     @Override
     public int getCurrentQEnergyBuffer(ItemStack itemStack) {
-        return getMaxQEnergyValue(itemStack) - itemStack.getItemDamage();
+        return ItemEnergyUtils.getEnergy(itemStack);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable, Quant
     public int setCurrentQEnergyBuffer(ItemStack itemStack, int value) {
         if (value < 0) value = 0;
         if (value > getMaxQEnergyValue(itemStack)) value = getMaxQEnergyValue(itemStack);
-        itemStack.setItemDamage(getMaxQEnergyValue(itemStack) - value);
+        ItemEnergyUtils.setEnergy(itemStack, value);
         return value;
     }
 
@@ -51,7 +51,8 @@ public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable, Quant
                                     EntityLivingBase par7EntityLivingBase) {
         if ((double) Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
             if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
-                par1ItemStack.damageItem(1, par7EntityLivingBase);
+                setCurrentQEnergyBuffer(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack) - 1);
+                ItemEnergyUtils.setDamage(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack), maxQenergyValue);
             }
         }
 
@@ -60,16 +61,16 @@ public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable, Quant
 
     @Override
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
-        if (!(par2Block.blockMaterial == Material.ground || par2Block.blockMaterial == Material.grass || par2Block.blockMaterial == Material.sand)) {
-            if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
+        if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
+            if (!(par2Block.blockMaterial == Material.ground || par2Block.blockMaterial == Material.grass ||
+                    par2Block.blockMaterial == Material.sand)) {
                 return (par2Block.blockMaterial == Material.iron || par2Block.blockMaterial == Material.anvil ||
                         par2Block.blockMaterial == Material.rock) ? this.efficiencyOnProperMaterial :
                         super.getStrVsBlock(par1ItemStack, par2Block);
-            } else {
-                return 0.01F;
-            }
+            } else return 0.001F;
         } else {
-            return 0.001F;
+            ItemEnergyUtils.emptyEnergy(par1ItemStack, maxQenergyValue);
+            return 0.01F;
         }
 
 
