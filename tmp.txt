@@ -1,0 +1,104 @@
+676f88d update triggers
+0bf6b37 Finish sword fixes #50 fixes #61
+c40e82a have fun with 5 uses….
+66fb2b6 Finish quantum shovel
+020e9d5 finish pick
+b568898 finish axe
+6874090 simple empty method and new setdamage
+a02cda2 set to max energy so that we don't have to do weird conversion
+ae1256d make it render the damage when done
+c430552 that was pointless
+0244e5c clean up
+df5ae01 Keep item from breaking when out of power
+2d7bc23 Add interface to help force methods to be created. (I forgetz a lotz)
+65214cf Support tools
+a569ae2 unneeded update packets
+deb8e7c Slight refactor of Block_____, moving the activated part to BlockMachine adding small upgrade system (upgrade items), when you rclick the injector it puts the upgrade into a special part of the GUI (NOT A SLOT), only way to take it out is breaking the machine ATM. injector only has 1 upgrade slot (redoing the GUIs will include more upgrade slots) more upgradable machines will be available soon.
+b61add6 Add the portable capactitor. damage values HATE ME. the energy value is stored in NBT but it doesnt show the damage bar.....
+044f551 made a tools package + removing tools from the Loader because they are broken. POSTPOPING TOOLS
+a59e6cb Fix the crafting and more shuffling around. DELETE YOUR CONFIG FILE
+2c8d00c Add a second item for blank location card. FIXES #27
+6f855f5 Update to forge .828
+4490545 Update releaseInstructions.txt
+87a084d Fixes #43 That was too simple. God dang it I just jinked myself.
+487d6f1 Made the QEI front texture different from QEE's
+9457eb4 fixed #48 TEXTURES!
+0ea433d Debug printlns not needed now
+a8845fd Update README.md
+e8c2175 Update README.md
+173511e power in damage is now 1-1001 now 0-1000
+dc70518 EExtractor now moves the item to output slot after processing.
+4cc4985 Other tools done
+3dcd429 Make the sword actually a sword
+7eb4dcd add QEE texture + some gui tweaking
+7e4af4e add Energy Extractor (needs a new gui)
+2eddf35 See ya
+c7d3db2 Add Quantum Sword, change the way the injector works + NBT Source List saving
+1c8e4c0 Add fibrewire textures, still have to do the rendering
+c08e14c Some formatting
+b9f2996 We don't need that, and let's hope this ignores stuff.
+f2cb8f0 ehh, it's still not functional
+a54b632 I'd reccomend you NOT place the electrifier
+89c80c6 Hardness stuff
+72156c6 Efficency or however it's spelled
+cbce7f6 No longer have to change version numbers in other places. @VERSION@ To the rescue!
+906e41c Will it work?
+478ac54 Update build scripts
+ccebd47 Update build script
+db1dd6f Work on the Electrifier. DOES NOT FUNCTION CURRENTLY!
+de92785 Quick thank you
+e90931d Add in a tile and packet and block. Checking in before setting up BC stuff to prevent loss of code.
+5ad4629 Update release instructions
+edd926c Finish 0.4.1 I named prev version wrong. It should have been 0.4.0 NOT 0.4 complicated build script stuff involved.
+676f88d update triggers
+0bf6b37 Finish sword fixes #50 fixes #61
+c40e82a have fun with 5 uses….
+66fb2b6 Finish quantum shovel
+020e9d5 finish pick
+b568898 finish axe
+6874090 simple empty method and new setdamage
+a02cda2 set to max energy so that we don't have to do weird conversion
+ae1256d make it render the damage when done
+c430552 that was pointless
+0244e5c clean up
+df5ae01 Keep item from breaking when out of power
+2d7bc23 Add interface to help force methods to be created. (I forgetz a lotz)
+65214cf Support tools
+a569ae2 unneeded update packets
+deb8e7c Slight refactor of Block_____, moving the activated part to BlockMachine adding small upgrade system (upgrade items), when you rclick the injector it puts the upgrade into a special part of the GUI (NOT A SLOT), only way to take it out is breaking the machine ATM. injector only has 1 upgrade slot (redoing the GUIs will include more upgrade slots) more upgradable machines will be available soon.
+b61add6 Add the portable capactitor. damage values HATE ME. the energy value is stored in NBT but it doesnt show the damage bar.....
+044f551 made a tools package + removing tools from the Loader because they are broken. POSTPOPING TOOLS
+a59e6cb Fix the crafting and more shuffling around. DELETE YOUR CONFIG FILE
+2c8d00c Add a second item for blank location card. FIXES #27
+6f855f5 Update to forge .828
+4490545 Update releaseInstructions.txt
+87a084d Fixes #43 That was too simple. God dang it I just jinked myself.
+487d6f1 Made the QEI front texture different from QEE's
+9457eb4 fixed #48 TEXTURES!
+0ea433d Debug printlns not needed now
+a8845fd Update README.md
+e8c2175 Update README.md
+173511e power in damage is now 1-1001 now 0-1000
+dc70518 EExtractor now moves the item to output slot after processing.
+4cc4985 Other tools done
+3dcd429 Make the sword actually a sword
+7eb4dcd add QEE texture + some gui tweaking
+7e4af4e add Energy Extractor (needs a new gui)
+2eddf35 See ya
+c7d3db2 Add Quantum Sword, change the way the injector works + NBT Source List saving
+1c8e4c0 Add fibrewire textures, still have to do the rendering
+c08e14c Some formatting
+b9f2996 We don't need that, and let's hope this ignores stuff.
+f2cb8f0 ehh, it's still not functional
+a54b632 I'd reccomend you NOT place the electrifier
+89c80c6 Hardness stuff
+72156c6 Efficency or however it's spelled
+cbce7f6 No longer have to change version numbers in other places. @VERSION@ To the rescue!
+906e41c Will it work?
+478ac54 Update build scripts
+ccebd47 Update build script
+db1dd6f Work on the Electrifier. DOES NOT FUNCTION CURRENTLY!
+de92785 Quick thank you
+e90931d Add in a tile and packet and block. Checking in before setting up BC stuff to prevent loss of code.
+5ad4629 Update release instructions
+edd926c Finish 0.4.1 I named prev version wrong. It should have been 0.4.0 NOT 0.4 complicated build script stuff involved.

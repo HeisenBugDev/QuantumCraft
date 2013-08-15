@@ -1,6 +1,6 @@
 How to release a new version of QuantumCraft!
 
-Step one, be hunterboerner. Please, nobody else do this.
+Step one, be hunterboerner. Please, nobody else do this. Srsly, even he breaks stuff.
 
 Version should be x.x.x NEVER EVER x.x
 EX: 0.4.0 NOT 0.4, Build script will get funky
