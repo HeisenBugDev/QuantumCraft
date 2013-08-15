@@ -17,7 +17,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.ARBTextureSwizzle;
+import org.lwjgl.opengl.GL14;
+import org.lwjgl.opengl.GL30;
 
 public abstract class GuiBase extends GuiContainer {
 	private boolean onBackground;
@@ -35,7 +36,9 @@ public abstract class GuiBase extends GuiContainer {
 		public void onHover(int x, int y);
 		public void onLeave();
 	}
-	
+
+
+
 	private static class HandlerWrapper<H>{
 		public final H handler;
 		public final int minX, minY, maxX, maxY;
@@ -74,9 +77,14 @@ public abstract class GuiBase extends GuiContainer {
 			return buff.toString();
 		}
 	}
-	
+
+    int targetX;
+    int targetY;
+
 	protected GuiBase(Container container, int x, int y) {
 		super(container);
+        xSize = 20;
+        ySize = 20;
 		xSize = x + 18;
 		ySize = y + 18;
 	}
@@ -129,39 +137,59 @@ public abstract class GuiBase extends GuiContainer {
 			onKeyTyped(key, code);
 		}
 	}
-	
+
+    int rcycle = 8;
+
 	protected void onKeyTyped(char key, int code){}
-	
 	@Override
 	protected final void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		onBackground = true;
-        GL11.glPopMatrix();
-        //SWIZZLE WHITE LINE TO ALPHA
+        /*
+        if (xSize <= (targetX - rcycle)) {
+            xSize += rcycle;
+        } else if (xSize > (targetX - rcycle)) {
+            xSize = targetX;
+        }
+        if (ySize <= (targetY - rcycle)) {
+            ySize += rcycle;
+        } else if (ySize > (targetY - rcycle)) {
+            ySize = targetY;
+        }
+        this.guiLeft = (this.width - this.xSize) / 2;
+        this.guiTop = (this.height - this.ySize) / 2;  */
+
+
+        GL11.glEnable(GL11.GL_BLEND);
+
         bindImage(GuiTextures.GUI_WHTL);
-        int swizzleMask[] = {GL11.GL_ZERO, GL11.GL_ZERO, GL11.GL_ZERO, GL11.GL_RED};
-        ByteBuffer bytes = ByteBuffer.allocateDirect(64) ;
-        IntBuffer ints = bytes.asIntBuffer();
-        ints.put(swizzleMask);
-        GL11.glTexParameter(GL11.GL_TEXTURE_2D, ARBTextureSwizzle.GL_TEXTURE_SWIZZLE_RGBA, ints);
-        //RENDER WHITE LINE IN ALPHA
+        isNativeRender = true;
+        //draw layer N
+        GL11.glEnable(GL11.GL_STENCIL_TEST);
+        GL11.glStencilFunc(GL11.GL_ALWAYS, 1, -1);
+        GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_REPLACE);
         draw9cut();
+        isNativeRender = false;
         bindImage(GuiTextures.GUI_RGYB);
-        GL11.glBlendFunc(GL11.GL_ADD, GL11.GL_ADD);
-        drawQuad(0,0,0,1,0,1,1,1);
+
+
+        //GL11.glTranslatef(+xSize/2, +ySize/2, 0);
+        //GL11.glRotatef(90, 0.0F, 0.0F, 1.0F);
+        GL11.glStencilFunc(GL11.GL_EQUAL, 1, -1);
+        GL11.glStencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_KEEP);
+        drawQuad(0-9,0-9,0,1,0,1,xSize,ySize);
+        GL11.glDisable(GL11.GL_STENCIL_TEST);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
+
+        drawBackground();
+
+        //RENDER TOP LAYER
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		if(bgImage != null){
-			bindImage(bgImage);
-			int x = xSize - 18;
-			int y = ySize - 18;
-			drawLocalQuad(0, 0, 0, x, 0, y, x, y);
-		}
 		bindImage(GuiTextures.GUI_BASE);
 		isNativeRender = true;
         draw9cut();
 		isNativeRender = false;
-		drawBackground();
 		onBackground = false;
-        GL11.glPushMatrix();
 	}
 
     protected final void draw9cut() {
@@ -198,7 +226,7 @@ public abstract class GuiBase extends GuiContainer {
 			x += guiLeft;
 			y += guiTop;
 		}
-		GL11.glDisable(GL11.GL_LIGHTING);
+		//GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 		
 		GL11.glTexCoord3f(xMin, yMin, zLevel); // xy
@@ -214,7 +242,7 @@ public abstract class GuiBase extends GuiContainer {
 		GL11.glVertex2f(x+xStep, y+yStep);
 		
 		GL11.glEnd();
-		GL11.glEnable(GL11.GL_LIGHTING);
+		//GL11.glEnable(GL11.GL_LIGHTING);
 	}
 	
 	protected void bindImage(ResourceLocation rl){

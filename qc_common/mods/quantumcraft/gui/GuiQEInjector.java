@@ -11,6 +11,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import org.lwjgl.opengl.GL11;
 
 public class GuiQEInjector  extends GuiBase {
 
@@ -29,6 +30,28 @@ public class GuiQEInjector  extends GuiBase {
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
     }
+
+
+    protected void drawBackground(){
+        bindImage(GuiTextures.GUI_TPBG);
+        drawQuad(0,0,0,1,0,1,200,31);
+        bindImage(GuiTextures.GUI_COLS);
+        GL11.glColor3f(1F,1F,0);
+        drawQuad(0,0,0,1,0,1,200,31);
+        bindImage(GuiTextures.GUI_BTBG);
+        GL11.glColor3f(1F, 1F, 1F);
+        drawQuad(0,31,0,1,0,1,200,139);
+        bindImage(GuiTextures.GUI_INVBG);
+        drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
+        bindImage(GuiTextures.GUI_ARMBG);
+        drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
+    }
+
+    protected void drawForeground(){
+        bindImage(GuiTextures.GUI_BTN_CLOSE);
+        drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
+    }
+
       /*
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         String s = this.tile.getInvName();
@@ -63,6 +86,6 @@ public class GuiQEInjector  extends GuiBase {
         }
 
 
-    }
-       */
+    }   */
+
 }
