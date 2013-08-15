@@ -18,6 +18,7 @@ public abstract class TileMachineBase extends TileEntity implements
         _forwardDirection = ForgeDirection.NORTH;
     }
 
+    public abstract int guiID();
     public abstract void onBlockBreak();
 
     @Override

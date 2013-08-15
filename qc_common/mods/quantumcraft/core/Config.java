@@ -23,6 +23,16 @@ public class Config {
     public static String NameItemResearchBook = "researchBook";
     public static String NameItemMultiTool = "multiTool";
 
+    public static String NameItemPortableQCapacitor = "portQCapacitor";
+
+    public static String NameItemUpgrade_ = "upgradeNONE";
+    public static String[] NameItemUpgrade = { "upgradeTemplate", "upgradeOverclock" };
+
+    public static String NameItemQSword = "quantumSword";
+    public static String NameItemQAxe = "quantumAxe";
+    public static String NameItemQPick = "quantumPick";
+    public static String NameItemQShovel = "quantumShovel";
+
     public static String NameItemLocationCard = "locationCard";
     public static String NameItemLocationCardBlank = "locationCardBlank";
 
@@ -33,6 +43,8 @@ public class Config {
     public static String NameBlockQDS = "machineQDS";
     public static String NameBlockQES = "machineQES";
     public static String NameBlockQDM = "machineQDM";
+    public static String NameBlockQElectrifier = "machineQElectrifier";
+    public static String NameBlockQEE = "machineQEE";
 
     public static String NameBlockQFiberWire = "blockFiberWire";
 
@@ -56,6 +68,15 @@ public class Config {
     public static int ItemResearchBookID;
     public static int ItemMultiToolID;
     public static int ItemLocationCardID;
+    public static int ItemLocationdCardBlankID;
+    public static int ItemPortQCapacitorID;
+
+    public static int ItemUpgradeID;
+
+    public static int ItemQSwordID;
+    public static int ItemQAxeID;
+    public static int ItemQPickID;
+    public static int ItemQShovelID;
 
     public static int ItemRPlaceHolderID;
 
@@ -66,6 +87,8 @@ public class Config {
     public static int BlockQEIID;
     public static int BlockQDSID;
     public static int BlockQESID;
+    public static int BlockQElectrifierID;
+    public static int BlockQEEID;
 
     public static int BlockFiberWireID;
 
@@ -105,7 +128,16 @@ public class Config {
         ItemDepletedCrystalID = config.get("Items", "ItemDepletedCrystal", 5002).getInt();
         ItemResearchBookID = config.get("Items", "ItemResearchBookID", 5003).getInt();
         ItemMultiToolID = config.get("Items", "ItemMultiTool", 5004).getInt();
-        ItemLocationCardID = config.get("Items", "ItemLocationCard", 5005).getInt();
+        ItemLocationdCardBlankID = config.get("Items", "ItemLocationCardBlank", 5005).getInt();
+        ItemLocationCardID = config.get("Items", "ItemLocationCard", 5006).getInt();
+
+        ItemPortQCapacitorID = config.get("Items", "ItemPortableQuantumCapacitor", 5007).getInt();
+        ItemUpgradeID = config.get("Items", "ItemUpgrade", 5008).getInt();
+
+        ItemQSwordID = config.get("Items", "ItemQuantumSword", 5020).getInt();
+        ItemQAxeID = config.get("Items", "ItemQuantumAxe", 5021).getInt();
+        ItemQPickID = config.get("Items", "ItemQuantumPick", 5022).getInt();
+        ItemQShovelID = config.get("Items", "ItemQuantumShovel", 5023).getInt();
 
         ItemRPlaceHolderID = config.get("Items", "ItemRPlaceHolder", 4995).getInt();
 
@@ -116,6 +148,8 @@ public class Config {
         BlockQDSID = config.get("Blocks", "BlockQDislocator", 3602).getInt();
         BlockQESID = config.get("Blocks", "BlockQESucker", 3603).getInt();
         BlockQDMID = config.get("Blocks", "BlockQDematerializer", 3606).getInt();
+        BlockQElectrifierID = config.get("Blocks","BlockQElectrifier",3607).getInt();
+        BlockQEEID = config.get("Blocks", "BlockQEExtractor", 3608).getInt();
 
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
 

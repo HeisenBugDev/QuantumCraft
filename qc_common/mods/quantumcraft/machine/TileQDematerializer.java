@@ -181,6 +181,11 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     }
 
     @Override
+    public int guiID() {
+        return 4;
+    }
+
+    @Override
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }

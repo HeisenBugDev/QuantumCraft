@@ -1,11 +1,13 @@
 package mods.quantumcraft.machine;
 
+import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.interfaces.IQEnergizable;
+import mods.quantumcraft.core.interfaces.IUpgradable;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
 import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
-import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
+import mods.quantumcraft.util.BasicUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -14,12 +16,14 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
 public class TileQEInjector extends TileEnergySink implements
-        ISidedInventory{
+        ISidedInventory, IUpgradable {
 
     public int currentival = 0;
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
+    private int energyBuffer;
+    public int upgradeID;
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
@@ -37,6 +41,7 @@ public class TileQEInjector extends TileEnergySink implements
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
         return i != 0;
     }
+
     @Override
     public int getSizeInventory() {
         return 2;
@@ -94,10 +99,11 @@ public class TileQEInjector extends TileEnergySink implements
 
     }
 
-    public void process()
-    {
+    public void process() {
         inventory[1] = inventory[0].copy();
-        decrStackSize(0,1);
+        decrStackSize(0, 1);
+        inventory[1].getItem().setDamage(inventory[1],1);
+        this.currentival = 0;
     }
 
     @Override
@@ -138,47 +144,55 @@ public class TileQEInjector extends TileEnergySink implements
         return true;
     }
 
+    @Override
+    public int guiID() {
+        return 2;
+    }
 
     @Override
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
+        if (upgradeID > 0) BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
+                new ItemStack(Loader.ItemUpgrade, 1, upgradeID)); //DROP DA UPGRADE
     }
 
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
-        if (inventory[0] != null) {
+        if (inventory[0] == null && currentival != 0) { currentival = 0; }
+        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
+            this.addEnergy(this.requestPacket(10));
+        }
+        if (inventory[0] != null && inventory[1] == null) {
             if (inventory[0].getItem() instanceof IQEnergizable) {
                 IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
-                int cycle = 5;
-                this.maxival = e.getMaxQEnergyValue();
-                this.currentival = e.getCurrentQEnergyBuffer();
-                if (e.getCurrentQEnergyBuffer() <= (e.getMaxQEnergyValue()-cycle)) {
+                int cycle = 5 + (upgradeID == 1 ? 5 : 0);
+                if (e.getCurrentQEnergyBuffer(inventory[0]) <= (e.getMaxQEnergyValue(inventory[0]) - cycle)) {
                     if (this.getCurrentEnergy() < cycle) {
                         cycle = this.getCurrentEnergy();
                     }
                     if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                        e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) + cycle);
                     }
                 } else {
-                    cycle = e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer();
+                    cycle = e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]);
                     if (this.getCurrentEnergy() < cycle) {
                         cycle = this.getCurrentEnergy();
                     }
                     if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(e.getCurrentQEnergyBuffer()+cycle);
+                        e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) + cycle);
                     }
                 }
                 this.subtractEnergy(cycle);
-                this.addEnergy(this.requestPacket(this.getMaxEnergy() - this.getCurrentEnergy()));
-                if (e.getCurrentQEnergyBuffer() == e.getMaxQEnergyValue()) {
+
+                this.maxival = e.getMaxQEnergyValue(inventory[0]);
+                this.currentival = e.getCurrentQEnergyBuffer(inventory[0]);
+                if (e.getCurrentQEnergyBuffer(inventory[0]) == e.getMaxQEnergyValue(inventory[0])) {
                     process();
                 }
             }
         }
     }
-
-    private int energyBuffer;
 
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
@@ -240,7 +254,7 @@ public class TileQEInjector extends TileEnergySink implements
 
     @Override
     public int getMaxEnergy() {
-        return 5000;
+        return 100; //this is supposed to be a very small buffer
     }
 
     @Override
@@ -250,9 +264,17 @@ public class TileQEInjector extends TileEnergySink implements
 
     @Override
     public int subtractEnergy(int req) {
-        energyBuffer -=req;
-        if (energyBuffer <0) energyBuffer = 0;
+        energyBuffer -= req;
+        if (energyBuffer < 0) energyBuffer = 0;
         if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
         return energyBuffer;
+    }
+
+    @Override
+    public boolean eatUpgrade(int id) {
+        if (this.upgradeID == 0 && id >0) {
+            this.upgradeID = id;
+            return true;
+        } else return false;
     }
 }

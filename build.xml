@@ -5,6 +5,7 @@
     <dirname property="imported.basedir" file="${ant.file.QuantumCraft}"/>
     <property name="build.dir" value="build"/>
     <property name="src.dir" value="${imported.basedir}"/>
+
     <property name="lang.dir" value="../buildcraft.localization"/>
     <property name="resources.dir" value="${imported.basedir}/resources"/>
 
@@ -16,10 +17,15 @@
     <property name="forge.dir" value="${build.dir}/forge"/>
     <property name="mcp.dir" value="${forge.dir}/mcp"/>
 
+    <property name="buildcraft.name" value="BuildCraft-mc16"/>
+    <property name="buildcraft.src" value="${buildcraft.name}.zip"/>
+    <property name="buildcraft.src.url"
+              value="https://dl.dropboxusercontent.com/u/5444078/QuantumCraft/apis/${buildcraft.src}"/>
+    <property name="buildcraft.dir" value="${mcp.dir}/unpack/buildcraft/${buildcraft.name}"/>
     <property name="mcpsrc.dir" value="${mcp.dir}/src"/>
-
+    <property name="commonsrc.dir" value="${mcpsrc.dir}/minecraft"/>
     <property name="mc.version" value="1.6.2"/>
-    <property name="forge.version" value="9.10.0.803"/>
+    <property name="forge.version" value="9.10.0.828"/>
     <!--	<property name="project.version" value="0.0.0"/>-->
 
     <property name="quantumcraft.name" value="quantumcraft"/>
@@ -28,6 +34,7 @@
 
     <available property="forge-exists" file="${download.dir}/${forge.name}"/>
     <available file="${src.dir}/.git" type="dir" property="git.present"/>
+    <available property="bc-exists" file="${download.dir}/${buildcraft.src}"/>
 
     <condition property="out-of-date">
         <not>
@@ -36,6 +43,15 @@
                 <available file="${mcpsrc.dir}"/>
             </and>
         </not>
+    </condition>
+
+    <condition property="api-out-of-date">
+        <not>
+
+            <isset property="bc-exists"/>
+
+        </not>
+
     </condition>
 
     <mkdir dir="${download.dir}"/>
@@ -65,7 +81,8 @@
     <available file="${src.dir}/.git" type="dir" property="git.present"/>
 
     <target name="git.revision">
-        <exec executable="git" dir="${src.dir}" outputproperty="git.revision" failifexecutionfails="false" errorproperty="">
+        <exec executable="git" dir="${src.dir}" outputproperty="git.revision" failifexecutionfails="false"
+              errorproperty="">
             <arg value="describe"/>
 
 
@@ -104,6 +121,11 @@
         <get src="http://files.minecraftforge.net/${forge.name}" dest="${download.dir}" usetimestamp="True"/>
     </target>
 
+    <!-- setup APIs -->
+    <target name="download-apis" if="api-out-of-date">
+        <get src="${buildcraft.src.url}" dest="${download.dir}" usetimestamp="True"/>
+    </target>
+
     <!-- Setup mcp and forge -->
     <target name="setup" depends="download-files" if="out-of-date">
 
@@ -123,6 +145,7 @@
             <arg value="install.sh"/>
         </exec>
 
+
     </target>
 
     <target name="clean-src">
@@ -141,9 +164,25 @@
                 <filter token="BUILD_NUMBER" value="${build.number}"/>
             </filterset>
         </copy>
+        <unzip dest="${buildcraft.dir}" failOnEmptyArchive="true">
+            <fileset dir="${download.dir}">
+                <include name="${buildcraft.src}"/>
+            </fileset>
+        </unzip>
+        <copy todir="${commonsrc.dir}">
+            <fileset dir="${buildcraft.dir}/common">
+                <exclude name="**/buildcraft/devel"/>
+            </fileset>
+        </copy>
+        <copy todir="${commonsrc.dir}">
+            <fileset dir="${buildcraft.dir}/buildcraft_resources">
+            </fileset>
+        </copy>
+
+        <echo message="Copied BC files"/>
     </target>
 
-    <target name="compile" depends="initialize-version,setup,copy-src">
+    <target name="compile" depends="initialize-version,setup,download-apis,copy-src">
 
         <mkdir dir="${classes.dir}"/>
         <delete includeemptydirs="true">
@@ -181,7 +220,9 @@
 
         <!-- Copy classes -->
         <copy todir="${classes.dir}">
-            <fileset dir="${mcp.dir}/reobf/minecraft"/>
+            <fileset dir="${mcp.dir}/reobf/minecraft">
+                <exclude name="buildcraft/"/>
+            </fileset>
         </copy>
 
         <!-- Copy resources -->

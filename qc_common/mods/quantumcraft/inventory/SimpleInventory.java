@@ -8,7 +8,7 @@
 
 package mods.quantumcraft.inventory;
 
-import mods.quantumcraft.core.BasicUtils;
+import mods.quantumcraft.util.BasicUtils;
 import mods.quantumcraft.core.interfaces.ISimpleInventoryListener;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

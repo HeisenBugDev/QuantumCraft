@@ -33,7 +33,7 @@ public class RenderOre extends BaseBlockRenderer {
         r.renderStandardBlock(block, x, y, z);
         r.overrideBlockTexture = null;
         Tessellator t = Tessellator.instance;
-        t.setBrightness(220);
+        t.setBrightness(0xFF);
         t.setColorOpaque_I(0xFFFFFF);
         r.renderFaceXPos(block, x, y, z, ore);
         r.renderFaceXNeg(block, x, y, z, ore);

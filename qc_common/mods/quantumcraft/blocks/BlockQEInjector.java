@@ -2,8 +2,8 @@ package mods.quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.quantumcraft.blocks.abstractblocks.BlockMachine;
-import mods.quantumcraft.core.BasicUtils;
+import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
+import mods.quantumcraft.util.BasicUtils;
 import mods.quantumcraft.core.QuantumCraft;
 import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import mods.quantumcraft.machine.TileQEInjector;
@@ -19,7 +19,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class BlockQEInjector extends BlockMachine {
+public class BlockQEInjector extends BlockEnergySink {
 
     private Icon iconFront;
     private Icon iconSide;
@@ -95,32 +95,5 @@ public class BlockQEInjector extends BlockMachine {
             return getIconFromSide(side, true);
         }
 
-    }
-
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
-                                    float xOffset, float yOffset, float zOffset) {
-        PlayerInteractEvent e =
-                new PlayerInteractEvent(entityplayer, PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK, x, y, z, side);
-        if (MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Event.Result.DENY || e.useBlock == Event.Result.DENY) {
-            return false;
-        }
-        TileEntity te = world.getBlockTileEntity(x, y, z);
-        if (te == null) {
-            return false;
-        }
-        if (BasicUtils.isHoldingWrench(entityplayer) && te instanceof TileMachineBase &&
-                ((TileMachineBase) te).canRotate()) {
-            ((TileMachineBase) te).rotate();
-            world.markBlockForUpdate(x, y, z);
-            return true;
-        } else if (te instanceof TileMachineBase) {
-            if (!world.isRemote) {
-                entityplayer.openGui(QuantumCraft.instance, 2, world, x, y, z);
-            }
-            return true;
-        }
-
-        return false;
     }
 }

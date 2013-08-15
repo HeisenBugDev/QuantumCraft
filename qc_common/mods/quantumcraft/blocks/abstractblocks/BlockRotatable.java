@@ -4,6 +4,7 @@ import mods.quantumcraft.machine.TileQDeenergizer;
 import mods.quantumcraft.machine.TileQDematerializer;
 import mods.quantumcraft.machine.TileQDislocator;
 import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -34,63 +35,20 @@ public abstract class BlockRotatable extends BlockContainer {
             te.readFromNBT(stack.getTagCompound());
         }
 
-        if (te instanceof TileQDeenergizer
-                && ((TileQDeenergizer) te).canRotate()) {
+        if (te instanceof TileMachineBase
+                && ((TileMachineBase) te).canRotate()) {
             int facing = MathHelper
                     .floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
             if (facing == 0) {
-                ((TileQDeenergizer) te).rotateDirectlyTo(3);
+                ((TileMachineBase) te).rotateDirectlyTo(3);
             } else if (facing == 1) {
-                ((TileQDeenergizer) te).rotateDirectlyTo(4);
+                ((TileMachineBase) te).rotateDirectlyTo(4);
             } else if (facing == 2) {
-                ((TileQDeenergizer) te).rotateDirectlyTo(2);
+                ((TileMachineBase) te).rotateDirectlyTo(2);
             } else if (facing == 3) {
-                ((TileQDeenergizer) te).rotateDirectlyTo(5);
+                ((TileMachineBase) te).rotateDirectlyTo(5);
             }
         }
-
-        if (te instanceof TileQEInjector
-                && ((TileQEInjector) te).canRotate()) {
-            int facing = MathHelper
-                    .floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
-            if (facing == 0) {
-                ((TileQEInjector) te).rotateDirectlyTo(3);
-            } else if (facing == 1) {
-                ((TileQEInjector) te).rotateDirectlyTo(4);
-            } else if (facing == 2) {
-                ((TileQEInjector) te).rotateDirectlyTo(2);
-            } else if (facing == 3) {
-                ((TileQEInjector) te).rotateDirectlyTo(5);
             }
-        }
-        if (te instanceof TileQDematerializer
-                && ((TileQDematerializer) te).canRotate()) {
-            int facing = MathHelper
-                    .floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
-            if (facing == 0) {
-                ((TileQDematerializer) te).rotateDirectlyTo(3);
-            } else if (facing == 1) {
-                ((TileQDematerializer) te).rotateDirectlyTo(4);
-            } else if (facing == 2) {
-                ((TileQDematerializer) te).rotateDirectlyTo(2);
-            } else if (facing == 3) {
-                ((TileQDematerializer) te).rotateDirectlyTo(5);
-            }
-        }
-        if (te instanceof TileQDislocator
-                && ((TileQDislocator) te).canRotate()) {
-            int facing = MathHelper
-                    .floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
-            if (facing == 0) {
-                ((TileQDislocator) te).rotateDirectlyTo(3);
-            } else if (facing == 1) {
-                ((TileQDislocator) te).rotateDirectlyTo(4);
-            } else if (facing == 2) {
-                ((TileQDislocator) te).rotateDirectlyTo(2);
-            } else if (facing == 3) {
-                ((TileQDislocator) te).rotateDirectlyTo(5);
-            }
-        }
-    }
 
 }

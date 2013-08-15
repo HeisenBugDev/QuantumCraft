@@ -1,6 +1,7 @@
 # QuantumCraft
 
 Yet another minecraft tech mod that ends with -craft.
+IRC: irc.esper.net #QuantumCraft :)
 
 ## Intro
 Visit the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-quantumcraft-wip/)
@@ -34,6 +35,7 @@ If you would like to contact us directly for some reason (I dunno why), you can 
 
 We took some of our code from MineFactory Reloaded if you are wondering why things look similar. The reason? He is a much better programmer and makes a good outline and base classes for stuff. Yeah, I have no clue what I am saying, let's hope his liscense allows this.
 We also got some code from MrTJP who makes [Project: Red](https://github.com/MrTJP/ProjectRed)
+We looked at TEX code for examples.
 
 
 ## Version explanation (no 11vB39Lq versions)
@@ -45,6 +47,9 @@ We will also be setting up some documentation soon with a todo list on what we a
 ## Helping out with the coding
 
 If you would like to help out with coding, you can fork the branch and do some coding and the whole git routine. We are using git flow for our branching model. I may put some more stuff here eventually.
+Buildcraft API is required.
+
+CURRENTLY USING FORGE 9.10.0.828! (http://adf.ly/673885/http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.2-9.10.0.828.zip)
 
 _PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF_
 

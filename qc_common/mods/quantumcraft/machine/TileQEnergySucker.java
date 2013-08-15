@@ -24,6 +24,11 @@ public class TileQEnergySucker extends TileEnergySink {
     }
 
     @Override
+    public int guiID() {
+        return -1;
+    }
+
+    @Override
     public void onBlockBreak() {
 
     }

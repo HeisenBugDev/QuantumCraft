@@ -3,8 +3,7 @@ package mods.quantumcraft.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
-import mods.quantumcraft.core.BasicUtils;
-import mods.quantumcraft.core.QuantumCraft;
+import mods.quantumcraft.util.BasicUtils;
 import mods.quantumcraft.machine.TileQEnergySucker;
 import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import net.minecraft.block.Block;
@@ -96,33 +95,4 @@ public class BlockQEnergySucker extends BlockEnergySink {
         }
 
     }
-
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
-                                    float xOffset, float yOffset, float zOffset) {
-        PlayerInteractEvent e =
-                new PlayerInteractEvent(entityplayer, PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK, x, y, z, side);
-        if (MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Event.Result.DENY || e.useBlock == Event.Result.DENY) {
-            return false;
-        }
-        TileEntity te = world.getBlockTileEntity(x, y, z);
-        if (te == null) {
-            return false;
-        }
-        if (BasicUtils.isHoldingWrench(entityplayer) && te instanceof TileMachineBase &&
-                ((TileMachineBase) te).canRotate()) {
-            ((TileMachineBase) te).rotate();
-            world.markBlockForUpdate(x, y, z);
-            return true;
-        } else if (te instanceof TileMachineBase) {
-            if (!world.isRemote) {
-                //entityplayer.openGui(QuantumCraft.instance, 1, world, x, y, z);
-                //THIS MACHINE DOESNT (AND WONT) HAVE A GUI
-            }
-            return true;
-        }
-
-        return false;
-    }
-
 }
