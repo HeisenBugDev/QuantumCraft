@@ -3,21 +3,14 @@ package mods.quantumcraft.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.quantumcraft.blocks.abstractblocks.BlockEnergySource;
-import mods.quantumcraft.util.BasicUtils;
-import mods.quantumcraft.core.QuantumCraft;
 import mods.quantumcraft.machine.TileQDeenergizer;
-import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class BlockQDeenergizer extends BlockEnergySource {
 

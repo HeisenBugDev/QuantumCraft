@@ -272,7 +272,6 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public Packet getDescriptionPacket() {
-
         QDeenergizerInitPacket packet = PacketHandler.getPacket(QDeenergizerInitPacket.class);
         packet.posX = xCoord;
         packet.posY = yCoord;
