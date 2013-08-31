@@ -21,9 +21,9 @@ public class TileQEInjector extends TileEnergySink implements
     public int currentival = 0;
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
+    public int upgradeID;
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
     private int energyBuffer;
-    public int upgradeID;
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
@@ -102,7 +102,7 @@ public class TileQEInjector extends TileEnergySink implements
     public void process() {
         inventory[1] = inventory[0].copy();
         decrStackSize(0, 1);
-        inventory[1].getItem().setDamage(inventory[1],1);
+        inventory[1].getItem().setDamage(inventory[1], 1);
         this.currentival = 0;
     }
 
@@ -159,7 +159,9 @@ public class TileQEInjector extends TileEnergySink implements
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
-        if (inventory[0] == null && currentival != 0) { currentival = 0; }
+        if (inventory[0] == null && currentival != 0) {
+            currentival = 0;
+        }
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
             this.addEnergy(this.requestPacket(10));
         }
@@ -183,7 +185,8 @@ public class TileQEInjector extends TileEnergySink implements
                         e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) + cycle);
                     }
                 }
-                inventory[0].getItem().setDamage(inventory[0],e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]));
+                inventory[0].getItem().setDamage(inventory[0],
+                        e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]));
                 this.subtractEnergy(cycle);
 
                 this.maxival = e.getMaxQEnergyValue(inventory[0]);
@@ -192,6 +195,14 @@ public class TileQEInjector extends TileEnergySink implements
                     process();
                 }
             }
+        }
+        if (updateNextTick) {
+            // All nearby players need to be updated if the status of work
+            // changes, or if heat runs out / starts up, in order to change
+            // texture.
+            updateNextTick = false;
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
         }
     }
 
@@ -211,7 +222,7 @@ public class TileQEInjector extends TileEnergySink implements
                         .loadItemStackFromNBT(nbttagcompound1);
             }
         }
-
+        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
         this.currentival = par1NBTTagCompound.getInteger("currentival");
         this.maxival = par1NBTTagCompound.getInteger("maxival");
         updateNextTick = true;
@@ -223,6 +234,7 @@ public class TileQEInjector extends TileEnergySink implements
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
+        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
         par1NBTTagCompound.setInteger("currentival", this.currentival);
         par1NBTTagCompound.setInteger("maxival", this.maxival);
         NBTTagList nbttaglist = new NBTTagList();
@@ -273,7 +285,7 @@ public class TileQEInjector extends TileEnergySink implements
 
     @Override
     public boolean eatUpgrade(int id) {
-        if (this.upgradeID == 0 && id >0) {
+        if (this.upgradeID == 0 && id > 0) {
             this.upgradeID = id;
             return true;
         } else return false;
