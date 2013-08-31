@@ -183,6 +183,7 @@ public class TileQEInjector extends TileEnergySink implements
                         e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) + cycle);
                     }
                 }
+                inventory[0].getItem().setDamage(inventory[0],e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]));
                 this.subtractEnergy(cycle);
 
                 this.maxival = e.getMaxQEnergyValue(inventory[0]);

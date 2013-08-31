@@ -167,7 +167,7 @@ public class TileQEExtractor  extends TileEnergySource implements
                     cycle = e.getCurrentQEnergyBuffer(inventory[0]);
                 }
                 e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) - cycle);
-
+                inventory[0].getItem().setDamage(inventory[0],e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]));
                 this.addEnergy(cycle);
 
                 this.maxival = e.getMaxQEnergyValue(inventory[0]);
