@@ -4,15 +4,19 @@ import buildcraft.api.power.IPowerEmitter;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import buildcraft.api.transport.IPipeConnection;
-import buildcraft.core.TileBuffer;
+import buildcraft.api.transport.IPipeTile;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QElectrifierInitPacket;
 import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
+import mods.quantumcraft.util.BasicUtils;
+import mods.quantumcraft.util.BlockPosition;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,8 +25,6 @@ import net.minecraftforge.common.ForgeDirection;
  * Time: 8:59 AM
  */
 public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, IPipeConnection, IPowerReceptor {
-    public TileBuffer[] tileCache;
-    public boolean isRedstonePowered = false;
     public float currentOutput = 0;
     protected PowerHandler powerHandler;
     private int energyBuffer = 1000;
@@ -49,25 +51,31 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     public boolean isPoweredTile(TileEntity tile, ForgeDirection side) {
         if (tile instanceof IPowerReceptor) {
-            return ((IPowerReceptor) tile).getPowerReceiver(side.getOpposite()) != null;
+            return ((IPowerReceptor) tile).getPowerReceiver(side) != null;
         }
 
         return false;
     }
 
     private void sendPower() {
-        TileEntity tile = tileCache[getDirectionFacing().ordinal()].getTile();
-        if (isPoweredTile(tile, getDirectionFacing())) {
+        List<BlockPosition> adjBlocks = new BlockPosition(this.xCoord, this.yCoord, this.zCoord).getAdjacent(true);
 
-            PowerHandler.PowerReceiver receptor =
-                    ((IPowerReceptor) tile).getPowerReceiver(getDirectionFacing().getOpposite());
-            float extracted = getPowerToExtract();
-            if (extracted > 0) {
-                float needed =
-                        receptor.receiveEnergy(PowerHandler.Type.ENGINE, extracted, getDirectionFacing().getOpposite());
-                //extractEnergy(receptor.getMinEnergyReceived(), needed, true); // Comment out for constant power
-                currentOutput = extractEnergy(0, needed, true); // Uncomment for constant power
+        for (int iterator = 0; iterator < adjBlocks.size(); iterator++) {
+            TileEntity tile = adjBlocks.get(iterator).getTileEntity(worldObj);
+            BlockPosition bTile = adjBlocks.get(iterator);
 
+            if (isPoweredTile(tile, bTile.orientation.getOpposite())) {
+                PowerHandler.PowerReceiver receptor =
+                        ((IPowerReceptor) tile).getPowerReceiver(bTile.orientation.getOpposite());
+                float extracted = getPowerToExtract(tile);
+                if (extracted > 0) {
+                    float needed =
+                            receptor.receiveEnergy(PowerHandler.Type.ENGINE, extracted,
+                                    bTile.orientation.getOpposite());
+                    //extractEnergy(receptor.getMinEnergyReceived(), needed, true); // Comment out for constant power
+                    currentOutput = extractEnergy(0, needed, true); // Uncomment for constant power
+
+                }
             }
         }
     }
@@ -80,8 +88,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
         return energyBuffer;
     }
 
-    private float getPowerToExtract() {
-        TileEntity tile = tileCache[getDirectionFacing().ordinal()].getTile();
+    private float getPowerToExtract(TileEntity tile) {
         PowerHandler.PowerReceiver receptor =
                 ((IPowerReceptor) tile).getPowerReceiver(getDirectionFacing().getOpposite());
         //return extractEnergy(receptor.getMinEnergyReceived(), receptor.getMaxEnergyReceived(), false); // Comment out for constant power
@@ -136,7 +143,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
             initialize();
             init = true;
         }
-        if (isRedstonePowered) {
+        if (BasicUtils.isRedstonePowered(this)) {
             sendPower();
         } else currentOutput = 0;
 
@@ -144,9 +151,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     public void initialize() {
         if (!worldObj.isRemote) {
-            tileCache = TileBuffer.makeBuffer(worldObj, xCoord, yCoord, zCoord, true);
             powerHandler.configure(minEnergyReceived(), maxEnergyReceived(), 1, getMaxEnergy());
-            checkRedstonePower();
         }
     }
 
@@ -156,10 +161,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     public float maxEnergyReceived() {
         return 50;
-    }
-
-    public void checkRedstonePower() {
-        isRedstonePowered = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
     }
 
     @Override
@@ -199,11 +200,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     }
 
     @Override
-    public boolean isPipeConnected(ForgeDirection with) {
-        return true;
-    }
-
-    @Override
     public PowerHandler.PowerReceiver getPowerReceiver(ForgeDirection side) {
         return null;
     }
@@ -216,5 +212,10 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     @Override
     public World getWorld() {
         return null;
+    }
+
+    @Override
+    public ConnectOverride overridePipeConnection(IPipeTile.PipeType type, ForgeDirection with) {
+        return ConnectOverride.DEFAULT;
     }
 }

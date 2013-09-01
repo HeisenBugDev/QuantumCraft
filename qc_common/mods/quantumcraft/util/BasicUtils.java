@@ -1,14 +1,11 @@
 package mods.quantumcraft.util;
 
-import buildcraft.api.power.IPowerEmitter;
-import buildcraft.api.power.IPowerReceptor;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import mods.quantumcraft.core.Config;
 import mods.quantumcraft.core.Coords;
 import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.interfaces.IMultiTool;
-import mods.quantumcraft.items.ItemUpgrade;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -36,9 +33,25 @@ import java.util.Random;
 
 public class BasicUtils {
 
-
     public static Random rand = new Random();
 
+    public static boolean isRedstonePowered(World world, int x, int y, int z) {
+        if (world.isBlockIndirectlyGettingPowered(x, y, z)) {
+            return true;
+        }
+        for (BlockPosition bp : new BlockPosition(x, y, z).getAdjacent(false)) {
+            int blockId = world.getBlockId(bp.x, bp.y, bp.z);
+            if (blockId == Block.redstoneWire.blockID &&
+                    Block.blocksList[blockId].isProvidingStrongPower(world, bp.x, bp.y, bp.z, 1) > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isRedstonePowered(TileEntity te) {
+        return isRedstonePowered(te.worldObj, te.xCoord, te.yCoord, te.zCoord);
+    }
 
     public static boolean isServer(World world) {
         if (world != null) {
@@ -55,12 +68,15 @@ public class BasicUtils {
     }
 
     public static boolean isHoldingWrench(EntityPlayer player) {
-        return player.inventory.getCurrentItem() != null && Item.itemsList[player.inventory.getCurrentItem().itemID] instanceof IMultiTool;
+        return player.inventory.getCurrentItem() != null &&
+                Item.itemsList[player.inventory.getCurrentItem().itemID] instanceof IMultiTool;
     }
 
     public static boolean isHoldingUpgrade(EntityPlayer player) {
-        return player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().itemID == Loader.ItemUpgrade.itemID;
-}
+        return player.inventory.getCurrentItem() != null &&
+                player.inventory.getCurrentItem().itemID == Loader.ItemUpgrade.itemID;
+    }
+
     public static void sendPacketToServer(Packet packet) {
         PacketDispatcher.sendPacketToServer(packet);
     }
