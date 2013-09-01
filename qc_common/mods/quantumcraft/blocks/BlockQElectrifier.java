@@ -3,6 +3,7 @@ package mods.quantumcraft.blocks;
 import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import mods.quantumcraft.machine.TileQElectrifier;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -22,5 +23,10 @@ public class BlockQElectrifier extends BlockEnergySink {
     @Override
     public TileEntity createNewTileEntity(World world) {
         return new TileQElectrifier();
+    }
+
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
+
     }
 }
