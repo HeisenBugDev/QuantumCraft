@@ -7,17 +7,11 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-/**
- * Created with IntelliJ IDEA.
- * User: theron
- * Date: 7/26/13
- * Time: 8:57 AM
- */
 public class BlockQElectrifier extends BlockEnergySink {
     public BlockQElectrifier(int id) {
         super(id, Material.iron);
-        setHardness(10.0F);
-        setResistance(5.0F);
+        setHardness(10F);
+        setResistance(5F);
     }
 
     @Override
@@ -27,6 +21,12 @@ public class BlockQElectrifier extends BlockEnergySink {
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
-
+        iconFront = iconRegister.registerIcon("QuantumCraft:machineQEL_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machineQEL_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQEL_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQEL_side");
+        iconBottom = iconRegister.registerIcon("QuantumCraft:machineQEL_bottom");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineQEL_side");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machineQEL_back");
     }
 }
