@@ -10,9 +10,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import mods.quantumcraft.core.network.PacketHandler;
 
-@Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "@VERSION@",
-        dependencies = "required-after:BuildCraft|Core;" +
-                "required-after:BuildCraft|Silicon;")
+@Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "@VERSION@")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Config.modNetworkChannel},
         packetHandler = PacketHandler.class)
 public class QuantumCraft {
