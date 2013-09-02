@@ -1,7 +1,7 @@
 package mods.quantumcraft.gui;
 
 import mods.quantumcraft.inventory.ContainerQDeenergizer;
-import mods.quantumcraft.machine.TileQDeenergizer;
+import mods.quantumcraft.tile.TileQDeenergizer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;

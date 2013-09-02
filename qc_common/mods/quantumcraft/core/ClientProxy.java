@@ -2,7 +2,7 @@ package mods.quantumcraft.core;
 
 import mods.quantumcraft.gui.*;
 import mods.quantumcraft.inventory.*;
-import mods.quantumcraft.machine.*;
+import mods.quantumcraft.tile.*;
 import mods.quantumcraft.research.ResearchHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

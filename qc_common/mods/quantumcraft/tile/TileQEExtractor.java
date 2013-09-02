@@ -1,11 +1,10 @@
-package mods.quantumcraft.machine;
+package mods.quantumcraft.tile;
 
-import mods.quantumcraft.core.QDERecipe;
-import mods.quantumcraft.core.QRecipeHandler;
+import mods.quantumcraft.core.interfaces.IQEnergizable;
 import mods.quantumcraft.core.network.PacketHandler;
-import mods.quantumcraft.core.network.packets.QDeenergizerInitPacket;
+import mods.quantumcraft.core.network.packets.QEExtractorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
-import mods.quantumcraft.machine.abstractmachines.TileEnergySource;
+import mods.quantumcraft.tile.abstracttiles.TileEnergySource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -13,35 +12,40 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 
-public class TileQDeenergizer extends TileEnergySource implements
+public class TileQEExtractor extends TileEnergySource implements
         ISidedInventory {
 
-    public int QEnergyItemBuffer = 0;
-    public int lastItemValue = 0;
+    public int currentival = 0;
+    public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
-    public int energyBuffer;
-    int processTime = -1;
-    QDERecipe r;
-    private SimpleInventory _inv = new SimpleInventory(2, "qde", 64);
+    private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
+    private int energyBuffer;
+
+    @Override
+    public int[] getAccessibleSlotsFromSide(int var1) {
+        if (var1 == 0) {
+            return new int[]{1};
+        } else return new int[]{0};
+    }
+
+    @Override
+    public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+        return j != 0;
+    }
+
+    @Override
+    public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+        return i != 0;
+    }
 
     @Override
     public int getSizeInventory() {
-        return inventory.length;
+        return 2;
     }
 
     @Override
     public ItemStack getStackInSlot(int i) {
         return inventory[i];
-    }
-
-    @Override
-    public int guiID() {
-        return 1;
-    }
-
-    @Override
-    public void onBlockBreak() {
-        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
     @Override
@@ -65,79 +69,6 @@ public class TileQDeenergizer extends TileEnergySource implements
         } else {
             return null;
         }
-    }
-
-    private void process() {
-        // we need to put in the QEnergyOutput here
-        processTime = -1;
-        if (inventory[1] == null) {
-            inventory[1] = r.getOutputItem().copy();
-        } else {
-            inventory[1].stackSize++;
-        }
-        this.addEnergy(r.getEnergyValue());
-        this.decrStackSize(0, 1);
-        _inv.setInventorySlotContents(0, inventory[0]);
-        _inv.setInventorySlotContents(1, inventory[1]);
-    }
-
-    private boolean canProcess() {
-
-        r = QRecipeHandler.getQDERecipeFromInput(inventory[0]);
-        boolean flag = true;
-
-        if (r == null) return false;
-
-        if (inventory[0] == null)
-            flag = false;
-        if (inventory[0] != null) {
-            if (r == null)
-                flag = false;
-            if (inventory[1] != null) {
-                assert r != null;
-                if (inventory[1].itemID != r.getOutputItem().itemID)
-                    flag = false;
-            }
-        }
-        if (this.getMaxEnergy() - this.getCurrentEnergy() < r.getEnergyValue()) flag = false;
-        return flag;
-
-    }
-
-    @Override
-    public void updateEntity() {
-        if (this.canProcess()) {
-            this.lastItemValue = r.getEnergyValue();
-            this.QEnergyItemBuffer = this.lastItemValue;
-
-            if (processTime > 0) processTime--;
-
-            this.QEnergyItemBuffer =
-                    (int) (((float) processTime / (float) r.getProcessTime()) * (float) this.lastItemValue);
-            if (this.processTime == 0) process();
-
-            if (this.processTime == -1) processTime = r.getProcessTime();
-
-				/*
-                this.QEnergyBuffer = this.QEnergyBuffer
-						- (this.lastItemValue / r.getProcessTime());*/
-            //_inv.setInventorySlotContents(1, inslot);
-
-        } else {
-            processTime = -1;
-            QEnergyItemBuffer = 0;
-        }
-
-
-        if (updateNextTick) {
-            // All nearby players need to be updated if the status of work
-            // changes, or if heat runs out / starts up, in order to change
-            // texture.
-            updateNextTick = false;
-            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
-        }
-
     }
 
     @Override
@@ -164,26 +95,31 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     }
 
+    public void process() {
+        inventory[1] = inventory[0].copy();
+        decrStackSize(0, 1);
+        this.currentival = 0;
+    }
+
     @Override
     public String getInvName() {
-
-        return "Quantum De-Energizer";
+        return "Quantum Energy Extractor";
     }
 
     @Override
     public boolean isInvNameLocalized() {
-
         return false;
     }
 
     @Override
     public int getInventoryStackLimit() {
 
-        return 64;
+        return 1;
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+
         return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
                 this.zCoord) == this && entityplayer.getDistanceSq(
                 (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
@@ -204,24 +140,52 @@ public class TileQDeenergizer extends TileEnergySource implements
     }
 
     @Override
-    public int[] getAccessibleSlotsFromSide(int var1) {
-        if (var1 == 0) {
-            return new int[]{1};
-        } else return new int[]{0};
+    public int guiID() {
+        return 5;
     }
 
     @Override
-    public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        return j != 0;
+    public void onBlockBreak() {
+        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
+    //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
-    public boolean canExtractItem(int i, ItemStack itemstack, int j) {
-        return i != 0;
-    }
+    public void updateEntity() {
+        if (inventory[0] == null && currentival != 0) {
+            currentival = 0;
+        }
+        if (inventory[0] != null && inventory[1] == null) {
+            if (inventory[0].getItem() instanceof IQEnergizable) {
+                IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
+                int cycle = 5;
 
-    @Override
-    public void onInventoryChanged() {
+                if (!(this.getCurrentEnergy() + cycle <= this.getMaxEnergy())) {
+                    cycle = this.getMaxEnergy() - this.getCurrentEnergy();
+                }
+                if (e.getCurrentQEnergyBuffer(inventory[0]) < cycle) {
+                    cycle = e.getCurrentQEnergyBuffer(inventory[0]);
+                }
+                e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) - cycle);
+                inventory[0].getItem().setDamage(inventory[0],
+                        e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]));
+                this.addEnergy(cycle);
+
+                this.maxival = e.getMaxQEnergyValue(inventory[0]);
+                this.currentival = e.getCurrentQEnergyBuffer(inventory[0]);
+                if (e.getCurrentQEnergyBuffer(inventory[0]) == 0) {
+                    process();
+                }
+            }
+        }
+        if (updateNextTick) {
+            // All nearby players need to be updated if the status of work
+            // changes, or if heat runs out / starts up, in order to change
+            // texture.
+            updateNextTick = false;
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+        }
     }
 
     @Override
@@ -241,8 +205,8 @@ public class TileQDeenergizer extends TileEnergySource implements
             }
         }
         this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
-        this.QEnergyItemBuffer = par1NBTTagCompound.getInteger("QEnergyItemBuffer");
-        this.lastItemValue = par1NBTTagCompound.getInteger("LastItemValue");
+        this.currentival = par1NBTTagCompound.getInteger("currentival");
+        this.maxival = par1NBTTagCompound.getInteger("maxival");
         updateNextTick = true;
     }
 
@@ -253,8 +217,8 @@ public class TileQDeenergizer extends TileEnergySource implements
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
         par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
-        par1NBTTagCompound.setInteger("QEnergyItemBuffer", this.QEnergyItemBuffer);
-        par1NBTTagCompound.setInteger("LastItemValue", this.lastItemValue);
+        par1NBTTagCompound.setInteger("currentival", this.currentival);
+        par1NBTTagCompound.setInteger("maxival", this.maxival);
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.inventory.length; ++i) {
@@ -272,7 +236,7 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public Packet getDescriptionPacket() {
-        QDeenergizerInitPacket packet = PacketHandler.getPacket(QDeenergizerInitPacket.class);
+        QEExtractorInitPacket packet = PacketHandler.getPacket(QEExtractorInitPacket.class);
         packet.posX = xCoord;
         packet.posY = yCoord;
         packet.posZ = zCoord;
@@ -281,13 +245,11 @@ public class TileQDeenergizer extends TileEnergySource implements
         packet.tiledata = nbt;
 
         return packet.getPacket();
-
-
     }
 
     @Override
     public int getMaxEnergy() {
-        return 5000;
+        return 100; //this is supposed to be a very small buffer
     }
 
     @Override

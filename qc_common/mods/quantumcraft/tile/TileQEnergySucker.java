@@ -1,9 +1,8 @@
-package mods.quantumcraft.machine;
+package mods.quantumcraft.tile;
 
 import mods.quantumcraft.core.network.PacketHandler;
-import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.core.network.packets.QEnergySuckerInitPacket;
-import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
+import mods.quantumcraft.tile.abstracttiles.TileEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 

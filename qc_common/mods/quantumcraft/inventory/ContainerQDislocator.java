@@ -1,9 +1,7 @@
 package mods.quantumcraft.inventory;
 
 import mods.quantumcraft.core.Loader;
-import mods.quantumcraft.machine.TileQDeenergizer;
-import mods.quantumcraft.machine.TileQDislocator;
-import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.tile.TileQDislocator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

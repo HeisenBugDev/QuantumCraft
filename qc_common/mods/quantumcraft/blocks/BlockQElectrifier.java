@@ -1,7 +1,7 @@
 package mods.quantumcraft.blocks;
 
 import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
-import mods.quantumcraft.machine.TileQElectrifier;
+import mods.quantumcraft.tile.TileQElectrifier;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;

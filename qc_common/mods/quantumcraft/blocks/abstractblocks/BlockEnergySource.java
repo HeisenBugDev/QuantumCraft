@@ -1,7 +1,6 @@
 package mods.quantumcraft.blocks.abstractblocks;
 
-import mods.quantumcraft.machine.abstractmachines.TileEnergySource;
-import mods.quantumcraft.net.EnergySourceList;
+import mods.quantumcraft.tile.abstracttiles.TileEnergySource;
 import mods.quantumcraft.net.IQEnergySource;
 import mods.quantumcraft.net.Location;
 import mods.quantumcraft.net.QuantumEnergyNet;

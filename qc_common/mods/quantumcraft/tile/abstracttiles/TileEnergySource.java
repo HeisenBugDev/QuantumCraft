@@ -1,4 +1,4 @@
-package mods.quantumcraft.machine.abstractmachines;
+package mods.quantumcraft.tile.abstracttiles;
 
 import mods.quantumcraft.net.Location;
 

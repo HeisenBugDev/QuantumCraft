@@ -2,7 +2,7 @@ package mods.quantumcraft.core;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import mods.quantumcraft.inventory.*;
-import mods.quantumcraft.machine.*;
+import mods.quantumcraft.tile.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

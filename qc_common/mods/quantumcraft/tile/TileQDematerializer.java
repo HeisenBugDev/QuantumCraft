@@ -1,9 +1,9 @@
-package mods.quantumcraft.machine;
+package mods.quantumcraft.tile;
 
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QDematerializerInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
-import mods.quantumcraft.machine.abstractmachines.TileEnergySource;
+import mods.quantumcraft.tile.abstracttiles.TileEnergySource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

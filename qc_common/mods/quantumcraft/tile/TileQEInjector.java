@@ -1,4 +1,4 @@
-package mods.quantumcraft.machine;
+package mods.quantumcraft.tile;
 
 import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.interfaces.IQEnergizable;
@@ -6,7 +6,7 @@ import mods.quantumcraft.core.interfaces.IUpgradable;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QEInjectorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
-import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
+import mods.quantumcraft.tile.abstracttiles.TileEnergySink;
 import mods.quantumcraft.util.BasicUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;

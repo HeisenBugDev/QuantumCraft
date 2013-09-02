@@ -9,7 +9,7 @@ import mods.quantumcraft.items.tools.ItemQuantumAxe;
 import mods.quantumcraft.items.tools.ItemQuantumPick;
 import mods.quantumcraft.items.tools.ItemQuantumShovel;
 import mods.quantumcraft.items.tools.ItemQuantumSword;
-import mods.quantumcraft.machine.*;
+import mods.quantumcraft.tile.*;
 import mods.quantumcraft.render.RenderOre;
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IconRegister;

@@ -1,10 +1,8 @@
 package mods.quantumcraft.gui;
 
 import mods.quantumcraft.core.Loader;
-import mods.quantumcraft.inventory.ContainerQDeenergizer;
 import mods.quantumcraft.inventory.ContainerQEInjector;
-import mods.quantumcraft.machine.TileQDeenergizer;
-import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.tile.TileQEInjector;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;

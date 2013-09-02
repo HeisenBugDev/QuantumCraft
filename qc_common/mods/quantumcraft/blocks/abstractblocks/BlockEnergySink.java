@@ -1,6 +1,6 @@
 package mods.quantumcraft.blocks.abstractblocks;
 
-import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
+import mods.quantumcraft.tile.abstracttiles.TileEnergySink;
 import mods.quantumcraft.net.EnergySourceList;
 import mods.quantumcraft.net.IQEnergySink;
 import mods.quantumcraft.net.Location;

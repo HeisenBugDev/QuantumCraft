@@ -1,43 +1,37 @@
-package mods.quantumcraft.machine;
+package mods.quantumcraft.tile;
 
-import mods.quantumcraft.core.interfaces.IQEnergizable;
+import mods.quantumcraft.core.Loader;
 import mods.quantumcraft.core.network.PacketHandler;
-import mods.quantumcraft.core.network.packets.QEExtractorInitPacket;
+import mods.quantumcraft.core.network.packets.QDislocatorInitPacket;
 import mods.quantumcraft.inventory.SimpleInventory;
-import mods.quantumcraft.machine.abstractmachines.TileEnergySource;
+import mods.quantumcraft.tile.abstracttiles.TileMachineBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.tileentity.TileEntity;
 
-public class TileQEExtractor extends TileEnergySource implements
-        ISidedInventory {
-
-    public int currentival = 0;
-    public int maxival = 0;
+public class TileQDislocator extends TileMachineBase implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
-    private int energyBuffer;
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
-        if (var1 == 0) {
-            return new int[]{1};
-        } else return new int[]{0};
+        return new int[] {0,1};
     }
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        return j != 0;
+        return itemstack.getItem().itemID == Loader.ItemLocationCard.itemID;
     }
+
 
     @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
         return i != 0;
     }
-
     @Override
     public int getSizeInventory() {
         return 2;
@@ -95,15 +89,9 @@ public class TileQEExtractor extends TileEnergySource implements
 
     }
 
-    public void process() {
-        inventory[1] = inventory[0].copy();
-        decrStackSize(0, 1);
-        this.currentival = 0;
-    }
-
     @Override
     public String getInvName() {
-        return "Quantum Energy Extractor";
+        return "Quantum Dislocator";
     }
 
     @Override
@@ -141,7 +129,7 @@ public class TileQEExtractor extends TileEnergySource implements
 
     @Override
     public int guiID() {
-        return 5;
+        return 3;
     }
 
     @Override
@@ -149,42 +137,102 @@ public class TileQEExtractor extends TileEnergySource implements
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
-    //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
+    public boolean areCardsIn() {
+        return !(inventory[0] == null || inventory[1] == null) && (inventory[0].hasTagCompound() && inventory[1].hasTagCompound());
+    }
+
+    public int getCardBID(int index) {
+        return worldObj.getBlockId(getx(index),gety(index),getz(index));
+    }
+
+    public int getCardBMT(int index) {
+        return worldObj.getBlockMetadata(getx(index),gety(index),getz(index));
+    }
+
+    public TileEntity getCardTE(int index) {
+        return worldObj.getBlockTileEntity(getx(index),gety(index),getz(index));
+    }
+
+    public void setB(int index, int id, int mt) {
+        worldObj.setBlock(getx(index),gety(index),getz(index),id,mt,3);
+    }
+
+    public int getx(int index) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        return t.getInteger("x");
+    }
+
+    public int gety(int index) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        return t.getInteger("y");
+    }
+
+    public int getz(int index) {
+        NBTTagCompound t = inventory[index].getTagCompound().getCompoundTag("LOC");
+        return t.getInteger("z");
+    }
+
+    public void setTE(int index, TileEntity te) {
+        worldObj.setBlockTileEntity(getx(index),gety(index),getz(index),te);
+    }
+
+    private int prevAid;
+    private int prevBid;
+    private int prevAmt;
+    private int prevBmt;
+    private int prevAte;
+    private int prevBte;
+
+    private int currAte;
+    private int currBte;
+
+    boolean isFirstCycle = true;
+
     @Override
     public void updateEntity() {
-        if (inventory[0] == null && currentival != 0) {
-            currentival = 0;
-        }
-        if (inventory[0] != null && inventory[1] == null) {
-            if (inventory[0].getItem() instanceof IQEnergizable) {
-                IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
-                int cycle = 5;
-
-                if (!(this.getCurrentEnergy() + cycle <= this.getMaxEnergy())) {
-                    cycle = this.getMaxEnergy() - this.getCurrentEnergy();
+        if (areCardsIn() && worldObj != null) {
+            int currAid = getCardBID(0);
+            int currAmt = getCardBMT(0);
+            int currBid = getCardBID(1);
+            int currBmt = getCardBMT(1);
+            if (getCardTE(0) != null && getCardTE(1) != null) {
+                currAte = getCardTE(0).hashCode();
+                currBte = getCardTE(1).hashCode();
+            }
+            if (isFirstCycle) {
+                isFirstCycle = false;
+            }
+            else
+            {
+                if (getCardTE(0) != null && getCardTE(1) != null) {
+                    if (currAte != prevAte) { //A TE has changed
+                        TileEntity tte = getCardTE(0);
+                        tte.xCoord = getx(1);
+                        tte.yCoord = gety(1);
+                        tte.zCoord = getz(1);
+                        setTE(1, tte);
+                    }
+                    if (currBte != prevBte) { //B TE has changed
+                        TileEntity tte = getCardTE(1);
+                        tte.xCoord = getx(0);
+                        tte.yCoord = gety(0);
+                        tte.zCoord = getz(0);
+                        setTE(0, tte);
+                    }
                 }
-                if (e.getCurrentQEnergyBuffer(inventory[0]) < cycle) {
-                    cycle = e.getCurrentQEnergyBuffer(inventory[0]);
+                if (currAid != prevAid || currAmt != prevAmt) { //A has changed
+                    setB(1, currAid, currAmt);
                 }
-                e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) - cycle);
-                inventory[0].getItem().setDamage(inventory[0],
-                        e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]));
-                this.addEnergy(cycle);
-
-                this.maxival = e.getMaxQEnergyValue(inventory[0]);
-                this.currentival = e.getCurrentQEnergyBuffer(inventory[0]);
-                if (e.getCurrentQEnergyBuffer(inventory[0]) == 0) {
-                    process();
+                if (currBid != prevBid || currBmt != prevBmt) { //B has changed
+                    setB(0, currBid, currBmt);
                 }
             }
-        }
-        if (updateNextTick) {
-            // All nearby players need to be updated if the status of work
-            // changes, or if heat runs out / starts up, in order to change
-            // texture.
-            updateNextTick = false;
-            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+            prevAid = currAid;
+            prevAmt = currAmt;
+            prevBid = currBid;
+            prevBmt = currBmt;
+            prevAte = currAte;
+            prevBte = currBte;
         }
     }
 
@@ -204,9 +252,6 @@ public class TileQEExtractor extends TileEnergySource implements
                         .loadItemStackFromNBT(nbttagcompound1);
             }
         }
-        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
-        this.currentival = par1NBTTagCompound.getInteger("currentival");
-        this.maxival = par1NBTTagCompound.getInteger("maxival");
         updateNextTick = true;
     }
 
@@ -216,9 +261,6 @@ public class TileQEExtractor extends TileEnergySource implements
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
-        par1NBTTagCompound.setInteger("currentival", this.currentival);
-        par1NBTTagCompound.setInteger("maxival", this.maxival);
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.inventory.length; ++i) {
@@ -236,7 +278,7 @@ public class TileQEExtractor extends TileEnergySource implements
 
     @Override
     public Packet getDescriptionPacket() {
-        QEExtractorInitPacket packet = PacketHandler.getPacket(QEExtractorInitPacket.class);
+        QDislocatorInitPacket packet = PacketHandler.getPacket(QDislocatorInitPacket.class);
         packet.posX = xCoord;
         packet.posY = yCoord;
         packet.posZ = zCoord;
@@ -245,23 +287,5 @@ public class TileQEExtractor extends TileEnergySource implements
         packet.tiledata = nbt;
 
         return packet.getPacket();
-    }
-
-    @Override
-    public int getMaxEnergy() {
-        return 100; //this is supposed to be a very small buffer
-    }
-
-    @Override
-    public int getCurrentEnergy() {
-        return energyBuffer;
-    }
-
-    @Override
-    public int subtractEnergy(int req) {
-        energyBuffer -= req;
-        if (energyBuffer < 0) energyBuffer = 0;
-        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
-        return energyBuffer;
     }
 }

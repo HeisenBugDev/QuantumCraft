@@ -1,7 +1,6 @@
 package mods.quantumcraft.inventory;
 
-import mods.quantumcraft.machine.TileQEExtractor;
-import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.tile.TileQEExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

@@ -1,10 +1,8 @@
-package mods.quantumcraft.machine.abstractmachines;
+package mods.quantumcraft.tile.abstracttiles;
 
 import mods.quantumcraft.net.EnergySourceList;
 import mods.quantumcraft.net.Location;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 
 public abstract class TileEnergySink extends TileMachineBase {
 

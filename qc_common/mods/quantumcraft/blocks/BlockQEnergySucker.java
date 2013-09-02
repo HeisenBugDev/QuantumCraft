@@ -3,13 +3,10 @@ package mods.quantumcraft.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
-import mods.quantumcraft.machine.TileQEnergySucker;
-import net.minecraft.block.Block;
+import mods.quantumcraft.tile.TileQEnergySucker;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockQEnergySucker extends BlockEnergySink {

@@ -1,10 +1,6 @@
 package mods.quantumcraft.blocks.abstractblocks;
 
-import mods.quantumcraft.machine.TileQDeenergizer;
-import mods.quantumcraft.machine.TileQDematerializer;
-import mods.quantumcraft.machine.TileQDislocator;
-import mods.quantumcraft.machine.TileQEInjector;
-import mods.quantumcraft.machine.abstractmachines.TileMachineBase;
+import mods.quantumcraft.tile.abstracttiles.TileMachineBase;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;

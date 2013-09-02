@@ -1,4 +1,4 @@
-package mods.quantumcraft.machine.abstractmachines;
+package mods.quantumcraft.tile.abstracttiles;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 import mods.quantumcraft.core.interfaces.IRotateableTile;

@@ -1,4 +1,4 @@
-package mods.quantumcraft.machine;
+package mods.quantumcraft.tile;
 
 import buildcraft.api.power.IPowerEmitter;
 import buildcraft.api.power.IPowerReceptor;
@@ -7,7 +7,7 @@ import buildcraft.api.transport.IPipeConnection;
 import buildcraft.api.transport.IPipeTile;
 import mods.quantumcraft.core.network.PacketHandler;
 import mods.quantumcraft.core.network.packets.QElectrifierInitPacket;
-import mods.quantumcraft.machine.abstractmachines.TileEnergySink;
+import mods.quantumcraft.tile.abstracttiles.TileEnergySink;
 import mods.quantumcraft.util.BasicUtils;
 import mods.quantumcraft.util.BlockPosition;
 import net.minecraft.nbt.NBTTagCompound;

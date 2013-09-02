@@ -3,7 +3,7 @@ package mods.quantumcraft.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.quantumcraft.blocks.abstractblocks.BlockEnergySink;
-import mods.quantumcraft.machine.TileQEInjector;
+import mods.quantumcraft.tile.TileQEInjector;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
