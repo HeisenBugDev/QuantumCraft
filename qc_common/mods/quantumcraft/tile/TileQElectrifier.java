@@ -25,10 +25,10 @@ import java.util.List;
  * Time: 8:59 AM
  */
 public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, IPipeConnection, IPowerReceptor {
-    private int tickCounter = 0;
-    private boolean redstonePower = false;
     public float currentOutput = 0;
     protected PowerHandler powerHandler;
+    private int tickCounter = 0;
+    private boolean redstonePower = false;
     private int energyBuffer = 0;
     private boolean init = false;
 
@@ -94,7 +94,8 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
         PowerHandler.PowerReceiver receptor =
                 ((IPowerReceptor) tile).getPowerReceiver(getDirectionFacing().getOpposite());
         //return extractEnergy(receptor.getMinEnergyReceived(), receptor.getMaxEnergyReceived(), false); // Comment out for constant power
-        return extractEnergy(0, receptor.getMaxEnergyReceived(), false); // Uncomment for constant power
+        return extractEnergy(0, (receptor.getMaxEnergyReceived() > 100) ? 100 : receptor.getMaxEnergyReceived(),
+                false); // Uncomment for constant power
     }
 
     @Override
@@ -141,18 +142,27 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     @Override
     public void updateEntity() {
-        tickCounter++;
+        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
+            this.addEnergy(this.requestPacket(10));
+        }
+
         if (!init && !isInvalid()) {
             initialize();
             init = true;
         }
-        if(tickCounter >= 10){
-            tickCounter = 0;
+
+        if (tickCounter == 0) {
             redstonePower = BasicUtils.isRedstonePowered(this);
+            if (!redstonePower) {
+                sendPower();
+            }
         }
-        if (!redstonePower) {
-            sendPower();
-        } else currentOutput = 0;
+        tickCounter++;
+        if (tickCounter >= 10) {
+            tickCounter = 0;
+        }
+
+        else currentOutput = 0;
 
     }
 
