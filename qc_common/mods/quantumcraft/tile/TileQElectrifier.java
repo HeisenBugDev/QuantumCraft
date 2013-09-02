@@ -29,7 +29,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     private boolean redstonePower = false;
     public float currentOutput = 0;
     protected PowerHandler powerHandler;
-    private int energyBuffer = 1000;
+    private int energyBuffer = 0;
     private boolean init = false;
 
     public TileQElectrifier() {
