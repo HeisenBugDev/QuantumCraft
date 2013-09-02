@@ -5,7 +5,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.quantumcraft.blocks.*;
 import mods.quantumcraft.items.*;
-import mods.quantumcraft.items.tools.*;
+import mods.quantumcraft.items.tools.ItemQuantumAxe;
+import mods.quantumcraft.items.tools.ItemQuantumPick;
+import mods.quantumcraft.items.tools.ItemQuantumShovel;
+import mods.quantumcraft.items.tools.ItemQuantumSword;
 import mods.quantumcraft.machine.*;
 import mods.quantumcraft.render.RenderOre;
 import net.minecraft.block.BlockOre;
@@ -31,7 +34,6 @@ public class Loader {
     public static ItemQuantumAxe ItemQuantumAxe;
     public static ItemQuantumPick ItemQuantumPick;
     public static ItemQuantumShovel ItemQuantumShovel;
-
     public static ItemPlaceholder ItemRPlaceHolder;
     /* BLOCKS */
     public static BlockOre OrePlutonium;
@@ -190,11 +192,13 @@ public class Loader {
         LanguageRegistry.addName(BlockQuantumFiberWire, "Quantum Fiber-Wire");
         GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
 
-        BlockQElectrifier = (BlockQElectrifier) new BlockQElectrifier(Config.BlockQElectrifierID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQElectrifier)
-                .func_111022_d(Config.getTextureName(Config.NameBlockQElectrifier));
-        LanguageRegistry.addName(BlockQElectrifier, "Quantum Electrifier");
-        GameRegistry.registerBlock(BlockQElectrifier, Config.NameBlockQElectrifier);
+        if (hasBuildCraft()) {
+            BlockQElectrifier = (BlockQElectrifier) new BlockQElectrifier(Config.BlockQElectrifierID)
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQElectrifier)
+                    .func_111022_d(Config.getTextureName(Config.NameBlockQElectrifier));
+            LanguageRegistry.addName(BlockQElectrifier, "Quantum Electrifier");
+            GameRegistry.registerBlock(BlockQElectrifier, Config.NameBlockQElectrifier);
+        }
 
         BlockQEExtractor = (BlockQEExtractor) new BlockQEExtractor(Config.BlockQEEID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQEE)
@@ -218,8 +222,17 @@ public class Loader {
         GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         GameRegistry.registerTileEntity(TileQEnergySucker.class, "QESuckerTE");
         GameRegistry.registerTileEntity(TileQDematerializer.class, "QDematerializerTE");
-        GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
+
+        if (hasBuildCraft()) {
+            GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
+        }
+
         GameRegistry.registerTileEntity(TileQEExtractor.class, "QEExtractorTE");
+    }
+
+    public static boolean hasBuildCraft() {
+
+        return cpw.mods.fml.common.Loader.isModLoaded("Buildcraft|Silicon");
     }
 
     public static class ToolMaterials {
