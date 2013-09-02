@@ -25,6 +25,8 @@ import java.util.List;
  * Time: 8:59 AM
  */
 public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, IPipeConnection, IPowerReceptor {
+    private int tickCounter = 0;
+    private boolean redstonePower = false;
     public float currentOutput = 0;
     protected PowerHandler powerHandler;
     private int energyBuffer = 1000;
@@ -139,11 +141,16 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     @Override
     public void updateEntity() {
+        tickCounter++;
         if (!init && !isInvalid()) {
             initialize();
             init = true;
         }
-        if (BasicUtils.isRedstonePowered(this)) {
+        if(tickCounter >= 10){
+            tickCounter = 0;
+            redstonePower = BasicUtils.isRedstonePowered(this);
+        }
+        if (!redstonePower) {
             sendPower();
         } else currentOutput = 0;
 
