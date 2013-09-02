@@ -232,7 +232,7 @@ public class Loader {
 
     public static boolean hasBuildCraft() {
 
-        return cpw.mods.fml.common.Loader.isModLoaded("Buildcraft|Silicon");
+        return cpw.mods.fml.common.Loader.isModLoaded("BuildCraft|Silicon");
     }
 
     public static class ToolMaterials {
