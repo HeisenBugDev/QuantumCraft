@@ -13,8 +13,6 @@ public class BlockQEExtractor extends BlockEnergySource {
 
     public BlockQEExtractor(int id) {
         super(id, Material.iron);
-        setHardness(10F);
-        setResistance(5F);
     }
 
     @Override

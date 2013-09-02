@@ -10,8 +10,6 @@ import net.minecraft.world.World;
 public class BlockQElectrifier extends BlockEnergySink {
     public BlockQElectrifier(int id) {
         super(id, Material.iron);
-        setHardness(10F);
-        setResistance(5F);
     }
 
     @Override

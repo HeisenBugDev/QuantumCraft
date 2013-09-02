@@ -13,8 +13,6 @@ public class BlockQEnergySucker extends BlockEnergySink {
 
     public BlockQEnergySucker(int id) {
         super(id, Material.iron);
-        setHardness(10F);
-        setResistance(5F);
     }
 
     @Override

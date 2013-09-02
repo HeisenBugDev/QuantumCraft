@@ -28,6 +28,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 public abstract class BlockMachine extends BlockRotatable {
     public BlockMachine(int id, Material material) {
         super(id, material);
+        setHardness(10F);
+        setResistance(5F);
     }
 
     @Override

@@ -12,8 +12,6 @@ import net.minecraft.world.World;
 public class BlockQEInjector extends BlockEnergySink {
     public BlockQEInjector(int id) {
         super(id, Material.iron);
-        setHardness(10F);
-        setResistance(5F);
     }
 
     @Override

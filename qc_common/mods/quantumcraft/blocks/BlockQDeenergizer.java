@@ -13,8 +13,6 @@ public class BlockQDeenergizer extends BlockEnergySource {
 
     public BlockQDeenergizer(int id) {
         super(id, Material.iron);
-        setHardness(10F);
-        setResistance(5F);
     }
 
     @Override

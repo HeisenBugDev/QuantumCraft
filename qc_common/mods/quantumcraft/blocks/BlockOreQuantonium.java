@@ -13,7 +13,8 @@ public class BlockOreQuantonium extends BlockOre {
 
     public BlockOreQuantonium(int par1) {
         super(par1);
-        this.setHardness(2.5F);
+        setHardness(2.5F);
+        setResistance(1.0F);
     }
 
     public void setIcon(Icon i) {

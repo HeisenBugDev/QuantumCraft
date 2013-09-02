@@ -14,8 +14,6 @@ public class BlockQDislocator extends BlockMachine {
 
     public BlockQDislocator(int id) {
         super(id, Material.iron);
-        setHardness(10F);
-        setResistance(5F);
     }
 
     @Override
