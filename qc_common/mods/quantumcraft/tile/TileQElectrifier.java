@@ -160,9 +160,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
         tickCounter++;
         if (tickCounter >= 10) {
             tickCounter = 0;
-        }
-
-        else currentOutput = 0;
+        } else currentOutput = 0;
 
     }
 
