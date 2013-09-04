@@ -20,7 +20,7 @@
     <property name="buildcraft.name" value="BuildCraft-mc16-3"/>
     <property name="buildcraft.src" value="${buildcraft.name}.zip"/>
     <property name="buildcraft.src.url"
-              value="https://github.com/BuildCraft/BuildCraft/archive/master.zip"/>
+              value="https://dl.dropboxusercontent.com/u/5444078/QuantumCraft/apis/${buildcraft.src}"/>
     <property name="buildcraft.dir" value="${mcp.dir}/unpack/buildcraft/${buildcraft.name}"/>
     <property name="mcpsrc.dir" value="${mcp.dir}/src"/>
     <property name="commonsrc.dir" value="${mcpsrc.dir}/minecraft"/>
