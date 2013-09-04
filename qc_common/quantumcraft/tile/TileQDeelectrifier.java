@@ -5,6 +5,7 @@ import buildcraft.api.power.PowerHandler;
 import quantumcraft.core.network.PacketHandler;
 import quantumcraft.core.network.packets.QDeelectrifierInitPacket;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
+import buildcraft.api.power.PowerHandler.Type;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.world.World;
@@ -20,6 +21,15 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
     private int tickCounter = 0;
     private boolean redstonePower = false;
     private int energyBuffer = 1000;
+    private PowerHandler powerHandler;
+    private int buildCraftBuffer = 0;
+
+    public TileQDeelectrifier() {
+        System.out.println("SHFKSDJHFdkj");
+        powerHandler = new PowerHandler(this, Type.MACHINE);
+        powerHandler.configure(5, 100, 2, 1000);
+        powerHandler.configurePowerPerdition(1, 1);
+    }
 
     @Override
     public int getMaxEnergy() {
@@ -69,7 +79,13 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
 
     @Override
     public void updateEntity() {
-
+        buildCraftBuffer = buildCraftBuffer + (int) powerHandler.useEnergy(1,100,true);
+        System.out.println(powerHandler.useEnergy(1,100,false));
+        System.out.println(buildCraftBuffer + " | " + energyBuffer);
+        if (buildCraftBuffer >= 1){
+            energyBuffer++;
+            buildCraftBuffer--;
+        }
     }
 
     @Override
@@ -87,16 +103,15 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
 
     @Override
     public PowerHandler.PowerReceiver getPowerReceiver(ForgeDirection side) {
-        return null;
+        return powerHandler.getPowerReceiver();
     }
 
     @Override
     public void doWork(PowerHandler workProvider) {
-
     }
 
     @Override
     public World getWorld() {
-        return null;
+        return worldObj;
     }
 }

@@ -15,7 +15,7 @@ import net.minecraft.world.World;
  */
 public class BlockQDeelectrifier extends BlockEnergySource{
 
-    public BlockQDeelectrifier(int id, Material material) {
+    public BlockQDeelectrifier(int id) {
         super(id, Material.iron);
     }
 

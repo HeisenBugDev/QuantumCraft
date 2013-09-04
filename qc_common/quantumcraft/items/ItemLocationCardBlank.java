@@ -26,6 +26,7 @@ public class ItemLocationCardBlank extends ItemBase {
         this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
     }
 
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack itemstack, EntityPlayer player,
                                List list, boolean flag) {
         list.add("Shift right click on a block");
@@ -53,7 +54,9 @@ public class ItemLocationCardBlank extends ItemBase {
                 par1ItemStack.setTagCompound(new NBTTagCompound());
                 pt = par1ItemStack.getTagCompound();
             }
-            pt.setCompoundTag("LOC", t);
+            if (pt != null) {
+                pt.setCompoundTag("LOC", t);
+            }
             par1ItemStack.setTagCompound(pt);
         }
         return true;

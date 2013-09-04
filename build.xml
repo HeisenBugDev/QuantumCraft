@@ -17,7 +17,7 @@
     <property name="forge.dir" value="${build.dir}/forge"/>
     <property name="mcp.dir" value="${forge.dir}/mcp"/>
 
-    <property name="buildcraft.name" value="BuildCraft-mc16-3"/>
+    <property name="buildcraft.name" value="BuildCraft-mc16-4   "/>
     <property name="buildcraft.src" value="${buildcraft.name}.zip"/>
     <property name="buildcraft.src.url"
               value="https://dl.dropboxusercontent.com/u/5444078/QuantumCraft/apis/${buildcraft.src}"/>

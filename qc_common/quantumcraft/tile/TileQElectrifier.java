@@ -74,9 +74,9 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
                     float needed =
                             receptor.receiveEnergy(PowerHandler.Type.ENGINE, extracted,
                                     bTile.orientation.getOpposite());
+
                     //extractEnergy(receptor.getMinEnergyReceived(), needed, true); // Comment out for constant power
                     currentOutput = extractEnergy(0, needed, true); // Uncomment for constant power
-
                 }
             }
         }
@@ -143,7 +143,8 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     @Override
     public void updateEntity() {
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
-            this.addEnergy(this.requestPacket(10));
+            System.out.println(energyBuffer);
+            this.addEnergy(this.requestPacket(100));
         }
 
         if (!init && !isInvalid()) {

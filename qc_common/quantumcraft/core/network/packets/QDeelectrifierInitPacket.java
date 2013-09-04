@@ -4,6 +4,7 @@ import quantumcraft.util.BasicUtils;
 import quantumcraft.core.network.abstractpackets.CoordinatesPacket;
 import quantumcraft.core.network.abstractpackets.ModernPacket;
 import quantumcraft.tile.TileQElectrifier;
+import quantumcraft.tile.TileQDeelectrifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -28,12 +29,12 @@ public class QDeelectrifierInitPacket extends CoordinatesPacket {
 
     @Override
     public ModernPacket template() {
-        return new QElectrifierInitPacket(getID());
+        return new QDeelectrifierInitPacket(getID());
     }
 
     @Override
     public void processPacket(EntityPlayer player) {
-        TileQElectrifier tile = getTile(player.worldObj, TileQElectrifier.class);
+        TileQDeelectrifier tile = getTile(player.worldObj, TileQDeelectrifier.class);
         if (tile != null) {
             tile.readFromNBT(tiledata);
             tile.updateNextTick = true;

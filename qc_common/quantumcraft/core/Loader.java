@@ -46,6 +46,7 @@ public class Loader {
     public static BlockQDematerializer BlockQDematerializer;
     public static BlockQElectrifier BlockQElectrifier;
     public static BlockQEExtractor BlockQEExtractor;
+    public static BlockQDeelectrifier BlockQDeelectrifier;
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
     /* CREATIVE TABS */
@@ -193,10 +194,16 @@ public class Loader {
 
         if (hasBuildCraft()) {
             BlockQElectrifier = (BlockQElectrifier) new BlockQElectrifier(Config.BlockQELID)
-                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQElectrifier)
-                    .setTextureName(Config.getTextureName(Config.NameBlockQElectrifier));
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQEL)
+                    .setTextureName(Config.getTextureName(Config.NameBlockQEL));
             LanguageRegistry.addName(BlockQElectrifier, "Quantum Electrifier");
-            GameRegistry.registerBlock(BlockQElectrifier, Config.NameBlockQElectrifier);
+            GameRegistry.registerBlock(BlockQElectrifier, Config.NameBlockQEL);
+
+            BlockQDeelectrifier = (BlockQDeelectrifier) new BlockQDeelectrifier(Config.BlockQDLID)
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDL)
+                    .setTextureName(Config.getTextureName(Config.NameBlockQDL));
+            LanguageRegistry.addName(BlockQDeelectrifier, "Quantum Deelectrifier");
+            GameRegistry.registerBlock(BlockQDeelectrifier, Config.NameBlockQDL);
         }
 
         BlockQEExtractor = (BlockQEExtractor) new BlockQEExtractor(Config.BlockQEEID)
@@ -224,6 +231,7 @@ public class Loader {
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
+            GameRegistry.registerTileEntity(TileQDeelectrifier.class, "QDeelectrifier");
         }
 
         GameRegistry.registerTileEntity(TileQEExtractor.class, "QEExtractorTE");
