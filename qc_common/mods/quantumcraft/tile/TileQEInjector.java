@@ -149,11 +149,15 @@ public class TileQEInjector extends TileEnergySink implements
         return 2;
     }
 
+    public void dropUpgrades() {
+        if (upgradeID > 0) BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
+                new ItemStack(Loader.ItemUpgrade, 1, upgradeID)); //DROP DA UPGRADE
+    }
+
     @Override
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
-        if (upgradeID > 0) BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
-                new ItemStack(Loader.ItemUpgrade, 1, upgradeID)); //DROP DA UPGRADE
+        dropUpgrades();
     }
 
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
