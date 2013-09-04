@@ -241,7 +241,7 @@ public abstract class GuiBase extends GuiContainer {
 	}
 	
 	protected void bindImage(ResourceLocation rl){
-		mc.renderEngine.func_110577_a(rl);
+		mc.renderEngine.bindTexture(rl);
 	}
 	
 	protected void drawLeft(String s, int x, int y, int color){

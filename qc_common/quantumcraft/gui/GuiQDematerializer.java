@@ -39,7 +39,7 @@ public class GuiQDematerializer extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         //this.mc.renderEngine.func_110577_a("/mods/QuantumCraft/textures/gui/deenergizer.png");
-        this.mc.renderEngine.func_110577_a(new ResourceLocation("quantumcraft", "textures/gui/dematerializer.png"));
+        this.mc.renderEngine.bindTexture(new ResourceLocation("quantumcraft", "textures/gui/dematerializer.png"));
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);

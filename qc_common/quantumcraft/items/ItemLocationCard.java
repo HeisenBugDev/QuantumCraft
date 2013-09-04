@@ -19,7 +19,7 @@ public class ItemLocationCard extends ItemBase {
 
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.itemIcon = par1IconRegister.registerIcon(this.func_111208_A());
+        this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
     }
 
     public void addInformation(ItemStack itemstack, EntityPlayer player,

@@ -49,7 +49,7 @@ We will also be setting up some documentation soon with a todo list on what we a
 If you would like to help out with coding, you can fork the branch and do some coding and the whole git routine. We are using git flow for our branching model. I may put some more stuff here eventually.
 Buildcraft API is required.
 
-CURRENTLY USING FORGE 9.10.0.828! (http://adf.ly/673885/http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.2-9.10.0.828.zip)
+CURRENTLY USING FORGE 9.10.0.849! (http://adf.ly/673885/http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.2-9.10.0.849.zip)
 
 _PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF_
 
