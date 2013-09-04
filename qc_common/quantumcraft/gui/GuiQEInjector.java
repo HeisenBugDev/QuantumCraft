@@ -29,6 +29,8 @@ public class GuiQEInjector  extends GuiBase {
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
         addHoverHandler(new HoverHandler(0), 189, 9, 9, 9);
+        addHoverHandler(new HoverHandler(1), 213, 40+11, 10, 67);
+        addClickHandler(new ClickHandler(0), 189, 9, 9, 9);
     }
 
 
@@ -47,11 +49,25 @@ public class GuiQEInjector  extends GuiBase {
         drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
     }
 
+    protected void drawPowerBar() {
+        float flt = (float)tile.getCurrentEnergy() / (float)tile.getMaxEnergy();
+        int h = (int)(flt * 67);
+        int tarx = 213+3;
+        int tary = 40+11+8 + (67-h);
+        bindImage(GuiTextures.GUI_PWRB);
+        drawTexturedModalRect(213, 40, 8, 9, 17, 105);
+        drawTexturedModalRect(tarx, tary,51, 9+(67-h), 10, h  );
+        drawTexturedModalRect(tarx, 40+11+8, 33, 9, 10, 67);
+    }
+
     protected void drawForeground(){
         bindImage(GuiTextures.GUI_BTN_CLOSE);
         GL11.glColor3f(2F, 0F, 0F);
         drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
         GL11.glColor3f(1F, 1F, 1F);
+
+        drawPowerBar();
+        this.fontRenderer.drawString("Quantum Energy Injector", 15, 15, 0x000000 );
 
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
@@ -143,6 +159,8 @@ public class GuiQEInjector  extends GuiBase {
             switch (buffHT) {
                 case 0:
                     renderTooltipText("Close this GUI", buffHX, buffHY);
+                case 1:
+                    renderTooltipText("Energy buffer: " + tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
             }
         }
     }
@@ -157,9 +175,11 @@ public class GuiQEInjector  extends GuiBase {
     public int buffHY;
     public int buffHT = -1; // 0 = close_button
 
+    public int buffCT = -1; // 0 = close_button
+
     public class HoverHandler implements IHoverHandler {
 
-        final int id;
+        int id;
 
         public HoverHandler(int id) {
             this.id = id;
@@ -177,6 +197,33 @@ public class GuiQEInjector  extends GuiBase {
             buffHT = -1;
         }
     }
+
+    protected void handleClick() {
+        if (buffCT > -1) {
+            switch (buffCT) {
+                case 0:
+                    this.mc.thePlayer.closeScreen();
+            }
+            buffCT = -1;
+        }
+    }
+
+    public class ClickHandler implements IClickHandler {
+
+        final int id;
+
+        public ClickHandler(int id) {
+            this.id = id;
+        }
+
+        @Override
+        public void onClick(int x, int y) {
+            buffCT = id;
+            handleClick();
+        }
+    }
+
+
       /*
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         String s = this.tile.getInvName();
