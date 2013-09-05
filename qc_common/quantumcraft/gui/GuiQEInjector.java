@@ -1,6 +1,7 @@
 package quantumcraft.gui;
 
 import quantumcraft.gui.abstractguis.GuiBase;
+import quantumcraft.gui.handlers.HoverHandler;
 import quantumcraft.inventory.ContainerQEInjector;
 import quantumcraft.tile.TileQEInjector;
 import net.minecraft.client.gui.FontRenderer;
@@ -28,8 +29,8 @@ public class GuiQEInjector  extends GuiBase {
         this.mc.thePlayer.openContainer = this.inventorySlots;
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
-        addHoverHandler(new HoverHandler(0), 189, 9, 9, 9);
-        addHoverHandler(new HoverHandler(1), 213, 40+11, 10, 67);
+        addHoverHandler(new HoverHandler(0, this), 189, 9, 9, 9);
+        addHoverHandler(new HoverHandler(1, this), 206, 50, 12, 68);
         addClickHandler(new ClickHandler(0), 189, 9, 9, 9);
     }
 
@@ -71,7 +72,9 @@ public class GuiQEInjector  extends GuiBase {
 
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
+
         drawTooltips();
+
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
     }
@@ -155,13 +158,11 @@ public class GuiQEInjector  extends GuiBase {
     }
 
     protected void drawTooltips() {
-        if (buffHT > -1) {
-            switch (buffHT) {
-                case 0:
-                    renderTooltipText("Close this GUI", buffHX, buffHY);
-                case 1:
-                    renderTooltipText("Energy buffer: " + tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-            }
+        if (buffHT[0]) {
+            renderTooltipText("Close this GUI", buffHX, buffHY);
+        }
+        if (buffHT[1]) {
+            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
         }
     }
 
@@ -173,30 +174,10 @@ public class GuiQEInjector  extends GuiBase {
 
     public int buffHX;
     public int buffHY;
-    public int buffHT = -1; // 0 = close_button
+    public boolean[] buffHT = new boolean[2];
 
-    public int buffCT = -1; // 0 = close_button
+    public int buffCT = 0;
 
-    public class HoverHandler implements IHoverHandler {
-
-        int id;
-
-        public HoverHandler(int id) {
-            this.id = id;
-        }
-
-        @Override
-        public void onHover(int x, int y) {
-            buffHX = x;
-            buffHY = y;
-            buffHT = id;
-        }
-
-        @Override
-        public void onLeave() {
-            buffHT = -1;
-        }
-    }
 
     protected void handleClick() {
         if (buffCT > -1) {
