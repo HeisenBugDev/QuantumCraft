@@ -35,6 +35,14 @@ public class BasicUtils {
 
     public static Random rand = new Random();
 
+    public static int overclockMultiplier(int[] uids) {
+        int res = 0;
+        for (int u : uids) {
+            if (u == 1) res++;
+        }
+        return res;
+    }
+
     public static boolean isRedstonePowered(World world, int x, int y, int z) {
         if (world.isBlockIndirectlyGettingPowered(x, y, z)) {
             return true;
