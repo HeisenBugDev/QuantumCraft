@@ -76,10 +76,12 @@ public abstract class GuiBase extends GuiContainer {
     int targetX;
     int targetY;
 
+   public boolean renderI = true;
+
 	protected GuiBase(Container container, int x, int y) {
 		super(container);
-        xSize = 20;
-        ySize = 20;
+        /*xSize = 20;
+        ySize = 20; */
 		xSize = x + 18;
 		ySize = y + 18;
 	}
@@ -150,8 +152,12 @@ public abstract class GuiBase extends GuiContainer {
         } else if (ySize > (targetY - rcycle)) {
             ySize = targetY;
         }
+        if (ySize == targetY && xSize == targetX) {
+
+            renderI = true;
+        }
         this.guiLeft = (this.width - this.xSize) / 2;
-        this.guiTop = (this.height - this.ySize) / 2;  */
+        this.guiTop = (this.height - this.ySize) / 2; */
 
 
         GL11.glEnable(GL11.GL_BLEND);

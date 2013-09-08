@@ -23,6 +23,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.core.interfaces.IUpgrade;
+import quantumcraft.items.ItemUpgrade;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -82,7 +84,7 @@ public class BasicUtils {
 
     public static boolean isHoldingUpgrade(EntityPlayer player) {
         return player.inventory.getCurrentItem() != null &&
-                player.inventory.getCurrentItem().itemID == Loader.ItemUpgrade.itemID;
+                Item.itemsList[player.inventory.getCurrentItem().itemID] instanceof IUpgrade;
     }
 
     public static void sendPacketToServer(Packet packet) {

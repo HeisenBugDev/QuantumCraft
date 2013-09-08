@@ -39,18 +39,21 @@ public class GuiQEInjector  extends GuiBase {
 
 
     protected void drawBackground(){
-        bindImage(GuiTextures.GUI_TPBG);
-        drawQuad(0,0,0,1,0,1,200,31);
-        bindImage(GuiTextures.GUI_COLS);
-        GL11.glColor3f(1F,1F,0);
-        drawQuad(0,0,0,1,0,1,200,31);
-        bindImage(GuiTextures.GUI_BTBG);
-        GL11.glColor3f(1F, 1F, 1F);
-        drawQuad(0,31,0,1,0,1,200,139);
-        bindImage(GuiTextures.GUI_INVBG);
-        drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
-        bindImage(GuiTextures.GUI_ARMBG);
-        drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
+        if (this.renderI) {
+            bindImage(GuiTextures.GUI_TPBG);
+            drawQuad(0,0,0,1,0,1,200,31);
+            bindImage(GuiTextures.GUI_COLS);
+            GL11.glColor3f(1F,1F,0);
+            drawQuad(0,0,0,1,0,1,200,31);
+            bindImage(GuiTextures.GUI_BTBG);
+            GL11.glColor3f(1F, 1F, 1F);
+            drawQuad(0,31,0,1,0,1,200,139);
+            bindImage(GuiTextures.GUI_INVBG);
+            drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
+            bindImage(GuiTextures.GUI_ARMBG);
+            drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
+
+        }
     }
 
     protected void drawPowerBar() {
@@ -65,21 +68,24 @@ public class GuiQEInjector  extends GuiBase {
     }
 
     protected void drawForeground(){
-        bindImage(GuiTextures.GUI_BTN_CLOSE);
-        GL11.glColor3f(2F, 0F, 0F);
-        drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
-        GL11.glColor3f(1F, 1F, 1F);
+        if (this.renderI) {
+            bindImage(GuiTextures.GUI_BTN_CLOSE);
+            GL11.glColor3f(2F, 0F, 0F);
+            drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
+            GL11.glColor3f(1F, 1F, 1F);
 
-        drawPowerBar();
-        this.fontRenderer.drawString("Quantum Energy Injector", 15, 15, 0x000000 );
+            drawPowerBar();
+            this.fontRenderer.drawString("Quantum Energy Injector", 15, 15, 0x000000 );
 
-        GL11.glPushMatrix();
-        GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glPushMatrix();
+            GL11.glDisable(GL11.GL_LIGHTING);
 
-        drawTooltips();
+            drawTooltips();
 
-        GL11.glEnable(GL11.GL_LIGHTING);
-        GL11.glPopMatrix();
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glPopMatrix();
+        }
+
     }
 
     protected void drawTooltips() {
@@ -95,6 +101,7 @@ public class GuiQEInjector  extends GuiBase {
         List l = new ArrayList();
         l.add(text);
         this.drawHoveringText(l, x, y, this.fontRenderer);
+
     }
 
     public int buffHX;

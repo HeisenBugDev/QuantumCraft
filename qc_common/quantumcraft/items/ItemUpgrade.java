@@ -6,8 +6,9 @@ import quantumcraft.core.Config;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import quantumcraft.core.interfaces.IUpgrade;
 
-public class ItemUpgrade extends ItemBase {
+public class ItemUpgrade extends ItemBase implements IUpgrade {
     public ItemUpgrade(int id) {
         super(id);
         this.setMetaMax(1);

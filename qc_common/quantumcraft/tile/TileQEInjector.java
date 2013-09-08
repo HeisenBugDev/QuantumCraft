@@ -21,7 +21,7 @@ public class TileQEInjector extends TileEnergySink implements
     public int currentival = 0;
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
-    public int upgradeID[] = { -1, -1, -1, -1};
+    public int upgradeID[] = { 0, 0, 0, 0 };
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
     private int energyBuffer;
 
@@ -151,8 +151,11 @@ public class TileQEInjector extends TileEnergySink implements
 
     public void dropUpgrades() {
         for (int u : upgradeID) {
-            BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
+            if (u != 0) {
+                BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
                     new ItemStack(Loader.ItemUpgrade, 1, u)); //DROP DA UPGRADE
+                u = 0;
+            }
         }
 
     }

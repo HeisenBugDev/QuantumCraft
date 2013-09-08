@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.core.interfaces.IUpgradable;
+import quantumcraft.core.interfaces.IUpgrade;
 import quantumcraft.util.BasicUtils;
 import quantumcraft.core.Coords;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
@@ -47,34 +48,35 @@ public abstract class BlockMachine extends BlockRotatable {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
-        PlayerInteractEvent e =
-                new PlayerInteractEvent(entityplayer, PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK, x, y, z, side);
-        if (MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Event.Result.DENY || e.useBlock == Event.Result.DENY) {
-            return false;
-        }
-        TileEntity te = world.getBlockTileEntity(x, y, z);
-        if (te == null) {
-            return false;
-        }
-        if (BasicUtils.isHoldingUpgrade(entityplayer) && te instanceof IUpgradable) { //UPGRADING
-            if (((IUpgradable)te).eatUpgrade(entityplayer.getCurrentEquippedItem().getItemDamage())) {
-            entityplayer.getCurrentEquippedItem().stackSize--;
-            if (entityplayer.getCurrentEquippedItem().stackSize < 1) entityplayer.destroyCurrentEquippedItem();}
-        } else
-        if (BasicUtils.isHoldingWrench(entityplayer) && te instanceof TileMachineBase && //MULTITOOL HANDLING
-                ((TileMachineBase) te).canRotate()) {
-            if (entityplayer.isSneaking() && te instanceof IUpgradable) {
-                ((IUpgradable)te).dropUpgrades();
+        TileMachineBase te = (TileMachineBase)world.getBlockTileEntity(x,y,z);
+        if (te == null) { return false; }
+        if (entityplayer.isSneaking()) {
+            //PLAYER IS SNEAKING, DOES HE HAVE AN UPGRADE?
+            if (entityplayer.getCurrentEquippedItem().getItem() instanceof IUpgrade && te instanceof IUpgradable) {
+                System.out.print("INSTALLING UPGRADE");
+                ((IUpgradable) te).eatUpgrade(entityplayer.getCurrentEquippedItem().getItemDamage());
+                entityplayer.destroyCurrentEquippedItem();
+                return true;
             }
-            ((TileMachineBase) te).rotate();
-            world.markBlockForUpdate(x, y, z);
-            return true;
-        } else
-        if (te instanceof TileMachineBase && (!world.isRemote && !entityplayer.isSneaking())) {  //GUI HANDLING
-            entityplayer.openGui(QuantumCraft.instance, ((TileMachineBase)te).guiID(), world, x, y, z);
+
+            //PLAYER IS SNEAKING, DOES HE HAVE A WRENCH?
+            if (BasicUtils.isHoldingWrench(entityplayer) && te instanceof IUpgradable) {
+                ((IUpgradable) te).dropUpgrades();
+                return true;
+            }
+
+            //WELL THEN, DO NOTHING
+            return false;
+        }
+
+        //THE PLAYER ISN'T SNEAKING, DOES HE HAVE A WRENCH?
+        if (BasicUtils.isHoldingWrench(entityplayer) && te.canRotate()) {
+            te.rotate();
             return true;
         }
-        return false;
+
+        entityplayer.openGui(QuantumCraft.instance, te.guiID(), world, x, y, z);
+        return true;
     }
 
     public Icon getIconFromSide(int side) {
