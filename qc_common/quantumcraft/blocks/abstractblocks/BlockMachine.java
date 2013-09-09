@@ -20,12 +20,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-/**
- * Created with IntelliJ IDEA.
- * User: theron
- * Date: 7/13/13
- * Time: 6:03 PM
- */
 public abstract class BlockMachine extends BlockRotatable {
     public BlockMachine(int id, Material material) {
         super(id, material);
