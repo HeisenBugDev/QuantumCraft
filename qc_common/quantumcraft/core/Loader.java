@@ -20,7 +20,7 @@ import net.minecraftforge.common.EnumHelper;
 public class Loader {
 
     /* ITEMS */
-    public static ItemBase ItemIngotPlutonium;
+    public static ItemBase ItemIngotUnbioxenium;
     public static ItemBase ItemCrystalQuantonium;
     public static ItemBase ItemRawQuantonium;
     public static ItemMultiTool ItemMultiTool;
@@ -36,7 +36,7 @@ public class Loader {
     public static ItemQuantumShovel ItemQuantumShovel;
     public static ItemPlaceholder ItemRPlaceHolder;
     /* BLOCKS */
-    public static BlockOre OrePlutonium;
+    public static BlockOre OreUnbioxenium;
     public static BlockOreQuantonium OreQuantonium;
     /* MACHINE BLOCKS */
     public static BlockQDeenergizer BlockQDeenergizer;
@@ -69,10 +69,10 @@ public class Loader {
     }
 
     public static void initItems() {
-        ItemIngotPlutonium = (ItemBase) new ItemBase(Config.ItemPlutoniumIngotID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemPlutoniumIngot)
-                .setTextureName(Config.getTextureName(Config.NameItemPlutoniumIngot));
-        LanguageRegistry.addName(ItemIngotPlutonium, "Plutonium Ingot");
+        ItemIngotUnbioxenium = (ItemBase) new ItemBase(Config.ItemUnbioxeniumIngotID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemUnbioxeniumIngot)
+                .setTextureName(Config.getTextureName(Config.NameItemUnbioxeniumIngot));
+        LanguageRegistry.addName(ItemIngotUnbioxenium, "Unbioxenium Ingot");
 
         ItemCrystalQuantonium = (ItemBase) new ItemBase(Config.ItemCrystallizedQuantoniumID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemCrystalQuantonium)
@@ -144,11 +144,11 @@ public class Loader {
     }
 
     public static void initBlocks() {
-        OrePlutonium = (BlockOre) new BlockOre(Config.OrePlutoniumID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameOrePlutonium)
-                .setTextureName(Config.getTextureName(Config.NameOrePlutonium)).setHardness(2.5F);
-        LanguageRegistry.addName(OrePlutonium, "Plutonium Ore");
-        GameRegistry.registerBlock(OrePlutonium, Config.NameOrePlutonium);
+        OreUnbioxenium = (BlockOre) new BlockOre(Config.OreUnbioxeniumID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameOreUnbioxenium)
+                .setTextureName(Config.getTextureName(Config.NameOreUnbioxenium)).setHardness(2.5F);
+        LanguageRegistry.addName(OreUnbioxenium, "Unbioxenium Ore");
+        GameRegistry.registerBlock(OreUnbioxenium, Config.NameOreUnbioxenium);
 
         OreQuantonium = (BlockOreQuantonium) new BlockOreQuantonium(Config.OreQuantoniumID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameOreQuantonium)

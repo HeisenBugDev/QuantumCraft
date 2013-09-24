@@ -16,7 +16,7 @@ public class Config {
     public static String texturePrefix = "quantumcraft:";
     public static String RIconPrefix = texturePrefix + "research.";
 
-    public static String NameItemPlutoniumIngot = "ingotPlutonium";
+    public static String NameItemUnbioxeniumIngot = "ingotUnbioxenium";
     public static String NameItemCrystalQuantonium = "crystalQuantonium";
     public static String NameItemRawQuantonium = "rawQuantonium";
     public static String NameItemDepletedCrystal = "depletedCrystal";
@@ -36,7 +36,7 @@ public class Config {
     public static String NameItemLocationCard = "locationCard";
     public static String NameItemLocationCardBlank = "locationCardBlank";
 
-    public static String NameOrePlutonium = "orePlutonium";
+    public static String NameOreUnbioxenium = "oreUnbioxenium";
     public static String NameOreQuantonium = "oreQuantonium";
     public static String NameBlockQDE = "machineQDE";
     public static String NameBlockQEI = "machineQEI";
@@ -62,7 +62,7 @@ public class Config {
 
     public static Boolean use32x;
 
-    public static int ItemPlutoniumIngotID;
+    public static int ItemUnbioxeniumIngotID;
     public static int ItemCrystallizedQuantoniumID;
     public static int ItemRawQuantoniumID;
     public static int ItemDepletedCrystalID;
@@ -81,7 +81,7 @@ public class Config {
 
     public static int ItemRPlaceHolderID;
 
-    public static int OrePlutoniumID;
+    public static int OreUnbioxeniumID;
     public static int OreQuantoniumID;
     public static int BlockQDEID;
     public static int BlockQDMID;
@@ -124,7 +124,7 @@ public class Config {
         Configuration config = new Configuration(file);
         config.load();
 
-        ItemPlutoniumIngotID = config.get("Items", "ItemIngotPlutonium", 4999).getInt();
+        ItemUnbioxeniumIngotID = config.get("Items", "ItemIngotUnbioxenium", 4999).getInt();
         ItemCrystallizedQuantoniumID = config.get("Items", "ItemCrystallizedQuantonium", 5000).getInt();
         ItemRawQuantoniumID = config.get("Items", "ItemRawQuantonium", 5001).getInt();
         ItemDepletedCrystalID = config.get("Items", "ItemDepletedCrystal", 5002).getInt();
@@ -143,7 +143,7 @@ public class Config {
 
         ItemRPlaceHolderID = config.get("Items", "ItemRPlaceHolder", 4995).getInt();
 
-        OrePlutoniumID = config.get("Blocks", "BlockOrePlutonium", 3499).getInt();
+        OreUnbioxeniumID = config.get("Blocks", "BlockOreUnbioxenium", 3499).getInt();
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
         BlockQEIID = config.get("Blocks", "BlockQEInjector", 3601).getInt();

@@ -12,7 +12,7 @@ public class CraftingManager {
 
     public static void addSmelting() {
         GameRegistry.addSmelting(Loader.ItemRawQuantonium.itemID, new ItemStack(Loader.ItemCrystalQuantonium), 2);
-        GameRegistry.addSmelting(Loader.OrePlutonium.blockID, new ItemStack(Loader.ItemIngotPlutonium), 1);
+        GameRegistry.addSmelting(Loader.OreUnbioxenium.blockID, new ItemStack(Loader.ItemIngotUnbioxenium), 1);
     }
 
     public static void addQDE() {
