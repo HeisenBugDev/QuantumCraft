@@ -22,6 +22,7 @@ public class ItemLocationCard extends ItemBase {
         this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
     }
 
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack itemstack, EntityPlayer player,
                                List list, boolean flag) {
         if (itemstack != null) {
