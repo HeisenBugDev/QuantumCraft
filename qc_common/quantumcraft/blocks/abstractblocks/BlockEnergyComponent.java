@@ -19,7 +19,7 @@ public abstract class BlockEnergyComponent extends BlockMachine implements IQEne
                                          EntityLivingBase entity, ItemStack stack) {
 
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
-        QuantumEnergyNet.onChangedLink(world, getallsides(new Location(x, y, z)));
+        QuantumEnergyNet.onAddedLink(world, new Location(x, y, z));
 
     }
 
