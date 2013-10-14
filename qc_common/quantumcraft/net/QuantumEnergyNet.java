@@ -42,7 +42,7 @@ public class QuantumEnergyNet {
 		}
 	}
 	
-	private static class BrokenLinkDG implements IDataGatherer{
+	private static class ChangedLinkDG implements IDataGatherer{
 		private List<Location> sources = new ArrayList<Location>();
 		private List<Location> sinks = new ArrayList<Location>();
 		
@@ -80,10 +80,14 @@ public class QuantumEnergyNet {
 		return dataGatherer.getList();
 	}
 	
-	public static void onBrokenLink(World w, Location[] tips){
+	public static void onAddedLink(World w, Location l){
+		onChangedLink(w, new Location[]{l});
+	}
+	
+	public static void onChangedLink(World w, Location[] tips){
 		List<Location> memory = new ArrayList<Location>();
 		for(Location tip : tips){
-			BrokenLinkDG dataGatherer = new BrokenLinkDG();
+			ChangedLinkDG dataGatherer = new ChangedLinkDG();
 			RecursiveScanner.scan(w, tip, dataGatherer, memory);
 			dataGatherer.addAllSourcesToAllSinks(w);
 		}
