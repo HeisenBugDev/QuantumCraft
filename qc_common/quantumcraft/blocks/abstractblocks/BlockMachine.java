@@ -85,12 +85,12 @@ public abstract class BlockMachine extends BlockRotatable {
     protected Icon iconTopR;
 
 
-    public Icon getIconFromSide(int side, boolean talt) {
+    public Icon getIconFromSide(int side, boolean topAlternative) {
         switch (side) {
             case 0:
                 return iconBottom;
             case 1:
-                return (talt ? iconTop : iconTopR);
+                return (topAlternative ? iconTop : iconTopR);
             case 2:
                 return iconBack;
             case 3:
@@ -115,6 +115,7 @@ public abstract class BlockMachine extends BlockRotatable {
         if (te instanceof TileMachineBase){
             side = ((TileMachineBase) te).getRotatedSide(side);
         }
+        if (te == null) { return Block.stone.getIcon(0,0); }
         return getIconFromSide(side,((TileMachineBase) te).useRotated());
     }
 

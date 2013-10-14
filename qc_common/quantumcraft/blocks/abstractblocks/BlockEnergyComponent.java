@@ -1,5 +1,7 @@
 package quantumcraft.blocks.abstractblocks;
 
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import quantumcraft.net.IQEnergyComponent;
 import quantumcraft.net.Location;
 import quantumcraft.net.QuantumEnergyNet;
@@ -13,10 +15,18 @@ public abstract class BlockEnergyComponent extends BlockMachine implements IQEne
     }
 
     @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z,
+                                         EntityLivingBase entity, ItemStack stack) {
+
+        super.onBlockPlacedBy(world, x, y, z, entity, stack);
+        QuantumEnergyNet.onChangedLink(world, getallsides(new Location(x, y, z)));
+
+    }
+
+    @Override
     public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
         super.breakBlock(world, x, y, z, par5, par6);
-        System.out.println("A BROKEN LINK DETECTED");
-        QuantumEnergyNet.onBrokenLink(world, getallsides(new Location(x,y,z)));
+        QuantumEnergyNet.onChangedLink(world, getallsides(new Location(x, y, z)));
     }
 
     public Location[] getallsides(Location l) {

@@ -13,7 +13,7 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     @Override
