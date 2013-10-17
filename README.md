@@ -11,7 +11,7 @@ This is the github repo for QuantumCraft which will add some fun machines and a 
 
 ## [Todo and bug tracker](https://github.com/QuantumCraft/QuantumCraft/issues?state=open)
 
-If you find an issue you can either submit it on github which would be the best, fork it fix it and send us a PR, or lastly send us a PM/post on [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
+If you find an issue you can either submit it on GitHub which would be the best, fork it fix it and send us a PR, or lastly send us a PM/post on [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
 
 **If you find a bug and do not report it, it will most likely _not_ get fixed**
 
