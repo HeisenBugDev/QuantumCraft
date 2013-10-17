@@ -19,7 +19,7 @@ import java.util.List;
 public class GuiQEInjector  extends GuiBase {
 
     private TileQEInjector tile;
-
+    private boolean closeButtonHover = false;
     public GuiQEInjector(Container par1Container) {
         super(par1Container, 200, 170);
         tile = ((ContainerQEInjector) par1Container).tile;
@@ -52,6 +52,10 @@ public class GuiQEInjector  extends GuiBase {
             drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
             bindImage(GuiTextures.GUI_ARMBG);
             drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
+            bindImage(GuiTextures.GUI_INEJCTOR_BG);
+            drawQuad(30, 50, 0, 1, 0, 1, 53, 18);
+            bindImage(GuiTextures.GUI_DIVIDER_V);
+            drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
 
         }
     }
@@ -65,16 +69,21 @@ public class GuiQEInjector  extends GuiBase {
         drawTexturedModalRect(213, 40, 8, 9, 17, 105);
         drawTexturedModalRect(tarx, tary,51, 9+(67-h), 10, h  );
         drawTexturedModalRect(tarx, 40+11+8, 33, 9, 10, 67);
+
+        if (buffHT[1]) {
+            drawTexturedModalRect(tarx, 40+11+8, 69, 9, 10, 67);
+        }
     }
 
     protected void drawForeground(){
         if (this.renderI) {
             bindImage(GuiTextures.GUI_BTN_CLOSE);
-            GL11.glColor3f(2F, 0F, 0F);
+            GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
             drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
             GL11.glColor3f(1F, 1F, 1F);
 
             drawPowerBar();
+
             this.fontRenderer.drawString("Quantum Energy Injector", 15, 15, 0x000000 );
 
             GL11.glPushMatrix();
@@ -90,7 +99,7 @@ public class GuiQEInjector  extends GuiBase {
 
     protected void drawTooltips() {
         if (buffHT[0]) {
-            renderTooltipText("Close this GUI", buffHX, buffHY);
+            renderTooltipText("Close this GUI (duh)", buffHX, buffHY);
         }
         if (buffHT[1]) {
             renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);

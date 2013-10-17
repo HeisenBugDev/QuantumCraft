@@ -13,8 +13,8 @@ public class ContainerQEInjector extends Container {
 
     public ContainerQEInjector(InventoryPlayer ip, TileQEInjector te) {
         tile = te;
-        this.addSlotToContainer(new Slot(tile, 0, 30, 34+16));
-        this.addSlotToContainer(new SlotOutput(tile, 1, 141, 34+16));
+        this.addSlotToContainer(new Slot(tile, 0, 40, 60));
+        this.addSlotToContainer(new SlotOutput(tile, 1, 75, 60));
         int i;
 
         for (i = 0; i < 3; ++i) {
