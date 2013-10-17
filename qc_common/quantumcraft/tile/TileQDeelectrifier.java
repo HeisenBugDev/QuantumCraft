@@ -20,12 +20,11 @@ import net.minecraftforge.common.ForgeDirection;
 public class TileQDeelectrifier extends TileEnergySource implements IPowerReceptor{
     private int tickCounter = 0;
     private boolean redstonePower = false;
-    private int energyBuffer = 1000;
+    private int energyBuffer = 0;
     private PowerHandler powerHandler;
     private int buildCraftBuffer = 0;
 
     public TileQDeelectrifier() {
-        System.out.println("SHFKSDJHFdkj");
         powerHandler = new PowerHandler(this, Type.MACHINE);
         powerHandler.configure(5, 100, 2, 1000);
         powerHandler.configurePowerPerdition(1, 1);
@@ -38,7 +37,7 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
 
     @Override
     public int getCurrentEnergy() {
-        return 0;
+        return energyBuffer;
     }
 
     @Override
@@ -51,7 +50,7 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
 
     @Override
     public int guiID() {
-        return 0;
+        return -1;
     }
 
     @Override
@@ -79,9 +78,9 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
 
     @Override
     public void updateEntity() {
-        buildCraftBuffer = buildCraftBuffer + (int) powerHandler.useEnergy(1,100,true);
-        System.out.println(powerHandler.useEnergy(1,100,false));
-        System.out.println(buildCraftBuffer + " | " + energyBuffer);
+        buildCraftBuffer += powerHandler.useEnergy(1, 100, true);
+        //System.out.println("Powerhandler use energy: " + powerHandler.useEnergy(1,100,false));
+        //System.out.println("Buildcraft buffer: " + buildCraftBuffer + " Energy Buffer:  " + energyBuffer);
         if (buildCraftBuffer >= 1){
             energyBuffer++;
             buildCraftBuffer--;
