@@ -21,7 +21,7 @@ public class Loader {
 
     /* ITEMS */
     public static ItemBase ItemIngotUnbioxenium;
-    public static ItemQuantoniumCrystal ItemCrystalQuantonium;
+    public static ItemBase ItemCrystalQuantonium;
     public static ItemBase ItemRawQuantonium;
     public static ItemMultiTool ItemMultiTool;
     public static ItemResearchBook ItemResearchBook;
@@ -74,7 +74,7 @@ public class Loader {
                 .setTextureName(Config.getTextureName(Config.NameItemUnbioxeniumIngot));
         LanguageRegistry.addName(ItemIngotUnbioxenium, "Unbioxenium Ingot");
 
-        ItemCrystalQuantonium = (ItemQuantoniumCrystal) new ItemQuantoniumCrystal(Config.ItemCrystallizedQuantoniumID)
+        ItemCrystalQuantonium = (ItemBase) new ItemBase(Config.ItemCrystallizedQuantoniumID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemCrystalQuantonium)
                 .setTextureName(Config.getTextureName(Config.NameItemCrystalQuantonium));
         LanguageRegistry.addName(ItemCrystalQuantonium, "Crystallized Quantonium");
