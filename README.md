@@ -53,7 +53,6 @@ CURRENTLY USING FORGE 9.11.0.884! (http://adf.ly/673885/http://files.minecraftfo
 
 _PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF_
 
-**If it is possible to mark an issue in code, do it the following way: //ISSUE #n.**
 
 ## Legal crap
 
