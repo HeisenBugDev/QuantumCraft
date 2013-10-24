@@ -3,19 +3,19 @@ package quantumcraft.core;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.block.BlockOre;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.util.Icon;
+import net.minecraftforge.common.EnumHelper;
 import quantumcraft.blocks.*;
 import quantumcraft.items.*;
 import quantumcraft.items.tools.ItemQuantumAxe;
 import quantumcraft.items.tools.ItemQuantumPick;
 import quantumcraft.items.tools.ItemQuantumShovel;
 import quantumcraft.items.tools.ItemQuantumSword;
-import quantumcraft.tile.*;
 import quantumcraft.render.RenderOre;
-import net.minecraft.block.BlockOre;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.util.Icon;
-import net.minecraftforge.common.EnumHelper;
+import quantumcraft.tile.*;
 
 public class Loader {
 
@@ -162,9 +162,10 @@ public class Loader {
         LanguageRegistry.addName(BlockQDeenergizer, "Quantum De-Energizer");
         GameRegistry.registerBlock(BlockQDeenergizer, Config.NameBlockQDE);
 
-        BlockQDematerializer = (BlockQDematerializer) new BlockQDematerializer(Config.BlockQDMID).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockQDM)
-                .setTextureName(Config.getTextureName(Config.NameBlockQDM));
+        BlockQDematerializer =
+                (BlockQDematerializer) new BlockQDematerializer(Config.BlockQDMID).setCreativeTab(tabQuantumCraft)
+                        .setUnlocalizedName(Config.NameBlockQDM)
+                        .setTextureName(Config.getTextureName(Config.NameBlockQDM));
         LanguageRegistry.addName(BlockQDematerializer, "Quantum De-Materializer");
         GameRegistry.registerBlock(BlockQDematerializer, Config.NameBlockQDM);
 
@@ -174,11 +175,13 @@ public class Loader {
         LanguageRegistry.addName(BlockQEInjector, "Quantum Energy Injector");
         GameRegistry.registerBlock(BlockQEInjector, Config.NameBlockQEI);
 
-        BlockQDislocator = (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDS)
-                .setTextureName(Config.getTextureName(Config.NameBlockQDS));
-        LanguageRegistry.addName(BlockQDislocator, "Quantum Dislocator");
-        GameRegistry.registerBlock(BlockQDislocator, Config.NameBlockQDS);
+        if (Config.betaBlocks.getBoolean(false)) {
+            BlockQDislocator = (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID)
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDS)
+                    .setTextureName(Config.getTextureName(Config.NameBlockQDS));
+            LanguageRegistry.addName(BlockQDislocator, "Quantum Dislocator");
+            GameRegistry.registerBlock(BlockQDislocator, Config.NameBlockQDS);
+        }
 
         BlockQEnergySucker = (BlockQEnergySucker) new BlockQEnergySucker(Config.BlockQESID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQES)
@@ -225,16 +228,18 @@ public class Loader {
     public static void initTEs() {
         GameRegistry.registerTileEntity(TileQDeenergizer.class, "QDeenergizerTE");
         GameRegistry.registerTileEntity(TileQEInjector.class, "QEInjectorTE");
-        GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         GameRegistry.registerTileEntity(TileQEnergySucker.class, "QESuckerTE");
         GameRegistry.registerTileEntity(TileQDematerializer.class, "QDematerializerTE");
+        GameRegistry.registerTileEntity(TileQEExtractor.class, "QEExtractorTE");
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
             GameRegistry.registerTileEntity(TileQDeelectrifier.class, "QDeelectrifier");
         }
 
-        GameRegistry.registerTileEntity(TileQEExtractor.class, "QEExtractorTE");
+        if (Config.betaBlocks.getBoolean(false)) {
+            GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
+        }
     }
 
     public static boolean hasBuildCraft() {

@@ -9,33 +9,24 @@ import java.util.LinkedList;
 
 public class Config {
 
-    protected static File _configFolder;
-    protected static File _configFile;
-
-
+    public static final String modNetworkChannel = "QuantumCraft";
     public static String texturePrefix = "quantumcraft:";
     public static String RIconPrefix = texturePrefix + "research.";
-
     public static String NameItemUnbioxeniumIngot = "ingotUnbioxenium";
     public static String NameItemCrystalQuantonium = "crystalQuantonium";
     public static String NameItemRawQuantonium = "rawQuantonium";
     public static String NameItemDepletedCrystal = "depletedCrystal";
     public static String NameItemResearchBook = "researchBook";
     public static String NameItemMultiTool = "multiTool";
-
     public static String NameItemPortableQCapacitor = "portQCapacitor";
-
     public static String NameItemUpgrade_ = "upgradeNONE";
-    public static String[] NameItemUpgrade = { "upgradeTemplate", "upgradeOverclock" };
-
+    public static String[] NameItemUpgrade = {"upgradeTemplate", "upgradeOverclock"};
     public static String NameItemQSword = "quantumSword";
     public static String NameItemQAxe = "quantumAxe";
     public static String NameItemQPick = "quantumPick";
     public static String NameItemQShovel = "quantumShovel";
-
     public static String NameItemLocationCard = "locationCard";
     public static String NameItemLocationCardBlank = "locationCardBlank";
-
     public static String NameOreUnbioxenium = "oreUnbioxenium";
     public static String NameOreQuantonium = "oreQuantonium";
     public static String NameBlockQDE = "machineQDE";
@@ -46,22 +37,14 @@ public class Config {
     public static String NameBlockQEL = "machineQEL";
     public static String NameBlockQEE = "machineQEE";
     public static String NameBlockQDL = "machineQDL";
-
     public static String NameBlockQFiberWire = "blockFiberWire";
-
     public static String NameTextureQOre = "oreQuantonium.ore";
     public static String NameTextureQBase = "oreQuantonium.base";
-
     public static String NameItemRPlaceHolder = "temp";
-
     public static LinkedList<String> supports32x = new LinkedList<String>();
-
-    public static final String modNetworkChannel = "QuantumCraft";
-
     public static Property networkUpdateRange;
-
+    public static Property betaBlocks;
     public static Boolean use32x;
-
     public static int ItemUnbioxeniumIngotID;
     public static int ItemCrystallizedQuantoniumID;
     public static int ItemRawQuantoniumID;
@@ -71,16 +54,12 @@ public class Config {
     public static int ItemLocationCardID;
     public static int ItemLocationdCardBlankID;
     public static int ItemPortQCapacitorID;
-
     public static int ItemUpgradeID;
-
     public static int ItemQSwordID;
     public static int ItemQAxeID;
     public static int ItemQPickID;
     public static int ItemQShovelID;
-
     public static int ItemRPlaceHolderID;
-
     public static int OreUnbioxeniumID;
     public static int OreQuantoniumID;
     public static int BlockQDEID;
@@ -91,10 +70,10 @@ public class Config {
     public static int BlockQELID;
     public static int BlockQEEID;
     public static int BlockQDLID;
-
     public static int BlockFiberWireID;
-
     public static String NameRIconTest = RIconPrefix + "test";
+    protected static File _configFolder;
+    protected static File _configFile;
 
     public static String getTextureName(String name) {
         if (use32x) {
@@ -112,8 +91,7 @@ public class Config {
         loadPropertiesFromFile(_configFile);
     }
 
-    public static void add32x()
-    {
+    public static void add32x() {
         //PUT TEXTURES THAT HAVE 32X VERSION HERE:
         supports32x.add(NameOreQuantonium);
         supports32x.add(NameTextureQOre);
@@ -150,7 +128,7 @@ public class Config {
         BlockQDSID = config.get("Blocks", "BlockQDislocator", 3602).getInt();
         BlockQESID = config.get("Blocks", "BlockQESucker", 3603).getInt();
         BlockQDMID = config.get("Blocks", "BlockQDematerializer", 3606).getInt();
-        BlockQELID = config.get("Blocks", "BlockQElectrifier",3607).getInt();
+        BlockQELID = config.get("Blocks", "BlockQElectrifier", 3607).getInt();
         BlockQEEID = config.get("Blocks", "BlockQEExtractor", 3608).getInt();
         BlockQDLID = config.get("Blocks", "BlockQDeelectrifier", 3609).getInt();
 
@@ -161,6 +139,11 @@ public class Config {
                 "This is the distance in which players will be notified.  Lower if you experience lag.";
 
         use32x = config.get("general", "Use 32x32 textures", true).getBoolean(true);
+        betaBlocks =
+                config.get("general", "Enable beta blocks",
+                        false);
+        betaBlocks.comment = ("(WARNING! This could corrupt your world or break your game)");
+
 
         config.save();
     }
