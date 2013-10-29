@@ -7,12 +7,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-/**
- * Created with IntelliJ IDEA.
- * User: theron
- * Date: 9/2/13
- * Time: 3:09 PM
- */
 public class BlockQDeelectrifier extends BlockEnergySource {
 
     public BlockQDeelectrifier(int id) {
