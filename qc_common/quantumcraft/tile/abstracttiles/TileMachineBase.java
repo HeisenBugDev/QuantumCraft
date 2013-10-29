@@ -107,8 +107,7 @@ public abstract class TileMachineBase extends TileEntity implements
     public boolean useRotated() {
         //NORTH and SOUTH = false
         //WEST and EAST = true
-        if (_forwardDirection == ForgeDirection.WEST || _forwardDirection == ForgeDirection.EAST ) return false;
-        else return true;
+        return !(_forwardDirection == ForgeDirection.WEST || _forwardDirection == ForgeDirection.EAST);
     }
 
     public void rotateDirectlyTo(int rotation) {

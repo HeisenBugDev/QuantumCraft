@@ -34,7 +34,7 @@ public class ResearchHandler {
 
     public boolean canUnlockRI(ResearchItem ri) {
         if (ri.parentAchievement != null) {
-            return hasRIUnlocked(ri.parentAchievement) ? true : false;
+            return hasRIUnlocked(ri.parentAchievement);
         }
         return true;
     }

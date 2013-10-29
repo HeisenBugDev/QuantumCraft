@@ -28,7 +28,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     public float currentOutput = 0;
     protected PowerHandler powerHandler;
     private int tickCounter = 0;
-    private boolean redstonePower = false;
     private int energyBuffer = 0;
     private boolean init = false;
 
@@ -153,7 +152,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
         }
 
         if (tickCounter == 0) {
-            redstonePower = BasicUtils.isRedstonePowered(this);
+            boolean redstonePower = BasicUtils.isRedstonePowered(this);
             if (!redstonePower) {
                 sendPower();
             }

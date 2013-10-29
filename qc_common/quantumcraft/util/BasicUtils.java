@@ -64,17 +64,11 @@ public class BasicUtils {
     }
 
     public static boolean isServer(World world) {
-        if (world != null) {
-            return !world.isRemote;
-        }
-        return false;
+        return world != null && !world.isRemote;
     }
 
     public static boolean isClient(World world) {
-        if (world != null) {
-            return world.isRemote;
-        }
-        return false;
+        return world != null && world.isRemote;
     }
 
     public static boolean isHoldingWrench(EntityPlayer player) {

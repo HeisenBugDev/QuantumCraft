@@ -54,8 +54,7 @@ public class SimpleInventory implements IInventory {
         if (_contents[i] == null)
             return null;
         if (_contents[i].stackSize > j) {
-            ItemStack ret = _contents[i].splitStack(j);
-            return ret;
+            return _contents[i].splitStack(j);
         }
         ItemStack ret = _contents[i];
         _contents[i] = null;
