@@ -6,7 +6,6 @@ public class TabQuantumCraft extends CreativeTabs {
 
     public TabQuantumCraft() {
         super("quantumCraft");
-        // TODO Auto-generated constructor stub
     }
 
     @Override
