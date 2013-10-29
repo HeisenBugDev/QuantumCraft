@@ -16,7 +16,7 @@ public abstract class BlockEnergyComponent extends BlockMachine implements IQEne
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z,
-                                         EntityLivingBase entity, ItemStack stack) {
+                                EntityLivingBase entity, ItemStack stack) {
 
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
         QuantumEnergyNet.onAddedLink(world, new Location(x, y, z));
@@ -30,12 +30,12 @@ public abstract class BlockEnergyComponent extends BlockMachine implements IQEne
     }
 
     public Location[] getallsides(Location l) {
-        return new Location[]{new Location(l.getXCoord()-1, l.getYCoord(), l.getZCoord()), //x-
-                new Location(l.getXCoord()+1, l.getYCoord(), l.getZCoord()),               //x+
-                new Location(l.getXCoord(), l.getYCoord()-1, l.getZCoord()),               //y-
-                new Location(l.getXCoord(), l.getYCoord()+1, l.getZCoord()),               //y+
-                new Location(l.getXCoord(), l.getYCoord(), l.getZCoord()-1),               //z-
-                new Location(l.getXCoord(), l.getYCoord(), l.getZCoord()+1)};              //z+
+        return new Location[]{new Location(l.getXCoord() - 1, l.getYCoord(), l.getZCoord()), //x-
+                new Location(l.getXCoord() + 1, l.getYCoord(), l.getZCoord()),               //x+
+                new Location(l.getXCoord(), l.getYCoord() - 1, l.getZCoord()),               //y-
+                new Location(l.getXCoord(), l.getYCoord() + 1, l.getZCoord()),               //y+
+                new Location(l.getXCoord(), l.getYCoord(), l.getZCoord() - 1),               //z-
+                new Location(l.getXCoord(), l.getYCoord(), l.getZCoord() + 1)};              //z+
     }
 
     @Override

@@ -13,7 +13,7 @@ import net.minecraft.world.World;
  * Date: 9/2/13
  * Time: 3:09 PM
  */
-public class    BlockQDeelectrifier extends BlockEnergySource{
+public class BlockQDeelectrifier extends BlockEnergySource {
 
     public BlockQDeelectrifier(int id) {
         super(id, Material.iron);

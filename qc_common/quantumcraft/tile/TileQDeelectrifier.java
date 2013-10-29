@@ -17,7 +17,7 @@ import net.minecraftforge.common.ForgeDirection;
  * Date: 9/2/13
  * Time: 3:29 PM
  */
-public class TileQDeelectrifier extends TileEnergySource implements IPowerReceptor{
+public class TileQDeelectrifier extends TileEnergySource implements IPowerReceptor {
     private int tickCounter = 0;
     private boolean redstonePower = false;
     private int energyBuffer = 0;
@@ -81,7 +81,7 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
         buildCraftBuffer += powerHandler.useEnergy(1, 100, true);
         //System.out.println("Powerhandler use energy: " + powerHandler.useEnergy(1,100,false));
         //System.out.println("Buildcraft buffer: " + buildCraftBuffer + " Energy Buffer:  " + energyBuffer);
-        if (buildCraftBuffer >= 1){
+        if (buildCraftBuffer >= 1) {
             energyBuffer++;
             buildCraftBuffer--;
         }

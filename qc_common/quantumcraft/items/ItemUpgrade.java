@@ -16,24 +16,21 @@ public class ItemUpgrade extends ItemBase implements IUpgrade {
     }
 
     public Icon[] icons = new Icon[2];
-    public String[] names = { "Upgrade Template", "Overclock Upgrade" };
+    public String[] names = {"Upgrade Template", "Overclock Upgrade"};
 
     @Override
-    public Icon getIconFromDamage(int par1)
-    {
+    public Icon getIconFromDamage(int par1) {
         return icons[par1];
     }
 
     @Override
-    public String getItemDisplayName(ItemStack par1ItemStack)
-    {
-       return names[par1ItemStack.getItemDamage()];
+    public String getItemDisplayName(ItemStack par1ItemStack) {
+        return names[par1ItemStack.getItemDamage()];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
-    {
+    public void registerIcons(IconRegister par1IconRegister) {
         for (int i = 0; i <= this.getMetaMax(); i++) {
             icons[i] = par1IconRegister.registerIcon(Config.getTextureName(Config.NameItemUpgrade[i]));
         }

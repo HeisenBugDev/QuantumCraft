@@ -8,8 +8,7 @@ public class ItemPlaceholder extends ItemBase {
         super(id);
     }
 
-    public void setTexture(Icon i)
-    {
+    public void setTexture(Icon i) {
         this.itemIcon = i;
     }
 }

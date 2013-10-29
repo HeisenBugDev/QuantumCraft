@@ -30,6 +30,7 @@ public abstract class TileEnergySink extends TileMachineBase {
 
     /**
      * Adds energy to current buffer. uses substractEnergy with negative nubers.
+     *
      * @param req amount to add
      * @return energy buffer _AFTER_ addition
      */
@@ -39,6 +40,7 @@ public abstract class TileEnergySink extends TileMachineBase {
 
     /**
      * Subtracts energy from current buffer. INCLUDE ZERO AND MAXCHECKING
+     *
      * @param req amount to subtract
      * @return energy buffer _AFTER_ subtraction
      */
@@ -46,6 +48,7 @@ public abstract class TileEnergySink extends TileMachineBase {
 
     /**
      * Method to receive an energy packet from an energy source
+     *
      * @param size size of the requested packet
      * @return actual amount of energy received
      */

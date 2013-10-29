@@ -13,7 +13,9 @@ public class GuiTextures {
     public static ResourceLocation GUI_INVBG = new ResourceLocation("quantumcraft", "textures/gui/inv_bg.png");
     public static ResourceLocation GUI_ARMBG = new ResourceLocation("quantumcraft", "textures/gui/arm_bg.png");
     public static ResourceLocation GUI_PWRB = new ResourceLocation("quantumcraft", "textures/gui/powerbar.png");
-    public static ResourceLocation GUI_BTN_CLOSE = new ResourceLocation("quantumcraft", "textures/gui/button_close.png");
+    public static ResourceLocation GUI_BTN_CLOSE =
+            new ResourceLocation("quantumcraft", "textures/gui/button_close.png");
     public static ResourceLocation GUI_DIVIDER_V = new ResourceLocation("quantumcraft", "textures/gui/dividerV.png");
-    public static ResourceLocation GUI_INEJCTOR_BG = new ResourceLocation("quantumcraft", "textures/gui/injectorbg.png");
+    public static ResourceLocation GUI_INEJCTOR_BG =
+            new ResourceLocation("quantumcraft", "textures/gui/injectorbg.png");
 }

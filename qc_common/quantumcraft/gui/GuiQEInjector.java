@@ -16,18 +16,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class GuiQEInjector  extends GuiBase {
+public class GuiQEInjector extends GuiBase {
 
     private TileQEInjector tile;
     private boolean closeButtonHover = false;
+
     public GuiQEInjector(Container par1Container) {
         super(par1Container, 200, 170);
         tile = ((ContainerQEInjector) par1Container).tile;
     }
 
     @Override
-    public void initGui()
-    {
+    public void initGui() {
         super.initGui();
         this.mc.thePlayer.openContainer = this.inventorySlots;
         this.guiLeft = (this.width - this.xSize) / 2;
@@ -38,16 +38,16 @@ public class GuiQEInjector  extends GuiBase {
     }
 
 
-    protected void drawBackground(){
+    protected void drawBackground() {
         if (this.renderI) {
             bindImage(GuiTextures.GUI_TPBG);
-            drawQuad(0,0,0,1,0,1,200,31);
+            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_COLS);
-            GL11.glColor3f(1F,1F,0);
-            drawQuad(0,0,0,1,0,1,200,31);
+            GL11.glColor3f(1F, 1F, 0);
+            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_BTBG);
             GL11.glColor3f(1F, 1F, 1F);
-            drawQuad(0,31,0,1,0,1,200,139);
+            drawQuad(0, 31, 0, 1, 0, 1, 200, 139);
             bindImage(GuiTextures.GUI_INVBG);
             drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
             bindImage(GuiTextures.GUI_ARMBG);
@@ -61,21 +61,21 @@ public class GuiQEInjector  extends GuiBase {
     }
 
     protected void drawPowerBar() {
-        float flt = (float)tile.getCurrentEnergy() / (float)tile.getMaxEnergy();
-        int h = (int)(flt * 67);
-        int tarx = 213+3;
-        int tary = 40+11+8 + (67-h);
+        float flt = (float) tile.getCurrentEnergy() / (float) tile.getMaxEnergy();
+        int h = (int) (flt * 67);
+        int tarx = 213 + 3;
+        int tary = 40 + 11 + 8 + (67 - h);
         bindImage(GuiTextures.GUI_PWRB);
         drawTexturedModalRect(213, 40, 8, 9, 17, 105);
-        drawTexturedModalRect(tarx, tary,51, 9+(67-h), 10, h  );
-        drawTexturedModalRect(tarx, 40+11+8, 33, 9, 10, 67);
+        drawTexturedModalRect(tarx, tary, 51, 9 + (67 - h), 10, h);
+        drawTexturedModalRect(tarx, 40 + 11 + 8, 33, 9, 10, 67);
 
         if (buffHT[1]) {
-            drawTexturedModalRect(tarx, 40+11+8, 69, 9, 10, 67);
+            drawTexturedModalRect(tarx, 40 + 11 + 8, 69, 9, 10, 67);
         }
     }
 
-    protected void drawForeground(){
+    protected void drawForeground() {
         if (this.renderI) {
             bindImage(GuiTextures.GUI_BTN_CLOSE);
             GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
@@ -84,7 +84,7 @@ public class GuiQEInjector  extends GuiBase {
 
             drawPowerBar();
 
-            this.fontRenderer.drawString("Quantum Energy Injector", 15, 15, 0x000000 );
+            this.fontRenderer.drawString("Quantum Energy Injector", 15, 15, 0x000000);
 
             GL11.glPushMatrix();
             GL11.glDisable(GL11.GL_LIGHTING);

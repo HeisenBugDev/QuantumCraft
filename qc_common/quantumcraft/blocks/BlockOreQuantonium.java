@@ -21,8 +21,7 @@ public class BlockOreQuantonium extends BlockOre {
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
-    {
+    public void registerIcons(IconRegister par1IconRegister) {
         super.registerIcons(par1IconRegister);
         Loader.IconLoader.loadAll(par1IconRegister);
     }
@@ -38,7 +37,7 @@ public class BlockOreQuantonium extends BlockOre {
     }
 
     @Override
-    public int getRenderType(){
+    public int getRenderType() {
         return RenderOre.instance().getRenderId();
     }
 }

@@ -16,6 +16,7 @@ public abstract class TileEnergySource extends TileMachineBase {
 
     /**
      * Adds energy to current buffer. uses substractEnergy with negative nubers.
+     *
      * @param req amount to add
      * @return energy buffer _AFTER_ addition
      */
@@ -25,6 +26,7 @@ public abstract class TileEnergySource extends TileMachineBase {
 
     /**
      * Subtracts energy from current buffer. INCLUDE ZERO AND MAXCHECKING
+     *
      * @param req amount to subtract
      * @return energy buffer _AFTER_ subtraction
      */

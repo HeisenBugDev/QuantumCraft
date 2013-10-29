@@ -45,6 +45,6 @@ public abstract class BlockRotatable extends BlockContainer {
                 ((TileMachineBase) te).rotateDirectlyTo(5);
             }
         }
-            }
+    }
 
 }

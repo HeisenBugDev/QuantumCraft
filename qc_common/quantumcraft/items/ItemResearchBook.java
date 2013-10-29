@@ -22,8 +22,7 @@ public class ItemResearchBook extends ItemBase {
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
-    {
+    public void registerIcons(IconRegister par1IconRegister) {
         super.registerIcons(par1IconRegister);
         ResearchIcons.test = par1IconRegister.registerIcon(Config.NameRIconTest);
     }

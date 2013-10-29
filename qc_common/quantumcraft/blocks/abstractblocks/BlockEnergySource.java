@@ -18,12 +18,13 @@ public abstract class BlockEnergySource extends BlockEnergyComponent implements 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z,
                                 EntityLivingBase entity, ItemStack stack) {
-        super.onBlockPlacedBy(world, x,y,z,entity,stack);
-        QuantumEnergyNet.propagateSourceLocation(world, new Location(x,y,z));
+        super.onBlockPlacedBy(world, x, y, z, entity, stack);
+        QuantumEnergyNet.propagateSourceLocation(world, new Location(x, y, z));
     }
 
     @Override
     public int getQuantumEnergy(World w, Location l, int request) {
-        return ((TileEnergySource)w.getBlockTileEntity(l.getXCoord(),l.getYCoord(),l.getZCoord())).getQuantumEnergy(l, request);
+        return ((TileEnergySource) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
+                .getQuantumEnergy(l, request);
     }
 }

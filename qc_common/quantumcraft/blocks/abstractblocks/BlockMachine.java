@@ -42,8 +42,10 @@ public abstract class BlockMachine extends BlockRotatable {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
-        TileMachineBase te = (TileMachineBase)world.getBlockTileEntity(x,y,z);
-        if (te == null) { return false; }
+        TileMachineBase te = (TileMachineBase) world.getBlockTileEntity(x, y, z);
+        if (te == null) {
+            return false;
+        }
         if (entityplayer.isSneaking()) {
             //PLAYER IS SNEAKING, DOES HE HAVE AN UPGRADE?
             if (entityplayer.getCurrentEquippedItem().getItem() instanceof IUpgrade && te instanceof IUpgradable) {
@@ -112,11 +114,13 @@ public abstract class BlockMachine extends BlockRotatable {
                                 int side) {
         TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
         //if (this.getTileEntity().getClass().isInstance(te)) {
-        if (te instanceof TileMachineBase){
+        if (te instanceof TileMachineBase) {
             side = ((TileMachineBase) te).getRotatedSide(side);
         }
-        if (te == null) { return Block.stone.getIcon(0,0); }
-        return getIconFromSide(side,((TileMachineBase) te).useRotated());
+        if (te == null) {
+            return Block.stone.getIcon(0, 0);
+        }
+        return getIconFromSide(side, ((TileMachineBase) te).useRotated());
     }
 
     @Override

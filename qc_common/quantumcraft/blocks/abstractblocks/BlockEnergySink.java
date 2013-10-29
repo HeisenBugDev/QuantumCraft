@@ -23,15 +23,15 @@ public abstract class BlockEnergySink extends BlockEnergyComponent implements IQ
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z,
                                 EntityLivingBase entity, ItemStack stack) {
-        super.onBlockPlacedBy(world, x,y,z,entity,stack);
-        Location l = new Location(x,y,z);
+        super.onBlockPlacedBy(world, x, y, z, entity, stack);
+        Location l = new Location(x, y, z);
         replaceSourceList(world, l, new EnergySourceList(QuantumEnergyNet.getSourceLocations(world, l)));
     }
 
 
-
     @Override
     public void replaceSourceList(World w, Location l, EnergySourceList sources) {
-        ((TileEnergySink) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord())).replaceSourceList(l, sources);
+        ((TileEnergySink) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
+                .replaceSourceList(l, sources);
     }
 }

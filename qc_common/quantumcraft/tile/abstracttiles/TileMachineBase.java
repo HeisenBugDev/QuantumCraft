@@ -19,6 +19,7 @@ public abstract class TileMachineBase extends TileEntity implements
     }
 
     public abstract int guiID();
+
     public abstract void onBlockBreak();
 
     @Override

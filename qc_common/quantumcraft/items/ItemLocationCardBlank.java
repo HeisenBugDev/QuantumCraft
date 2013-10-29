@@ -21,8 +21,7 @@ public class ItemLocationCardBlank extends ItemBase {
         return true;
     }
 
-    public void registerIcons(IconRegister par1IconRegister)
-    {
+    public void registerIcons(IconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
     }
 

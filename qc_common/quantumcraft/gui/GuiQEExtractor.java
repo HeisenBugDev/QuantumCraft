@@ -17,10 +17,9 @@ public class GuiQEExtractor extends GuiContainer {
     }
 
     @Override
-    public void initGui()
-    {
+    public void initGui() {
         super.initGui();
-        this.xSize = 176+19;
+        this.xSize = 176 + 19;
         this.mc.thePlayer.openContainer = this.inventorySlots;
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
@@ -28,7 +27,7 @@ public class GuiQEExtractor extends GuiContainer {
 
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         String s = this.tile.getInvName();
-        this.fontRenderer.drawString(s, (this.xSize-19) / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRenderer.drawString(s, (this.xSize - 19) / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
         //this.fontRenderer.drawString("MAX: " + tile.maxival + "; CUR: " + tile.currentival,
         //        this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 15, 4210752);
         this.fontRenderer

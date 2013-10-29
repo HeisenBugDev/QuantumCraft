@@ -12,35 +12,41 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 /**
  * A base for all the custom block renderers we're using.
+ *
  * @author LordFokas
  */
-public abstract class BaseBlockRenderer implements ISimpleBlockRenderingHandler{
+public abstract class BaseBlockRenderer implements ISimpleBlockRenderingHandler {
     protected int rid;
 
-    protected BaseBlockRenderer()
-    { rid = RenderingRegistry.getNextAvailableRenderId(); }
+    protected BaseBlockRenderer() {
+        rid = RenderingRegistry.getNextAvailableRenderId();
+    }
 
-    @Override public int getRenderId()
-    { return rid; }
+    @Override
+    public int getRenderId() {
+        return rid;
+    }
 
-    @Override public boolean shouldRender3DInInventory()
-    { return true; }
+    @Override
+    public boolean shouldRender3DInInventory() {
+        return true;
+    }
 
     //********** ITEM RENDERING ****************************************************************//
     @Override
-    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer){
+    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
         renderAsItem(block, renderer);
     }
 
-    protected static void renderAsItem(Block block, RenderBlocks renderer){
+    protected static void renderAsItem(Block block, RenderBlocks renderer) {
         Icon[] tmap = new Icon[6];
-        for(int i = 0; i < 6; i++){
+        for (int i = 0; i < 6; i++) {
             tmap[i] = block.getBlockTextureFromSide(i);
         }
         renderAsItem(block, renderer, tmap);
     }
 
-    protected static void renderAsItem(Block block, RenderBlocks renderer, Icon[] tmap){
+    protected static void renderAsItem(Block block, RenderBlocks renderer, Icon[] tmap) {
         Tessellator tessellator = Tessellator.instance;
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F); // Set angled view
 

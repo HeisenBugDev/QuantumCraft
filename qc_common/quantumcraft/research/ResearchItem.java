@@ -42,8 +42,7 @@ public class ResearchItem {
         return special;
     }
 
-    public ItemStack getItemStack()
-    {
+    public ItemStack getItemStack() {
         Loader.ItemRPlaceHolder.setTexture(theIcon);
         return new ItemStack(Loader.ItemRPlaceHolder);
     }

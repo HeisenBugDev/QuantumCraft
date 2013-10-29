@@ -19,7 +19,7 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
-        return new int[] {0,1};
+        return new int[]{0, 1};
     }
 
     @Override
@@ -32,6 +32,7 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
         return i != 0;
     }
+
     @Override
     public int getSizeInventory() {
         return 2;
@@ -138,23 +139,24 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
     }
 
     public boolean areCardsIn() {
-        return !(inventory[0] == null || inventory[1] == null) && (inventory[0].hasTagCompound() && inventory[1].hasTagCompound());
+        return !(inventory[0] == null || inventory[1] == null) &&
+                (inventory[0].hasTagCompound() && inventory[1].hasTagCompound());
     }
 
     public int getCardBID(int index) {
-        return worldObj.getBlockId(getx(index),gety(index),getz(index));
+        return worldObj.getBlockId(getx(index), gety(index), getz(index));
     }
 
     public int getCardBMT(int index) {
-        return worldObj.getBlockMetadata(getx(index),gety(index),getz(index));
+        return worldObj.getBlockMetadata(getx(index), gety(index), getz(index));
     }
 
     public TileEntity getCardTE(int index) {
-        return worldObj.getBlockTileEntity(getx(index),gety(index),getz(index));
+        return worldObj.getBlockTileEntity(getx(index), gety(index), getz(index));
     }
 
     public void setB(int index, int id, int mt) {
-        worldObj.setBlock(getx(index),gety(index),getz(index),id,mt,3);
+        worldObj.setBlock(getx(index), gety(index), getz(index), id, mt, 3);
     }
 
     public int getx(int index) {
@@ -173,7 +175,7 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
     }
 
     public void setTE(int index, TileEntity te) {
-        worldObj.setBlockTileEntity(getx(index),gety(index),getz(index),te);
+        worldObj.setBlockTileEntity(getx(index), gety(index), getz(index), te);
     }
 
     private int prevAid;
@@ -201,9 +203,7 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
             }
             if (isFirstCycle) {
                 isFirstCycle = false;
-            }
-            else
-            {
+            } else {
                 if (getCardTE(0) != null && getCardTE(1) != null) {
                     if (currAte != prevAte) { //A TE has changed
                         TileEntity tte = getCardTE(0);
