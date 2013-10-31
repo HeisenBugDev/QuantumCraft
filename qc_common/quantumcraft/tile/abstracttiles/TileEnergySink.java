@@ -26,7 +26,7 @@ public abstract class TileEnergySink extends TileMachineBase {
     /**
      * @return current energy the machine is holding
      */
-    public int getCurrentEnergy(){
+    public int getCurrentEnergy() {
         return energyBuffer;
     }
 
@@ -54,11 +54,10 @@ public abstract class TileEnergySink extends TileMachineBase {
     }
 
     /**
-     *
      * @param set the value you want to set the energy to
      */
     public void setEnergy(int set) {
-      energyBuffer = set;
+        energyBuffer = set;
     }
 
     /**
