@@ -2,14 +2,11 @@ package quantumcraft.tile;
 
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
-import quantumcraft.core.network.PacketHandler;
-import quantumcraft.core.network.packets.QDeelectrifierInitPacket;
-import quantumcraft.tile.abstracttiles.TileEnergySource;
 import buildcraft.api.power.PowerHandler.Type;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.tile.abstracttiles.TileEnergySource;
 
 /**
  * Created with IntelliJ IDEA.
@@ -85,19 +82,6 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
             energyBuffer++;
             buildCraftBuffer--;
         }
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        QDeelectrifierInitPacket packet = PacketHandler.getPacket(QDeelectrifierInitPacket.class);
-        packet.posX = xCoord;
-        packet.posY = yCoord;
-        packet.posZ = zCoord;
-        NBTTagCompound nbt = new NBTTagCompound();
-        writeToNBT(nbt);
-        packet.tiledata = nbt;
-
-        return packet.getPacket();
     }
 
     @Override

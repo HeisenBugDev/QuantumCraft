@@ -1,17 +1,14 @@
 package quantumcraft.tile;
 
-import quantumcraft.core.Loader;
-import quantumcraft.core.network.PacketHandler;
-import quantumcraft.core.network.packets.QDislocatorInitPacket;
-import quantumcraft.inventory.SimpleInventory;
-import quantumcraft.tile.abstracttiles.TileMachineBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
+import quantumcraft.core.Loader;
+import quantumcraft.inventory.SimpleInventory;
+import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 public class TileQDislocator extends TileMachineBase implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
@@ -274,18 +271,5 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
 
         par1NBTTagCompound.setTag("Items", nbttaglist);
         super.writeToNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        QDislocatorInitPacket packet = PacketHandler.getPacket(QDislocatorInitPacket.class);
-        packet.posX = xCoord;
-        packet.posY = yCoord;
-        packet.posZ = zCoord;
-        NBTTagCompound nbt = new NBTTagCompound();
-        writeToNBT(nbt);
-        packet.tiledata = nbt;
-
-        return packet.getPacket();
     }
 }

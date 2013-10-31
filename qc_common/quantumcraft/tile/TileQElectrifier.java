@@ -5,16 +5,13 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import buildcraft.api.transport.IPipeConnection;
 import buildcraft.api.transport.IPipeTile;
-import quantumcraft.core.network.PacketHandler;
-import quantumcraft.core.network.packets.QElectrifierInitPacket;
-import quantumcraft.tile.abstracttiles.TileEnergySink;
-import quantumcraft.util.BasicUtils;
-import quantumcraft.util.BlockPosition;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.util.BasicUtils;
+import quantumcraft.util.BlockPosition;
 
 import java.util.List;
 
@@ -181,19 +178,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
         par1NBTTagCompound.setInteger("energyBuffer", this.getCurrentEnergy());
 
         super.writeToNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        QElectrifierInitPacket packet = PacketHandler.getPacket(QElectrifierInitPacket.class);
-        packet.posX = xCoord;
-        packet.posY = yCoord;
-        packet.posZ = zCoord;
-        NBTTagCompound nbt = new NBTTagCompound();
-        writeToNBT(nbt);
-        packet.tiledata = nbt;
-
-        return packet.getPacket();
     }
 
     @Override
