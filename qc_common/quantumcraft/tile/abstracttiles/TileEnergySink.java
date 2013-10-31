@@ -1,11 +1,11 @@
 package quantumcraft.tile.abstracttiles;
 
+import net.minecraft.nbt.NBTTagCompound;
 import quantumcraft.net.EnergySourceList;
 import quantumcraft.net.Location;
-import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class TileEnergySink extends TileMachineBase {
-
+    private int energyBuffer = 0;
     private EnergySourceList sourceList;
 
     public void addSourceToList(Location l, Location source) {
@@ -26,7 +26,9 @@ public abstract class TileEnergySink extends TileMachineBase {
     /**
      * @return current energy the machine is holding
      */
-    public abstract int getCurrentEnergy();
+    public int getCurrentEnergy(){
+        return energyBuffer;
+    }
 
     /**
      * Adds energy to current buffer. uses substractEnergy with negative nubers.
@@ -44,7 +46,20 @@ public abstract class TileEnergySink extends TileMachineBase {
      * @param req amount to subtract
      * @return energy buffer _AFTER_ subtraction
      */
-    public abstract int subtractEnergy(int req);
+    public int subtractEnergy(int req) {
+        energyBuffer -= req;
+        if (energyBuffer < 0) energyBuffer = 0;
+        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
+        return energyBuffer;
+    }
+
+    /**
+     *
+     * @param set the value you want to set the energy to
+     */
+    public void setEnergy(int set) {
+      energyBuffer = set;
+    }
 
     /**
      * Method to receive an energy packet from an energy source
