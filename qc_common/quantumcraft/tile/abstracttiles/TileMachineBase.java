@@ -1,11 +1,13 @@
 package quantumcraft.tile.abstracttiles;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
-import quantumcraft.core.interfaces.IRotateableTile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.core.interfaces.IRotateableTile;
+import quantumcraft.core.network.PacketHandler;
+import quantumcraft.core.network.packets.MachineInitPacket;
 
 public abstract class TileMachineBase extends TileEntity implements
         IRotateableTile {
@@ -16,6 +18,21 @@ public abstract class TileMachineBase extends TileEntity implements
 
     protected TileMachineBase() {
         _forwardDirection = ForgeDirection.NORTH;
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        MachineInitPacket packet = PacketHandler.getPacket(MachineInitPacket.class);
+        packet.posX = xCoord;
+        packet.posY = yCoord;
+        packet.posZ = zCoord;
+        NBTTagCompound nbt = new NBTTagCompound();
+        writeToNBT(nbt);
+        packet.tiledata = nbt;
+
+        return packet.getPacket();
+
+
     }
 
     public abstract int guiID();
@@ -101,9 +118,6 @@ public abstract class TileMachineBase extends TileEntity implements
 
     @Override
     public abstract void updateEntity();
-
-    @Override
-    public abstract Packet getDescriptionPacket();
 
     public boolean useRotated() {
         //NORTH and SOUTH = false
