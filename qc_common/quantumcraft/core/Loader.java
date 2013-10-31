@@ -47,6 +47,7 @@ public class Loader {
     public static BlockQElectrifier BlockQElectrifier;
     public static BlockQEExtractor BlockQEExtractor;
     public static BlockQDeelectrifier BlockQDeelectrifier;
+    public static BlockIONForge BlockIONForge;
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
     /* CREATIVE TABS */
@@ -176,6 +177,13 @@ public class Loader {
         GameRegistry.registerBlock(BlockQEInjector, Config.NameBlockQEI);
 
         if (Config.betaBlocks.getBoolean(false)) {
+
+            BlockIONForge = (BlockIONForge) new BlockIONForge(Config.BlockIOFID)
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockIOF)
+                    .setTextureName(Config.getTextureName(Config.NameBlockIOF));
+            LanguageRegistry.addName(BlockIONForge, "ION Forge");
+            GameRegistry.registerBlock(BlockIONForge, Config.NameBlockIOF);
+
             BlockQDislocator = (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID)
                     .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDS)
                     .setTextureName(Config.getTextureName(Config.NameBlockQDS));
