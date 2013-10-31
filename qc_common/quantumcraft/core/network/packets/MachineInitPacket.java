@@ -1,13 +1,11 @@
 package quantumcraft.core.network.packets;
 
-import quantumcraft.tile.abstracttiles.TileMachineBase;
-import quantumcraft.util.BasicUtils;
-import quantumcraft.core.network.abstractpackets.CoordinatesPacket;
-import quantumcraft.core.network.abstractpackets.ModernPacket;
-import quantumcraft.tile.TileQElectrifier;
-import quantumcraft.tile.TileQDeelectrifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import quantumcraft.core.network.abstractpackets.CoordinatesPacket;
+import quantumcraft.core.network.abstractpackets.ModernPacket;
+import quantumcraft.tile.abstracttiles.TileMachineBase;
+import quantumcraft.util.BasicUtils;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
