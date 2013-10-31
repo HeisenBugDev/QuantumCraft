@@ -1,9 +1,9 @@
 package quantumcraft.core.network.abstractpackets;
 
-import quantumcraft.core.Config;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
+import quantumcraft.core.Config;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
