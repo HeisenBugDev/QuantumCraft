@@ -1,7 +1,7 @@
 package quantumcraft.research;
 
-import quantumcraft.core.Loader;
 import net.minecraft.entity.player.EntityPlayer;
+import quantumcraft.core.Loader;
 
 import java.util.LinkedList;
 
