@@ -1,19 +1,13 @@
 package quantumcraft.gui;
 
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.gui.handlers.HoverHandler;
 import quantumcraft.inventory.ContainerQEInjector;
 import quantumcraft.tile.TileQEInjector;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.inventory.Container;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class GuiQEInjector extends GuiBase {
@@ -107,7 +101,7 @@ public class GuiQEInjector extends GuiBase {
     }
 
     protected void renderTooltipText(String text, int x, int y) {
-        List l = new ArrayList();
+        List<String> l = new ArrayList<String>();
         l.add(text);
         this.drawHoveringText(l, x, y, this.fontRenderer);
 
