@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySink;
+import quantumcraft.tile.TileIONForge;
 
 public class BlockIONForge extends BlockEnergySink {
     public BlockIONForge(int id) {
@@ -24,6 +25,6 @@ public class BlockIONForge extends BlockEnergySink {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return null; //TODO Setup TE
+        return new TileIONForge();
     }
 }
