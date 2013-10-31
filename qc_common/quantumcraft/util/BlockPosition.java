@@ -1,13 +1,13 @@
 package quantumcraft.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import quantumcraft.core.interfaces.IRotateableTile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.core.interfaces.IRotateableTile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockPosition {
     public int x;

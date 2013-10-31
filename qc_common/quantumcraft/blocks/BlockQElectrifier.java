@@ -1,11 +1,11 @@
 package quantumcraft.blocks;
 
-import quantumcraft.blocks.abstractblocks.BlockEnergySink;
-import quantumcraft.tile.TileQElectrifier;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import quantumcraft.blocks.abstractblocks.BlockEnergySink;
+import quantumcraft.tile.TileQElectrifier;
 
 public class BlockQElectrifier extends BlockEnergySink {
     public BlockQElectrifier(int id) {

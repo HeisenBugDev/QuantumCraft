@@ -1,14 +1,14 @@
 package quantumcraft.blocks.abstractblocks;
 
-import quantumcraft.tile.abstracttiles.TileEnergySink;
-import quantumcraft.net.EnergySourceList;
-import quantumcraft.net.IQEnergySink;
-import quantumcraft.net.Location;
-import quantumcraft.net.QuantumEnergyNet;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import quantumcraft.net.EnergySourceList;
+import quantumcraft.net.IQEnergySink;
+import quantumcraft.net.Location;
+import quantumcraft.net.QuantumEnergyNet;
+import quantumcraft.tile.abstracttiles.TileEnergySink;
 
 public abstract class BlockEnergySink extends BlockEnergyComponent implements IQEnergySink {
     public BlockEnergySink(int id, Material material) {

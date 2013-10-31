@@ -1,10 +1,10 @@
 package quantumcraft.blocks;
 
-import quantumcraft.core.Loader;
-import quantumcraft.render.RenderOre;
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
+import quantumcraft.core.Loader;
+import quantumcraft.render.RenderOre;
 
 import java.util.Random;
 
