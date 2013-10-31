@@ -1,11 +1,11 @@
 package quantumcraft.gui;
 
+import net.minecraft.inventory.Container;
+import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.gui.handlers.HoverHandler;
 import quantumcraft.inventory.ContainerQEInjector;
 import quantumcraft.tile.TileQEInjector;
-import net.minecraft.inventory.Container;
-import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 import java.util.List;

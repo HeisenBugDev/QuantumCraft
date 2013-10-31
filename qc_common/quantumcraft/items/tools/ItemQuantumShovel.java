@@ -1,13 +1,13 @@
 package quantumcraft.items.tools;
 
-import quantumcraft.core.Loader;
-import quantumcraft.core.interfaces.IQEnergizable;
-import quantumcraft.util.ItemEnergyUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import quantumcraft.core.Loader;
+import quantumcraft.core.interfaces.IQEnergizable;
+import quantumcraft.util.ItemEnergyUtils;
 
 public class ItemQuantumShovel extends ItemSpade implements IQEnergizable {
     int maxQenergyValue = 1000;

@@ -1,12 +1,12 @@
 package quantumcraft.items;
 
-import quantumcraft.core.Config;
-import quantumcraft.core.QuantumCraft;
-import quantumcraft.research.ResearchIcons;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import quantumcraft.core.Config;
+import quantumcraft.core.QuantumCraft;
+import quantumcraft.research.ResearchIcons;
 
 public class ItemResearchBook extends ItemBase {
 

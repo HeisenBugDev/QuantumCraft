@@ -1,11 +1,11 @@
 package quantumcraft.items;
 
-import quantumcraft.core.interfaces.IMultiTool;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.core.interfaces.IMultiTool;
 
 public class ItemMultiTool extends ItemBase implements IMultiTool {
 

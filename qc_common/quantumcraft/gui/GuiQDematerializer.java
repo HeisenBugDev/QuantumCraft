@@ -1,11 +1,11 @@
 package quantumcraft.gui;
 
-import quantumcraft.inventory.ContainerQDematerializer;
-import quantumcraft.tile.TileQDematerializer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import quantumcraft.inventory.ContainerQDematerializer;
+import quantumcraft.tile.TileQDematerializer;
 
 public class GuiQDematerializer extends GuiContainer {
 

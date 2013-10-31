@@ -1,11 +1,11 @@
 package quantumcraft.gui;
 
-import quantumcraft.inventory.ContainerQDislocator;
-import quantumcraft.tile.TileQDislocator;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import quantumcraft.inventory.ContainerQDislocator;
+import quantumcraft.tile.TileQDislocator;
 
 public class GuiQDislocator extends GuiContainer {
 

@@ -1,10 +1,10 @@
 package quantumcraft.core;
 
-import quantumcraft.util.BasicUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.util.BasicUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,7 +158,7 @@ public class Coords {
     }
 
     public List<Coords> getAdjacent(boolean includeVertical) {
-        List a = new ArrayList();
+        List<Coords> a = new ArrayList<Coords>();
         a.add(new Coords(this.x + 1, this.y, this.z, ForgeDirection.EAST));
         a.add(new Coords(this.x - 1, this.y, this.z, ForgeDirection.WEST));
         a.add(new Coords(this.x, this.y, this.z + 1, ForgeDirection.SOUTH));
