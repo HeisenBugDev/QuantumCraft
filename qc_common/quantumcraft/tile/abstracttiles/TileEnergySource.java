@@ -1,9 +1,10 @@
 package quantumcraft.tile.abstracttiles;
 
+import net.minecraft.nbt.NBTTagCompound;
 import quantumcraft.net.Location;
 
 public abstract class TileEnergySource extends TileMachineBase {
-
+    private int energyBuffer = 0;
     /**
      * @return maximum energy this machine can hold
      */
@@ -12,7 +13,9 @@ public abstract class TileEnergySource extends TileMachineBase {
     /**
      * @return current energy the machine is holding
      */
-    public abstract int getCurrentEnergy();
+    public int getCurrentEnergy() {
+        return energyBuffer;
+    }
 
     /**
      * Adds energy to current buffer. uses substractEnergy with negative nubers.
@@ -30,7 +33,30 @@ public abstract class TileEnergySource extends TileMachineBase {
      * @param req amount to subtract
      * @return energy buffer _AFTER_ subtraction
      */
-    public abstract int subtractEnergy(int req);
+    public int subtractEnergy(int req) {
+        energyBuffer -= req;
+        if (energyBuffer < 0) energyBuffer = 0;
+        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
+        return energyBuffer;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
+        super.readFromNBT(par1NBTTagCompound);
+        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
+        updateNextTick = true;
+    }
+
+    /**
+     * Writes a tile entity to NBT.
+     */
+
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
+        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
+
+        super.writeToNBT(par1NBTTagCompound);
+    }
 
     public int getQuantumEnergy(Location l, int request) {
         if (getCurrentEnergy() >= request) {
