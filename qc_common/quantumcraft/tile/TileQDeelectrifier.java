@@ -17,7 +17,6 @@ import quantumcraft.tile.abstracttiles.TileEnergySource;
 public class TileQDeelectrifier extends TileEnergySource implements IPowerReceptor {
     private int tickCounter = 0;
     private boolean redstonePower = false;
-    private int energyBuffer = 0;
     private PowerHandler powerHandler;
     private int buildCraftBuffer = 0;
 
@@ -33,39 +32,8 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
     }
 
     @Override
-    public int getCurrentEnergy() {
-        return energyBuffer;
-    }
-
-    @Override
-    public int subtractEnergy(int req) {
-        energyBuffer -= req;
-        if (energyBuffer < 0) energyBuffer = 0;
-        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
-        return energyBuffer;
-    }
-
-    @Override
     public int guiID() {
         return -1;
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
-        super.readFromNBT(par1NBTTagCompound);
-        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
-        updateNextTick = true;
-    }
-
-    /**
-     * Writes a tile entity to NBT.
-     */
-
-    @Override
-    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
-
-        super.writeToNBT(par1NBTTagCompound);
     }
 
     @Override
@@ -79,7 +47,7 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
         //System.out.println("Powerhandler use energy: " + powerHandler.useEnergy(1,100,false));
         //System.out.println("Buildcraft buffer: " + buildCraftBuffer + " Energy Buffer:  " + energyBuffer);
         if (buildCraftBuffer >= 1) {
-            energyBuffer++;
+            addEnergy(1);
             buildCraftBuffer--;
         }
     }
