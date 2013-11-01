@@ -9,12 +9,6 @@ import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySource;
 import quantumcraft.tile.TileQDematerializer;
 
-/**
- * Created with IntelliJ IDEA.
- * User: theron
- * Date: 7/24/13
- * Time: 8:50 PM
- */
 public class BlockQDematerializer extends BlockEnergySource {
 
 

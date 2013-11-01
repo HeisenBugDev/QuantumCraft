@@ -10,12 +10,6 @@ import quantumcraft.tile.abstracttiles.TileEnergySource;
 
 import java.util.Random;
 
-/**
- * Created with IntelliJ IDEA.
- * User: theron
- * Date: 7/24/13
- * Time: 8:48 PM
- */
 public class TileQDematerializer extends TileEnergySource implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[1];
     public int processTime = -1;

@@ -8,12 +8,6 @@ import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.util.BasicUtils;
 
-/**
- * Created with IntelliJ IDEA.
- * User: theron
- * Date: 9/2/13
- * Time: 3:29 PM
- */
 public class TileQDeelectrifier extends TileEnergySource implements IPowerReceptor {
     private PowerHandler powerHandler;
     private int buildCraftBuffer = 0;

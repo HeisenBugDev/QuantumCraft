@@ -14,12 +14,6 @@ import quantumcraft.util.BlockPosition;
 
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: theron
- * Date: 7/26/13
- * Time: 8:59 AM
- */
 public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, IPipeConnection, IPowerReceptor {
     public float currentOutput = 0;
     protected PowerHandler powerHandler;
