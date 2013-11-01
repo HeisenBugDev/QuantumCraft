@@ -3,10 +3,10 @@ package quantumcraft.tile;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import buildcraft.api.power.PowerHandler.Type;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
+import quantumcraft.util.BasicUtils;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,8 +15,6 @@ import quantumcraft.tile.abstracttiles.TileEnergySource;
  * Time: 3:29 PM
  */
 public class TileQDeelectrifier extends TileEnergySource implements IPowerReceptor {
-    private int tickCounter = 0;
-    private boolean redstonePower = false;
     private PowerHandler powerHandler;
     private int buildCraftBuffer = 0;
 
@@ -46,9 +44,12 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
         buildCraftBuffer += powerHandler.useEnergy(1, 100, true);
         //System.out.println("Powerhandler use energy: " + powerHandler.useEnergy(1,100,false));
         //System.out.println("Buildcraft buffer: " + buildCraftBuffer + " Energy Buffer:  " + energyBuffer);
-        if (buildCraftBuffer >= 1) {
-            addEnergy(1);
-            buildCraftBuffer--;
+        boolean redstonePower = BasicUtils.isRedstonePowered(this);
+        if (!redstonePower) {
+            if (buildCraftBuffer >= 1) {
+                addEnergy(1);
+                buildCraftBuffer--;
+            }
         }
     }
 
