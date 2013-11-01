@@ -163,24 +163,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
-        super.readFromNBT(par1NBTTagCompound);
-        this.setEnergy(par1NBTTagCompound.getInteger("energyBuffer"));
-        updateNextTick = true;
-    }
-
-    /**
-     * Writes a tile entity to NBT.
-     */
-
-    @Override
-    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("energyBuffer", this.getCurrentEnergy());
-
-        super.writeToNBT(par1NBTTagCompound);
-    }
-
-    @Override
     public boolean canEmitPowerFrom(ForgeDirection side) {
         return true;
     }
