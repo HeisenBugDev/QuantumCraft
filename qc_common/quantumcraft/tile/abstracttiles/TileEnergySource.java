@@ -40,6 +40,13 @@ public abstract class TileEnergySource extends TileMachineBase {
         return energyBuffer;
     }
 
+    /**
+     * @param set the value you want to set the energy to
+     */
+    public void setEnergy(int set) {
+        energyBuffer = set;
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
