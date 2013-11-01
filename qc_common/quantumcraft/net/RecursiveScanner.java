@@ -1,10 +1,10 @@
 package quantumcraft.net;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class RecursiveScanner {
     public interface IDataGatherer {

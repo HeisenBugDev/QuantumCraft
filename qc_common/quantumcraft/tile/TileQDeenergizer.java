@@ -1,17 +1,14 @@
 package quantumcraft.tile;
 
-import quantumcraft.core.QDERecipe;
-import quantumcraft.core.QRecipeHandler;
-import quantumcraft.core.network.PacketHandler;
-import quantumcraft.core.network.packets.QDeenergizerInitPacket;
-import quantumcraft.inventory.SimpleInventory;
-import quantumcraft.tile.abstracttiles.TileEnergySource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
+import quantumcraft.core.QDERecipe;
+import quantumcraft.core.QRecipeHandler;
+import quantumcraft.inventory.SimpleInventory;
+import quantumcraft.tile.abstracttiles.TileEnergySource;
 
 public class TileQDeenergizer extends TileEnergySource implements
         ISidedInventory {
@@ -268,21 +265,6 @@ public class TileQDeenergizer extends TileEnergySource implements
 
         par1NBTTagCompound.setTag("Items", nbttaglist);
         super.writeToNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        QDeenergizerInitPacket packet = PacketHandler.getPacket(QDeenergizerInitPacket.class);
-        packet.posX = xCoord;
-        packet.posY = yCoord;
-        packet.posZ = zCoord;
-        NBTTagCompound nbt = new NBTTagCompound();
-        writeToNBT(nbt);
-        packet.tiledata = nbt;
-
-        return packet.getPacket();
-
-
     }
 
     @Override

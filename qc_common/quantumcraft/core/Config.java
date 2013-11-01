@@ -37,6 +37,7 @@ public class Config {
     public static String NameBlockQEL = "machineQEL";
     public static String NameBlockQEE = "machineQEE";
     public static String NameBlockQDL = "machineQDL";
+    public static String NameBlockIOF = "machineIOF";  //Block ION Forge
     public static String NameBlockQFiberWire = "blockFiberWire";
     public static String NameTextureQOre = "oreQuantonium.ore";
     public static String NameTextureQBase = "oreQuantonium.base";
@@ -70,6 +71,7 @@ public class Config {
     public static int BlockQELID;
     public static int BlockQEEID;
     public static int BlockQDLID;
+    public static int BlockIOFID;
     public static int BlockFiberWireID;
     public static String NameRIconTest = RIconPrefix + "test";
     protected static File _configFolder;
@@ -131,6 +133,7 @@ public class Config {
         BlockQELID = config.get("Blocks", "BlockQElectrifier", 3607).getInt();
         BlockQEEID = config.get("Blocks", "BlockQEExtractor", 3608).getInt();
         BlockQDLID = config.get("Blocks", "BlockQDeelectrifier", 3609).getInt();
+        BlockIOFID = config.get("Blocks", "BlockIONForge", 3610).getInt();
 
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
 

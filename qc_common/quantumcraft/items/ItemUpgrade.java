@@ -2,10 +2,10 @@ package quantumcraft.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import quantumcraft.core.Config;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import quantumcraft.core.Config;
 import quantumcraft.core.interfaces.IUpgrade;
 
 public class ItemUpgrade extends ItemBase implements IUpgrade {

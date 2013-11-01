@@ -1,11 +1,11 @@
 package quantumcraft.core;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import quantumcraft.inventory.*;
-import quantumcraft.tile.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import quantumcraft.inventory.*;
+import quantumcraft.tile.*;
 
 public class CommonProxy implements IGuiHandler {
     @Override

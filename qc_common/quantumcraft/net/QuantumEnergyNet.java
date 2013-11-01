@@ -1,12 +1,11 @@
 package quantumcraft.net;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import quantumcraft.core.Config;
-import quantumcraft.net.RecursiveScanner.IDataGatherer;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
+import quantumcraft.net.RecursiveScanner.IDataGatherer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuantumEnergyNet {
     private static class SourcePropagationDG implements IDataGatherer {

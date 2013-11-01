@@ -5,15 +5,14 @@ package quantumcraft.gui.abstractguis;
  * BE SURE TO CHECK OUT HIS MOD STARGATETECH2 ON GITHUB.
  */
 
-import java.util.ArrayList;
-
-import quantumcraft.gui.GuiTextures;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import quantumcraft.gui.GuiTextures;
+
+import java.util.ArrayList;
 
 public abstract class GuiBase extends GuiContainer {
     private boolean onBackground;

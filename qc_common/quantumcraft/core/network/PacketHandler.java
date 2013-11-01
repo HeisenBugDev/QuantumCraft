@@ -4,10 +4,10 @@ import com.google.common.reflect.ClassPath;
 import com.google.common.reflect.ClassPath.ClassInfo;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
-import quantumcraft.core.network.abstractpackets.ModernPacket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
+import quantumcraft.core.network.abstractpackets.ModernPacket;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

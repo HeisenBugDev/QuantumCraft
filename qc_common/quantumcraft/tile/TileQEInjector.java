@@ -1,19 +1,16 @@
 package quantumcraft.tile;
 
-import quantumcraft.core.Loader;
-import quantumcraft.core.interfaces.IQEnergizable;
-import quantumcraft.core.interfaces.IUpgradable;
-import quantumcraft.core.network.PacketHandler;
-import quantumcraft.core.network.packets.QEInjectorInitPacket;
-import quantumcraft.inventory.SimpleInventory;
-import quantumcraft.tile.abstracttiles.TileEnergySink;
-import quantumcraft.util.BasicUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
+import quantumcraft.core.Loader;
+import quantumcraft.core.interfaces.IQEnergizable;
+import quantumcraft.core.interfaces.IUpgradable;
+import quantumcraft.inventory.SimpleInventory;
+import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.util.BasicUtils;
 
 public class TileQEInjector extends TileEnergySink implements
         ISidedInventory, IUpgradable {
@@ -260,19 +257,6 @@ public class TileQEInjector extends TileEnergySink implements
 
         par1NBTTagCompound.setTag("Items", nbttaglist);
         super.writeToNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        QEInjectorInitPacket packet = PacketHandler.getPacket(QEInjectorInitPacket.class);
-        packet.posX = xCoord;
-        packet.posY = yCoord;
-        packet.posZ = zCoord;
-        NBTTagCompound nbt = new NBTTagCompound();
-        writeToNBT(nbt);
-        packet.tiledata = nbt;
-
-        return packet.getPacket();
     }
 
     @Override

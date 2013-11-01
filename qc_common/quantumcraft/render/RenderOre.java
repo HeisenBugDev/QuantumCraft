@@ -1,11 +1,11 @@
 package quantumcraft.render;
 
-import quantumcraft.core.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
+import quantumcraft.core.Loader;
 
 /**
  * Renders Naquadah and Naquadria ore blocks.

@@ -2,10 +2,6 @@ package quantumcraft.util;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
-import quantumcraft.core.Config;
-import quantumcraft.core.Coords;
-import quantumcraft.core.Loader;
-import quantumcraft.core.interfaces.IMultiTool;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -23,8 +19,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.core.Config;
+import quantumcraft.core.Coords;
+import quantumcraft.core.interfaces.IMultiTool;
 import quantumcraft.core.interfaces.IUpgrade;
-import quantumcraft.items.ItemUpgrade;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

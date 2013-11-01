@@ -1,8 +1,8 @@
 package quantumcraft.research;
 
-import quantumcraft.core.Loader;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import quantumcraft.core.Loader;
 
 public class ResearchItem {
     /**

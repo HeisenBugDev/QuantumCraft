@@ -8,14 +8,14 @@
 
 package quantumcraft.inventory;
 
-import quantumcraft.util.BasicUtils;
-import quantumcraft.core.interfaces.ISimpleInventoryListener;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import quantumcraft.core.interfaces.ISimpleInventoryListener;
+import quantumcraft.util.BasicUtils;
 
 import java.util.LinkedList;
 

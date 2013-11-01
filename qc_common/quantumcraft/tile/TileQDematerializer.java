@@ -1,15 +1,12 @@
 package quantumcraft.tile;
 
-import quantumcraft.core.network.PacketHandler;
-import quantumcraft.core.network.packets.QDematerializerInitPacket;
-import quantumcraft.inventory.SimpleInventory;
-import quantumcraft.tile.abstracttiles.TileEnergySource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
+import quantumcraft.inventory.SimpleInventory;
+import quantumcraft.tile.abstracttiles.TileEnergySource;
 
 import java.util.Random;
 
@@ -188,19 +185,6 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     @Override
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        QDematerializerInitPacket packet = PacketHandler.getPacket(QDematerializerInitPacket.class);
-        packet.posX = xCoord;
-        packet.posY = yCoord;
-        packet.posZ = zCoord;
-        NBTTagCompound nbt = new NBTTagCompound();
-        writeToNBT(nbt);
-        packet.tiledata = nbt;
-
-        return packet.getPacket();
     }
 
     @Override

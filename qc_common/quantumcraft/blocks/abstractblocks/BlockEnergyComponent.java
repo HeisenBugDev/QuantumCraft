@@ -1,12 +1,12 @@
 package quantumcraft.blocks.abstractblocks;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import quantumcraft.net.IQEnergyComponent;
 import quantumcraft.net.Location;
 import quantumcraft.net.QuantumEnergyNet;
-import net.minecraft.block.material.Material;
-import net.minecraft.world.World;
 
 public abstract class BlockEnergyComponent extends BlockMachine implements IQEnergyComponent {
 

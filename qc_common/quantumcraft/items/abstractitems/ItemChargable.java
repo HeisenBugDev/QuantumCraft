@@ -1,10 +1,10 @@
 package quantumcraft.items.abstractitems;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import quantumcraft.core.interfaces.IQEnergizable;
 import quantumcraft.items.ItemBase;
 import quantumcraft.util.ItemEnergyUtils;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 import java.util.List;
 

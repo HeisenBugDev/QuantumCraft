@@ -1,11 +1,11 @@
 package quantumcraft.net;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EnergySourceList {
     private List<Location> sources = new ArrayList<Location>();

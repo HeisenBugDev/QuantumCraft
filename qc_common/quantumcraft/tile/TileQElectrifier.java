@@ -5,16 +5,13 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import buildcraft.api.transport.IPipeConnection;
 import buildcraft.api.transport.IPipeTile;
-import quantumcraft.core.network.PacketHandler;
-import quantumcraft.core.network.packets.QElectrifierInitPacket;
-import quantumcraft.tile.abstracttiles.TileEnergySink;
-import quantumcraft.util.BasicUtils;
-import quantumcraft.util.BlockPosition;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.util.BasicUtils;
+import quantumcraft.util.BlockPosition;
 
 import java.util.List;
 
@@ -28,7 +25,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     public float currentOutput = 0;
     protected PowerHandler powerHandler;
     private int tickCounter = 0;
-    private int energyBuffer = 0;
     private boolean init = false;
 
     public TileQElectrifier() {
@@ -45,10 +41,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
         return 1000;
     }
 
-    @Override
-    public int getCurrentEnergy() {
-        return energyBuffer;
-    }
 
     public boolean isPoweredTile(TileEntity tile, ForgeDirection side) {
         if (tile instanceof IPowerReceptor) {
@@ -81,14 +73,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
         }
     }
 
-    @Override
-    public int subtractEnergy(int req) {
-        energyBuffer -= req;
-        if (energyBuffer < 0) energyBuffer = 0;
-        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
-        return energyBuffer;
-    }
-
     private float getPowerToExtract(TileEntity tile) {
         PowerHandler.PowerReceiver receptor =
                 ((IPowerReceptor) tile).getPowerReceiver(getDirectionFacing().getOpposite());
@@ -107,7 +91,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     }
 
     public float extractEnergy(float min, float max, boolean doExtract) {
-        if (energyBuffer < min)
+        if (getCurrentEnergy() < min)
             return 0;
 
         float actualMax;
@@ -124,15 +108,15 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
         float extracted;
 
 
-        if (energyBuffer >= actualMax) {
+        if (getCurrentEnergy() >= actualMax) {
             extracted = actualMax;
             if (doExtract) {
-                energyBuffer -= actualMax;
+                subtractEnergy((int) actualMax);
             }
         } else {
-            extracted = energyBuffer;
+            extracted = getCurrentEnergy();
             if (doExtract) {
-                energyBuffer = 0;
+                setEnergy(0);
             }
         }
 
@@ -142,7 +126,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     @Override
     public void updateEntity() {
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
-            //System.out.println("Energy buffer of electrifier: " + energyBuffer);
+            //System.out.println("Energy buffer of electrifier: " + getCurrentEnergy());
             this.addEnergy(this.requestPacket(100));
         }
 
@@ -181,7 +165,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
-        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
+        this.setEnergy(par1NBTTagCompound.getInteger("energyBuffer"));
         updateNextTick = true;
     }
 
@@ -191,22 +175,9 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
+        par1NBTTagCompound.setInteger("energyBuffer", this.getCurrentEnergy());
 
         super.writeToNBT(par1NBTTagCompound);
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        QElectrifierInitPacket packet = PacketHandler.getPacket(QElectrifierInitPacket.class);
-        packet.posX = xCoord;
-        packet.posY = yCoord;
-        packet.posZ = zCoord;
-        NBTTagCompound nbt = new NBTTagCompound();
-        writeToNBT(nbt);
-        packet.tiledata = nbt;
-
-        return packet.getPacket();
     }
 
     @Override

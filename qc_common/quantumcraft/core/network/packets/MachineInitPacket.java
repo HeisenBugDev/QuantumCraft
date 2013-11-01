@@ -1,33 +1,33 @@
 package quantumcraft.core.network.packets;
 
-import quantumcraft.util.BasicUtils;
-import quantumcraft.core.network.abstractpackets.CoordinatesPacket;
-import quantumcraft.core.network.abstractpackets.ModernPacket;
-import quantumcraft.tile.TileQDislocator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import quantumcraft.core.network.abstractpackets.CoordinatesPacket;
+import quantumcraft.core.network.abstractpackets.ModernPacket;
+import quantumcraft.tile.abstracttiles.TileMachineBase;
+import quantumcraft.util.BasicUtils;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class QDislocatorInitPacket extends CoordinatesPacket {
+public class MachineInitPacket extends CoordinatesPacket {
+
 
     public NBTTagCompound tiledata;
 
-    public QDislocatorInitPacket(int id) {
+    public MachineInitPacket(int id) {
         super(id);
     }
 
-
     @Override
     public ModernPacket template() {
-        return new QDislocatorInitPacket(getID());
+        return new MachineInitPacket(getID());
     }
 
     @Override
     public void processPacket(EntityPlayer player) {
-        TileQDislocator tile = getTile(player.worldObj, TileQDislocator.class);
+        TileMachineBase tile = getTile(player.worldObj, TileMachineBase.class);
         if (tile != null) {
             tile.readFromNBT(tiledata);
             tile.updateNextTick = true;
@@ -44,5 +44,6 @@ public class QDislocatorInitPacket extends CoordinatesPacket {
     public void readData(DataInputStream data) throws IOException {
         super.readData(data);
         tiledata = (NBTTagCompound) BasicUtils.readNBTFromData(data);
+
     }
 }

@@ -1,12 +1,12 @@
 package quantumcraft.items;
 
 import cpw.mods.fml.common.FMLLog;
-import quantumcraft.core.Loader;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import quantumcraft.core.Loader;
 
 import java.util.List;
 

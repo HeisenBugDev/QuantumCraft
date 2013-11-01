@@ -2,12 +2,6 @@ package quantumcraft.blocks.abstractblocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import quantumcraft.core.QuantumCraft;
-import quantumcraft.core.interfaces.IUpgradable;
-import quantumcraft.core.interfaces.IUpgrade;
-import quantumcraft.util.BasicUtils;
-import quantumcraft.core.Coords;
-import quantumcraft.tile.abstracttiles.TileMachineBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -16,9 +10,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import quantumcraft.core.Coords;
+import quantumcraft.core.QuantumCraft;
+import quantumcraft.core.interfaces.IUpgradable;
+import quantumcraft.core.interfaces.IUpgrade;
+import quantumcraft.tile.abstracttiles.TileMachineBase;
+import quantumcraft.util.BasicUtils;
 
 public abstract class BlockMachine extends BlockRotatable {
     public BlockMachine(int id, Material material) {
