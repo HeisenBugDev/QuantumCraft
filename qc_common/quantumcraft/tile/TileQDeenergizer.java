@@ -16,7 +16,6 @@ public class TileQDeenergizer extends TileEnergySource implements
     public int QEnergyItemBuffer = 0;
     public int lastItemValue = 0;
     public ItemStack[] inventory = new ItemStack[2];
-    public int energyBuffer;
     int processTime = -1;
     QDERecipe r;
     private SimpleInventory _inv = new SimpleInventory(2, "qde", 64);
@@ -163,7 +162,6 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public String getInvName() {
-
         return "Quantum De-Energizer";
     }
 
@@ -237,7 +235,6 @@ public class TileQDeenergizer extends TileEnergySource implements
                         .loadItemStackFromNBT(nbttagcompound1);
             }
         }
-        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
         this.QEnergyItemBuffer = par1NBTTagCompound.getInteger("QEnergyItemBuffer");
         this.lastItemValue = par1NBTTagCompound.getInteger("LastItemValue");
         updateNextTick = true;
@@ -249,7 +246,6 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
         par1NBTTagCompound.setInteger("QEnergyItemBuffer", this.QEnergyItemBuffer);
         par1NBTTagCompound.setInteger("LastItemValue", this.lastItemValue);
         NBTTagList nbttaglist = new NBTTagList();
@@ -270,18 +266,5 @@ public class TileQDeenergizer extends TileEnergySource implements
     @Override
     public int getMaxEnergy() {
         return 5000;
-    }
-
-    @Override
-    public int getCurrentEnergy() {
-        return energyBuffer;
-    }
-
-    @Override
-    public int subtractEnergy(int req) {
-        energyBuffer -= req;
-        if (energyBuffer < 0) energyBuffer = 0;
-        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
-        return energyBuffer;
     }
 }
