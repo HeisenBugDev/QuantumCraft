@@ -19,18 +19,12 @@ import java.util.Random;
 public class TileQDematerializer extends TileEnergySource implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[1];
     public int processTime = -1;
-    int energyBuffer = 0;
     Random rand = new Random();
     private SimpleInventory _inv = new SimpleInventory(1, "qdm", 64);
 
     @Override
     public int getMaxEnergy() {
         return 1000;
-    }
-
-    @Override
-    public int getCurrentEnergy() {
-        return energyBuffer;
     }
 
     @Override
@@ -170,14 +164,6 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     }
 
     @Override
-    public int subtractEnergy(int req) {
-        energyBuffer -= req;
-        if (energyBuffer < 0) energyBuffer = 0;
-        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
-        return energyBuffer;
-    }
-
-    @Override
     public int guiID() {
         return 4;
     }
@@ -203,8 +189,6 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
                         .loadItemStackFromNBT(nbttagcompound1);
             }
         }
-        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
-
         updateNextTick = true;
     }
 
@@ -214,9 +198,6 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
-
-
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.inventory.length; ++i) {
