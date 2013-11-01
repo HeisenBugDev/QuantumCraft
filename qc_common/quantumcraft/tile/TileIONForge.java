@@ -3,7 +3,6 @@ package quantumcraft.tile;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
 public class TileIONForge extends TileEnergySink {
-    private int energyBuffer = 0;
 
     @Override
     public int getMaxEnergy() {

@@ -5,7 +5,6 @@ import quantumcraft.net.EnergySourceList;
 import quantumcraft.net.Location;
 
 public abstract class TileEnergySink extends TileMachineBase {
-    private int energyBuffer = 0;
     private EnergySourceList sourceList;
 
     public void addSourceToList(Location l, Location source) {
