@@ -75,6 +75,8 @@ public abstract class TileEnergySink extends TileMachineBase {
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
+        this.setEnergy(par1NBTTagCompound.getInteger("energyBuffer"));
+        updateNextTick = true;
         sourceList = EnergySourceList.read(par1NBTTagCompound.getCompoundTag("ENET"));
     }
 
@@ -84,6 +86,7 @@ public abstract class TileEnergySink extends TileMachineBase {
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
+        par1NBTTagCompound.setInteger("energyBuffer", this.getCurrentEnergy());
         par1NBTTagCompound.setCompoundTag("ENET", sourceList.write());
         super.writeToNBT(par1NBTTagCompound);
     }
