@@ -39,7 +39,7 @@ If you would like to contact us directly for some reason (I dunno why), you can 
 - LordFokas
 - wtf62 (art)
 
-We took some of our code from MineFactory Reloaded if you are wondering why things look similar. The reason? He is a much better programmer and makes a good outline and base classes for stuff. Yeah, I have no clue what I am saying, let's hope his liscense allows this.
+We took some of our code from MineFactory Reloaded if you are wondering why things look similar. The reason? He is a much better programmer and makes a good outline and base classes for stuff. Yeah, I have no clue what I am saying, let's hope his license allows this.
 We also got some code from MrTJP who makes [Project: Red](https://github.com/MrTJP/ProjectRed)
 We looked at TEX code for examples.
 
