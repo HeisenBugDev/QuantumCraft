@@ -20,7 +20,6 @@ public class TileQEInjector extends TileEnergySink implements
     public ItemStack[] inventory = new ItemStack[2];
     public int upgradeID[] = {0, 0, 0, 0};
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
-    private int energyBuffer;
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
@@ -229,7 +228,6 @@ public class TileQEInjector extends TileEnergySink implements
                         .loadItemStackFromNBT(nbttagcompound1);
             }
         }
-        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
         this.currentival = par1NBTTagCompound.getInteger("currentival");
         this.maxival = par1NBTTagCompound.getInteger("maxival");
         updateNextTick = true;
@@ -241,7 +239,6 @@ public class TileQEInjector extends TileEnergySink implements
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
         par1NBTTagCompound.setInteger("currentival", this.currentival);
         par1NBTTagCompound.setInteger("maxival", this.maxival);
         NBTTagList nbttaglist = new NBTTagList();
@@ -262,19 +259,6 @@ public class TileQEInjector extends TileEnergySink implements
     @Override
     public int getMaxEnergy() {
         return 100; //this is supposed to be a very small buffer
-    }
-
-    @Override
-    public int getCurrentEnergy() {
-        return energyBuffer;
-    }
-
-    @Override
-    public int subtractEnergy(int req) {
-        energyBuffer -= req;
-        if (energyBuffer < 0) energyBuffer = 0;
-        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
-        return energyBuffer;
     }
 
     @Override
