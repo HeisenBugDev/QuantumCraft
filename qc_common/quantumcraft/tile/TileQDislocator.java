@@ -126,6 +126,11 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
     }
 
     @Override
+    public int getMaxEnergy() {
+        return 0;
+    }
+
+    @Override
     public int guiID() {
         return 3;
     }
