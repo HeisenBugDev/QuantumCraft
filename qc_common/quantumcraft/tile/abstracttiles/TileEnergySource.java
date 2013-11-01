@@ -1,6 +1,5 @@
 package quantumcraft.tile.abstracttiles;
 
-import net.minecraft.nbt.NBTTagCompound;
 import quantumcraft.net.Location;
 
 public abstract class TileEnergySource extends TileMachineBase {
