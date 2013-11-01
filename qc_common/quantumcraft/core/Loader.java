@@ -246,6 +246,7 @@ public class Loader {
         }
 
         if (Config.betaBlocks.getBoolean(false)) {
+            GameRegistry.registerTileEntity(TileIONForge.class, "IONForgeTE");
             GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         }
     }
