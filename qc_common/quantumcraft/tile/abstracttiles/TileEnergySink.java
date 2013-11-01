@@ -19,48 +19,6 @@ public abstract class TileEnergySink extends TileMachineBase {
     }
 
     /**
-     * @return maximum energy this machine can hold
-     */
-    public abstract int getMaxEnergy();
-
-    /**
-     * @return current energy the machine is holding
-     */
-    public int getCurrentEnergy() {
-        return energyBuffer;
-    }
-
-    /**
-     * Adds energy to current buffer. uses substractEnergy with negative nubers.
-     *
-     * @param req amount to add
-     * @return energy buffer _AFTER_ addition
-     */
-    public int addEnergy(int req) {
-        return subtractEnergy(-req);
-    }
-
-    /**
-     * Subtracts energy from current buffer. INCLUDE ZERO AND MAXCHECKING
-     *
-     * @param req amount to subtract
-     * @return energy buffer _AFTER_ subtraction
-     */
-    public int subtractEnergy(int req) {
-        energyBuffer -= req;
-        if (energyBuffer < 0) energyBuffer = 0;
-        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
-        return energyBuffer;
-    }
-
-    /**
-     * @param set the value you want to set the energy to
-     */
-    public void setEnergy(int set) {
-        energyBuffer = set;
-    }
-
-    /**
      * Method to receive an energy packet from an energy source
      *
      * @param size size of the requested packet
@@ -75,8 +33,6 @@ public abstract class TileEnergySink extends TileMachineBase {
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
-        this.setEnergy(par1NBTTagCompound.getInteger("energyBuffer"));
-        updateNextTick = true;
         sourceList = EnergySourceList.read(par1NBTTagCompound.getCompoundTag("ENET"));
     }
 
@@ -86,7 +42,6 @@ public abstract class TileEnergySink extends TileMachineBase {
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("energyBuffer", this.getCurrentEnergy());
         par1NBTTagCompound.setCompoundTag("ENET", sourceList.write());
         super.writeToNBT(par1NBTTagCompound);
     }
