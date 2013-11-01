@@ -5,7 +5,6 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import buildcraft.api.transport.IPipeConnection;
 import buildcraft.api.transport.IPipeTile;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -40,7 +39,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     public int getMaxEnergy() {
         return 1000;
     }
-
 
     public boolean isPoweredTile(TileEntity tile, ForgeDirection side) {
         if (tile instanceof IPowerReceptor) {
