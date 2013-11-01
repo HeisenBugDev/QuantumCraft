@@ -15,8 +15,6 @@ public class TileIONForge extends TileEnergySink {
         return -1;
     }
 
-    //TODO NBT STUFF!
-
     @Override
     public void onBlockBreak() {
         //TODO Inventory
