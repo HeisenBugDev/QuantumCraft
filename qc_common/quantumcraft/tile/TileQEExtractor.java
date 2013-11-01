@@ -11,12 +11,10 @@ import quantumcraft.tile.abstracttiles.TileEnergySource;
 
 public class TileQEExtractor extends TileEnergySource implements
         ISidedInventory {
-
     public int currentival = 0;
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
     private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
-    private int energyBuffer;
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
@@ -201,7 +199,6 @@ public class TileQEExtractor extends TileEnergySource implements
                         .loadItemStackFromNBT(nbttagcompound1);
             }
         }
-        this.energyBuffer = par1NBTTagCompound.getInteger("energyBuffer");
         this.currentival = par1NBTTagCompound.getInteger("currentival");
         this.maxival = par1NBTTagCompound.getInteger("maxival");
         updateNextTick = true;
@@ -213,7 +210,6 @@ public class TileQEExtractor extends TileEnergySource implements
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("energyBuffer", this.energyBuffer);
         par1NBTTagCompound.setInteger("currentival", this.currentival);
         par1NBTTagCompound.setInteger("maxival", this.maxival);
         NBTTagList nbttaglist = new NBTTagList();
@@ -236,16 +232,4 @@ public class TileQEExtractor extends TileEnergySource implements
         return 100; //this is supposed to be a very small buffer
     }
 
-    @Override
-    public int getCurrentEnergy() {
-        return energyBuffer;
-    }
-
-    @Override
-    public int subtractEnergy(int req) {
-        energyBuffer -= req;
-        if (energyBuffer < 0) energyBuffer = 0;
-        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
-        return energyBuffer;
-    }
 }
