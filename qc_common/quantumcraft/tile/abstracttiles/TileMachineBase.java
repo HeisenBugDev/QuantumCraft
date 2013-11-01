@@ -14,10 +14,52 @@ public abstract class TileMachineBase extends TileEntity implements
 
     public boolean updateNextTick = false;
     private ForgeDirection _forwardDirection;
-
+    private int energyBuffer = 0;
 
     protected TileMachineBase() {
         _forwardDirection = ForgeDirection.NORTH;
+    }
+
+    /**
+     * @return current energy the machine is holding
+     */
+    public int getCurrentEnergy() {
+        return energyBuffer;
+    }
+
+    /**
+     * @return maximum energy this machine can hold
+     */
+    public abstract int getMaxEnergy();
+
+    /**
+     * @param set the value you want to set the energy to
+     */
+    public void setEnergy(int set) {
+        energyBuffer = set;
+    }
+
+    /**
+     * Adds energy to current buffer. uses substractEnergy with negative nubers.
+     *
+     * @param req amount to add
+     * @return energy buffer _AFTER_ addition
+     */
+    public int addEnergy(int req) {
+        return subtractEnergy(-req);
+    }
+
+    /**
+     * Subtracts energy from current buffer. INCLUDE ZERO AND MAXCHECKING
+     *
+     * @param req amount to subtract
+     * @return energy buffer _AFTER_ subtraction
+     */
+    public int subtractEnergy(int req) {
+        energyBuffer -= req;
+        if (energyBuffer < 0) energyBuffer = 0;
+        if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
+        return energyBuffer;
     }
 
     @Override
@@ -42,6 +84,8 @@ public abstract class TileMachineBase extends TileEntity implements
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
+        this.energyBuffer = nbttagcompound.getInteger("energyBuffer");
+        updateNextTick = true;
         int rotation = nbttagcompound.getInteger("rotation");
         rotateDirectlyTo(rotation);
     }
@@ -49,6 +93,7 @@ public abstract class TileMachineBase extends TileEntity implements
     @Override
     public void writeToNBT(NBTTagCompound nbttagcompound) {
         super.writeToNBT(nbttagcompound);
+        nbttagcompound.setInteger("energyBuffer", this.energyBuffer);
         nbttagcompound.setInteger("rotation", getDirectionFacing().ordinal());
     }
 
