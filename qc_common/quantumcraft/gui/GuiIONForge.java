@@ -14,8 +14,12 @@ public class GuiIONForge extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-
+    public void initGui() {
+        super.initGui();
+        this.xSize = 176 + 19;
+        this.mc.thePlayer.openContainer = this.inventorySlots;
+        this.guiLeft = (this.width - this.xSize) / 2;
+        this.guiTop = (this.height - this.ySize) / 2;
     }
 
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
@@ -23,11 +27,7 @@ public class GuiIONForge extends GuiContainer {
     }
 
     @Override
-    public void initGui() {
-        super.initGui();
-        this.xSize = 176 + 19;
-        this.mc.thePlayer.openContainer = this.inventorySlots;
-        this.guiLeft = (this.width - this.xSize) / 2;
-        this.guiTop = (this.height - this.ySize) / 2;
+    protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
+
     }
 }
