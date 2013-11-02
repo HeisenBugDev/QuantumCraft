@@ -16,8 +16,6 @@ public class ContainerQDematerializer extends ContainerBase {
         super(ip);
         tile = te;
         this.addSlotToContainer(new Slot(tile, 0, 52, 34));
-        int i;
-
     }
 
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
