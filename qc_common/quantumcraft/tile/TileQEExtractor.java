@@ -45,6 +45,7 @@ public class TileQEExtractor extends TileEnergySource implements
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
+        _inv.decrStackSize(i,j);
         if (this.inventory[i] != null) {
             ItemStack itemstack;
 
@@ -58,7 +59,6 @@ public class TileQEExtractor extends TileEnergySource implements
                 if (this.inventory[i].stackSize == 0) {
                     this.inventory[i] = null;
                 }
-
                 return itemstack;
             }
         } else {
