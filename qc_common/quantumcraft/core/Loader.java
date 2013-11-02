@@ -176,7 +176,7 @@ public class Loader {
         LanguageRegistry.addName(BlockQEInjector, "Quantum Energy Injector");
         GameRegistry.registerBlock(BlockQEInjector, Config.NameBlockQEI);
 
-        if (Config.betaBlocks.getBoolean(false)) {
+        if (Config.beta.getBoolean(false)) {
 
             BlockIONForge = (BlockIONForge) new BlockIONForge(Config.BlockIOFID)
                     .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockIOF)
@@ -245,7 +245,7 @@ public class Loader {
             GameRegistry.registerTileEntity(TileQDeelectrifier.class, "QDeelectrifier");
         }
 
-        if (Config.betaBlocks.getBoolean(false)) {
+        if (Config.beta.getBoolean(false)) {
             GameRegistry.registerTileEntity(TileIONForge.class, "IONForgeTE");
             GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         }

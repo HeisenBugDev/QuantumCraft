@@ -44,7 +44,7 @@ public class Config {
     public static String NameItemRPlaceHolder = "temp";
     public static LinkedList<String> supports32x = new LinkedList<String>();
     public static Property networkUpdateRange;
-    public static Property betaBlocks;
+    public static Property beta;
     public static Boolean use32x;
     public static int ItemUnbioxeniumIngotID;
     public static int ItemCrystallizedQuantoniumID;
@@ -142,10 +142,10 @@ public class Config {
                 "This is the distance in which players will be notified.  Lower if you experience lag.";
 
         use32x = config.get("general", "Use 32x32 textures", true).getBoolean(true);
-        betaBlocks =
-                config.get("general", "Enable beta blocks",
+        beta =
+                config.get("general", "Enable beta features",
                         false);
-        betaBlocks.comment = ("(WARNING! This could corrupt your world or break your game)");
+        beta.comment = ("(WARNING! This could corrupt your world or break your game)");
 
 
         config.save();
