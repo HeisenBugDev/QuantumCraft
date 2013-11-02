@@ -3,11 +3,14 @@ package quantumcraft.tile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
 public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     public ItemStack[] inventory = new ItemStack[4];
+    private SimpleInventory _inv = new SimpleInventory(4, "iof", 64);
+
     @Override
     public int getMaxEnergy() {
         return 1000;
@@ -15,7 +18,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public int guiID() {
-        return -1;
+        return 6;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public int getSizeInventory() {
-        return 0;
+        return inventory.length;
     }
 
     @Override
@@ -74,8 +77,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
                 && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
-
-        //_inv.setInventorySlotContents(i, itemstack);
+        _inv.setInventorySlotContents(i, itemstack);
     }
 
     @Override
