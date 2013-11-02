@@ -95,10 +95,17 @@ public class Loader {
                 .setTextureName(Config.getTextureName(Config.NameItemDepletedCrystal));
         LanguageRegistry.addName(ItemDepletedCrystal, "Depleted Crystal");
 
-        ItemResearchBook = (ItemResearchBook) new ItemResearchBook(Config.ItemResearchBookID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemResearchBook)
-                .setTextureName(Config.getTextureName(Config.NameItemResearchBook));
-        LanguageRegistry.addName(ItemResearchBook, "Research Book");
+        if (Config.beta.getBoolean(false)) {
+            ItemResearchBook = (ItemResearchBook) new ItemResearchBook(Config.ItemResearchBookID)
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemResearchBook)
+                    .setTextureName(Config.getTextureName(Config.NameItemResearchBook));
+            LanguageRegistry.addName(ItemResearchBook, "Research Book");
+
+            ItemUpgrade = (ItemUpgrade) new ItemUpgrade(Config.ItemUpgradeID)
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemUpgrade_)
+                    .setTextureName("USELESS");
+            LanguageRegistry.addName(ItemUpgrade, "Upgrade");
+        }
 
         ItemLocationCard = (ItemLocationCard) new ItemLocationCard(Config.ItemLocationCardID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCard)
@@ -114,10 +121,6 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemPortableQCapacitor)
                 .setTextureName(Config.getTextureName(Config.NameItemPortableQCapacitor));
         LanguageRegistry.addName(ItemPortableQCapacitor, "Portable Quantum Capacitor");
-
-        ItemUpgrade = (ItemUpgrade) new ItemUpgrade(Config.ItemUpgradeID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemUpgrade_)
-                .setTextureName("USELESS");
 
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword(Config.ItemQSwordID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQSword)
