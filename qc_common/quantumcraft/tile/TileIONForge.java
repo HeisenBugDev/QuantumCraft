@@ -5,8 +5,9 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
-public class TileIONForge extends TileEnergySink implements ISidedInventory{
+public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
+    public ItemStack[] inventory = new ItemStack[4];
     @Override
     public int getMaxEnergy() {
         return 1000;
@@ -34,12 +35,30 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory{
 
     @Override
     public ItemStack getStackInSlot(int i) {
-        return null;
+        return inventory[i];
     }
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
-        return null;
+        if (this.inventory[i] != null) {
+            ItemStack itemstack;
+
+            if (this.inventory[i].stackSize <= j) {
+                itemstack = this.inventory[i];
+                this.inventory[i] = null;
+                return itemstack;
+            } else {
+                itemstack = this.inventory[i].splitStack(j);
+
+                if (this.inventory[i].stackSize == 0) {
+                    this.inventory[i] = null;
+                }
+
+                return itemstack;
+            }
+        } else {
+            return null;
+        }
     }
 
     @Override
