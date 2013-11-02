@@ -27,6 +27,8 @@ public class Config {
     public static String NameItemQShovel = "quantumShovel";
     public static String NameItemLocationCard = "locationCard";
     public static String NameItemLocationCardBlank = "locationCardBlank";
+    public static String NameItemHyperConductor = "hyperConductor";
+    public static String NameItemQuantumPlating = "quantumPlating";
     public static String NameOreUnbioxenium = "oreUnbioxenium";
     public static String NameOreQuantonium = "oreQuantonium";
     public static String NameBlockQDE = "machineQDE";
@@ -39,6 +41,7 @@ public class Config {
     public static String NameBlockQDL = "machineQDL";
     public static String NameBlockIOF = "machineIOF";  //Block ION Forge
     public static String NameBlockQFiberWire = "blockFiberWire";
+    public static String NameBlockMCasing = "quantumMachineCasing";
     public static String NameTextureQOre = "oreQuantonium.ore";
     public static String NameTextureQBase = "oreQuantonium.base";
     public static String NameItemRPlaceHolder = "temp";
@@ -61,6 +64,8 @@ public class Config {
     public static int ItemQPickID;
     public static int ItemQShovelID;
     public static int ItemRPlaceHolderID;
+    public static int ItemHyperConductorID;
+    public static int ItemQuantumPlatingID;
     public static int OreUnbioxeniumID;
     public static int OreQuantoniumID;
     public static int BlockQDEID;
@@ -73,6 +78,7 @@ public class Config {
     public static int BlockQDLID;
     public static int BlockIOFID;
     public static int BlockFiberWireID;
+    public static int BlockMCasingID;
     public static String NameRIconTest = RIconPrefix + "test";
     protected static File _configFolder;
     protected static File _configFile;
@@ -123,6 +129,9 @@ public class Config {
 
         ItemRPlaceHolderID = config.get("Items", "ItemRPlaceHolder", 4995).getInt();
 
+        ItemHyperConductorID = config.get("Items", "ItemHyperConductor", 5009).getInt();
+        ItemQuantumPlatingID = config.get("Items", "ItemQuantumPlating", 5010).getInt();
+
         OreUnbioxeniumID = config.get("Blocks", "BlockOreUnbioxenium", 3499).getInt();
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
@@ -136,7 +145,7 @@ public class Config {
         BlockIOFID = config.get("Blocks", "BlockIONForge", 3610).getInt();
 
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
-
+        BlockMCasingID = config.get("Blocks", "BlockMachineCasing", 3590).getInt();
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =
                 "This is the distance in which players will be notified.  Lower if you experience lag.";

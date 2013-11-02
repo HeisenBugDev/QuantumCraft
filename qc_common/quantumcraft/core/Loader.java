@@ -3,7 +3,9 @@ package quantumcraft.core;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.util.Icon;
@@ -35,6 +37,8 @@ public class Loader {
     public static ItemQuantumPick ItemQuantumPick;
     public static ItemQuantumShovel ItemQuantumShovel;
     public static ItemPlaceholder ItemRPlaceHolder;
+    public static ItemBase ItemHyperConductor;
+    public static ItemBase ItemQuantumPlating;
     /* BLOCKS */
     public static BlockOre OreUnbioxenium;
     public static BlockOreQuantonium OreQuantonium;
@@ -48,6 +52,7 @@ public class Loader {
     public static BlockQEExtractor BlockQEExtractor;
     public static BlockQDeelectrifier BlockQDeelectrifier;
     public static BlockIONForge BlockIONForge;
+    public static Block BlockMachineCasing;
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
     /* CREATIVE TABS */
@@ -145,6 +150,14 @@ public class Loader {
                 .setCreativeTab(null).setUnlocalizedName(Config.NameItemRPlaceHolder)
                 .setTextureName(Config.getTextureName(Config.NameItemRPlaceHolder));
         LanguageRegistry.addName(ItemRPlaceHolder, "Render Placeholder");
+        ItemHyperConductor = (ItemBase) new ItemBase(Config.ItemHyperConductorID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemHyperConductor)
+                .setTextureName(Config.getTextureName(Config.NameItemHyperConductor));
+        LanguageRegistry.addName(ItemHyperConductor, "Hyper Conductor");
+        ItemQuantumPlating = (ItemBase) new ItemBase(Config.ItemQuantumPlatingID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQuantumPlating)
+                .setTextureName(Config.getTextureName(Config.NameItemQuantumPlating));
+        LanguageRegistry.addName(ItemQuantumPlating, "Quantum Plating");
     }
 
     public static void initBlocks() {
@@ -225,6 +238,12 @@ public class Loader {
                 .setTextureName(Config.getTextureName(Config.NameBlockQEE));
         LanguageRegistry.addName(BlockQEExtractor, "Quantum Energy Extractor");
         GameRegistry.registerBlock(BlockQEExtractor, Config.NameBlockQEE);
+
+        BlockMachineCasing = new Block(Config.BlockMCasingID, Material.rock)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockMCasing)
+                .setTextureName(Config.getTextureName(Config.NameBlockMCasing));
+        LanguageRegistry.addName(BlockMachineCasing, "Quantum Machine Casing");
+        GameRegistry.registerBlock(BlockMachineCasing, Config.NameBlockMCasing);
 
     }
 
