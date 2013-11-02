@@ -68,12 +68,19 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public void setInventorySlotContents(int i, ItemStack itemstack) {
+        this.inventory[i] = itemstack;
 
+        if (itemstack != null
+                && itemstack.stackSize > this.getInventoryStackLimit()) {
+            itemstack.stackSize = this.getInventoryStackLimit();
+        }
+
+        //_inv.setInventorySlotContents(i, itemstack);
     }
 
     @Override
     public String getInvName() {
-        return null;
+        return "ION Forge";
     }
 
     @Override
@@ -83,7 +90,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public int getInventoryStackLimit() {
-        return 0;
+        return 64;
     }
 
     @Override
@@ -106,21 +113,23 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        return false;
+        return true;
     }
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
-        return new int[0];
+        if (var1 == 0) {
+            return new int[]{1};
+        } else return new int[]{0};
     }
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        return false;
+        return j != 0;
     }
 
     @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
-        return false;
+        return i != 0;
     }
 }
