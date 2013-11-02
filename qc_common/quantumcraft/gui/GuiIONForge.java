@@ -24,6 +24,10 @@ public class GuiIONForge extends GuiContainer {
 
     @Override
     public void initGui() {
-
+        super.initGui();
+        this.xSize = 176 + 19;
+        this.mc.thePlayer.openContainer = this.inventorySlots;
+        this.guiLeft = (this.width - this.xSize) / 2;
+        this.guiTop = (this.height - this.ySize) / 2;
     }
 }
