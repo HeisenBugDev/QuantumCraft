@@ -29,7 +29,7 @@ public class ClientProxy extends CommonProxy {
                 TileQEExtractor te5 = (TileQEExtractor) world.getBlockTileEntity(x, y, z);
                 return new GuiQEExtractor(new ContainerQEExtractor(player.inventory, te5));
             case 6:
-                TileIONForge te6 = (TileIONForge) world.getBlockTileEntity(x,y,z);
+                TileIONForge te6 = (TileIONForge) world.getBlockTileEntity(x, y, z);
                 return new GuiIONForge(new ContainerIONForge(player.inventory, te6));
         }
         return null;
