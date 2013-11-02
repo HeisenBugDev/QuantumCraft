@@ -87,10 +87,7 @@ public class TileQDeenergizer extends TileEnergySource implements
         if (inventory[0] == null)
             flag = false;
         if (inventory[0] != null) {
-            if (r == null)
-                flag = false;
             if (inventory[1] != null) {
-                assert r != null;
                 if (inventory[1].itemID != r.getOutputItem().itemID)
                     flag = false;
             }
