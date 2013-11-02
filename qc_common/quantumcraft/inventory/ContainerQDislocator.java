@@ -18,7 +18,6 @@ public class ContainerQDislocator extends ContainerBase {
         tile = te;
         this.addSlotToContainer(new SlotCustomInput(tile, 0, 20, 34, Loader.ItemLocationCard));
             this.addSlotToContainer(new SlotCustomInput(tile, 1, 131, 34, Loader.ItemLocationCard));
-        int i;
     }
 
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {

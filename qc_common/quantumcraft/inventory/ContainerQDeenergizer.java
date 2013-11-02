@@ -17,8 +17,6 @@ public class ContainerQDeenergizer extends ContainerBase {
         tile = te;
         this.addSlotToContainer(new Slot(tile, 0, 20, 34));
         this.addSlotToContainer(new SlotOutput(tile, 1, 131, 34));
-        int i;
-
     }
 
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
