@@ -21,7 +21,7 @@ public class ContainerIONForge extends ContainerBase {
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
         return null;
     }
-    
+
     @Override
     public boolean canInteractWith(EntityPlayer entityplayer) {
         return this.tile.isUseableByPlayer(entityplayer);
