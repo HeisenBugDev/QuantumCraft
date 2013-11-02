@@ -252,7 +252,7 @@ public class Loader {
     }
 
     public static void initWGen() {
-
+        GameRegistry.registerWorldGenerator(new WorldGen());
     }
 
     public static void initTEs() {
