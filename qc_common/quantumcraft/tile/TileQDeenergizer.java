@@ -154,7 +154,6 @@ public class TileQDeenergizer extends TileEnergySource implements
         }
 
         _inv.setInventorySlotContents(i, itemstack);
-
     }
 
     @Override
@@ -164,13 +163,11 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public boolean isInvNameLocalized() {
-
         return false;
     }
 
     @Override
     public int getInventoryStackLimit() {
-
         return 64;
     }
 
