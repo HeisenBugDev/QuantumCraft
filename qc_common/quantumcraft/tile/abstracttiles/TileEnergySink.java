@@ -5,7 +5,6 @@ import quantumcraft.net.EnergySourceList;
 import quantumcraft.net.Location;
 
 public abstract class TileEnergySink extends TileMachineBase {
-    private int energyBuffer = 0;
     private EnergySourceList sourceList;
 
     public void addSourceToList(Location l, Location source) {
@@ -15,7 +14,6 @@ public abstract class TileEnergySink extends TileMachineBase {
 
     public void replaceSourceList(Location l, EnergySourceList sources) {
         sourceList = sources;
-        System.out.println("REPLACING SOURCE LIST");
     }
 
     /**
@@ -26,7 +24,7 @@ public abstract class TileEnergySink extends TileMachineBase {
      */
     public int requestPacket(int size) {
         if (sourceList != null) return sourceList.getQuantumEnergy(worldObj, size);
-        System.out.println("NULL!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("[QuantumCraft] Sources list not initialized. Please report this.");
         return 0;
     }
 
