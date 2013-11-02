@@ -135,13 +135,7 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public ItemStack getStackInSlotOnClosing(int i) {
-        if (this.inventory[i] != null) {
-            ItemStack itemstack = this.inventory[i];
-            this.inventory[i] = null;
-            return itemstack;
-        } else {
-            return null;
-        }
+        return null;
     }
 
     @Override
