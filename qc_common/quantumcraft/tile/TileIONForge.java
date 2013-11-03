@@ -51,7 +51,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         for (int i = 0; i < 2; i++) {
             if (this.canProcess(i)) {
                 removeProcess = true;
-                System.out.println(processTime);
                 if (processTime == 0) process(i);
             }
         }
@@ -132,7 +131,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         if (inventory[input] != null) {
             if (inventory[output] != null) {
                 if (inventory[output].itemID != r.itemID) {
-                    System.out.println(r + " " + inventory[output]);
                     process = false;
                 }
             }
