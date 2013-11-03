@@ -2,7 +2,6 @@ package quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -13,7 +12,7 @@ public class BlockQDematerializer extends BlockEnergySource {
 
 
     public BlockQDematerializer(int id) {
-        super(id, Material.iron);
+        super(id);
     }
 
     @Override

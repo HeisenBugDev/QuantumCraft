@@ -11,8 +11,8 @@ import quantumcraft.net.QuantumEnergyNet;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
 public abstract class BlockEnergySink extends BlockEnergyComponent implements IQEnergySink {
-    public BlockEnergySink(int id, Material material) {
-        super(id, material);
+    public BlockEnergySink(int id) {
+        super(id, Material.iron);
     }
 
     @Override

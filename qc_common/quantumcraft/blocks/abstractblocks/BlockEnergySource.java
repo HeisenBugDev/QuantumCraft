@@ -11,8 +11,8 @@ import quantumcraft.tile.abstracttiles.TileEnergySource;
 
 public abstract class BlockEnergySource extends BlockEnergyComponent implements IQEnergySource {
 
-    public BlockEnergySource(int id, Material material) {
-        super(id, material);
+    public BlockEnergySource(int id) {
+        super(id, Material.iron);
     }
 
     @Override
