@@ -23,7 +23,7 @@ public class ContainerQDematerializer extends ContainerBase {
 
     @Override
     public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
-        return this.tile.isUsableByPlayer(par1EntityPlayer);
+        return this.tile.isUseableByPlayer(par1EntityPlayer);
     }
 
 }

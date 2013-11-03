@@ -40,7 +40,7 @@ public class ContainerQEInjector extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
-        return this.tile.isUsableByPlayer(par1EntityPlayer);
+        return this.tile.isUseableByPlayer(par1EntityPlayer);
     }
 
 }

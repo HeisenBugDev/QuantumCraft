@@ -113,7 +113,7 @@ public class TileQEExtractor extends TileEnergySource implements
     }
 
     @Override
-    public boolean isUsableByPlayer(EntityPlayer entityplayer) {
+    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 
         return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
                 this.zCoord) == this && entityplayer.getDistanceSq(
