@@ -30,14 +30,22 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public void updateEntity() {
+        boolean resetProcess = false;
+        boolean removeProcess = false;
         for (int i = 0; i < 2; i++) {
             if (this.canProcess(i)) {
-                if (processTime > 0) processTime--;
                 if (processTime == 0) process(i);
-                if (processTime < 0) processTime = 10;
+                removeProcess = true;
             } else {
-                processTime = -1;
+                resetProcess = true;
             }
+        }
+        if (resetProcess) {
+            processTime = -1;
+        }
+        if (removeProcess) {
+            if (processTime > 0) processTime--;
+            if (processTime < 0) processTime = 10;
         }
 
         if (updateNextTick) {
