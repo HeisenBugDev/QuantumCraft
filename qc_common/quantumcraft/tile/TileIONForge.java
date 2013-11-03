@@ -51,6 +51,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         boolean removeProcess = false;
         for (int i = 0; i < 2; i++) {
             if (this.canProcess(i)) {
+                System.out.println("IT  BE:"+i + " and a " + processTime);
                 if (processTime == 0) process(i);
                 removeProcess = true;
                 resetProcess.add(0);
