@@ -27,16 +27,12 @@ public class GuiIONForge extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         String s = this.tile.getInvName();
         this.fontRenderer.drawString(s, (this.xSize - 19) / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
-        //this.fontRenderer.drawString("LIV: " + tile.lastItemValue + "; CBV: " + tile.QEnergyItemBuffer,
-        //        this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 15, 4210752);
         this.fontRenderer
                 .drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-        //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        //this.mc.renderEngine.func_110577_a("/mods/QuantumCraft/textures/gui/deenergizer.png");
         this.mc.renderEngine.bindTexture(new ResourceLocation("quantumcraft", "textures/gui/deenergizer.png"));
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
