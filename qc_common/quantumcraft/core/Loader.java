@@ -146,14 +146,17 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQShovel)
                 .setTextureName(Config.getTextureName(Config.NameItemQShovel));
         LanguageRegistry.addName(ItemQuantumShovel, "Quantum Shovel");
+
         ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder(Config.ItemRPlaceHolderID)
                 .setCreativeTab(null).setUnlocalizedName(Config.NameItemRPlaceHolder)
                 .setTextureName(Config.getTextureName(Config.NameItemRPlaceHolder));
         LanguageRegistry.addName(ItemRPlaceHolder, "Render Placeholder");
+
         ItemHyperConductor = (ItemBase) new ItemBase(Config.ItemHyperConductorID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemHyperConductor)
                 .setTextureName(Config.getTextureName(Config.NameItemHyperConductor));
         LanguageRegistry.addName(ItemHyperConductor, "Hyper Conductor");
+        
         ItemQuantumPlating = (ItemBase) new ItemBase(Config.ItemQuantumPlatingID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQuantumPlating)
                 .setTextureName(Config.getTextureName(Config.NameItemQuantumPlating));
