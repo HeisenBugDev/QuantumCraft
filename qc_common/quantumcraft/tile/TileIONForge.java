@@ -138,7 +138,8 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         }
         if (inventory[input] != null) {
             if (inventory[output] != null) {
-                if (inventory[output] != r) {
+                if (inventory[output].itemID != r.itemID) {
+                    System.out.println(r + " " + inventory[output]);
                     process = false;
                 }
             }
