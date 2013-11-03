@@ -16,8 +16,8 @@ public class ContainerIONForge extends ContainerBase {
         tile = te;
         this.addSlotToContainer(new Slot(tile, 0, 20, 20));
         this.addSlotToContainer(new SlotOutput(tile, 1, 131, 20));
-        this.addSlotToContainer(new Slot(tile, 0, 20, 44));
-        this.addSlotToContainer(new SlotOutput(tile, 1, 131, 44));
+        this.addSlotToContainer(new Slot(tile, 2, 20, 44));
+        this.addSlotToContainer(new SlotOutput(tile, 3, 131, 44));
     }
 
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
