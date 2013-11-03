@@ -15,9 +15,8 @@ public class ContainerIONForge extends ContainerBase {
         super(ip);
         tile = te;
         this.addSlotToContainer(new Slot(tile, 0, 20, 20));
+        this.addSlotToContainer(new SlotOutput(tile, 1, 131, 20));
         this.addSlotToContainer(new Slot(tile, 0, 20, 44));
-        this.addSlotToContainer(new SlotOutput(tile, 1, 131, 20
-        ));
         this.addSlotToContainer(new SlotOutput(tile, 1, 131, 44));
     }
 
