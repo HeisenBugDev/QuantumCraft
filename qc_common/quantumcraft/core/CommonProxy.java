@@ -34,6 +34,9 @@ public class CommonProxy implements IGuiHandler {
                 case 5:
                     return new ContainerQEExtractor(player.inventory,
                             (TileQEExtractor) world.getBlockTileEntity(x, y, z));
+                case 6:
+                    return new ContainerIONForge(player.inventory,
+                            (TileIONForge) world.getBlockTileEntity(x, y, z));
             }
         }
         return null;
