@@ -156,7 +156,7 @@ public class Loader {
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemHyperConductor)
                 .setTextureName(Config.getTextureName(Config.NameItemHyperConductor));
         LanguageRegistry.addName(ItemHyperConductor, "Hyper Conductor");
-        
+
         ItemQuantumPlating = (ItemBase) new ItemBase(Config.ItemQuantumPlatingID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemQuantumPlating)
                 .setTextureName(Config.getTextureName(Config.NameItemQuantumPlating));
@@ -208,13 +208,13 @@ public class Loader {
                     .setTextureName(Config.getTextureName(Config.NameBlockQDS));
             LanguageRegistry.addName(BlockQDislocator, "Quantum Dislocator");
             GameRegistry.registerBlock(BlockQDislocator, Config.NameBlockQDS);
-        }
 
-        BlockQEnergySucker = (BlockQEnergySucker) new BlockQEnergySucker(Config.BlockQESID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQES)
-                .setTextureName(Config.getTextureName(Config.NameBlockQES));
-        LanguageRegistry.addName(BlockQEnergySucker, "Quantum Energy Sucker");
-        GameRegistry.registerBlock(BlockQEnergySucker, Config.NameBlockQES);
+            BlockQEnergySucker = (BlockQEnergySucker) new BlockQEnergySucker(Config.BlockQESID)
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQES)
+                    .setTextureName(Config.getTextureName(Config.NameBlockQES));
+            LanguageRegistry.addName(BlockQEnergySucker, "Quantum Energy Sucker");
+            GameRegistry.registerBlock(BlockQEnergySucker, Config.NameBlockQES);
+        }
 
         BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQFiberWire)
