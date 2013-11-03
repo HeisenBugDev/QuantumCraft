@@ -42,5 +42,9 @@ public class GuiIONForge extends GuiContainer {
 
         this.drawTexturedModalRect(k + 177, l + 37 + h2, 195, 16 + h2, 12, 76 - h2);
         this.drawTexturedModalRect(k + 177, l + 37, 207, 16, 12, 76);
+        if (tile.progress != 0) {
+            int h = (int) (16 - ((float) tile.progress / (float) 10 * 16));
+            this.drawTexturedModalRect(k + 69, l + 34 + h, 195, h, 16, 16 - h);
+        }
     }
 }
