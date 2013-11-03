@@ -28,7 +28,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public void onBlockBreak() {
-        //TODO Inventory
+        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
 
@@ -38,7 +38,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
      * wants to be reset. If there is a 0 in ANY of it then
      * it won't reset meaning that one of the slots can
      * process something.
-     *
+     * 
      * removeProcess is just a boolean for whether or not
      * to remove something from the counter or to reset
      * it back to 10.
@@ -104,7 +104,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
      * @param i which iteration
      */
     private void process(int i) {
-        System.out.println("I'm being processed!");
         processTime = -1;
         int input = iteratorSwitch(i, false);
         int output = iteratorSwitch(i, true);
