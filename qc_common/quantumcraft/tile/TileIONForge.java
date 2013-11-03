@@ -39,6 +39,15 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
                 processTime = -1;
             }
         }
+
+        if (updateNextTick) {
+            // All nearby players need to be updated if the status of work
+            // changes, or if heat runs out / starts up, in order to change
+            // texture.
+            updateNextTick = false;
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+        }
     }
 
     /**
@@ -53,9 +62,11 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
             case 0:
                 input = 0;
                 output = 1;
+                break;
             case 1:
                 input = 2;
                 output = 3;
+                break;
         }
         return io ? output : input;
     }
@@ -90,7 +101,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         boolean process = true;
         int input = iteratorSwitch(i, false);
         int output = iteratorSwitch(i, true);
-
         ItemStack r = FurnaceRecipes.smelting().getSmeltingResult(inventory[input]);
         if (r == null) return false;
 
@@ -152,6 +162,8 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public void setInventorySlotContents(int i, ItemStack itemstack) {
+        System.out.println("It's BEEN SET!KJfkldjsfkljdskl");
+        System.out.println(i);
         this.inventory[i] = itemstack;
 
         if (itemstack != null
@@ -177,7 +189,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+    public boolean isUsableByPlayer(EntityPlayer entityplayer) {
         return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
                 this.zCoord) == this && entityplayer.getDistanceSq(
                 (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,

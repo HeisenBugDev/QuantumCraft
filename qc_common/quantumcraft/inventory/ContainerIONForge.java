@@ -26,6 +26,6 @@ public class ContainerIONForge extends ContainerBase {
 
     @Override
     public boolean canInteractWith(EntityPlayer entityplayer) {
-        return this.tile.isUseableByPlayer(entityplayer);
+        return this.tile.isUsableByPlayer(entityplayer);
     }
 }
