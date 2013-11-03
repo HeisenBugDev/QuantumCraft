@@ -29,6 +29,7 @@ public class QuantumCraft {
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         Loader.initAll();
+        System.out.println("[QuantumCraft] Finished loading.");
     }
 
     @Mod.EventHandler
