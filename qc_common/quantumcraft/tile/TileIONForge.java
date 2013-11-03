@@ -7,6 +7,9 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     public ItemStack[] inventory = new ItemStack[4];
@@ -30,22 +33,26 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public void updateEntity() {
-        boolean resetProcess = false;
+        List<Integer> resetProcess = new ArrayList<Integer>();
         boolean removeProcess = false;
         for (int i = 0; i < 2; i++) {
             if (this.canProcess(i)) {
                 if (processTime == 0) process(i);
                 removeProcess = true;
+                resetProcess.add(0);
             } else {
-                resetProcess = true;
+                resetProcess.add(1);
             }
         }
-        if (resetProcess) {
-            processTime = -1;
+        if (!resetProcess.contains(0)) {
+            processTime = 10;
         }
         if (removeProcess) {
-            if (processTime > 0) processTime--;
-            if (processTime < 0) processTime = 10;
+            if (processTime > 0) {
+                processTime--;
+            } else {
+                processTime = 10;
+            }
         }
 
         if (updateNextTick) {
