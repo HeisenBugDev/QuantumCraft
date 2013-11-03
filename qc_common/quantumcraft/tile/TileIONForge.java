@@ -54,8 +54,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
                 if (processTime == 0) process(i);
                 removeProcess = true;
                 resetProcess.add(0);
-            } else {
-                resetProcess.add(1);
             }
         }
         if (!resetProcess.contains(0)) {
