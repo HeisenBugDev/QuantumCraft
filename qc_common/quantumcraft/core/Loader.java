@@ -110,17 +110,17 @@ public class Loader {
                     .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemUpgrade_)
                     .setTextureName("USELESS");
             LanguageRegistry.addName(ItemUpgrade, "Upgrade");
+
+            ItemLocationCard = (ItemLocationCard) new ItemLocationCard(Config.ItemLocationCardID).setUnlocalizedName(
+                    Config.NameItemLocationCard)
+                    .setTextureName(Config.getTextureName(Config.NameItemLocationCard));
+            LanguageRegistry.addName(ItemLocationCard, "Location Card");
+
+            ItemLocationCardBlank = (ItemLocationCardBlank) new ItemLocationCardBlank(Config.ItemLocationdCardBlankID)
+                    .setUnlocalizedName(Config.NameItemLocationCardBlank)
+                    .setTextureName(Config.getTextureName(Config.NameItemLocationCardBlank));
+            LanguageRegistry.addName(ItemLocationCardBlank, "Location Card");
         }
-
-        ItemLocationCard = (ItemLocationCard) new ItemLocationCard(Config.ItemLocationCardID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCard)
-                .setTextureName(Config.getTextureName(Config.NameItemLocationCard));
-        LanguageRegistry.addName(ItemLocationCard, "Location Card");
-
-        ItemLocationCardBlank = (ItemLocationCardBlank) new ItemLocationCardBlank(Config.ItemLocationdCardBlankID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemLocationCardBlank)
-                .setTextureName(Config.getTextureName(Config.NameItemLocationCardBlank));
-        LanguageRegistry.addName(ItemLocationCardBlank, "Location Card");
 
         ItemPortableQCapacitor = (ItemPortableQCapacitor) new ItemPortableQCapacitor(Config.ItemPortQCapacitorID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemPortableQCapacitor)
