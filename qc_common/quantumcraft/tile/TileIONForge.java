@@ -47,25 +47,21 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
      */
     @Override
     public void updateEntity() {
-        List<Integer> resetProcess = new ArrayList<Integer>();
         boolean removeProcess = false;
         for (int i = 0; i < 2; i++) {
             if (this.canProcess(i)) {
-                System.out.println("IT  BE:" + i + " and a " + processTime);
-                if (processTime == 0) process(i);
                 removeProcess = true;
-                resetProcess.add(0);
+                System.out.println(processTime);
+                if (processTime == 0) process(i);
             }
-        }
-        if (!resetProcess.contains(0)) {
-            processTime = 10;
         }
         if (removeProcess) {
-            if (processTime > 0) {
+            if (processTime >= 0) {
                 processTime--;
-            } else {
-                processTime = 10;
             }
+        }
+        if (processTime < 0){
+            processTime = 10;
         }
 
         if (updateNextTick) {
@@ -105,10 +101,8 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
      * @param i which iteration
      */
     private void process(int i) {
-        processTime = -1;
         int input = iteratorSwitch(i, false);
         int output = iteratorSwitch(i, true);
-        System.out.println(output);
         if (inventory[output] == null) {
             inventory[output] = FurnaceRecipes.smelting().getSmeltingResult(inventory[input]).copy();
         } else {
