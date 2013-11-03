@@ -45,7 +45,8 @@ public abstract class BlockMachine extends BlockRotatable {
         }
         if (entityplayer.isSneaking()) {
             //PLAYER IS SNEAKING, DOES HE HAVE AN UPGRADE?
-            if ((entityplayer.getCurrentEquippedItem() != null) && entityplayer.getCurrentEquippedItem().getItem() instanceof IUpgrade && te instanceof IUpgradable) {
+            if ((entityplayer.getCurrentEquippedItem() != null) &&
+                    entityplayer.getCurrentEquippedItem().getItem() instanceof IUpgrade && te instanceof IUpgradable) {
                 System.out.print("INSTALLING UPGRADE");
                 ((IUpgradable) te).eatUpgrade(entityplayer.getCurrentEquippedItem().getItemDamage());
                 entityplayer.destroyCurrentEquippedItem();
