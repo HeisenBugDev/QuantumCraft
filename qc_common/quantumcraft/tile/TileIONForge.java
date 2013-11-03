@@ -3,6 +3,7 @@ package quantumcraft.tile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
@@ -10,6 +11,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     public ItemStack[] inventory = new ItemStack[4];
     private SimpleInventory _inv = new SimpleInventory(4, "iof", 64);
+    private int processTime = 0;
 
     @Override
     public int getMaxEnergy() {
@@ -28,7 +30,57 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public void updateEntity() {
+        for (int i = 0; i < 2; i++) {
+            if (this.canProcess(i)) {
 
+            }
+        }
+    }
+
+    private int iteratorSwitch(int i, boolean io) {
+        int input = 0;
+        int output = 0;
+        switch (i) {
+            case 0:
+                input = 0;
+                output = 1;
+            case 1:
+                input = 2;
+                output = 3;
+        }
+        return io ? output : input;
+    }
+
+    private void process() {
+        processTime = -1;
+
+    }
+
+    /**
+     * @param i Which iteration of slots.
+     *          Example: For slots 0 and 1 where 0 is
+     *          input you pass it 1 and for 2 and 3 you pass it 2
+     * @return Is it able to process or not.
+     */
+    private boolean canProcess(int i) {
+        boolean process = true;
+        int input = iteratorSwitch(i, false);
+        int output = iteratorSwitch(i, true);
+
+        ItemStack r = FurnaceRecipes.smelting().getSmeltingResult(inventory[input]);
+        if (r == null) return false;
+
+        if (inventory[input] == null) {
+            process = false;
+        }
+        if (inventory[input] != null) {
+            if (inventory[output] != null) {
+                if (inventory[output] != r) {
+                    process = false;
+                }
+            }
+        }
+        return process;
     }
 
     @Override
