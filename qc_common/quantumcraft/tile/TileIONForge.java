@@ -10,9 +10,6 @@ import quantumcraft.core.Config;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     public ItemStack[] inventory = new ItemStack[4];
