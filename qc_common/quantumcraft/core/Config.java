@@ -79,6 +79,7 @@ public class Config {
     public static int BlockIOFID;
     public static int BlockFiberWireID;
     public static int BlockMCasingID;
+    public static int IONForgeEnergyCost;
     public static String NameRIconTest = RIconPrefix + "test";
     protected static File _configFolder;
     protected static File _configFile;
@@ -146,6 +147,9 @@ public class Config {
 
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
         BlockMCasingID = config.get("Blocks", "BlockMachineCasing", 3590).getInt();
+
+        IONForgeEnergyCost = config.get("Units", "ION Forge Energy Cost", 3).getInt();
+
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =
                 "This is the distance in which players will be notified.  Lower if you experience lag.";
