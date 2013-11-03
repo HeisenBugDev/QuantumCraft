@@ -32,11 +32,20 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     public void updateEntity() {
         for (int i = 0; i < 2; i++) {
             if (this.canProcess(i)) {
-
+                if (processTime > 0) processTime--;
+                if (processTime == 0) process(i);
+                if (processTime < 0) processTime = 10;
+            } else {
+                processTime = -1;
             }
         }
     }
 
+    /**
+     * @param i  which iteration
+     * @param io input or output; output = true
+     * @return value of input or output
+     */
     private int iteratorSwitch(int i, boolean io) {
         int input = 0;
         int output = 0;
@@ -51,9 +60,24 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         return io ? output : input;
     }
 
-    private void process() {
+    /**
+     * Processes the item in the input slot and puts the output in the output slot
+     *
+     * @param i which iteration
+     */
+    private void process(int i) {
+        System.out.println("I'm being processed!");
         processTime = -1;
-
+        int input = iteratorSwitch(i, false);
+        int output = iteratorSwitch(i, true);
+        if (inventory[output] == null) {
+            inventory[output] = FurnaceRecipes.smelting().getSmeltingResult(inventory[input]);
+        } else {
+            inventory[output].stackSize++;
+        }
+        this.decrStackSize(input, 1);
+        _inv.setInventorySlotContents(input, inventory[input]);
+        _inv.setInventorySlotContents(output, inventory[output]);
     }
 
     /**
@@ -93,6 +117,11 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         return inventory[i];
     }
 
+    /**
+     * @param i input slot
+     * @param j amount to remove
+     * @return the itemstack that has been modified
+     */
     @Override
     public ItemStack decrStackSize(int i, int j) {
         if (this.inventory[i] != null) {
