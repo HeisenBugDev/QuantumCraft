@@ -4,6 +4,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
@@ -38,7 +40,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
      * wants to be reset. If there is a 0 in ANY of it then
      * it won't reset meaning that one of the slots can
      * process something.
-     * 
+     * <p/>
      * removeProcess is just a boolean for whether or not
      * to remove something from the counter or to reset
      * it back to 10.
@@ -107,8 +109,9 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         processTime = -1;
         int input = iteratorSwitch(i, false);
         int output = iteratorSwitch(i, true);
+        System.out.println(output);
         if (inventory[output] == null) {
-            inventory[output] = FurnaceRecipes.smelting().getSmeltingResult(inventory[input]);
+            inventory[output] = FurnaceRecipes.smelting().getSmeltingResult(inventory[input]).copy();
         } else {
             inventory[output].stackSize++;
         }
@@ -250,5 +253,45 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
         return i != 0;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
+        super.readFromNBT(par1NBTTagCompound);
+        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+        this.inventory = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
+                    .tagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
+
+            if (b0 >= 0 && b0 < this.inventory.length) {
+                this.inventory[b0] = ItemStack
+                        .loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
+        updateNextTick = true;
+    }
+
+    /**
+     * Writes a tile entity to NBT.
+     */
+
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.inventory.length; ++i) {
+            if (this.inventory[i] != null) {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte) i);
+                this.inventory[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+
+        par1NBTTagCompound.setTag("Items", nbttaglist);
+        super.writeToNBT(par1NBTTagCompound);
     }
 }
