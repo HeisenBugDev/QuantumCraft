@@ -36,12 +36,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
 
     /**
-     * Confused? Yes you are. resetProcess is an arraylist
-     * so that we can detect whether or not all of the slots
-     * wants to be reset. If there is a 0 in ANY of it then
-     * it won't reset meaning that one of the slots can
-     * process something.
-     * But what else?
      * removeProcess is just a boolean for whether or not
      * to remove something from the counter or to reset
      * it back to 10.
