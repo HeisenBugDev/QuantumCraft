@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import quantumcraft.core.Config;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
@@ -47,29 +48,38 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
      */
     @Override
     public void updateEntity() {
-        boolean removeProcess = false;
-        for (int i = 0; i < 2; i++) {
-            if (this.canProcess(i)) {
-                removeProcess = true;
-                if (processTime == 0) process(i);
-            }
+        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
+            this.addEnergy(this.requestPacket(100));
         }
-        if (removeProcess) {
-            if (processTime >= 0) {
-                processTime--;
-            }
-        }
-        if (processTime < 0){
-            processTime = 10;
-        }
+        if (getCurrentEnergy() > Config.IONForgeEnergyCost) {
 
-        if (updateNextTick) {
-            // All nearby players need to be updated if the status of work
-            // changes, or if heat runs out / starts up, in order to change
-            // texture.
-            updateNextTick = false;
-            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+            boolean removeProcess = false;
+            for (int i = 0; i < 2; i++) {
+                if (this.canProcess(i)) {
+                    removeProcess = true;
+                    if (processTime == 0) {
+                        process(i);
+                        subtractEnergy(Config.IONForgeEnergyCost);
+                    }
+                }
+            }
+            if (removeProcess) {
+                if (processTime >= 0) {
+                    processTime--;
+                }
+            }
+            if (processTime < 0) {
+                processTime = 10;
+            }
+
+            if (updateNextTick) {
+                // All nearby players need to be updated if the status of work
+                // changes, or if heat runs out / starts up, in order to change
+                // texture.
+                updateNextTick = false;
+                worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+            }
         }
     }
 
