@@ -78,12 +78,12 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         }
     }
 
-    private void updateProgress(){
-        if (progress >= 10){
+    private void updateProgress() {
+        if (progress >= 10) {
             progress = 0;
         }
-        if (progress < 10){
-            progress ++;
+        if (progress < 10) {
+            progress++;
         }
     }
 
