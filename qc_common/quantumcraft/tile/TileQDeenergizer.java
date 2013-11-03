@@ -87,10 +87,7 @@ public class TileQDeenergizer extends TileEnergySource implements
         if (inventory[0] == null)
             flag = false;
         if (inventory[0] != null) {
-            if (r == null)
-                flag = false;
             if (inventory[1] != null) {
-                assert r != null;
                 if (inventory[1].itemID != r.getOutputItem().itemID)
                     flag = false;
             }
@@ -138,13 +135,7 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public ItemStack getStackInSlotOnClosing(int i) {
-        if (this.inventory[i] != null) {
-            ItemStack itemstack = this.inventory[i];
-            this.inventory[i] = null;
-            return itemstack;
-        } else {
-            return null;
-        }
+        return null;
     }
 
     @Override
@@ -157,7 +148,6 @@ public class TileQDeenergizer extends TileEnergySource implements
         }
 
         _inv.setInventorySlotContents(i, itemstack);
-
     }
 
     @Override
@@ -167,18 +157,16 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public boolean isInvNameLocalized() {
-
         return false;
     }
 
     @Override
     public int getInventoryStackLimit() {
-
         return 64;
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+    public boolean isUsableByPlayer(EntityPlayer entityplayer) {
         return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
                 this.zCoord) == this && entityplayer.getDistanceSq(
                 (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
