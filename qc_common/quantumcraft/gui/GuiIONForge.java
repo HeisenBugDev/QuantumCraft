@@ -33,7 +33,7 @@ public class GuiIONForge extends GuiContainer {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-        this.mc.renderEngine.bindTexture(new ResourceLocation("quantumcraft", "textures/gui/deenergizer.png"));
+        this.mc.renderEngine.bindTexture(new ResourceLocation("quantumcraft", "textures/gui/ionforge.png"));
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
