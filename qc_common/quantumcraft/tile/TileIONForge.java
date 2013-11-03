@@ -15,6 +15,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[4];
     private SimpleInventory _inv = new SimpleInventory(4, "iof", 64);
     private int processTime = 0;
+    public int progress = 0;
 
     @Override
     public int getMaxEnergy() {
@@ -48,18 +49,21 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
             for (int i = 0; i < 2; i++) {
                 if (this.canProcess(i)) {
                     removeProcess = true;
+                    updateProgress();
                     if (processTime == 0) {
                         process(i);
                         subtractEnergy(Config.IONForgeEnergyCost);
                     }
                 }
             }
+
             if (removeProcess) {
                 if (processTime >= 0) {
                     processTime--;
                 }
             }
             if (processTime < 0) {
+                progress = 0;
                 processTime = 10;
             }
 
@@ -71,6 +75,15 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
                 worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
                 worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
             }
+        }
+    }
+
+    private void updateProgress(){
+        if (progress >= 10){
+            progress = 0;
+        }
+        if (progress < 10){
+            progress ++;
         }
     }
 
