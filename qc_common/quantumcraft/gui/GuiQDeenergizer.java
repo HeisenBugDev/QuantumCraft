@@ -49,7 +49,7 @@ public class GuiQDeenergizer extends GuiContainer {
         this.drawTexturedModalRect(k + 177, l + 37, 207, 16, 12, 76);
         if (tile.lastItemValue != 0) {
             int h = (int) (16 - ((float) tile.QEnergyItemBuffer / (float) tile.lastItemValue * 16));
-            this.drawTexturedModalRect(k + 69, l + 34 + h, 195, 0 + h, 16, 16 - h);
+            this.drawTexturedModalRect(k + 69, l + 34 + h, 195, h, 16, 16 - h);
         }
 
 
