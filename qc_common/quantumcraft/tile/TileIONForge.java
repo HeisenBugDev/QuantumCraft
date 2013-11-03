@@ -162,8 +162,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public void setInventorySlotContents(int i, ItemStack itemstack) {
-        System.out.println("It's BEEN SET!KJfkldjsfkljdskl");
-        System.out.println(i);
         this.inventory[i] = itemstack;
 
         if (itemstack != null
