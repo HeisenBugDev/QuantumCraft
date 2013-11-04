@@ -13,9 +13,9 @@ import quantumcraft.tile.abstracttiles.TileEnergySink;
 public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     public ItemStack[] inventory = new ItemStack[4];
+    public int progress = 0;
     private SimpleInventory _inv = new SimpleInventory(4, "iof", 64);
     private int processTime = 0;
-    public int progress = 0;
 
     @Override
     public int getMaxEnergy() {
@@ -31,7 +31,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     public void onBlockBreak() {
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
-
 
     /**
      * removeProcess is just a boolean for whether or not
@@ -116,14 +115,16 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     private void process(int i) {
         int input = iteratorSwitch(i, false);
         int output = iteratorSwitch(i, true);
-        if (inventory[output] == null) {
-            inventory[output] = FurnaceRecipes.smelting().getSmeltingResult(inventory[input]).copy();
-        } else {
-            inventory[output].stackSize++;
+        if (!(inventory[output].stackSize >= 64)) {
+            if (inventory[output] == null) {
+                inventory[output] = FurnaceRecipes.smelting().getSmeltingResult(inventory[input]).copy();
+            } else {
+                inventory[output].stackSize++;
+            }
+            this.decrStackSize(input, 1);
+            _inv.setInventorySlotContents(input, inventory[input]);
+            _inv.setInventorySlotContents(output, inventory[output]);
         }
-        this.decrStackSize(input, 1);
-        _inv.setInventorySlotContents(input, inventory[input]);
-        _inv.setInventorySlotContents(output, inventory[output]);
     }
 
     /**
