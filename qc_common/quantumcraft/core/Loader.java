@@ -117,7 +117,7 @@ public class Loader {
             LanguageRegistry.addName(ItemLocationCard, "Location Card");
 
             ItemLocationCardBlank = (ItemLocationCardBlank) new ItemLocationCardBlank(Config.ItemLocationdCardBlankID)
-                    .setUnlocalizedName(Config.NameItemLocationCardBlank)
+                    .setUnlocalizedName(Config.NameItemLocationCardBlank).setCreativeTab(tabQuantumCraft)
                     .setTextureName(Config.getTextureName(Config.NameItemLocationCardBlank));
             LanguageRegistry.addName(ItemLocationCardBlank, "Location Card");
         }
