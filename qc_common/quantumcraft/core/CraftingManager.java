@@ -13,9 +13,6 @@ public class CraftingManager {
         ItemStack ironStack = new ItemStack(Item.ingotIron);
         ItemStack crystalStack = new ItemStack(Loader.ItemCrystalQuantonium);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemLocationCardBlank),
-                new ItemStack(Loader.ItemLocationCard));
-
         // QUATUM PLATING    x4
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemQuantumPlating, 4), "xxx", "xyx", "xxx",
                 'x', ironStack, 'y', crystalStack);
@@ -28,9 +25,14 @@ public class CraftingManager {
         // MULTI TOOL        x1
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemMultiTool, 1), " i ", "rii", " r ",
                 'i', ironStack, 'r', new ItemStack(Item.dyePowder, 1, 1));
-        // BLANK LOC CARD    x2 <-- cannot do 2 cause maxstacksize is 1
-        GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemLocationCardBlank),
-                new ItemStack(Item.paper), new ItemStack(Item.paper), new ItemStack(Item.dyePowder, 1, 0));
+
+        if (Config.beta.getBoolean(false)) {
+            GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemLocationCardBlank),
+                    new ItemStack(Loader.ItemLocationCard));
+            // BLANK LOC CARD    x2 <-- cannot do 2 cause maxstacksize is 1
+            GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemLocationCardBlank),
+                    new ItemStack(Item.paper), new ItemStack(Item.paper), new ItemStack(Item.dyePowder, 1, 0));
+        }
         // PORT. CAPACITOR   x1
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemPortableQCapacitor, 1), "pcp", "xcx", "pcp",
                 'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
