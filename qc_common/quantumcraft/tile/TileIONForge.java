@@ -115,7 +115,11 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     private void process(int i) {
         int input = iteratorSwitch(i, false);
         int output = iteratorSwitch(i, true);
-        if (inventory[output] != null && !(inventory[output].stackSize >= 64)) {
+        boolean outputCheck = false;
+        if (inventory[output] != null){
+            outputCheck = true;
+        }
+        if (outputCheck && !(inventory[output].stackSize >= 64)) {
             if (inventory[output] == null) {
                 inventory[output] = FurnaceRecipes.smelting().getSmeltingResult(inventory[input]).copy();
             } else {
