@@ -13,13 +13,13 @@ public class BlockIONForge extends BlockEnergySink {
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
-        iconFront = iconRegister.registerIcon("QuantumCraft:machineIONForge_front");
-        iconTop = iconRegister.registerIcon("QuantumCraft:machineIONForge_top");
-        iconTopR = iconRegister.registerIcon("QuantumCraft:machineIONForge_top_r");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineIONForge_side");
-        iconBottom = iconRegister.registerIcon("QuantumCraft:machineIONForge_bottom");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineIONForge_side");
-        iconBack = iconRegister.registerIcon("QuantumCraft:machineIONForge_back");
+        iconFront = iconRegister.registerIcon("QuantumCraft:machineIOF_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machineIOF_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineIOF_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineIOF_side");
+        iconBottom = iconRegister.registerIcon("QuantumCraft:machineIOF_bottom");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineIOF_side");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machineIOF_back");
     }
 
     @Override
