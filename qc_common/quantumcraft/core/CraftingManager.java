@@ -10,7 +10,7 @@ public class CraftingManager {
 
     public static void addCrafting() {
 
-        ItemStack ironStack = new ItemStack(Item.ingotIron);
+        ItemStack ironStack = new ItemStack(Loader.ItemIngotUnbioxenium);
         ItemStack crystalStack = new ItemStack(Loader.ItemCrystalQuantonium);
 
         // QUATUM PLATING    x4
