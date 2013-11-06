@@ -195,14 +195,13 @@ public class Loader {
         LanguageRegistry.addName(BlockQEInjector, "Quantum Energy Injector");
         GameRegistry.registerBlock(BlockQEInjector, Config.NameBlockQEI);
 
+        BlockIONForge = (BlockIONForge) new BlockIONForge(Config.BlockIOFID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockIOF)
+                .setTextureName(Config.getTextureName(Config.NameBlockIOF));
+        LanguageRegistry.addName(BlockIONForge, "ION Forge");
+        GameRegistry.registerBlock(BlockIONForge, Config.NameBlockIOF);
+
         if (Config.beta.getBoolean(false)) {
-
-            BlockIONForge = (BlockIONForge) new BlockIONForge(Config.BlockIOFID)
-                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockIOF)
-                    .setTextureName(Config.getTextureName(Config.NameBlockIOF));
-            LanguageRegistry.addName(BlockIONForge, "ION Forge");
-            GameRegistry.registerBlock(BlockIONForge, Config.NameBlockIOF);
-
             BlockQDislocator = (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID)
                     .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDS)
                     .setTextureName(Config.getTextureName(Config.NameBlockQDS));
