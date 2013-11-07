@@ -44,7 +44,8 @@ public abstract class BlockEnergyComponent extends BlockMachine implements IQEne
         return getallsides(l);
     }
 
-    public boolean canTubeConnectOnSide(IBlockAccess w, int x, int y, int z, int side) {
-        return true;
+    @Override
+    public boolean canFiberConnectOnSide(IBlockAccess w, int x, int y, int z, int side) {
+        return false;
     }
 }

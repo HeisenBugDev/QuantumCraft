@@ -31,32 +31,32 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
         float[] max = {0.75F, 0.75F, 0.75F};
         if (Block.blocksList[world.getBlockId(x - 1, y, z)] instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x - 1, y, z))
-                    .canTubeConnectOnSide(world, x - 1, y, z, BasicUtils.dirXPos))
+                    .canFiberConnectOnSide(world, x - 1, y, z, BasicUtils.dirXPos))
                 min[0] = 0.0F;
         }
         if (Block.blocksList[world.getBlockId(x + 1, y, z)] instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x + 1, y, z))
-                    .canTubeConnectOnSide(world, x + 1, y, z, BasicUtils.dirXNeg))
+                    .canFiberConnectOnSide(world, x + 1, y, z, BasicUtils.dirXNeg))
                 max[0] = 1.0F;
         }
         if (Block.blocksList[world.getBlockId(x, y - 1, z)] instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y - 1, z))
-                    .canTubeConnectOnSide(world, x, y - 1, z, BasicUtils.dirYPos))
+                    .canFiberConnectOnSide(world, x, y - 1, z, BasicUtils.dirYPos))
                 min[1] = 0.0F;
         }
         if (Block.blocksList[world.getBlockId(x, y + 1, z)] instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y + 1, z))
-                    .canTubeConnectOnSide(world, x, y + 1, z, BasicUtils.dirYNeg))
+                    .canFiberConnectOnSide(world, x, y + 1, z, BasicUtils.dirYNeg))
                 max[1] = 1.0F;
         }
         if (Block.blocksList[world.getBlockId(x, y, z - 1)] instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y, z - 1))
-                    .canTubeConnectOnSide(world, x, y, z - 1, BasicUtils.dirZPos))
+                    .canFiberConnectOnSide(world, x, y, z - 1, BasicUtils.dirZPos))
                 min[2] = 0.0F;
         }
         if (Block.blocksList[world.getBlockId(x, y, z + 1)] instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y, z + 1))
-                    .canTubeConnectOnSide(world, x, y, z + 1, BasicUtils.dirZNeg))
+                    .canFiberConnectOnSide(world, x, y, z + 1, BasicUtils.dirZNeg))
                 max[2] = 1.0F;
         }
         this.setBlockBounds(min[0], min[1], min[2], max[0], max[1], max[2]);
@@ -91,9 +91,12 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
     }
 
     @Override
+    public boolean canFiberConnectOnSide(IBlockAccess w, int x, int y, int z, int side) {
+        return true;
+    }
+
+    @Override
     public void registerIcons(IconRegister iconRegister) {
-        iconFront = iconTop = iconTopR =
-                iconSide = iconBottom =
-                        iconBack = iconTexture = iconRegister.registerIcon("QuantumCraft:FibreWireFullBlock");
+        iconTexture = iconRegister.registerIcon("QuantumCraft:FibreWireFullBlock");
     }
 }
