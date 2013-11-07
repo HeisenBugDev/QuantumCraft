@@ -3,6 +3,7 @@ package quantumcraft.blocks.abstractblocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import quantumcraft.net.IQEnergyComponent;
 import quantumcraft.net.Location;
@@ -41,5 +42,9 @@ public abstract class BlockEnergyComponent extends BlockMachine implements IQEne
     @Override
     public Location[] getPossibleConnections(World w, Location l) {
         return getallsides(l);
+    }
+
+    public boolean canTubeConnectOnSide(IBlockAccess w, int x, int y, int z, int side) {
+        return true;
     }
 }

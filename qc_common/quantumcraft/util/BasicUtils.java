@@ -33,7 +33,25 @@ import java.util.Random;
 
 public class BasicUtils {
 
+    // Cardinal Orientation
+    public static final int dirBottom = 0;
+    public static final int dirTop = 1;
+    public static final int dirEast = 2;
+    public static final int dirWest = 3;
+    public static final int dirNorth = 4;
+    public static final int dirSouth = 5;
+    // Axial Orientation
+    public static final int dirYNeg = 0;
+    public static final int dirYPos = 1;
+    public static final int dirZNeg = 2;
+    public static final int dirZPos = 3;
+    public static final int dirXNeg = 4;
+    public static final int dirXPos = 5;
     public static Random rand = new Random();
+
+    public static Block getBlockInstance(IBlockAccess world, int x, int y, int z) {
+        return Block.blocksList[world.getBlockId(x - 1, y, z)];
+    }
 
     public static int overclockMultiplier(int[] uids) {
         int res = 0;
