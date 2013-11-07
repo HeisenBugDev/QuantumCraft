@@ -18,6 +18,7 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
-
+        iconFront = iconTop = iconTopR =
+                iconSide = iconBottom = iconBack = iconRegister.registerIcon("QuantumCraft:FibreWireFullBlock");
     }
 }

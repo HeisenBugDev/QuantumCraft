@@ -216,8 +216,7 @@ public class Loader {
         }
 
         BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQFiberWire)
-                .setTextureName(Config.getTextureName(Config.NameBlockQFiberWire));
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQFiberWire);
         LanguageRegistry.addName(BlockQuantumFiberWire, "Quantum Fiber-Wire");
         GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
 
