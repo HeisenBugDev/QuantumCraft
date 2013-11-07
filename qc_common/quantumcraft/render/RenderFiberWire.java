@@ -36,7 +36,7 @@ public class RenderFiberWire extends BaseBlockRenderer {
 
         if (BasicUtils.getBlockInstance(world, x - 1, y, z) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x - 1, y, z))
-                    .canTubeConnectOnSide(world, x - 1, y, z, BasicUtils.dirXPos)) {
+                    .canFiberConnectOnSide(world, x - 1, y, z, BasicUtils.dirXPos)) {
                 block.setBlockBounds(bordermin, coremin, coremin, coremin, coremax, coremax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
@@ -45,7 +45,7 @@ public class RenderFiberWire extends BaseBlockRenderer {
         }
         if (BasicUtils.getBlockInstance(world, x + 1, y, z) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x + 1, y, z))
-                    .canTubeConnectOnSide(world, x + 1, y, z, BasicUtils.dirXNeg)) {
+                    .canFiberConnectOnSide(world, x + 1, y, z, BasicUtils.dirXNeg)) {
                 block.setBlockBounds(coremax, coremin, coremin, bordermax, coremax, coremax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
@@ -54,7 +54,7 @@ public class RenderFiberWire extends BaseBlockRenderer {
         }
         if (BasicUtils.getBlockInstance(world, x, y - 1, z) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y - 1, z))
-                    .canTubeConnectOnSide(world, x, y - 1, z, BasicUtils.dirYPos)) {
+                    .canFiberConnectOnSide(world, x, y - 1, z, BasicUtils.dirYPos)) {
                 block.setBlockBounds(coremin, bordermin, coremin, coremax, coremin, coremax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
@@ -63,7 +63,7 @@ public class RenderFiberWire extends BaseBlockRenderer {
         }
         if (BasicUtils.getBlockInstance(world, x, y + 1, z) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y + 1, z))
-                    .canTubeConnectOnSide(world, x, y + 1, z, BasicUtils.dirYNeg)) {
+                    .canFiberConnectOnSide(world, x, y + 1, z, BasicUtils.dirYNeg)) {
                 block.setBlockBounds(coremin, coremax, coremin, coremax, bordermax, coremax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
@@ -72,7 +72,7 @@ public class RenderFiberWire extends BaseBlockRenderer {
         }
         if (BasicUtils.getBlockInstance(world, x, y, z - 1) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y, z - 1))
-                    .canTubeConnectOnSide(world, x, y, z - 1, BasicUtils.dirZPos)) {
+                    .canFiberConnectOnSide(world, x, y, z - 1, BasicUtils.dirZPos)) {
                 block.setBlockBounds(coremin, coremin, bordermin, coremax, coremax, coremin);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
@@ -81,7 +81,7 @@ public class RenderFiberWire extends BaseBlockRenderer {
         }
         if (BasicUtils.getBlockInstance(world, x, y, z + 1) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y, z + 1))
-                    .canTubeConnectOnSide(world, x, y, z + 1, BasicUtils.dirZNeg)) {
+                    .canFiberConnectOnSide(world, x, y, z + 1, BasicUtils.dirZNeg)) {
                 block.setBlockBounds(coremin, coremin, coremax, coremax, coremax, bordermax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);

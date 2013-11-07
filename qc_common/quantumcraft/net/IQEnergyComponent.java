@@ -6,5 +6,5 @@ import net.minecraft.world.World;
 public interface IQEnergyComponent {
     public Location[] getPossibleConnections(World w, Location l);
 
-    public boolean canTubeConnectOnSide(IBlockAccess w, int x, int y, int z, int side);
+    public boolean canFiberConnectOnSide(IBlockAccess w, int x, int y, int z, int side);
 }
