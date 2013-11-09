@@ -67,6 +67,11 @@ public class CraftingManager {
                 'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
                 'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing),
                 'k', new ItemStack(BuildCraftTransport.pipePowerStone));
+        // ION Forge
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockIONForge, 1), "aaa", "cbc", "aaa", 'a',
+                new ItemStack(Loader.ItemIngotUnbioxenium), 'b', new ItemStack(Block.furnaceIdle), 'c',
+                new ItemStack(Loader.ItemHyperConductor));
+
         // TOOLS
 
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemQuantumAxe, 1), "ccp", "csp", " s ",

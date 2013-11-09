@@ -1,3 +1,4 @@
+Sat Nov 9 Some stupid time. Well then, looks like I forgot the recipe for ION Forge :P
 Sat Nov 9 16:25:57 2013 -0600 93d1020 (HEAD, origin/develop, release/0.5, develop) Finish 37-render-fibre-wire  [hunterboerner]
 Sat Nov 9 16:25:48 2013 -0600 eacfd73 register, stuff, it works, who cares. @LordFokas. Tanks for le kode. FIxes #37  [hunterboerner]
 Sat Nov 9 15:36:35 2013 -0600 641d39c that's never used  [hunterboerner]
