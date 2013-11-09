@@ -81,6 +81,17 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
     }
 
     @Override
+    public Icon getIcon(int side, int meta) {
+        return iconTexture;
+    }
+
+    @Override
+    public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
+                                int side) {
+        return iconTexture;
+    }
+
+    @Override
     public boolean getBlocksMovement(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
         return true;
     }
@@ -91,12 +102,10 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
     }
 
     @Override
-    public boolean canFiberConnectOnSide(IBlockAccess w, int x, int y, int z, int side) {
-        return true;
-    }
-
-    @Override
     public void registerIcons(IconRegister iconRegister) {
-        iconTexture = iconRegister.registerIcon("QuantumCraft:FibreWireFullBlock");
+        iconFront =
+                iconTexture =
+                        iconSide = iconBack =
+                                iconTop = iconBottom = iconRegister.registerIcon("QuantumCraft:FibreWireFullBlock");
     }
 }
