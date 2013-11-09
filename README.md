@@ -1,5 +1,6 @@
 # QuantumCraft
 
+
 Yet another minecraft tech mod that ends with -craft.
 IRC: irc.esper.net #QuantumCraft :)
 
@@ -11,7 +12,7 @@ This is the github repo for QuantumCraft which will add some fun machines and a 
 
 ## [Todo and bug tracker](https://github.com/QuantumCraft/QuantumCraft/issues?state=open)
 
-If you find an issue you can either submit it on github which would be the best, fork it fix it and send us a PR, or lastly send us a PM/post on [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
+If you find an issue you can either submit it on GitHub which would be the best, fork it fix it and send us a PR, or lastly send us a PM/post on [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
 
 **If you find a bug and do not report it, it will most likely _not_ get fixed**
 
@@ -33,7 +34,12 @@ If you would like to contact us directly for some reason (I dunno why), you can 
 
 ## Credits
 
-We took some of our code from MineFactory Reloaded if you are wondering why things look similar. The reason? He is a much better programmer and makes a good outline and base classes for stuff. Yeah, I have no clue what I am saying, let's hope his liscense allows this.
+- hunterboerner
+- sammko
+- LordFokas
+- wtg62 (art)
+
+We took some of our code from MineFactory Reloaded if you are wondering why things look similar. The reason? He is a much better programmer and makes a good outline and base classes for stuff. Yeah, I have no clue what I am saying, let's hope his license allows this.
 We also got some code from MrTJP who makes [Project: Red](https://github.com/MrTJP/ProjectRed)
 We looked at TEX code for examples.
 
@@ -46,14 +52,13 @@ We will also be setting up some documentation soon with a todo list on what we a
 
 ## Helping out with the coding
 
-If you would like to help out with coding, you can fork the branch and do some coding and the whole git routine. We are using git flow for our branching model. I may put some more stuff here eventually.
+If you would like to help out with coding, you can fork the branch and do some coding and the whole git routine. We are using git flow for our branching model. **Naming for branch: #-Name where # is the ticket number and name is what you are adding** I may put some more stuff here eventually.
 Buildcraft API is required.
 
-CURRENTLY USING FORGE 9.10.0.828! (http://adf.ly/673885/http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.2-9.10.0.828.zip)
+CURRENTLY USING FORGE 9.11.0.942! (http://adf.ly/673885/http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.4-9.11.0.884.zip)
 
 _PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF_
 
-**If it is possible to mark an issue in code, do it the following way: //ISSUE #n.**
 
 ## Legal crap
 
