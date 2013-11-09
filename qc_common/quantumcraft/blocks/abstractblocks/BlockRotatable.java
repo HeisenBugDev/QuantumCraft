@@ -23,7 +23,6 @@ public abstract class BlockRotatable extends BlockContainer {
             return;
         }
         TileEntity te = world.getBlockTileEntity(x, y, z);
-        //WTF? -sammko
         if (stack.getTagCompound() != null) {
             stack.getTagCompound().setInteger("x", x);
             stack.getTagCompound().setInteger("y", y);
