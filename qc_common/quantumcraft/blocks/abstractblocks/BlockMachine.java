@@ -73,10 +73,6 @@ public abstract class BlockMachine extends BlockRotatable {
         return true;
     }
 
-    public Icon getIconFromSide(int side) {
-        return getIconFromSide(side, false);
-    }
-
     protected Icon iconFront;
     protected Icon iconSide;
     protected Icon iconBack;
