@@ -50,7 +50,7 @@ public class BasicUtils {
     public static Random rand = new Random();
 
     public static Block getBlockInstance(IBlockAccess world, int x, int y, int z) {
-        return Block.blocksList[world.getBlockId(x - 1, y, z)];
+        return Block.blocksList[world.getBlockId(x, y, z)];
     }
 
     public static int overclockMultiplier(int[] uids) {
