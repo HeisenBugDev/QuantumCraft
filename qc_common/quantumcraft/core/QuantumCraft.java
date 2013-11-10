@@ -16,7 +16,7 @@ import quantumcraft.core.network.PacketHandler;
 public class QuantumCraft {
 
     @SidedProxy(clientSide = "quantumcraft.core.ClientProxy", serverSide = "quantumcraft.core.CommonProxy")
-    public static ClientProxy proxy;
+    public static CommonProxy proxy;
     @Instance("QuantumCraft")
     public static QuantumCraft instance;
 
