@@ -57,16 +57,19 @@ public class CraftingManager {
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQDematerializer, 1), "cxc", "ppp", "pmp",
                 'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
                 'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing));
-        // ELECTRIFIER
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQElectrifier, 1), "cxc", "kmk", "ppp",
-                'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
-                'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing),
-                'k', new ItemStack(BuildCraftTransport.pipePowerWood));
-        // DEELECTRIFIER
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQDeelectrifier, 1), "ckp", "xmp", "pkp",
-                'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
-                'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing),
-                'k', new ItemStack(BuildCraftTransport.pipePowerStone));
+
+        if (Loader.hasBuildCraft()) {
+            // ELECTRIFIER
+            GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQElectrifier, 1), "cxc", "kmk", "ppp",
+                    'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
+                    'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing),
+                    'k', new ItemStack(BuildCraftTransport.pipePowerWood));
+            // DEELECTRIFIER
+            GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQDeelectrifier, 1), "ckp", "xmp", "pkp",
+                    'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
+                    'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing),
+                    'k', new ItemStack(BuildCraftTransport.pipePowerStone));
+        }
         // ION Forge
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockIONForge, 1), "aaa", "cbc", "aaa", 'a',
                 new ItemStack(Loader.ItemIngotUnbioxenium), 'b', new ItemStack(Block.furnaceIdle), 'c',
