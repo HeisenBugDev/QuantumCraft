@@ -54,7 +54,7 @@ public class CraftingManager {
                 'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing),
                 'g', new ItemStack(Block.glass), 'e', new ItemStack(Item.enderPearl));
         // EXTRACTOR
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQDematerializer, 1), "cxc", "ppp", "pmp",
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQEExtractor, 1), "cxc", "ppp", "pmp",
                 'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
                 'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing));
 
