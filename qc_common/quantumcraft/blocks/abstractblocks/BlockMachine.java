@@ -10,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import quantumcraft.blocks.BlockQuantumFiberWire;
 import quantumcraft.core.Coords;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.core.interfaces.IUpgradable;
@@ -40,9 +41,18 @@ public abstract class BlockMachine extends BlockRotatable {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
         TileMachineBase te = (TileMachineBase) world.getBlockTileEntity(x, y, z);
+
+        //PLAYER IS SNEAKING, SHOULD I REMOVE THE BLOCK?
+        if (entityplayer.isSneaking() && BasicUtils.isHoldingWrench(entityplayer)) {
+            this.dropBlockAsItem(world, x, y, z, 1, 1);
+            this.removeBlockByPlayer(world, entityplayer, x, y, z);
+            return true;
+        }
+
         if (te == null) {
             return false;
         }
+
         if (entityplayer.isSneaking()) {
             //PLAYER IS SNEAKING, DOES HE HAVE AN UPGRADE?
             if ((entityplayer.getCurrentEquippedItem() != null) &&
