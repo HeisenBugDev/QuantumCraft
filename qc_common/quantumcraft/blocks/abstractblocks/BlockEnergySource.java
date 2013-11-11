@@ -23,8 +23,8 @@ public abstract class BlockEnergySource extends BlockEnergyComponent implements 
     }
 
     @Override
-    public int getQuantumEnergy(World w, Location l, int request) {
+    public int requestQuantumEnergy(World w, Location l, int request) {
         return ((TileEnergySource) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
-                .getQuantumEnergy(l, request);
+                .requestQuantumEnergy(l, request);
     }
 }

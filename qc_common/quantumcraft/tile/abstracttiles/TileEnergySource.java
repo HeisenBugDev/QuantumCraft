@@ -5,7 +5,7 @@ import quantumcraft.net.Location;
 public abstract class TileEnergySource extends TileMachineBase {
 
 
-    public int getQuantumEnergy(Location l, int request) {
+    public int requestQuantumEnergy(Location l, int request) {
         if (getCurrentEnergy() >= request) {
             subtractEnergy(request);
             return request;
