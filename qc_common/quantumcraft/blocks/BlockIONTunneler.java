@@ -5,6 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import quantumcraft.tile.TileIONForge;
+import quantumcraft.tile.TileIONTunneler;
 
 public class BlockIONTunneler extends BlockEnergySink {
     public BlockIONTunneler(int id) {
@@ -24,6 +25,6 @@ public class BlockIONTunneler extends BlockEnergySink {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileIONForge();
+        return new TileIONTunneler();
     }
 }
