@@ -178,6 +178,11 @@ public class Loader {
         LanguageRegistry.addName(OreQuantonium, "Quantonium Ore");
         GameRegistry.registerBlock(OreQuantonium, Config.NameOreQuantonium);
 
+        BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQFiberWire);
+        LanguageRegistry.addName(BlockQuantumFiberWire, "Quantum Fiber-Wire");
+        GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
+
         BlockQDeenergizer = (BlockQDeenergizer) new BlockQDeenergizer(Config.BlockQDEID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDE)
                 .setTextureName(Config.getTextureName(Config.NameBlockQDE));
@@ -205,8 +210,8 @@ public class Loader {
 
         if (Config.beta.getBoolean(false)) {
             BlockIONTunneler = (BlockIONTunneler) new BlockIONTunneler(Config.BlockIOTID)
-                            .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockIOT)
-                            .setTextureName(Config.getTextureName(Config.NameBlockIOT));
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockIOT)
+                    .setTextureName(Config.getTextureName(Config.NameBlockIOT));
             LanguageRegistry.addName(BlockIONTunneler, "ION Tunneler");
             GameRegistry.registerBlock(BlockIONTunneler, Config.NameBlockIOT);
 
@@ -222,11 +227,6 @@ public class Loader {
             LanguageRegistry.addName(BlockQEnergySucker, "Quantum Energy Sucker");
             GameRegistry.registerBlock(BlockQEnergySucker, Config.NameBlockQES);
         }
-
-        BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQFiberWire);
-        LanguageRegistry.addName(BlockQuantumFiberWire, "Quantum Fiber-Wire");
-        GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
 
         if (hasBuildCraft()) {
             BlockQElectrifier = (BlockQElectrifier) new BlockQElectrifier(Config.BlockQELID)
