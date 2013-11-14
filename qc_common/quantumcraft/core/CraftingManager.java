@@ -44,19 +44,18 @@ public class CraftingManager {
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQDeenergizer, 1), "pcp", "xmx", "ppp",
                 'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
                 'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing));
-        // INJECTOR
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQEInjector, 1), "ccc", "pmp", "pxp",
-                'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
-                'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing));
         // DEMATERIALIZER
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQDematerializer, 1), "cxc", "geg", "pmp",
                 'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
                 'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing),
                 'g', new ItemStack(Block.glass), 'e', new ItemStack(Item.enderPearl));
-        // EXTRACTOR
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQEExtractor, 1), "cxc", "ppp", "pmp",
+        // INJECTOR
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQEInjector, 1), "ccc", "pmp", "pxp",
                 'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
                 'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing));
+        GameRegistry.addShapelessRecipe(new ItemStack(Loader.BlockQEInjector, 1), new ItemStack(Loader.BlockQEExtractor));
+        // EXTRACTOR
+        GameRegistry.addShapelessRecipe(new ItemStack(Loader.BlockQEExtractor, 1), new ItemStack(Loader.BlockQEInjector));
 
         if (Loader.hasBuildCraft()) {
             // ELECTRIFIER
@@ -64,11 +63,9 @@ public class CraftingManager {
                     'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
                     'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing),
                     'k', new ItemStack(BuildCraftTransport.pipePowerWood));
+            GameRegistry.addShapelessRecipe(new ItemStack(Loader.BlockQElectrifier, 1), new ItemStack(Loader.BlockQDeelectrifier));
             // DEELECTRIFIER
-            GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQDeelectrifier, 1), "ckp", "xmp", "pkp",
-                    'p', new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack,
-                    'x', new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing),
-                    'k', new ItemStack(BuildCraftTransport.pipePowerStone));
+            GameRegistry.addShapelessRecipe(new ItemStack(Loader.BlockQDeelectrifier, 1), new ItemStack(Loader.BlockQElectrifier));
         }
         // ION Forge
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockIONForge, 1), "aaa", "cbc", "aaa", 'a',
