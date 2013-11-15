@@ -1,9 +1,11 @@
 package quantumcraft.tile;
 
 import quantumcraft.tile.abstracttiles.TileEnergySink;
-import quantumcraft.util.BasicUtils;
 
 public class TileIONTunneler extends TileEnergySink {
+    int length = 0;
+    int multiplier = 0;
+
     @Override
     public int getMaxEnergy() {
         return 1000;
@@ -21,16 +23,24 @@ public class TileIONTunneler extends TileEnergySink {
 
     @Override
     public void updateEntity() {
-        for (int i = 1; i <= 3; i++) {
-            System.out.println(i);
-            int location = xCoord + (i * 3);
-            if (worldObj.getBlockId(location, yCoord, zCoord) != 0) {
-                BasicUtils.getBlockInstance(worldObj, location, yCoord, zCoord)
-                        .dropBlockAsItem(worldObj, location, yCoord,
-                                zCoord, 1, 1);
+        for (int i = 0; i < 3; i++) {
+            switch (i) {
+                case 0:
+                    multiplier = 0;
+                    break;
+                case 1:
+                    multiplier = -3;
+                    break;
+                case 2:
+                    multiplier = 3;
+                    break;
             }
-            worldObj.setBlockToAir(location, yCoord, zCoord);
+            int location = xCoord + (i * multiplier);
+            System.out.println("location: " + location + " multiplier: " + multiplier + " i: " + i);
+            worldObj.setBlockToAir(location, yCoord, zCoord + length + 1);
         }
+        if (length >= 10) length = 0;
+        length++;
 
         //System.out.println("The coords are: " + xCoord + " " + yCoord + " " + zCoord);
     }
