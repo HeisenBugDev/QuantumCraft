@@ -25,9 +25,14 @@ public class TileIONTunneler extends TileEnergySink {
 
     @Override
     public void updateEntity() {
+        int y = yCoord;
+        int x = xCoord;
+        int z = zCoord;
+        int location = 0;
+        int useLength = length;
         if (pause > 5) {
             if (!stop) {
-                for (int y = 0; y < 2; y++) {
+                for (int yloop = 0; yloop < 2; yloop++) {
                     for (int i = 0; i < 3; i++) {
                         switch (i) {
                             case 0:
@@ -40,8 +45,26 @@ public class TileIONTunneler extends TileEnergySink {
                                 multiplier = 4;
                                 break;
                         }
-                        int location = xCoord + multiplier;
-                        worldObj.setBlockToAir(location, yCoord + y, zCoord + length + 1);
+                        location = x + multiplier;
+                        switch (this.getDirectionFacing()) {
+                            case NORTH:
+                                multiplier = -multiplier;
+                                useLength = -length - 2;
+                                location = x + multiplier;
+                                break;
+                            case EAST:
+                                useLength = multiplier - 1;
+                                location = (length + x) + 1;
+                                break;
+                            case WEST:
+                                useLength = multiplier - 1;
+                                location = ((x - length) - 1);
+                                System.out.println(useLength + " | " + location);
+                                break;
+                        }
+                        System.out.println(getDirectionFacing());
+
+                        worldObj.setBlockToAir(location, yCoord + yloop, z + useLength + 1);
                     }
 
                 }
