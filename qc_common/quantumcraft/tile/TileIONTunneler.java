@@ -33,43 +33,42 @@ public class TileIONTunneler extends TileEnergySink {
         if (pause > 5) {
             if (!stop) {
                 for (int yloop = 0; yloop < 2; yloop++) {
-                    for (int i = 0; i < 3; i++) {
-                        switch (i) {
-                            case 0:
-                                multiplier = 0;
-                                break;
-                            case 1:
-                                multiplier = -4;
-                                break;
-                            case 2:
-                                multiplier = 4;
-                                break;
+                    for (int mloop = 1; mloop < 5; mloop++) {
+                        for (int i = 0; i < 3; i++) {
+                            switch (i) {
+                                case 0:
+                                    multiplier = 0;
+                                    break;
+                                case 1:
+                                    multiplier = -4;
+                                    break;
+                                case 2:
+                                    multiplier = 4;
+                                    break;
+                            }
+                            multiplier = multiplier * mloop;
+                            location = x + multiplier;
+                            switch (this.getDirectionFacing()) {
+                                case NORTH:
+                                    multiplier = -multiplier;
+                                    useLength = -length - 2;
+                                    location = x + multiplier;
+                                    break;
+                                case EAST:
+                                    useLength = multiplier - 1;
+                                    location = (length + x) + 1;
+                                    break;
+                                case WEST:
+                                    useLength = multiplier - 1;
+                                    location = ((x - length) - 1);
+                                    break;
+                            }
+                            worldObj.setBlockToAir(location, yCoord + yloop, z + useLength + 1);
                         }
-                        location = x + multiplier;
-                        switch (this.getDirectionFacing()) {
-                            case NORTH:
-                                multiplier = -multiplier;
-                                useLength = -length - 2;
-                                location = x + multiplier;
-                                break;
-                            case EAST:
-                                useLength = multiplier - 1;
-                                location = (length + x) + 1;
-                                break;
-                            case WEST:
-                                useLength = multiplier - 1;
-                                location = ((x - length) - 1);
-                                System.out.println(useLength + " | " + location);
-                                break;
-                        }
-                        System.out.println(getDirectionFacing());
-
-                        worldObj.setBlockToAir(location, yCoord + yloop, z + useLength + 1);
                     }
-
                 }
             }
-            if (length >= 10) {
+            if (length >= 50) {
                 length = 0;
                 stop = true;
             }
