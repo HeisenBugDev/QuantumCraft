@@ -5,8 +5,14 @@ import quantumcraft.tile.abstracttiles.TileEnergySink;
 public class TileIONTunneler extends TileEnergySink {
     int length = 0;
     int shifter = 0;
+    int shifterS = 0;
     boolean stop = false;
     int pause = 0;
+    int y = yCoord;
+    int x = xCoord;
+    int z = zCoord;
+    int location = 0;
+    int useLength = length;
 
     @Override
     public int getMaxEnergy() {
@@ -23,12 +29,67 @@ public class TileIONTunneler extends TileEnergySink {
 
     }
 
+    public int getUseLength() {
+        int tmpValue = 0;
+        switch (this.getDirectionFacing()) {
+            case NORTH:
+                tmpValue = -length - 2;
+                break;
+            case EAST:
+                tmpValue = shifter - 1;
+                break;
+            case WEST:
+                tmpValue = shifter - 1;
+                break;
+            case SOUTH:
+                tmpValue = length;
+                break;
+        }
+        return tmpValue;
+    }
+
+    public int getShifter() {
+        int tmpValue = 0;
+        switch (this.getDirectionFacing()) {
+            case NORTH:
+                tmpValue = -shifter;
+                break;
+            case EAST:
+                tmpValue = shifter;
+                break;
+            case WEST:
+                tmpValue = shifter;
+                break;
+            case SOUTH:
+                tmpValue = shifter;
+                break;
+        }
+        return tmpValue;
+    }
+
+    public int getLocation() {
+        int tmpValue = 0;
+        switch (this.getDirectionFacing()) {
+            case NORTH:
+                tmpValue = x + shifter;
+                break;
+            case EAST:
+                tmpValue = (length + x) + 1;
+                break;
+            case WEST:
+                tmpValue = ((x - length) - 1);
+                break;
+            case SOUTH:
+                tmpValue = location;
+                break;
+        }
+        return tmpValue;
+    }
+
     public void dig() {
-        int y = yCoord;
-        int x = xCoord;
-        int z = zCoord;
-        int location = 0;
-        int useLength = length;
+        y = yCoord;
+        x = xCoord;
+        z = zCoord;
         if (pause > 5) {
             if (!stop) {
                 for (int yloop = 0; yloop < 2; yloop++) {
@@ -36,32 +97,28 @@ public class TileIONTunneler extends TileEnergySink {
                         for (int i = 0; i < 3; i++) {
                             switch (i) {
                                 case 0:
-                                    shifter = 0;
+                                    shifterS = 0;
                                     break;
                                 case 1:
-                                    shifter = -4;
+                                    shifterS = -4;
                                     break;
                                 case 2:
-                                    shifter = 4;
+                                    shifterS = 4;
                                     break;
                             }
-                            shifter = shifter * mloop;
+                            shifter = shifterS * mloop;
                             location = x + shifter;
-                            switch (this.getDirectionFacing()) {
-                                case NORTH:
-                                    shifter = -shifter;
-                                    useLength = -length - 2;
-                                    location = x + shifter;
-                                    break;
-                                case EAST:
-                                    useLength = shifter - 1;
-                                    location = (length + x) + 1;
-                                    break;
-                                case WEST:
-                                    useLength = shifter - 1;
-                                    location = ((x - length) - 1);
-                                    break;
+                            shifter = getShifter();
+                            useLength = getUseLength();
+                            if (length == 0) {
+                                for (int q = 1; q < 4; q++) {
+                                    location = x + shifterS + q;
+                                    location = getLocation();
+                                    worldObj.setBlockToAir(location, yCoord + yloop, z + useLength + 1);
+                                }
                             }
+                            location = x + shifter;
+                            location = getLocation();
                             worldObj.setBlockToAir(location, yCoord + yloop, z + useLength + 1);
                         }
                     }
