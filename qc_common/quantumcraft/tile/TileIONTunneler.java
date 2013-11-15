@@ -5,7 +5,6 @@ import quantumcraft.tile.abstracttiles.TileEnergySink;
 public class TileIONTunneler extends TileEnergySink {
     int length = 0;
     int shifter = 0;
-    int shifterS = 0;
     boolean stop = false;
     int pause = 0;
     int y = yCoord;
@@ -97,22 +96,22 @@ public class TileIONTunneler extends TileEnergySink {
                         for (int i = 0; i < 3; i++) {
                             switch (i) {
                                 case 0:
-                                    shifterS = 0;
+                                    shifter = 0;
                                     break;
                                 case 1:
-                                    shifterS = -4;
+                                    shifter = -4;
                                     break;
                                 case 2:
-                                    shifterS = 4;
+                                    shifter = 4;
                                     break;
                             }
-                            shifter = shifterS * mloop;
+                            shifter = shifter * mloop;
                             location = x + shifter;
                             shifter = getShifter();
                             useLength = getUseLength();
                             if (length == 0) {
                                 for (int q = 1; q < 4; q++) {
-                                    location = x + shifterS + q;
+                                    location = x + shifter + q;
                                     location = getLocation();
                                     worldObj.setBlockToAir(location, yCoord + yloop, z + useLength + 1);
                                 }
