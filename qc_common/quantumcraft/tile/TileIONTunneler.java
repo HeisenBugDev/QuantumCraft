@@ -4,7 +4,7 @@ import quantumcraft.tile.abstracttiles.TileEnergySink;
 
 public class TileIONTunneler extends TileEnergySink {
     int length = 0;
-    int multiplier = 0;
+    int shifter = 0;
     boolean stop = false;
     int pause = 0;
 
@@ -23,8 +23,7 @@ public class TileIONTunneler extends TileEnergySink {
 
     }
 
-    @Override
-    public void updateEntity() {
+    public void dig() {
         int y = yCoord;
         int x = xCoord;
         int z = zCoord;
@@ -37,29 +36,29 @@ public class TileIONTunneler extends TileEnergySink {
                         for (int i = 0; i < 3; i++) {
                             switch (i) {
                                 case 0:
-                                    multiplier = 0;
+                                    shifter = 0;
                                     break;
                                 case 1:
-                                    multiplier = -4;
+                                    shifter = -4;
                                     break;
                                 case 2:
-                                    multiplier = 4;
+                                    shifter = 4;
                                     break;
                             }
-                            multiplier = multiplier * mloop;
-                            location = x + multiplier;
+                            shifter = shifter * mloop;
+                            location = x + shifter;
                             switch (this.getDirectionFacing()) {
                                 case NORTH:
-                                    multiplier = -multiplier;
+                                    shifter = -shifter;
                                     useLength = -length - 2;
-                                    location = x + multiplier;
+                                    location = x + shifter;
                                     break;
                                 case EAST:
-                                    useLength = multiplier - 1;
+                                    useLength = shifter - 1;
                                     location = (length + x) + 1;
                                     break;
                                 case WEST:
-                                    useLength = multiplier - 1;
+                                    useLength = shifter - 1;
                                     location = ((x - length) - 1);
                                     break;
                             }
@@ -76,5 +75,10 @@ public class TileIONTunneler extends TileEnergySink {
             pause = 0;
         }
         pause++;
+    }
+
+    @Override
+    public void updateEntity() {
+        dig();
     }
 }
