@@ -34,6 +34,13 @@ public class TileIONTunneler extends TileEnergySink {
 
     }
 
+
+    /**
+     * This will calculate the value of the length integer. It does so by finding the direction of the block and then
+     * doing a 'lil math based off of the shifter and length.
+     *
+     * @return The value of length
+     */
     public int getUseLength() {
         int tmpValue = 0;
         switch (this.getDirectionFacing()) {
