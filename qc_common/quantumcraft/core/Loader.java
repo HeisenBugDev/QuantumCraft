@@ -53,6 +53,7 @@ public class Loader {
     public static BlockQEExtractor BlockQEExtractor;
     public static BlockQDeelectrifier BlockQDeelectrifier;
     public static BlockIONForge BlockIONForge;
+    public static BlockIONTunneler BlockIONTunneler;
     public static Block BlockMachineCasing;
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
@@ -177,6 +178,11 @@ public class Loader {
         LanguageRegistry.addName(OreQuantonium, "Quantonium Ore");
         GameRegistry.registerBlock(OreQuantonium, Config.NameOreQuantonium);
 
+        BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
+                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQFiberWire);
+        LanguageRegistry.addName(BlockQuantumFiberWire, "Quantum Fiber-Wire");
+        GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
+
         BlockQDeenergizer = (BlockQDeenergizer) new BlockQDeenergizer(Config.BlockQDEID)
                 .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDE)
                 .setTextureName(Config.getTextureName(Config.NameBlockQDE));
@@ -203,6 +209,12 @@ public class Loader {
         GameRegistry.registerBlock(BlockIONForge, Config.NameBlockIOF);
 
         if (Config.beta.getBoolean(false)) {
+            BlockIONTunneler = (BlockIONTunneler) new BlockIONTunneler(Config.BlockIOTID)
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockIOT)
+                    .setTextureName(Config.getTextureName(Config.NameBlockIOT));
+            LanguageRegistry.addName(BlockIONTunneler, "ION Tunneler");
+            GameRegistry.registerBlock(BlockIONTunneler, Config.NameBlockIOT);
+
             BlockQDislocator = (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID)
                     .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQDS)
                     .setTextureName(Config.getTextureName(Config.NameBlockQDS));
@@ -215,11 +227,6 @@ public class Loader {
             LanguageRegistry.addName(BlockQEnergySucker, "Quantum Energy Sucker");
             GameRegistry.registerBlock(BlockQEnergySucker, Config.NameBlockQES);
         }
-
-        BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQFiberWire);
-        LanguageRegistry.addName(BlockQuantumFiberWire, "Quantum Fiber-Wire");
-        GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
 
         if (hasBuildCraft()) {
             BlockQElectrifier = (BlockQElectrifier) new BlockQElectrifier(Config.BlockQELID)
@@ -264,6 +271,7 @@ public class Loader {
         GameRegistry.registerTileEntity(TileQEnergySucker.class, "QESuckerTE");
         GameRegistry.registerTileEntity(TileQDematerializer.class, "QDematerializerTE");
         GameRegistry.registerTileEntity(TileQEExtractor.class, "QEExtractorTE");
+        GameRegistry.registerTileEntity(TileIONForge.class, "IONForgeTE");
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
@@ -271,7 +279,7 @@ public class Loader {
         }
 
         if (Config.beta.getBoolean(false)) {
-            GameRegistry.registerTileEntity(TileIONForge.class, "IONForgeTE");
+            GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
             GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         }
     }
