@@ -1,7 +1,11 @@
 package quantumcraft.tile;
 
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.core.Coords;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TileIONTunneler extends TileEnergySink {
     int length = 0;
@@ -13,6 +17,7 @@ public class TileIONTunneler extends TileEnergySink {
     int z = zCoord;
     int location = 0;
     int useLength = length;
+    private List<Coords> blockRemovalQueue = new ArrayList<Coords>();
 
     @Override
     public int getMaxEnergy() {
@@ -86,13 +91,6 @@ public class TileIONTunneler extends TileEnergySink {
         return tmpValue;
     }
 
-    public void PerpPathDirection() {
-        switch (this.getDirectionFacing()) {
-            case NORTH:
-
-        }
-    }
-
     public void dig() {
         y = yCoord;
         x = xCoord;
@@ -143,6 +141,16 @@ public class TileIONTunneler extends TileEnergySink {
             pause = 0;
         }
         pause++;
+    }
+
+    public void processBlockRemoval() {
+        if (pause >= 5){
+
+        }
+    }
+
+    public void addBlockRemoval(Coords coord) {
+        blockRemovalQueue.add(coord);
     }
 
     @Override
