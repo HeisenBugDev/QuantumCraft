@@ -92,44 +92,42 @@ public class TileIONTunneler extends TileEnergySink {
     }
 
     public void dig() {
-        y = yCoord;
-        x = xCoord;
-        z = zCoord;
-        if (pause > 5) {
-            if (!stop) {
-                for (int yloop = 0; yloop < 2; yloop++) {
-                    for (int mloop = 1; mloop < 5; mloop++) {
-                        for (int i = 0; i < 3; i++) {
-                            switch (i) {
-                                case 0:
-                                    shifter = 0;
-                                    break;
-                                case 1:
-                                    shifter = -4;
-                                    break;
-                                case 2:
-                                    shifter = 4;
-                                    break;
-                            }
-                            shifter = shifter * mloop;
-                            location = x + shifter;
-                            shifter = getShifter();
-                            useLength = getUseLength();
-                            location = getLocation();
-                            if (length == 0 || length >= 50) {
-                                for (int q = 1; q < 4; q++) {
-                                    int locationT = getLocation() + q;
-                                    int useLengthT = useLength;
-                                    if (this.getDirectionFacing() == ForgeDirection.EAST ||
-                                            this.getDirectionFacing() == ForgeDirection.WEST) {
-                                        locationT = locationT - q;
-                                        useLengthT = useLengthT + q;
-                                    }
-                                    worldObj.setBlockToAir(locationT, yCoord + yloop, z + useLengthT + 1);
-                                }
-                            }
-                            worldObj.setBlockToAir(location, yCoord + yloop, z + useLength + 1);
+        if (!stop) {
+            y = yCoord;
+            x = xCoord;
+            z = zCoord;
+            for (int yloop = 0; yloop < 2; yloop++) {
+                for (int mloop = 1; mloop < 5; mloop++) {
+                    for (int i = 0; i < 3; i++) {
+                        switch (i) {
+                            case 0:
+                                shifter = 0;
+                                break;
+                            case 1:
+                                shifter = -4;
+                                break;
+                            case 2:
+                                shifter = 4;
+                                break;
                         }
+                        shifter = shifter * mloop;
+                        location = x + shifter;
+                        shifter = getShifter();
+                        useLength = getUseLength();
+                        location = getLocation();
+                        if (length == 0 || length >= 50) {
+                            for (int q = 1; q < 4; q++) {
+                                int locationT = getLocation() + q;
+                                int useLengthT = useLength;
+                                if (this.getDirectionFacing() == ForgeDirection.EAST ||
+                                        this.getDirectionFacing() == ForgeDirection.WEST) {
+                                    locationT = locationT - q;
+                                    useLengthT = useLengthT + q;
+                                }
+                                addBlockRemoval(new Coords(locationT, yCoord + yloop, z + useLengthT + 1));
+                            }
+                        }
+                        addBlockRemoval(new Coords(location, yCoord + yloop, z + useLength + 1));
                     }
                 }
             }
@@ -138,15 +136,22 @@ public class TileIONTunneler extends TileEnergySink {
                 stop = true;
             }
             length++;
-            pause = 0;
         }
-        pause++;
+
     }
 
     public void processBlockRemoval() {
-        if (pause >= 5){
-
+        if (pause >= 5) {
+            if (blockRemovalQueue.get(0) != null) {
+                int x = blockRemovalQueue.get(0).x;
+                int y = blockRemovalQueue.get(0).y;
+                int z = blockRemovalQueue.get(0).z;
+                worldObj.setBlockToAir(x, y, z);
+                blockRemovalQueue.remove(0);
+                pause = 0;
+            }
         }
+        pause++;
     }
 
     public void addBlockRemoval(Coords coord) {
@@ -155,6 +160,7 @@ public class TileIONTunneler extends TileEnergySink {
 
     @Override
     public void updateEntity() {
+        processBlockRemoval();
         dig();
     }
 }
