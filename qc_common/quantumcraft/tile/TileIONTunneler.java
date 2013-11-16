@@ -1,5 +1,6 @@
 package quantumcraft.tile;
 
+import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
 public class TileIONTunneler extends TileEnergySink {
@@ -85,6 +86,13 @@ public class TileIONTunneler extends TileEnergySink {
         return tmpValue;
     }
 
+    public void PerpPathDirection(){
+        switch (this.getDirectionFacing()){
+            case NORTH:
+
+        }
+    }
+
     public void dig() {
         y = yCoord;
         x = xCoord;
@@ -109,15 +117,18 @@ public class TileIONTunneler extends TileEnergySink {
                             location = x + shifter;
                             shifter = getShifter();
                             useLength = getUseLength();
-                            if (length == 0) {
+                            location = getLocation();
+                            if (length == 0 || length >= 50) {
                                 for (int q = 1; q < 4; q++) {
-                                    location = x + shifter + q;
-                                    location = getLocation();
-                                    worldObj.setBlockToAir(location, yCoord + yloop, z + useLength + 1);
+                                    int locationT = getLocation() + q;
+                                    int useLengthT = useLength;
+                                    if (this.getDirectionFacing() == ForgeDirection.EAST || this.getDirectionFacing() == ForgeDirection.WEST){
+                                        locationT = locationT - q;
+                                        useLengthT = useLengthT + q;
+                                    }
+                                    worldObj.setBlockToAir(locationT, yCoord + yloop, z + useLengthT + 1);
                                 }
                             }
-                            location = x + shifter;
-                            location = getLocation();
                             worldObj.setBlockToAir(location, yCoord + yloop, z + useLength + 1);
                         }
                     }
