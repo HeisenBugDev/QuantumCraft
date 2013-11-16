@@ -57,9 +57,14 @@ public class TileIONTunneler extends TileEnergySink {
                 tmpValue = length;
                 break;
         }
-        return tmpValue;
+        return tmpValue + z + 1;
     }
 
+    /**
+     * The shifter is the value of how many spaces to go before getting to the next path (3 block in middle = 4 blocks)
+     *
+     * @return shifter
+     */
     public int getShifter() {
         int tmpValue = 0;
         switch (this.getDirectionFacing()) {
@@ -79,6 +84,9 @@ public class TileIONTunneler extends TileEnergySink {
         return tmpValue;
     }
 
+    /**
+     * @return X value
+     */
     public int getLocation() {
         int tmpValue = 0;
         switch (this.getDirectionFacing()) {
@@ -131,10 +139,14 @@ public class TileIONTunneler extends TileEnergySink {
                                     locationT = locationT - q;
                                     useLengthT = useLengthT + q;
                                 }
-                                addBlockRemoval(new Coords(locationT, yCoord + yloop, z + useLengthT + 1));
+                                if (worldObj.getBlockId(locationT, yCoord + yloop, useLengthT) != 0) {
+                                    addBlockRemoval(new Coords(locationT, yCoord + yloop, useLengthT));
+                                }
                             }
                         }
-                        addBlockRemoval(new Coords(location, yCoord + yloop, z + useLength + 1));
+                        if (worldObj.getBlockId(location, yCoord + yloop, useLength) != 0) {
+                        addBlockRemoval(new Coords(location, yCoord + yloop, useLength));
+                        }
                     }
                 }
             }
