@@ -106,14 +106,23 @@ public class TileIONTunneler extends TileEnergySink {
         return tmpValue;
     }
 
+    /**
+     * The amazing math of how it calculates what blocks to flag to remove. More info it individual comments.
+     */
     public void dig() {
+        // Verifies that it's not stopped yet
         if (!stop) {
+            // Gets custom x, y, and z values
             y = yCoord;
             x = xCoord;
             z = zCoord;
+            // First loop that is used for the y value
             for (int yloop = 0; yloop < 2; yloop++) {
+                // Modifier loop that will change the shifter
                 for (int mloop = 1; mloop < 5; mloop++) {
+                    // Shifter loop.
                     for (int i = 0; i < 3; i++) {
+                        // Shifter calculator
                         switch (i) {
                             case 0:
                                 shifter = 0;
@@ -125,40 +134,61 @@ public class TileIONTunneler extends TileEnergySink {
                                 shifter = 4;
                                 break;
                         }
+                        // Get shifter based off of mloop and shifter itself
                         shifter = shifter * mloop;
+                        // Basic location shift
                         location = x + shifter;
+                        // Get shifter based off of orientation
                         shifter = getShifter();
+                        // get length (z) based off of orientation
                         useLength = getUseLength();
+                        // get location (x) based off of orientation
                         location = getLocation();
+
+                        // Checks to see if it is either the first or last line
                         if (length == 0 || length >= 50) {
+                            // Loops all blocks between each path
                             for (int q = 1; q < 4; q++) {
+                                // Get location for NORTH/SOUTH
                                 int locationT = getLocation() + q;
+                                // Get length for NORTH/SOUTH
                                 int useLengthT = useLength;
+                                // Is it EAST/WEST?
                                 if (this.getDirectionFacing() == ForgeDirection.EAST ||
                                         this.getDirectionFacing() == ForgeDirection.WEST) {
+                                    //Change location and length if it is
                                     locationT = locationT - q;
                                     useLengthT = useLengthT + q;
                                 }
+                                // Check to see if is NOT air
                                 if (worldObj.getBlockId(locationT, yCoord + yloop, useLengthT) != 0) {
+                                    // Flag block for removal
                                     addBlockRemoval(new Coords(locationT, yCoord + yloop, useLengthT));
                                 }
                             }
                         }
+                        // Check to see if it is NOT air
                         if (worldObj.getBlockId(location, yCoord + yloop, useLength) != 0) {
-                        addBlockRemoval(new Coords(location, yCoord + yloop, useLength));
+                            // Flag block for removal
+                            addBlockRemoval(new Coords(location, yCoord + yloop, useLength));
                         }
                     }
                 }
             }
+            // Resets length and stops it
             if (length >= 50) {
                 length = 0;
                 stop = true;
             }
+            // Increment length
             length++;
         }
 
     }
 
+    /**
+     * Goes through the list of blocks needing removal and removes them every 5 ticks.
+     */
     public void processBlockRemoval() {
         if (pause >= 5) {
             if (blockRemovalQueue.get(0) != null && getCurrentEnergy() > 0) {
@@ -174,6 +204,10 @@ public class TileIONTunneler extends TileEnergySink {
         pause++;
     }
 
+    /**
+     * Adds a block to the removal queue
+     * @param coord Coords object that contains where that block is.
+     */
     public void addBlockRemoval(Coords coord) {
         blockRemovalQueue.add(coord);
     }
