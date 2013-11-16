@@ -86,8 +86,8 @@ public class TileIONTunneler extends TileEnergySink {
         return tmpValue;
     }
 
-    public void PerpPathDirection(){
-        switch (this.getDirectionFacing()){
+    public void PerpPathDirection() {
+        switch (this.getDirectionFacing()) {
             case NORTH:
 
         }
@@ -122,7 +122,8 @@ public class TileIONTunneler extends TileEnergySink {
                                 for (int q = 1; q < 4; q++) {
                                     int locationT = getLocation() + q;
                                     int useLengthT = useLength;
-                                    if (this.getDirectionFacing() == ForgeDirection.EAST || this.getDirectionFacing() == ForgeDirection.WEST){
+                                    if (this.getDirectionFacing() == ForgeDirection.EAST ||
+                                            this.getDirectionFacing() == ForgeDirection.WEST) {
                                         locationT = locationT - q;
                                         useLengthT = useLengthT + q;
                                     }
