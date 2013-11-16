@@ -142,7 +142,8 @@ public class TileIONTunneler extends TileEnergySink {
 
     public void processBlockRemoval() {
         if (pause >= 5) {
-            if (blockRemovalQueue.get(0) != null) {
+            if (blockRemovalQueue.get(0) != null && getCurrentEnergy() > 0) {
+                subtractEnergy(1);
                 int x = blockRemovalQueue.get(0).x;
                 int y = blockRemovalQueue.get(0).y;
                 int z = blockRemovalQueue.get(0).z;
@@ -160,6 +161,9 @@ public class TileIONTunneler extends TileEnergySink {
 
     @Override
     public void updateEntity() {
+        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
+            this.addEnergy(this.requestPacket(100));
+        }
         processBlockRemoval();
         dig();
     }
