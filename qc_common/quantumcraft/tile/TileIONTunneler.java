@@ -26,7 +26,7 @@ public class TileIONTunneler extends TileEnergySink {
 
     @Override
     public int guiID() {
-        return 7;
+        return -1;
     }
 
     @Override
