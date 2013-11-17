@@ -191,14 +191,16 @@ public class TileIONTunneler extends TileEnergySink {
      */
     public void processBlockRemoval() {
         if (pause >= 5) {
-            if (blockRemovalQueue.get(0) != null && getCurrentEnergy() > 0) {
-                subtractEnergy(1);
-                int x = blockRemovalQueue.get(0).x;
-                int y = blockRemovalQueue.get(0).y;
-                int z = blockRemovalQueue.get(0).z;
-                worldObj.setBlockToAir(x, y, z);
-                blockRemovalQueue.remove(0);
-                pause = 0;
+            if (blockRemovalQueue.get(0) != null) {
+                if (blockRemovalQueue.get(0) != null && getCurrentEnergy() > 0) {
+                    subtractEnergy(1);
+                    int x = blockRemovalQueue.get(0).x;
+                    int y = blockRemovalQueue.get(0).y;
+                    int z = blockRemovalQueue.get(0).z;
+                    worldObj.setBlockToAir(x, y, z);
+                    blockRemovalQueue.remove(0);
+                    pause = 0;
+                }
             }
         }
         pause++;
@@ -206,6 +208,7 @@ public class TileIONTunneler extends TileEnergySink {
 
     /**
      * Adds a block to the removal queue
+     *
      * @param coord Coords object that contains where that block is.
      */
     public void addBlockRemoval(Coords coord) {
