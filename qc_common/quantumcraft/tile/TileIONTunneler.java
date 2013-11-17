@@ -191,7 +191,7 @@ public class TileIONTunneler extends TileEnergySink {
      */
     public void processBlockRemoval() {
         if (pause >= 5) {
-            if (blockRemovalQueue.get(0) != null) {
+            if (blockRemovalQueue.size() > 0) {
                 if (blockRemovalQueue.get(0) != null && getCurrentEnergy() > 0) {
                     subtractEnergy(1);
                     int x = blockRemovalQueue.get(0).x;
