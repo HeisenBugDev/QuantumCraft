@@ -19,7 +19,6 @@ public class BlockIONTunneler extends BlockEnergySink {
         iconTopR = iconRegister.registerIcon("QuantumCraft:machineIOT_top_r");
         iconSide = iconRegister.registerIcon("QuantumCraft:machineIOT_side");
         iconBottom = iconRegister.registerIcon("QuantumCraft:machineIOT_bottom");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineIOT_side");
         iconBack = iconRegister.registerIcon("QuantumCraft:machineIOT_back");
     }
 
