@@ -23,22 +23,29 @@ public class TileIONHarvester extends TileEnergySink {
 
     }
 
-    public void breakBlock(int x, int y, int z) {
+    public boolean breakBlock(int x, int y, int z) {
         int blockId = worldObj.getBlockId(x, y, z);
         int blockMeta = worldObj.getBlockMetadata(x, y, z);
-        if (blockId != 0) {
-            Block b = Block.blocksList[blockId];
-            List<ItemStack> drops = b.getBlockDropped(worldObj, x, y, z, blockMeta, 0);
-            worldObj.setBlockToAir(x, y, z);
-
-            for (int i = drops.size(); i-- > 0; ) {
-                ItemStack dropStack = drops.get(i);
-                UtilInventory.dropStack(this, dropStack, this.getDropDirection());
+        if (this.getCurrentEnergy() >= 5) {
+            if (blockId != 0) {
+                Block b = Block.blocksList[blockId];
+                List<ItemStack> drops = b.getBlockDropped(worldObj, x, y, z, blockMeta, 0);
+                worldObj.setBlockToAir(x, y, z);
+                subtractEnergy(5);
+                for (int i = drops.size(); i-- > 0; ) {
+                    ItemStack dropStack = drops.get(i);
+                    UtilInventory.dropStack(this, dropStack, this.getDropDirection());
+                }
             }
+            return true;
         }
+        return false;
     }
 
     @Override
     public void updateEntity() {
+        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
+            this.addEnergy(this.requestPacket(10));
+        }
     }
 }
