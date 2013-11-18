@@ -11,6 +11,7 @@ public class IONScannerScheduler extends BlockBreakerScheduler {
     private List<TileIONHarvester> harvesters = new ArrayList<TileIONHarvester>();
     private List<TileIONHarvester> removeHarvestersQueue = new ArrayList<TileIONHarvester>();
     private int useOften = 0;
+    private int harvesterIterator = 0;
 
     public IONScannerScheduler(int oftenSet, TileEntity tileSet) {
         super(oftenSet, tileSet);
@@ -65,8 +66,10 @@ public class IONScannerScheduler extends BlockBreakerScheduler {
 
     @Override
     public void breakBlock(int x, int y, int z) {
+        harvesterIterator++;
+        if (harvesterIterator >= harvesters.size()) harvesterIterator = 0;
         if (harvesters.size() > 0) {
-            harvesters.get(0).breakBlock(x, y, z);
+            harvesters.get(harvesterIterator).breakBlock(x, y, z);
         }
     }
 }
