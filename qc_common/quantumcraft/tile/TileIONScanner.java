@@ -56,13 +56,20 @@ public class TileIONScanner extends TileEnergySink {
 
     @Override
     public void updateEntity() {
-        if (iteration < 100) {
-            iteration++;
-        } else {
-            iteration = 0;
-            scan();
+        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
+            this.addEnergy(this.requestPacket(100));
         }
-        scheduler.checkHarvesters(worldObj);
-        scheduler.run();
+        if (this.getCurrentEnergy() > 0) {
+            // Requires a constant feed of power.
+            subtractEnergy(1);
+            if (iteration < 100) {
+                iteration++;
+            } else {
+                iteration = 0;
+                scan();
+            }
+            scheduler.checkHarvesters(worldObj);
+            scheduler.run();
+        }
     }
 }
