@@ -78,10 +78,10 @@ public class CraftingManager {
                 new ItemStack(Loader.ItemHyperConductor));
 
         // ION Tunneler
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockIONTunneler, 1), "dpd", "lml", "uhu", "d",
-                new ItemStack(Item.diamond), "p", new ItemStack(Item.pickaxeDiamond), "l",
-                new ItemStack(Loader.ItemQuantumPlating), "m", new ItemStack(Loader.BlockMachineCasing), "u",
-                new ItemStack(Loader.ItemIngotUnbioxenium), "h", new ItemStack(Loader.ItemHyperConductor));
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockIONTunneler, 1), "dpd", "lml", "uhu", 'd',
+                new ItemStack(Item.diamond), 'p', new ItemStack(Item.pickaxeDiamond), 'l',
+                new ItemStack(Loader.ItemQuantumPlating), 'm', new ItemStack(Loader.BlockMachineCasing), 'u',
+                new ItemStack(Loader.ItemIngotUnbioxenium), 'h', new ItemStack(Loader.ItemHyperConductor));
 
         // ION Scanner
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockIONScanner, 1), "hih", "qmq", "hih", 'h',
