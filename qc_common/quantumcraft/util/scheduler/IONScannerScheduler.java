@@ -56,20 +56,25 @@ public class IONScannerScheduler extends BlockBreakerScheduler {
     }
 
     public void checkHarvesters(World worldObj) {
-        for (TileIONHarvester te : getHarvesters()) {
-            if (worldObj.getBlockTileEntity(te.xCoord, te.yCoord, te.zCoord) == null) {
-                removeHarvestersQueueAdd(te);
+        if (iteration >= useOften) {
+            for (TileIONHarvester te : getHarvesters()) {
+                if (worldObj.getBlockTileEntity(te.xCoord, te.yCoord, te.zCoord) == null) {
+                    removeHarvestersQueueAdd(te);
+                }
             }
+            removeHarvesters();
         }
-        removeHarvesters();
     }
 
     @Override
-    public void breakBlock(int x, int y, int z) {
+    public boolean breakBlock(int x, int y, int z) {
         harvesterIterator++;
         if (harvesterIterator >= harvesters.size()) harvesterIterator = 0;
         if (harvesters.size() > 0) {
-            harvesters.get(harvesterIterator).breakBlock(x, y, z);
+            if (harvesters.get(harvesterIterator).breakBlock(x, y, z)) {
+                return true;
+            }
         }
+        return false;
     }
 }
