@@ -10,14 +10,20 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import quantumcraft.gui.GuiQEInjector;
 import quantumcraft.gui.GuiTextures;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class GuiBase extends GuiContainer {
     private boolean onBackground;
     private boolean isNativeRender;
     protected ResourceLocation bgImage = null;
+
+    public int buffHX;
+    public int buffHY;
+    public boolean[] buffHT = new boolean[64];
 
     private ArrayList<HandlerWrapper<IClickHandler>> clickHandlers = new ArrayList<HandlerWrapper<IClickHandler>>();
     private ArrayList<HandlerWrapper<IHoverHandler>> hoverHandlers = new ArrayList<HandlerWrapper<IHoverHandler>>();
@@ -26,10 +32,59 @@ public abstract class GuiBase extends GuiContainer {
         public void onClick(int x, int y);
     }
 
+    public class ClickHandler implements IClickHandler {
+
+        final int id;
+
+        public ClickHandler(int id) {
+            this.id = id;
+        }
+
+        @Override
+        public void onClick(int x, int y) {
+            buffCT = id;
+            handleClick(id);
+        }
+    }
+
+    protected abstract void handleClick(int buffCT);
+
+    int buffCT = -1;
+
     public static interface IHoverHandler {
         public void onHover(int x, int y);
 
         public void onLeave();
+    }
+
+    public class HoverHandler implements GuiBase.IHoverHandler {
+
+        int id;
+        GuiBase gui;
+
+        public HoverHandler(int id, GuiBase i) {
+            this.id = id;
+            this.gui = i;
+        }
+
+        @Override
+        public void onHover(int x, int y) {
+            gui.buffHX = x;
+            gui.buffHY = y;
+            gui.buffHT[this.id] = true;
+        }
+
+        @Override
+        public void onLeave() {
+            gui.buffHT[this.id] = false;
+        }
+    }
+
+    protected void renderTooltipText(String text, int x, int y) {
+        List<String> l = new ArrayList<String>();
+        l.add(text);
+        this.drawHoveringText(l, x, y, this.fontRenderer);
+
     }
 
 
@@ -75,7 +130,7 @@ public abstract class GuiBase extends GuiContainer {
     int targetX;
     int targetY;
 
-    public boolean renderI = true;
+    public boolean renderContents = true;
 
     protected GuiBase(Container container, int x, int y) {
         super(container);
@@ -155,7 +210,7 @@ public abstract class GuiBase extends GuiContainer {
         }
         if (ySize == targetY && xSize == targetX) {
 
-            renderI = true;
+            renderContents = true;
         }
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2; */
