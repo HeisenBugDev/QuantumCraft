@@ -88,6 +88,11 @@ public class CraftingManager {
                 new ItemStack(Loader.ItemHyperConductor), 'i', new ItemStack(Loader.ItemIngotUnbioxenium), 'q',
                 new ItemStack(Loader.ItemQuantumPlating), 'm', new ItemStack(Loader.BlockMachineCasing));
 
+        // ION Harvester
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockIONHarvester, 1), "iii", "qmq", "hhh", 'i',
+                new ItemStack(Loader.ItemIngotUnbioxenium), 'q', new ItemStack(Loader.ItemQuantumPlating), 'm',
+                new ItemStack(Loader.BlockMachineCasing), 'h', new ItemStack(Loader.ItemHyperConductor));
+
         // TOOLS
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemQuantumAxe, 1), "ccp", "csp", " s ", 'p',
                 new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack, 's', new ItemStack(Item.stick));
