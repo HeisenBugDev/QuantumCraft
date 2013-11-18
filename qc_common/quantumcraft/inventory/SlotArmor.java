@@ -9,13 +9,13 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
-class SlotArmor extends Slot {
+public class SlotArmor extends Slot {
     /**
      * The armor type that can be placed on that slot, it uses the same values of armorType field on ItemArmor.
      */
     final int armorType;
 
-    SlotArmor(IInventory par2IInventory, int par3, int par4, int par5, int par6) {
+    public SlotArmor(IInventory par2IInventory, int par3, int par4, int par5, int par6) {
         super(par2IInventory, par3, par4, par5);
         this.armorType = par6;
     }

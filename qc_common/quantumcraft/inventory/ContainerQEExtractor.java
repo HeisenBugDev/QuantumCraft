@@ -5,17 +5,18 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import quantumcraft.inventory.abstractinv.ContainerBase;
+import quantumcraft.inventory.abstractinv.ContainerUpdatedBase;
 import quantumcraft.tile.TileQEExtractor;
 
-public class ContainerQEExtractor extends ContainerBase {
+public class ContainerQEExtractor extends ContainerUpdatedBase {
 
     public TileQEExtractor tile;
 
     public ContainerQEExtractor(InventoryPlayer ip, TileQEExtractor te) {
         super(ip);
         tile = te;
-        this.addSlotToContainer(new Slot(tile, 0, 20, 34));
-        this.addSlotToContainer(new SlotOutput(tile, 1, 131, 34));
+        this.addSlotToContainer(new Slot(tile, 0, 40, 60));
+        this.addSlotToContainer(new SlotOutput(tile, 1, 75, 60));
     }
 
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
