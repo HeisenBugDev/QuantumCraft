@@ -20,7 +20,7 @@ import quantumcraft.util.BasicUtils;
 public abstract class BlockMachine extends BlockRotatable {
     protected Icon iconFront;
     protected Icon iconSide;
-        protected Icon iconBack;
+    protected Icon iconBack;
     protected Icon iconBottom;
     protected Icon iconTop;
     protected Icon iconTopR;
@@ -47,7 +47,7 @@ public abstract class BlockMachine extends BlockRotatable {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
         TileMachineBase te = (TileMachineBase) world.getBlockTileEntity(x, y, z);
-
+        System.out.println("sup");
         //PLAYER IS SNEAKING, SHOULD I REMOVE THE BLOCK?
         if (entityplayer.isSneaking() && BasicUtils.isHoldingWrench(entityplayer)) {
             this.dropBlockAsItem(world, x, y, z, 1, 1);
@@ -60,6 +60,7 @@ public abstract class BlockMachine extends BlockRotatable {
         }
 
         if (entityplayer.isSneaking()) {
+
             //PLAYER IS SNEAKING, DOES HE HAVE AN UPGRADE?
             if ((entityplayer.getCurrentEquippedItem() != null) &&
                     entityplayer.getCurrentEquippedItem().getItem() instanceof IUpgrade && te instanceof IUpgradable) {
