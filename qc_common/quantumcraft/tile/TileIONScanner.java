@@ -15,7 +15,7 @@ public class TileIONScanner extends TileEnergySink {
 
     @Override
     public int getMaxEnergy() {
-        return 1000;
+        return 100;
     }
 
     @Override
