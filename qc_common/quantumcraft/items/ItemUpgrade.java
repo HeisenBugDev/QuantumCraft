@@ -12,7 +12,7 @@ public class ItemUpgrade extends ItemBase implements IUpgrade {
     public ItemUpgrade(int id) {
         super(id);
         this.setMetaMax(1);
-        this.setMaxStackSize(1);   //THIS IS SUPPOSED TO BE 16 BUT DIFFERENT UPGRADES STACK INTO ONE WHEN PICKED UP.
+        this.setMaxStackSize(1);   //THIS IS SUPPOSED TO BE 16 BUT DIFFERENT UPGRADES STACK INTO ONE WHEN PICKED UP. <= You must register the in the loader separately!
     }
 
     public Icon[] icons = new Icon[2];
