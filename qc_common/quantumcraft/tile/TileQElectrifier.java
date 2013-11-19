@@ -118,7 +118,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     @Override
     public void updateEntity() {
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
-            this.addEnergy(this.requestPacket(10));
+            this.addEnergy(this.requestPacket(100));
         }
 
         if (!init && !isInvalid()) {
