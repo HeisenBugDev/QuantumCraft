@@ -11,7 +11,6 @@ import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.util.BasicUtils;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class TileQDematerializer extends TileEnergySource implements ISidedInventory, IUpgradable {
@@ -19,6 +18,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     public int processTime = -1;
     public int upgradeID[] = {0, 0, 0, 0};
     Random rand = new Random();
+    public int currentProcessTime = 0;
     private SimpleInventory _inv = new SimpleInventory(1, "qdm", 64);
 
     @Override
@@ -130,11 +130,11 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void updateEntity() {
-        System.out.println(Arrays.toString(upgradeID));
+        currentProcessTime = 40 / (BasicUtils.overclockMultiplier(upgradeID) + 1);
         if (inventory[0] != null) {
             if (processTime > 0) processTime--;
             if (this.processTime == 0) process();
-            if (this.processTime == -1) processTime = 40 / (BasicUtils.overclockMultiplier(upgradeID) + 1);
+            if (this.processTime == -1) processTime = currentProcessTime;
         } else {
             processTime = -1;
         }
@@ -156,6 +156,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void onBlockBreak() {
+        dropUpgrades();
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
@@ -163,6 +164,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
         NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+        upgradeID = par1NBTTagCompound.getIntArray("Upgrades");
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
@@ -194,7 +196,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
                 nbttaglist.appendTag(nbttagcompound1);
             }
         }
-
+        par1NBTTagCompound.setIntArray("Upgrades", upgradeID);
         par1NBTTagCompound.setTag("Items", nbttaglist);
         super.writeToNBT(par1NBTTagCompound);
     }
