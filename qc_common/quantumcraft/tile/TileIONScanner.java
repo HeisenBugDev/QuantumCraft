@@ -57,7 +57,7 @@ public class TileIONScanner extends TileEnergySink {
     @Override
     public void updateEntity() {
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
-            this.addEnergy(this.requestPacket(5));
+            this.addEnergy(this.requestPacket(2));
         }
         System.out.println(this.getCurrentEnergy());
         if (this.getCurrentEnergy() > 0) {
