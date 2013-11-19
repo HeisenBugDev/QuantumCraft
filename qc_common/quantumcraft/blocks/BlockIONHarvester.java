@@ -13,7 +13,12 @@ public class BlockIONHarvester extends BlockEnergySink {
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
-
+        iconFront = iconRegister.registerIcon("QuantumCraft:machineIOH_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machineIOH_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machineIOH_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machineIOH_side");
+        iconBottom = iconRegister.registerIcon("QuantumCraft:machineIOH_bottom");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machineIOH_side");
     }
 
     @Override
