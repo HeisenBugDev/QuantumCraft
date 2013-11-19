@@ -11,6 +11,7 @@ import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.util.BasicUtils;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class TileQDematerializer extends TileEnergySource implements ISidedInventory, IUpgradable {
@@ -129,10 +130,11 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void updateEntity() {
+        System.out.println(Arrays.toString(upgradeID));
         if (inventory[0] != null) {
             if (processTime > 0) processTime--;
             if (this.processTime == 0) process();
-            if (this.processTime == -1) processTime = 40;
+            if (this.processTime == -1) processTime = 40 / (BasicUtils.overclockMultiplier(upgradeID) + 1);
         } else {
             processTime = -1;
         }
@@ -225,12 +227,12 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void dropUpgrades() {
-        for (int u : upgradeID) {
-            if (u != 0) {
+        for (int i = 0; i < upgradeID.length; i++){
+            if (upgradeID[i] != 0) {
                 BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
-                        new ItemStack(Loader.ItemUpgrade, 1, u)); //DROP DA UPGRADE
-                u = 0;
+                        new ItemStack(Loader.ItemUpgrade, 1, upgradeID[i])); //DROP DA UPGRADE
             }
+            upgradeID[i] = 0;
         }
     }
 }
