@@ -45,7 +45,7 @@ public class TileIONHarvester extends TileEnergySink {
     @Override
     public void updateEntity() {
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
-            this.addEnergy(this.requestPacket(10));
+            this.addEnergy(this.requestPacket(5));
         }
     }
 }
