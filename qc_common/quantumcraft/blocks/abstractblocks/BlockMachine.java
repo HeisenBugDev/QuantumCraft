@@ -10,7 +10,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import quantumcraft.blocks.BlockQuantumFiberWire;
 import quantumcraft.core.Coords;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.core.interfaces.IUpgradable;
@@ -19,6 +18,13 @@ import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.BasicUtils;
 
 public abstract class BlockMachine extends BlockRotatable {
+    protected Icon iconFront;
+    protected Icon iconSide;
+        protected Icon iconBack;
+    protected Icon iconBottom;
+    protected Icon iconTop;
+    protected Icon iconTopR;
+
     public BlockMachine(int id, Material material) {
         super(id, material);
         setHardness(10F);
@@ -63,13 +69,13 @@ public abstract class BlockMachine extends BlockRotatable {
                 return true;
             }
 
-            //PLAYER IS SNEAKING, DOES HE HAVE A WRENCH?
-            if (BasicUtils.isHoldingWrench(entityplayer) && te instanceof IUpgradable) {
+            //PLAYER IS SNEAKING, SHOULD I DROP UPGRADES?
+            if (te instanceof IUpgradable) {
                 ((IUpgradable) te).dropUpgrades();
                 return true;
             }
 
-            //WELL THEN, DO NOTHING
+            //WELL THEN, DO NOTHING <= OMG CAPS LOCK!
             return false;
         }
 
@@ -82,14 +88,6 @@ public abstract class BlockMachine extends BlockRotatable {
         entityplayer.openGui(QuantumCraft.instance, te.guiID(), world, x, y, z);
         return true;
     }
-
-    protected Icon iconFront;
-    protected Icon iconSide;
-    protected Icon iconBack;
-    protected Icon iconBottom;
-    protected Icon iconTop;
-    protected Icon iconTopR;
-
 
     public Icon getIconFromSide(int side, boolean topAlternative) {
         switch (side) {
