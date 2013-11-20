@@ -27,6 +27,10 @@ public class CraftingManager {
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemMultiTool, 1), " i ", "rii", " r ", 'i', ironStack, 'r',
                 new ItemStack(Item.dyePowder, 1, 1));
 
+        // BLANK UPGRADE
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemUpgrade, 1, 1), "bbb", "bab", "bbb", 'b',
+                Loader.ItemQuantumPlating, 'a', Loader.ItemHyperConductor);
+
         if (Config.beta.getBoolean(false)) {
             GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemLocationCardBlank),
                     new ItemStack(Loader.ItemLocationCard));
