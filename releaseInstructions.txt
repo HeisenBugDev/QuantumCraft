@@ -10,7 +10,7 @@ Make sure all issues on GitHub for that version are closed
 Test it!!!!
 
 Check readme and update if needed.
-Create a new release with git flow with the version as the release name. Ex: 1.3 NOT v1.3
+Create a new release with git flow with the version as the release name. Ex: 1.3.0 NOT v1.3.0
 Do any last minute changes.
 Finish the release
 Push to remote.
