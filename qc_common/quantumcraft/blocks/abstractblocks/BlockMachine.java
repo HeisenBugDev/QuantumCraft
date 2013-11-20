@@ -47,7 +47,7 @@ public abstract class BlockMachine extends BlockRotatable {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
         TileMachineBase te = (TileMachineBase) world.getBlockTileEntity(x, y, z);
-        System.out.println("sup");
+
         //PLAYER IS SNEAKING, SHOULD I REMOVE THE BLOCK?
         if (entityplayer.isSneaking() && BasicUtils.isHoldingWrench(entityplayer)) {
             this.dropBlockAsItem(world, x, y, z, 1, 1);
