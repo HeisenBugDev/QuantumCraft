@@ -113,16 +113,16 @@ public class Loader {
                 .setTextureName(Config.getTextureName(Config.NameItemDepletedCrystal));
         LanguageRegistry.addName(ItemDepletedCrystal, "Depleted Crystal");
 
+        ItemUpgrade = (ItemUpgrade) new ItemUpgrade(Config.ItemUpgradeID).setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName(Config.NameItemUpgrade_).setTextureName("USELESS");
+        LanguageRegistry.addName(ItemUpgrade, "Upgrade");
+
         if (Config.beta.getBoolean(false)) {
             ItemResearchBook =
                     (ItemResearchBook) new ItemResearchBook(Config.ItemResearchBookID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameItemResearchBook)
                             .setTextureName(Config.getTextureName(Config.NameItemResearchBook));
             LanguageRegistry.addName(ItemResearchBook, "Research Book");
-
-            ItemUpgrade = (ItemUpgrade) new ItemUpgrade(Config.ItemUpgradeID).setCreativeTab(tabQuantumCraft)
-                    .setUnlocalizedName(Config.NameItemUpgrade_).setTextureName("USELESS");
-            LanguageRegistry.addName(ItemUpgrade, "Upgrade");
 
             ItemLocationCard = (ItemLocationCard) new ItemLocationCard(Config.ItemLocationCardID)
                     .setUnlocalizedName(Config.NameItemLocationCard)
@@ -215,27 +215,23 @@ public class Loader {
         LanguageRegistry.addName(BlockIONForge, "ION Forge");
         GameRegistry.registerBlock(BlockIONForge, Config.NameBlockIOF);
 
+        BlockIONTunneler = (BlockIONTunneler) new BlockIONTunneler(Config.BlockIOTID).setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName(Config.NameBlockIOT).setTextureName(Config.getTextureName(Config.NameBlockIOT));
+        LanguageRegistry.addName(BlockIONTunneler, "ION Tunneler");
+        GameRegistry.registerBlock(BlockIONTunneler, Config.NameBlockIOT);
+
+        BlockIONScanner = (BlockIONScanner) new BlockIONScanner(Config.BlockIOSID).setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName(Config.NameBlockIOS).setTextureName(Config.getTextureName(Config.NameBlockIOS));
+        LanguageRegistry.addName(BlockIONScanner, "ION Scanner");
+        GameRegistry.registerBlock(BlockIONScanner, Config.NameBlockIOS);
+
+
+        BlockIONHarvester = (BlockIONHarvester) new BlockIONHarvester(Config.BlockIOHID).setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName(Config.NameBlockIOH).setTextureName(Config.getTextureName(Config.NameBlockIOH));
+        LanguageRegistry.addName(BlockIONHarvester, "ION Harvester");
+        GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
+
         if (Config.beta.getBoolean(false)) {
-            BlockIONTunneler =
-                    (BlockIONTunneler) new BlockIONTunneler(Config.BlockIOTID).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockIOT)
-                            .setTextureName(Config.getTextureName(Config.NameBlockIOT));
-            LanguageRegistry.addName(BlockIONTunneler, "ION Tunneler");
-            GameRegistry.registerBlock(BlockIONTunneler, Config.NameBlockIOT);
-
-            BlockIONScanner = (BlockIONScanner) new BlockIONScanner(Config.BlockIOSID).setCreativeTab(tabQuantumCraft)
-                    .setUnlocalizedName(Config.NameBlockIOS).setTextureName(Config.getTextureName(Config.NameBlockIOS));
-            LanguageRegistry.addName(BlockIONScanner, "ION Scanner");
-            GameRegistry.registerBlock(BlockIONScanner, Config.NameBlockIOS);
-
-
-            BlockIONHarvester =
-                    (BlockIONHarvester) new BlockIONHarvester(Config.BlockIOHID).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockIOH)
-                            .setTextureName(Config.getTextureName(Config.NameBlockIOH));
-            LanguageRegistry.addName(BlockIONHarvester, "ION Harvester");
-            GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
-
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS)
@@ -296,6 +292,9 @@ public class Loader {
         GameRegistry.registerTileEntity(TileQDematerializer.class, "QDematerializerTE");
         GameRegistry.registerTileEntity(TileQEExtractor.class, "QEExtractorTE");
         GameRegistry.registerTileEntity(TileIONForge.class, "IONForgeTE");
+        GameRegistry.registerTileEntity(TileIONHarvester.class, "IONHarvesterTE");
+        GameRegistry.registerTileEntity(TileIONScanner.class, "IONScannerTE");
+        GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
@@ -303,9 +302,7 @@ public class Loader {
         }
 
         if (Config.beta.getBoolean(false)) {
-            GameRegistry.registerTileEntity(TileIONHarvester.class, "IONHarvesterTE");
-            GameRegistry.registerTileEntity(TileIONScanner.class, "IONScannerTE");
-            GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
+
             GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         }
     }
