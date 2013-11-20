@@ -109,7 +109,6 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
 
     @Override
     public void updateEntity() {
-
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
             this.addEnergy(this.requestPacket(100));
         } else if (this.getCurrentEnergy() > this.getMaxEnergy()) {
@@ -124,7 +123,7 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
         if (!redstonePower) {
             sendPower();
         } else currentOutput = 0;
-
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
     public void initialize() {
