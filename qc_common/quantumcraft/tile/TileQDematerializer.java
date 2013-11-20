@@ -5,15 +5,20 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import quantumcraft.core.Loader;
+import quantumcraft.core.interfaces.IUpgradable;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
+import quantumcraft.util.BasicUtils;
 
 import java.util.Random;
 
-public class TileQDematerializer extends TileEnergySource implements ISidedInventory {
+public class TileQDematerializer extends TileEnergySource implements ISidedInventory, IUpgradable {
     public ItemStack[] inventory = new ItemStack[1];
     public int processTime = -1;
+    public int upgradeID[] = {0, 0, 0, 0};
     Random rand = new Random();
+    public int currentProcessTime = 0;
     private SimpleInventory _inv = new SimpleInventory(1, "qdm", 64);
 
     @Override
@@ -125,26 +130,14 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void updateEntity() {
+        currentProcessTime = 40 / (BasicUtils.overclockMultiplier(upgradeID) + 1);
         if (inventory[0] != null) {
-
-
             if (processTime > 0) processTime--;
-
-
             if (this.processTime == 0) process();
-
-            if (this.processTime == -1) processTime = 40;
-
-				/*
-                this.QEnergyBuffer = this.QEnergyBuffer
-						- (this.lastItemValue / r.getProcessTime());*/
-            //_inv.setInventorySlotContents(1, inslot);
-
+            if (this.processTime == -1) processTime = currentProcessTime;
         } else {
             processTime = -1;
-
         }
-
 
         if (updateNextTick) {
             // All nearby players need to be updated if the status of work
@@ -154,7 +147,6 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
         }
-
     }
 
     @Override
@@ -164,6 +156,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void onBlockBreak() {
+        dropUpgrades();
         _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
@@ -171,6 +164,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
         NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+        upgradeID = par1NBTTagCompound.getIntArray("Upgrades");
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
@@ -202,7 +196,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
                 nbttaglist.appendTag(nbttagcompound1);
             }
         }
-
+        par1NBTTagCompound.setIntArray("Upgrades", upgradeID);
         par1NBTTagCompound.setTag("Items", nbttaglist);
         super.writeToNBT(par1NBTTagCompound);
     }
@@ -222,5 +216,25 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
         return i != 0;
     }
 
+    @Override
+    public boolean eatUpgrade(int id) {
+        for (int i = 0; i < 4; i++) {
+            if (upgradeID[i] == 0) {
+                upgradeID[i] = id;
+                return true;
+            }
+        }
+        return false;
+    }
 
+    @Override
+    public void dropUpgrades() {
+        for (int i = 0; i < upgradeID.length; i++){
+            if (upgradeID[i] != 0) {
+                BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
+                        new ItemStack(Loader.ItemUpgrade, 1, upgradeID[i])); //DROP DA UPGRADE
+            }
+            upgradeID[i] = 0;
+        }
+    }
 }

@@ -48,7 +48,7 @@ public class GuiQDematerializer extends GuiContainer {
         this.drawTexturedModalRect(k + 177, l + 37 + h2, 195, 16 + h2, 12, 76 - h2);
         this.drawTexturedModalRect(k + 177, l + 37, 207, 16, 12, 76);
         if (tile.processTime > 0) {
-            int h = (int) (16 - ((float) tile.processTime / (float) 40 * 16));
+            int h = (int) (16 - ((float) tile.processTime / (float) tile.currentProcessTime * 16));
             this.drawTexturedModalRect(k + 101, l + 34 + h, 195, 0 + h, 16, 16 - h);
         }
 

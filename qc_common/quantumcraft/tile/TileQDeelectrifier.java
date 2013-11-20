@@ -10,12 +10,12 @@ import quantumcraft.util.BasicUtils;
 
 public class TileQDeelectrifier extends TileEnergySource implements IPowerReceptor {
     private PowerHandler powerHandler;
-    private int buildCraftBuffer = 0;
+    private float buildCraftBuffer = 0;
 
     public TileQDeelectrifier() {
         powerHandler = new PowerHandler(this, Type.MACHINE);
-        powerHandler.configure(5, 100, 2, 1000);
-        powerHandler.configurePowerPerdition(1, 1);
+        powerHandler.configure(1, 100, 60, 1000);
+        powerHandler.configurePowerPerdition(0, 0);
     }
 
     @Override
@@ -45,6 +45,9 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
                 buildCraftBuffer--;
             }
         }
+
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
     }
 
     @Override
@@ -54,6 +57,7 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
 
     @Override
     public void doWork(PowerHandler workProvider) {
+        System.out.println(this.getCurrentEnergy());
     }
 
     @Override

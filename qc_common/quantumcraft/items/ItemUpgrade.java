@@ -5,18 +5,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 import quantumcraft.core.Config;
 import quantumcraft.core.interfaces.IUpgrade;
 
 public class ItemUpgrade extends ItemBase implements IUpgrade {
+    public Icon[] icons = new Icon[2];
+    public String[] names = {"Upgrade Template", "Overclock Upgrade"};
+
     public ItemUpgrade(int id) {
         super(id);
         this.setMetaMax(1);
-        this.setMaxStackSize(1);   //THIS IS SUPPOSED TO BE 16 BUT DIFFERENT UPGRADES STACK INTO ONE WHEN PICKED UP.
+        this.setMaxStackSize(
+                1);   //THIS IS SUPPOSED TO BE 16 BUT DIFFERENT UPGRADES STACK INTO ONE WHEN PICKED UP. <= You must register the in the loader separately!
     }
-
-    public Icon[] icons = new Icon[2];
-    public String[] names = {"Upgrade Template", "Overclock Upgrade"};
 
     @Override
     public Icon getIconFromDamage(int par1) {
@@ -36,5 +38,10 @@ public class ItemUpgrade extends ItemBase implements IUpgrade {
         }
     }
 
+    @Override
+    public boolean shouldPassSneakingClickToBlock(World world, int x, int y,
+                                                  int z) {
+        return true;
+    }
 
 }

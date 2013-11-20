@@ -17,13 +17,13 @@ public class EnergySourceList {
         sources.addAll(src);
     }
 
-    public int getQuantumEnergy(World w, int request) {
+    public int requestQuantumEnergy(World w, int request) {
         int retrieved = 0;
         for (Location source : sources) {
             int id = w.getBlockId(source.getXCoord(), source.getYCoord(), source.getZCoord());
             Block b = Block.blocksList[id];
             if (b instanceof IQEnergySource) {
-                retrieved += ((IQEnergySource) b).getQuantumEnergy(w, source, request - retrieved);
+                retrieved += ((IQEnergySource) b).requestQuantumEnergy(w, source, request - retrieved);
             }
         }
         return retrieved;

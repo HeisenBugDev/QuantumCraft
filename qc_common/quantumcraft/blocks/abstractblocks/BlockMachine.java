@@ -18,6 +18,13 @@ import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.BasicUtils;
 
 public abstract class BlockMachine extends BlockRotatable {
+    protected Icon iconFront;
+    protected Icon iconSide;
+    protected Icon iconBack;
+    protected Icon iconBottom;
+    protected Icon iconTop;
+    protected Icon iconTopR;
+
     public BlockMachine(int id, Material material) {
         super(id, material);
         setHardness(10F);
@@ -40,10 +47,20 @@ public abstract class BlockMachine extends BlockRotatable {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
         TileMachineBase te = (TileMachineBase) world.getBlockTileEntity(x, y, z);
+
+        //PLAYER IS SNEAKING, SHOULD I REMOVE THE BLOCK?
+        if (entityplayer.isSneaking() && BasicUtils.isHoldingWrench(entityplayer)) {
+            this.dropBlockAsItem(world, x, y, z, 1, 1);
+            this.removeBlockByPlayer(world, entityplayer, x, y, z);
+            return true;
+        }
+
         if (te == null) {
             return false;
         }
+
         if (entityplayer.isSneaking()) {
+
             //PLAYER IS SNEAKING, DOES HE HAVE AN UPGRADE?
             if ((entityplayer.getCurrentEquippedItem() != null) &&
                     entityplayer.getCurrentEquippedItem().getItem() instanceof IUpgrade && te instanceof IUpgradable) {
@@ -53,13 +70,13 @@ public abstract class BlockMachine extends BlockRotatable {
                 return true;
             }
 
-            //PLAYER IS SNEAKING, DOES HE HAVE A WRENCH?
-            if (BasicUtils.isHoldingWrench(entityplayer) && te instanceof IUpgradable) {
+            //PLAYER IS SNEAKING, SHOULD I DROP UPGRADES?
+            if (te instanceof IUpgradable) {
                 ((IUpgradable) te).dropUpgrades();
                 return true;
             }
 
-            //WELL THEN, DO NOTHING
+            //WELL THEN, DO NOTHING <= OMG CAPS LOCK!
             return false;
         }
 
@@ -72,14 +89,6 @@ public abstract class BlockMachine extends BlockRotatable {
         entityplayer.openGui(QuantumCraft.instance, te.guiID(), world, x, y, z);
         return true;
     }
-
-    protected Icon iconFront;
-    protected Icon iconSide;
-    protected Icon iconBack;
-    protected Icon iconBottom;
-    protected Icon iconTop;
-    protected Icon iconTopR;
-
 
     public Icon getIconFromSide(int side, boolean topAlternative) {
         switch (side) {
