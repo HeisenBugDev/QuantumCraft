@@ -28,13 +28,13 @@ public class ContainerQDematerializer extends ContainerUpdatedBase {
             stack = stackInSlot.copy();
 
             //merges the item into player inventory since its in the tileEntity
-            if (slot > 35) {
+            if (slot > 39) {
                 if (!this.mergeItemStack(stackInSlot, 0, 35, true)) {
                     return null;
                 }
             }
             //places it into the tileEntity is possible since its in the player inventory
-            else if (!this.mergeItemStack(stackInSlot, 36, 37, false)) {
+            else if (!this.mergeItemStack(stackInSlot, 40, 41, false)) {
                 return null;
             }
 

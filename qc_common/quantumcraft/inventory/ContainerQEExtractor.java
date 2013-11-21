@@ -28,7 +28,7 @@ public class ContainerQEExtractor extends ContainerUpdatedBase {
             stack = stackInSlot.copy();
 
             //merges the item into player inventory since its in the tileEntity
-            if (slot > 35) {
+            if (slot > 39) {
                 if (!this.mergeItemStack(stackInSlot, 0, 35, true)) {
                     return null;
                 }
