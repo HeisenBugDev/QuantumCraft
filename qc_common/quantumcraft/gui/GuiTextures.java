@@ -26,10 +26,14 @@ public class GuiTextures {
             new ResourceLocation("quantumcraft", "textures/gui/button_close.png");
     public static ResourceLocation GUI_DIVIDER_V =
             new ResourceLocation("quantumcraft", "textures/gui/dividerV.png");
+    public static ResourceLocation GUI_1SLOT_BG =
+            new ResourceLocation("quantumcraft", "textures/gui/1slot.png");
     public static ResourceLocation GUI_2SLOT_BG =
             new ResourceLocation("quantumcraft", "textures/gui/2slot.png");
     public static ResourceLocation GUI_4SLOT_BG =
             new ResourceLocation("quantumcraft", "textures/gui/4slot.png");
     public static ResourceLocation GUI_PROGRESS_BELOW =
             new ResourceLocation("quantumcraft", "textures/gui/progress_below.png");
+    public static ResourceLocation GUI_DEMAT_ARROW =
+            new ResourceLocation("quantumcraft", "textures/gui/demat.png");
 }
