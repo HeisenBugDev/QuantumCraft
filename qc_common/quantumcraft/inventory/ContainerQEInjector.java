@@ -23,7 +23,7 @@ public class ContainerQEInjector extends ContainerUpdatedBase {
         ItemStack stack = null;
         Slot slotObject = (Slot) inventorySlots.get(slot);
         //null checks and checks if the item can be stacked (maxStackSize > 1)
-        if (slotObject != null && slotObject.getHasStack()) {
+        if (slotObject != null && slotObject.getHasStack() && slotObject.getStack().getMaxStackSize() < 2) {
             ItemStack stackInSlot = slotObject.getStack();
             stack = stackInSlot.copy();
 

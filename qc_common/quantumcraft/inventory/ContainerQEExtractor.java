@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import quantumcraft.inventory.abstractinv.ContainerBase;
 import quantumcraft.inventory.abstractinv.ContainerUpdatedBase;
 import quantumcraft.tile.TileQEExtractor;
 
@@ -23,7 +22,7 @@ public class ContainerQEExtractor extends ContainerUpdatedBase {
         ItemStack stack = null;
         Slot slotObject = (Slot) inventorySlots.get(slot);
         //null checks and checks if the item can be stacked (maxStackSize > 1)
-        if (slotObject != null && slotObject.getHasStack()) {
+        if (slotObject != null && slotObject.getHasStack() && slotObject.getStack().getMaxStackSize() < 2) {
             ItemStack stackInSlot = slotObject.getStack();
             stack = stackInSlot.copy();
 
