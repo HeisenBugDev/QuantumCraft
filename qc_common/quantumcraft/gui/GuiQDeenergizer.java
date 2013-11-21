@@ -49,7 +49,9 @@ public class GuiQDeenergizer extends GuiBase {
     }
 
     protected void drawProgressBar() {
-
+        int x = 10;
+        int y = 10;
+        int width = tile.
     }
 
     protected void drawPowerBar() {
