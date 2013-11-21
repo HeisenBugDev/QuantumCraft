@@ -10,7 +10,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import quantumcraft.gui.GuiQEInjector;
 import quantumcraft.gui.GuiTextures;
 
 import java.util.ArrayList;
@@ -182,7 +181,7 @@ public abstract class GuiBase extends GuiContainer {
 
     @Override
     protected final void keyTyped(char key, int code) {
-        if (code == 1) {
+        if (code == 1 || code == 18) {
             this.mc.thePlayer.closeScreen();
         } else {
             onKeyTyped(key, code);
@@ -218,7 +217,7 @@ public abstract class GuiBase extends GuiContainer {
 
         GL11.glEnable(GL11.GL_BLEND);
 
-        bindImage(GuiTextures.GUI_WHTL);
+        bindImage(GuiTextures.GUI_WHITELINE);
         isNativeRender = true;
         //draw layer N
         GL11.glEnable(GL11.GL_STENCIL_TEST);

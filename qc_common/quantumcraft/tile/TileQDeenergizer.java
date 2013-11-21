@@ -111,11 +111,6 @@ public class TileQDeenergizer extends TileEnergySource implements
 
             if (this.processTime == -1) processTime = r.getProcessTime();
 
-				/*
-                this.QEnergyBuffer = this.QEnergyBuffer
-						- (this.lastItemValue / r.getProcessTime());*/
-            //_inv.setInventorySlotContents(1, inslot);
-
         } else {
             processTime = -1;
             QEnergyItemBuffer = 0;

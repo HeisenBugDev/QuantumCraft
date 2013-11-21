@@ -5,16 +5,17 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import quantumcraft.inventory.abstractinv.ContainerBase;
+import quantumcraft.inventory.abstractinv.ContainerUpdatedBase;
 import quantumcraft.tile.TileQDematerializer;
 
-public class ContainerQDematerializer extends ContainerBase {
+public class ContainerQDematerializer extends ContainerUpdatedBase {
 
     public TileQDematerializer tile;
 
     public ContainerQDematerializer(InventoryPlayer ip, TileQDematerializer te) {
         super(ip);
         tile = te;
-        this.addSlotToContainer(new Slot(tile, 0, 52, 34));
+        this.addSlotToContainer(new Slot(tile, 0, 40, 60));
     }
 
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
