@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerQDeenergizer;
 import quantumcraft.tile.TileQDeenergizer;
+import quantumcraft.util.BasicUtils;
 
 public class GuiQDeenergizer extends GuiBase {
 
@@ -31,7 +32,7 @@ public class GuiQDeenergizer extends GuiBase {
             bindImage(GuiTextures.GUI_TOP_BG);
             drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_COLOR_STRIP);
-            GL11.glColor3f(0, 1F, 0);
+            GL11.glColor3f(.7F, .7F, .7F);
             drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_BOTTOM_BG);
             GL11.glColor3f(1F, 1F, 1F);
@@ -44,14 +45,17 @@ public class GuiQDeenergizer extends GuiBase {
             drawQuad(30, 50, 0, 1, 0, 1, 53, 18);
             bindImage(GuiTextures.GUI_DIVIDER_V);
             drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
-
         }
     }
 
     protected void drawProgressBar() {
-        int x = 10;
-        int y = 10;
-        int width = tile.
+        int x = 33;
+        int y = 70;
+        int width = 47-(int)((float) tile.QEnergyItemBuffer / (float) tile.lastItemValue*47F);
+        if (width == 47) {width = 0;}
+        int height = 5;
+        bindImage(GuiTextures.GUI_PROGRESS_BELOW);
+        drawQuad(x, y, 0, (float)width/47F, 0, (float)height/5F, width, height);
     }
 
     protected void drawPowerBar() {
