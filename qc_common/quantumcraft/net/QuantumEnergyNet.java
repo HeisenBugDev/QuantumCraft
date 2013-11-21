@@ -60,6 +60,12 @@ public class QuantumEnergyNet {
 
         public void addAllSourcesToAllSinks(World w) {
             for (Location sink : sinks) {
+                List<Location> sources2 = new ArrayList<Location>(sources);
+                for (Location source : sources2) {
+                    if (source.hashCode() == sink.hashCode()) {
+                        sources2.remove(source);
+                    }
+                }
                 int id = w.getBlockId(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
                 Block b = Block.blocksList[id];
                 if (b instanceof IQEnergySink) {
