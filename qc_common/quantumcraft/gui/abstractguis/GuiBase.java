@@ -181,7 +181,7 @@ public abstract class GuiBase extends GuiContainer {
 
     @Override
     protected final void keyTyped(char key, int code) {
-        if (code == 1) {
+        if (code == 1 || code == 18) {
             this.mc.thePlayer.closeScreen();
         } else {
             onKeyTyped(key, code);
