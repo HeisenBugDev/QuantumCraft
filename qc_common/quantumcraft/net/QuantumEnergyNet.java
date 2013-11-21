@@ -69,7 +69,7 @@ public class QuantumEnergyNet {
                 int id = w.getBlockId(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
                 Block b = Block.blocksList[id];
                 if (b instanceof IQEnergySink) {
-                    ((IQEnergySink) b).replaceSourceList(w, sink, new EnergySourceList(sources));
+                    ((IQEnergySink) b).replaceSourceList(w, sink, new EnergySourceList(sources2));
                 }
             }
         }
