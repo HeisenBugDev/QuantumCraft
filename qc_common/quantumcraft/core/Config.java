@@ -43,6 +43,7 @@ public class Config {
     public static String NameBlockIOT = "machineIOT";  // Block ION Tunneler
     public static String NameBlockIOS = "machineIOS";  // Block ION Scanner
     public static String NameBlockIOH = "machineIOH";  // Block ION Harvester
+    public static String NameBlockQCP = "machineQCP";  // Block Q Capacitor
     public static String NameBlockQFiberWire = "blockFiberWire";
     public static String NameBlockMCasing = "quantumMachineCasing";
     public static String NameTextureQOre = "oreQuantonium.ore";
@@ -83,6 +84,7 @@ public class Config {
     public static int BlockIOTID;
     public static int BlockIOSID;
     public static int BlockIOHID;
+    public static int BlockQCPID;
     public static int BlockFiberWireID;
     public static int BlockMCasingID;
     public static int IONForgeEnergyCost;
@@ -153,6 +155,7 @@ public class Config {
         BlockIOTID = config.get("Blocks", "BlockIONTunneler", 3611).getInt();
         BlockIOSID = config.get("Blocks", "BlockIONScanner", 3612).getInt();
         BlockIOHID = config.get("Blocks", "BlockIONHarvester", 3613).getInt();
+        BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3614).getInt();
 
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
         BlockMCasingID = config.get("Blocks", "BlockMachineCasing", 3590).getInt();
