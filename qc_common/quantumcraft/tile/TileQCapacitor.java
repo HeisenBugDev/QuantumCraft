@@ -1,5 +1,6 @@
 package quantumcraft.tile;
 
+import quantumcraft.net.Location;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
 public class TileQCapacitor extends TileEnergySink {
@@ -18,11 +19,23 @@ public class TileQCapacitor extends TileEnergySink {
 
     }
 
+    public int requestQuantumEnergy(Location l, int request) {
+        if (getCurrentEnergy() >= request) {
+            subtractEnergy(request);
+            return request;
+        } else {
+            int e = getCurrentEnergy();
+            subtractEnergy(request);
+            return e;
+        }
+    }
+
     @Override
     public void updateEntity() {
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
             this.addEnergy(this.requestPacket(100));
         }
+        System.out.println(this.getCurrentEnergy());
     }
 
 }
