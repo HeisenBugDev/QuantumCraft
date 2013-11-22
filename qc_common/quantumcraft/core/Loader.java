@@ -309,7 +309,7 @@ public class Loader {
         }
 
         if (Config.beta.getBoolean(false)) {
-
+            GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
             GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         }
     }
