@@ -13,6 +13,7 @@ import net.minecraft.util.Icon;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import quantumcraft.blocks.*;
+import quantumcraft.core.blocks.BlockQCapacitor;
 import quantumcraft.items.*;
 import quantumcraft.items.tools.ItemQuantumAxe;
 import quantumcraft.items.tools.ItemQuantumPick;
@@ -54,6 +55,7 @@ public class Loader {
     public static BlockQElectrifier BlockQElectrifier;
     public static BlockQEExtractor BlockQEExtractor;
     public static BlockQDeelectrifier BlockQDeelectrifier;
+    public static BlockQCapacitor BlockQCapacitor;
     public static BlockIONForge BlockIONForge;
     public static BlockIONTunneler BlockIONTunneler;
     public static BlockIONScanner BlockIONScanner;
@@ -227,11 +229,17 @@ public class Loader {
 
 
         BlockIONHarvester = (BlockIONHarvester) new BlockIONHarvester(Config.BlockIOHID).setCreativeTab(tabQuantumCraft)
+                // [bug] - @sammko, is this needed? The textures are being controlled elsewhere.
                 .setUnlocalizedName(Config.NameBlockIOH).setTextureName(Config.getTextureName(Config.NameBlockIOH));
         LanguageRegistry.addName(BlockIONHarvester, "ION Harvester");
         GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
 
         if (Config.beta.getBoolean(false)) {
+            BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID).setCreativeTab(tabQuantumCraft)
+                    .setUnlocalizedName(Config.NameBlockQCP).setTextureName(Config.getTextureName(Config.NameBlockQCP));
+            LanguageRegistry.addName(BlockQCapacitor, "Quantum Capacitor");
+            GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP);
+
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS)
