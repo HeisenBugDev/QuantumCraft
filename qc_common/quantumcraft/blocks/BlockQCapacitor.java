@@ -9,6 +9,7 @@ import quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import quantumcraft.net.IQEnergySource;
 import quantumcraft.net.Location;
 import quantumcraft.net.QuantumEnergyNet;
+import quantumcraft.tile.TileQCapacitor;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 
 public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource{
@@ -33,7 +34,7 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource{
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return null;
+        return new TileQCapacitor();
     }
 
     @Override
