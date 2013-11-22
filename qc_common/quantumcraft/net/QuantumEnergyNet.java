@@ -61,21 +61,11 @@ public class QuantumEnergyNet {
         @SuppressWarnings("UnnecessaryLocalVariable")
         public void addAllSourcesToAllSinks(World w) {
             for (Location sink : sinks) {
-                List<Location> sources2 = new ArrayList<Location>(sources);
-                List<Location> sourcesTmp = sources2;
-                for (Location source : sources2) {
-                    if (source.hashCode() == sink.hashCode()) {
-                        sourcesTmp.add(source);
-                        //sources2.remove(source);
-                    }
-                }
-                for (Location source : sourcesTmp){
-                    sources2.remove(source);
-                }
+
                 int id = w.getBlockId(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
                 Block b = Block.blocksList[id];
                 if (b instanceof IQEnergySink) {
-                    ((IQEnergySink) b).replaceSourceList(w, sink, new EnergySourceList(sources2));
+                    ((IQEnergySink) b).replaceSourceList(w, sink, new EnergySourceList(sources));
                 }
             }
         }
