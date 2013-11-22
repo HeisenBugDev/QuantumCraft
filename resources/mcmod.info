@@ -1,0 +1,12 @@
+{
+  "modinfoversion": 2,
+  "modlist": [{
+    "modid": "QuantumCraft",
+    "name": "QuantumCraft",
+    "description": "Yet another minecraft tech mod that ends with -craft.",
+    "version": "@VERSION@",
+    "mcversion": "1.6.2",
+    "authors": [ "hunterboerner", "sammko" ],
+    "credits": "Help from MrTJP and some of PowerCrystal's code and LordFokas for doing the energy net"
+  }]
+}
