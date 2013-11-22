@@ -228,28 +228,25 @@ public class Loader {
 
 
         BlockIONHarvester = (BlockIONHarvester) new BlockIONHarvester(Config.BlockIOHID).setCreativeTab(tabQuantumCraft)
-                // [bug] - @sammko, is this needed? The textures are being controlled elsewhere.
-                .setUnlocalizedName(Config.NameBlockIOH).setTextureName(Config.getTextureName(Config.NameBlockIOH));
+                .setUnlocalizedName(Config.NameBlockIOH);
         LanguageRegistry.addName(BlockIONHarvester, "ION Harvester");
         GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
 
         if (Config.beta.getBoolean(false)) {
             BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID).setCreativeTab(tabQuantumCraft)
-                    .setUnlocalizedName(Config.NameBlockQCP).setTextureName(Config.getTextureName(Config.NameBlockQCP));
+                    .setUnlocalizedName(Config.NameBlockQCP);
             LanguageRegistry.addName(BlockQCapacitor, "Quantum Capacitor");
             GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP);
 
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockQDS)
-                            .setTextureName(Config.getTextureName(Config.NameBlockQDS));
+                            .setUnlocalizedName(Config.NameBlockQDS);
             LanguageRegistry.addName(BlockQDislocator, "Quantum Dislocator");
             GameRegistry.registerBlock(BlockQDislocator, Config.NameBlockQDS);
 
             BlockQEnergySucker =
                     (BlockQEnergySucker) new BlockQEnergySucker(Config.BlockQESID).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockQES)
-                            .setTextureName(Config.getTextureName(Config.NameBlockQES));
+                            .setUnlocalizedName(Config.NameBlockQES);
             LanguageRegistry.addName(BlockQEnergySucker, "Quantum Energy Sucker");
             GameRegistry.registerBlock(BlockQEnergySucker, Config.NameBlockQES);
         }
