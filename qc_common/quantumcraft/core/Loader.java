@@ -172,6 +172,8 @@ public class Loader {
                 .setUnlocalizedName(Config.NameItemQuantumPlating)
                 .setTextureName(Config.getTextureName(Config.NameItemQuantumPlating));
         LanguageRegistry.addName(ItemQuantumPlating, "Quantum Plating");
+        // [feature] - watson is awesome
+        // [todo] - be even more awesome
     }
 
     public static void initBlocks() {
