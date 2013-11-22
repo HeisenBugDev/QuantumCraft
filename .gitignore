@@ -3,7 +3,8 @@
 *.iml
 *.iws
 
-
+.watsonrc
+.watsonresults
 
 *.class
 *.DS_STORE
