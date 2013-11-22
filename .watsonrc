@@ -9,9 +9,10 @@
  
 # Tags
 [tags]
-fix
 review
 todo
+feature
+bug
 
 
 # Ignores
