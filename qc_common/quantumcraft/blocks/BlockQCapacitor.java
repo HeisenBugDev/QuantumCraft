@@ -1,4 +1,4 @@
-package quantumcraft.core.blocks;
+package quantumcraft.blocks;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
