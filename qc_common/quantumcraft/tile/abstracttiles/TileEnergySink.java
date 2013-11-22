@@ -14,6 +14,7 @@ public abstract class TileEnergySink extends TileMachineBase {
 
     public void replaceSourceList(Location l, EnergySourceList sources) {
         sourceList = sources;
+        System.out.println("source list" + sourceList.size());
     }
 
     /**
