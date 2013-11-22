@@ -10,7 +10,6 @@ import quantumcraft.net.IQEnergySource;
 import quantumcraft.net.Location;
 import quantumcraft.net.QuantumEnergyNet;
 import quantumcraft.tile.TileQCapacitor;
-import quantumcraft.tile.abstracttiles.TileEnergySource;
 
 public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource{
 
@@ -39,7 +38,7 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource{
 
     @Override
     public int requestQuantumEnergy(World w, Location l, int request) {
-        return ((TileEnergySource) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
+        return ((TileQCapacitor) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
                 .requestQuantumEnergy(l, request);
     }
 }
