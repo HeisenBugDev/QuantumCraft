@@ -62,22 +62,29 @@ public class QuantumEnergyNet {
         public void addAllSourcesToAllSinks(World w) {
             for (Location sink : sinks) {
                 List<Location> sources2 = new ArrayList<Location>(sources);
-                List<Location> sourcesTmp = sources2;
+                List<Location> sourcesTmp = new ArrayList<Location>();
+                System.out.println(sources2);
                 for (Location source : sources2) {
-                    if (source.hashCode() == sink.hashCode()) {
+                    if (compareCoords(sink, source)) {
                         sourcesTmp.add(source);
                         //sources2.remove(source);
                     }
                 }
-                for (Location source : sourcesTmp){
+                for (Location source : sourcesTmp) {
                     sources2.remove(source);
                 }
+                System.out.println(sources2);
                 int id = w.getBlockId(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
                 Block b = Block.blocksList[id];
                 if (b instanceof IQEnergySink) {
                     ((IQEnergySink) b).replaceSourceList(w, sink, new EnergySourceList(sources2));
                 }
             }
+        }
+
+        private boolean compareCoords(Location sink, Location source) {
+            return source.getXCoord() == sink.getXCoord() && source.getYCoord() == sink.getYCoord() &&
+                    source.getZCoord() == sink.getZCoord();
         }
     }
 
