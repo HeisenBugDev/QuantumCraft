@@ -48,17 +48,13 @@ public class GuiQCapactior extends GuiBase {
 
     protected void drawPowerBar() {
         float flt = (float) tile.getCurrentEnergy() / (float) tile.getMaxEnergy();
-        int h = (int) (flt * 67);
-        int tarx = 213 + 3;
-        int tary = 40 + 11 + 8 + (67 - h);
+        int w = (int) (flt * 79);
+        int tarx = 20;
+        int tary = 20;
         bindImage(GuiTextures.GUI_POWER_BAR);
-        drawTexturedModalRect(213, 40, 8, 9, 17, 105);
-        drawTexturedModalRect(tarx, tary, 51, 9 + (67 - h), 10, h);
-        drawTexturedModalRect(tarx, 40 + 11 + 8, 33, 9, 10, 67);
-
-        if (buffHT[1]) {
-            drawTexturedModalRect(tarx, 40 + 11 + 8, 69, 9, 10, 67);
-        }
+        drawTexturedModalRect(tarx, tary, 85, 35, 81, 16);
+        drawTexturedModalRect(tarx, tary, 85, 13, 81, 16);
+        drawTexturedModalRect(tarx, tary, 86, 69, w, 14);
     }
 
     protected void drawForeground() {
