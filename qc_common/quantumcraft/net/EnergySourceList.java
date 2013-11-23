@@ -29,6 +29,10 @@ public class EnergySourceList {
         return retrieved;
     }
 
+    public int size(){
+        return sources.size();
+    }
+
     public void addSource(Location src) {
         sources.add(src);
     }
