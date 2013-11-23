@@ -5,9 +5,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import quantumcraft.core.Coords;
 import quantumcraft.net.IQEnergyComponent;
 import quantumcraft.net.Location;
 import quantumcraft.net.QuantumEnergyNet;
+import quantumcraft.tile.abstracttiles.TileMachineBase;
+import quantumcraft.util.BasicUtils;
 
 public abstract class BlockEnergyComponent extends BlockMachine implements IQEnergyComponent {
 
@@ -16,10 +19,14 @@ public abstract class BlockEnergyComponent extends BlockMachine implements IQEne
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z,
-                                EntityLivingBase entity, ItemStack stack) {
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
 
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
+        TileMachineBase tile =
+                (TileMachineBase) BasicUtils.getTileEntity(world, new Coords(x, y, z), TileMachineBase.class);
+        if (stack.getItemDamage() > 0) {
+            tile.setEnergy(tile.getMaxEnergy() - stack.getItemDamage());
+        }
         QuantumEnergyNet.onAddedLink(world, new Location(x, y, z));
 
     }
