@@ -22,7 +22,7 @@ public class GuiQCapactior extends GuiBase {
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
         addHoverHandler(new HoverHandler(0, this), 189, 9, 9, 9);
-        addHoverHandler(new HoverHandler(1, this), 206, 50, 12, 68);
+        addHoverHandler(new HoverHandler(1, this), 15, 40, 81, 16);
         addClickHandler(new ClickHandler(0), 189, 9, 9, 9);
     }
 
@@ -31,7 +31,7 @@ public class GuiQCapactior extends GuiBase {
             bindImage(GuiTextures.GUI_TOP_BG);
             drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_COLOR_STRIP);
-            GL11.glColor3f(.7F, .7F, .7F);
+            GL11.glColor3f(0F, .8F, .8F);
             drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_BOTTOM_BG);
             GL11.glColor3f(1F, 1F, 1F);
@@ -49,12 +49,12 @@ public class GuiQCapactior extends GuiBase {
     protected void drawPowerBar() {
         float flt = (float) tile.getCurrentEnergy() / (float) tile.getMaxEnergy();
         int w = (int) (flt * 79);
-        int tarx = 20;
-        int tary = 20;
+        int tarx = 23;
+        int tary = 48;
         bindImage(GuiTextures.GUI_POWER_BAR);
         drawTexturedModalRect(tarx, tary, 85, 35, 81, 16);
+        drawTexturedModalRect(tarx+1, tary+1, 86, 69, w, 14);
         drawTexturedModalRect(tarx, tary, 85, 13, 81, 16);
-        drawTexturedModalRect(tarx, tary, 86, 69, w, 14);
     }
 
     protected void drawForeground() {
@@ -67,6 +67,8 @@ public class GuiQCapactior extends GuiBase {
             drawPowerBar();
 
             this.fontRenderer.drawString("Quantum Capacitor", 15, 15, 0x000000);
+            this.fontRenderer.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 67, 0x333333);
+
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
             this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
 
