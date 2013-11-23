@@ -1,5 +1,6 @@
 package quantumcraft.tile;
 
+import net.minecraft.entity.player.EntityPlayer;
 import quantumcraft.net.Location;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
@@ -11,7 +12,7 @@ public class TileQCapacitor extends TileEnergySink {
 
     @Override
     public int guiID() {
-        return 0;
+        return 7;
     }
 
     @Override
@@ -38,6 +39,12 @@ public class TileQCapacitor extends TileEnergySink {
             this.addEnergy(this.requestPacket(100));
         }
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
+    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
+                .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
+                64.0D;
     }
 
 }
