@@ -12,8 +12,8 @@ public class ContainerQCapacitor extends ContainerUpdatedBase{
     public ContainerQCapacitor(InventoryPlayer ip, TileQCapacitor te) {
         super(ip);
         tile = te;
-        this.addSlotToContainer(new Slot(tile, 0, 40, 70));
-        this.addSlotToContainer(new Slot(tile, 1, 75, 70));
+        this.addSlotToContainer(new Slot(tile, 0, 40, 77));
+        this.addSlotToContainer(new Slot(tile, 1, 75, 77));
     }
 
     @Override

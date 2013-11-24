@@ -43,7 +43,7 @@ public class GuiQCapacitor extends GuiBase {
             bindImage(GuiTextures.GUI_DIVIDER_V);
             drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
             bindImage(GuiTextures.GUI_CAPACITOR_2SLOT);
-            drawQuad(20, 20, 0, 1, 0, 1, 53, 25);
+            drawQuad(30, 60, 0, 1, 0, 1, 53, 25);
         }
     }
 
