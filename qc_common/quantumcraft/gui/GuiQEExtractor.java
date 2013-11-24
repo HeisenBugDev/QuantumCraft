@@ -77,13 +77,7 @@ public class GuiQEExtractor extends GuiBase {
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
             this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
 
-            GL11.glPushMatrix();
-            GL11.glDisable(GL11.GL_LIGHTING);
-
             handleHover();
-
-            GL11.glEnable(GL11.GL_LIGHTING);
-            GL11.glPopMatrix();
         }
 
     }
