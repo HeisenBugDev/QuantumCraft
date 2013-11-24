@@ -10,6 +10,7 @@ import quantumcraft.core.interfaces.IQEnergizable;
 import quantumcraft.core.interfaces.IUpgradable;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.BasicUtils;
 
 public class TileQEInjector extends TileEnergySink implements
@@ -91,13 +92,6 @@ public class TileQEInjector extends TileEnergySink implements
         }
     }
 
-    public void process() {
-        inventory[1] = inventory[0].copy();
-        decrStackSize(0, 1);
-        inventory[1].getItem().setDamage(inventory[1], 1);
-        this.currentival = 0;
-    }
-
     @Override
     public String getInvName() {
         return "Quantum Energy Injector";
@@ -168,37 +162,7 @@ public class TileQEInjector extends TileEnergySink implements
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
             this.addEnergy(this.requestPacket(10));
         }
-        if (inventory[0] != null && inventory[1] == null) {
-            if (inventory[0].getItem() instanceof IQEnergizable) {
-                IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
-                int cycle = 5 + BasicUtils.overclockMultiplier(upgradeID);
-                if (e.getCurrentQEnergyBuffer(inventory[0]) <= (e.getMaxQEnergyValue(inventory[0]) - cycle)) {
-                    if (this.getCurrentEnergy() < cycle) {
-                        cycle = this.getCurrentEnergy();
-                    }
-                    if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) + cycle);
-                    }
-                } else {
-                    cycle = e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]);
-                    if (this.getCurrentEnergy() < cycle) {
-                        cycle = this.getCurrentEnergy();
-                    }
-                    if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) + cycle);
-                    }
-                }
-                inventory[0].getItem().setDamage(inventory[0],
-                        e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]));
-                this.subtractEnergy(cycle);
-
-                this.maxival = e.getMaxQEnergyValue(inventory[0]);
-                this.currentival = e.getCurrentQEnergyBuffer(inventory[0]);
-                if (e.getCurrentQEnergyBuffer(inventory[0]) == e.getMaxQEnergyValue(inventory[0])) {
-                    process();
-                }
-            }
-        }
+        injectPower(inventory, upgradeID, this.getCurrentEnergy(), true, this, this);
         if (updateNextTick) {
             // All nearby players need to be updated if the status of work
             // changes, or if heat runs out / starts up, in order to change
@@ -206,6 +170,42 @@ public class TileQEInjector extends TileEnergySink implements
             updateNextTick = false;
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+        }
+    }
+
+    public static void injectPower(ItemStack[] inventoryLocal, int[] upgradeIDLocal, int currentEnergy, boolean runProcess, TileMachineBase tile, ISidedInventory inv ) {
+        if (inventoryLocal[0] != null && inventoryLocal[1] == null) {
+            if (inventoryLocal[0].getItem() instanceof IQEnergizable) {
+                IQEnergizable e = ((IQEnergizable) inventoryLocal[0].getItem());
+                int cycle = 5 + BasicUtils.overclockMultiplier(upgradeIDLocal);
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) <= (e.getMaxQEnergyValue(inventoryLocal[0]) - cycle)) {
+                    if (currentEnergy < cycle) {
+                        cycle = currentEnergy;
+                    }
+                    if (cycle != 0) {
+                        e.setCurrentQEnergyBuffer(
+                                inventoryLocal[0], e.getCurrentQEnergyBuffer(inventoryLocal[0]) + cycle);
+                    }
+                } else {
+                    cycle = e.getMaxQEnergyValue(inventoryLocal[0]) - e.getCurrentQEnergyBuffer(inventoryLocal[0]);
+                    if (currentEnergy < cycle) {
+                        cycle = currentEnergy;
+                    }
+                    if (cycle != 0) {
+                        e.setCurrentQEnergyBuffer(
+                                inventoryLocal[0], e.getCurrentQEnergyBuffer(inventoryLocal[0]) + cycle);
+                    }
+                }
+                inventoryLocal[0].getItem().setDamage(inventoryLocal[0],
+                        e.getMaxQEnergyValue(inventoryLocal[0]) - e.getCurrentQEnergyBuffer(inventoryLocal[0]));
+                tile.subtractEnergy(cycle);
+
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue(inventoryLocal[0]) && runProcess) {
+                    inventoryLocal[1] = inventoryLocal[0].copy();
+                    inv.decrStackSize(0, 1);
+                    inventoryLocal[1].getItem().setDamage(inventoryLocal[1], 1);
+                }
+            }
         }
     }
 
