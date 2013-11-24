@@ -40,6 +40,7 @@ public class QuantumEnergyNet {
         public List<Location> getList() {
             return sources;
         }
+
     }
 
     private static class ChangedLinkDG implements IDataGatherer {
@@ -61,10 +62,15 @@ public class QuantumEnergyNet {
         public void addAllSourcesToAllSinks(World w) {
             for (Location sink : sinks) {
                 List<Location> sources2 = new ArrayList<Location>(sources);
+                List<Location> sourcesTmp = new ArrayList<Location>();
                 for (Location source : sources2) {
-                    if (source.hashCode() == sink.hashCode()) {
-                        sources2.remove(source);
+                    if (sink.compareCoords(source)) {
+                        sourcesTmp.add(source);
+                        //sources2.remove(source);
                     }
+                }
+                for (Location source : sourcesTmp) {
+                    sources2.remove(source);
                 }
                 int id = w.getBlockId(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
                 Block b = Block.blocksList[id];
@@ -73,6 +79,7 @@ public class QuantumEnergyNet {
                 }
             }
         }
+
     }
 
     public static void propagateSourceLocation(World w, Location l) {

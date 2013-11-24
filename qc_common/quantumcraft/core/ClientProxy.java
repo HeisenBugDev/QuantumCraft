@@ -31,6 +31,10 @@ public class ClientProxy extends CommonProxy {
             case 6:
                 TileIONForge te6 = (TileIONForge) world.getBlockTileEntity(x, y, z);
                 return new GuiIONForge(new ContainerIONForge(player.inventory, te6));
+            case 7:
+                TileQCapacitor te7 = (TileQCapacitor) world.getBlockTileEntity(x,y,z);
+                return new GuiQCapacitor(new ContainerQCapacitor(player.inventory, te7));
+
         }
         return null;
 

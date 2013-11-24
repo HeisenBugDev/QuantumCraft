@@ -26,6 +26,12 @@ public class SimpleInventory implements IInventory {
     private final LinkedList<ISimpleInventoryListener> _listener = new LinkedList<ISimpleInventoryListener>();
     private ItemStack[] _contents;
 
+    public SimpleInventory(ItemStack[] inv, String name, int stackLimit) {
+        _contents = inv;
+        _name = name;
+        _stackLimit = stackLimit;
+    }
+
     public SimpleInventory(int size, String name, int stackLimit) {
         this(size, name, stackLimit, null);
     }

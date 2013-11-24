@@ -1,6 +1,7 @@
 package quantumcraft.net;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 
 public class Location {
     private int x, y, z;
@@ -9,6 +10,12 @@ public class Location {
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    public Location(TileEntity tile){
+        this.x = tile.xCoord;
+        this.y = tile.yCoord;
+        this.z = tile.zCoord;
     }
 
     /**
@@ -60,5 +67,10 @@ public class Location {
             return (x == l.x && y == l.y && z == l.z);
         }
         return false;
+    }
+
+    public boolean compareCoords(Location source) {
+        return source.getXCoord() == getXCoord() && source.getYCoord() == getYCoord() &&
+                source.getZCoord() == getZCoord();
     }
 }

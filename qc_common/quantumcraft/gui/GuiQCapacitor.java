@@ -3,17 +3,16 @@ package quantumcraft.gui;
 import net.minecraft.inventory.Container;
 import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
-import quantumcraft.inventory.ContainerQDeenergizer;
-import quantumcraft.tile.TileQDeenergizer;
-import quantumcraft.util.BasicUtils;
+import quantumcraft.inventory.ContainerQCapacitor;
+import quantumcraft.tile.TileQCapacitor;
 
-public class GuiQDeenergizer extends GuiBase {
+public class GuiQCapacitor extends GuiBase {
 
-    private TileQDeenergizer tile;
+    private TileQCapacitor tile;
 
-    public GuiQDeenergizer(Container par1Container) {
-        super(par1Container, 200, 170);
-        tile = ((ContainerQDeenergizer) par1Container).tile;
+    public GuiQCapacitor(Container container) {
+        super(container, 200, 170);
+        tile = ((ContainerQCapacitor) container).tile;
     }
 
     @Override
@@ -23,7 +22,7 @@ public class GuiQDeenergizer extends GuiBase {
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
         addHoverHandler(new HoverHandler(0, this), 189, 9, 9, 9);
-        addHoverHandler(new HoverHandler(1, this), 206, 50, 12, 68);
+        addHoverHandler(new HoverHandler(1, this), 15, 40, 81, 16);
         addClickHandler(new ClickHandler(0), 189, 9, 9, 9);
     }
 
@@ -32,7 +31,7 @@ public class GuiQDeenergizer extends GuiBase {
             bindImage(GuiTextures.GUI_TOP_BG);
             drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_COLOR_STRIP);
-            GL11.glColor3f(.7F, .7F, .7F);
+            GL11.glColor3f(0F, .8F, .8F);
             drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_BOTTOM_BG);
             GL11.glColor3f(1F, 1F, 1F);
@@ -41,36 +40,23 @@ public class GuiQDeenergizer extends GuiBase {
             drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
             bindImage(GuiTextures.GUI_ARMOR_BG);
             drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
-            bindImage(GuiTextures.GUI_2SLOT_BG);
-            drawQuad(30, 50, 0, 1, 0, 1, 53, 18);
             bindImage(GuiTextures.GUI_DIVIDER_V);
             drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
+            bindImage(GuiTextures.GUI_CAPACITOR_2SLOT);
+            drawQuad(30, 60, 0, 1, 0, 1, 53, 25);
         }
     }
 
-    protected void drawProgressBar() {
-        int x = 33;
-        int y = 70;
-        int width = 47-(int)((float) tile.QEnergyItemBuffer / (float) tile.lastItemValue*47F);
-        if (width == 47) {width = 0;}
-        int height = 5;
-        bindImage(GuiTextures.GUI_PROGRESS_BELOW);
-        drawQuad(x, y, 0, (float)width/47F, 0, (float)height/5F, width, height);
-    }
 
     protected void drawPowerBar() {
         float flt = (float) tile.getCurrentEnergy() / (float) tile.getMaxEnergy();
-        int h = (int) (flt * 67);
-        int tarx = 213 + 3;
-        int tary = 40 + 11 + 8 + (67 - h);
+        int w = (int) (flt * 79);
+        int tarx = 23;
+        int tary = 44;
         bindImage(GuiTextures.GUI_POWER_BAR);
-        drawTexturedModalRect(213, 40, 8, 9, 17, 105);
-        drawTexturedModalRect(tarx, tary, 51, 9 + (67 - h), 10, h);
-        drawTexturedModalRect(tarx, 40 + 11 + 8, 33, 9, 10, 67);
-
-        if (buffHT[1]) {
-            drawTexturedModalRect(tarx, 40 + 11 + 8, 69, 9, 10, 67);
-        }
+        drawTexturedModalRect(tarx, tary, 85, 35, 81, 16);
+        drawTexturedModalRect(tarx+1, tary+1, 86, 69, w, 14);
+        drawTexturedModalRect(tarx, tary, 85, 13, 81, 16);
     }
 
     protected void drawForeground() {
@@ -79,11 +65,11 @@ public class GuiQDeenergizer extends GuiBase {
             GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
             drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
             GL11.glColor3f(1F, 1F, 1F);
-
             drawPowerBar();
-            drawProgressBar();
 
-            this.fontRenderer.drawString("Quantum De-Energizer", 15, 15, 0x000000);
+            this.fontRenderer.drawString("Quantum Capacitor", 15, 15, 0x000000);
+            this.fontRenderer.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 63, 0x333333);
+
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
             this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
 
@@ -101,7 +87,7 @@ public class GuiQDeenergizer extends GuiBase {
         }
     }
 
-
+    @Override
     protected void handleClick(int buffCT) {
         if (buffCT > -1) {
             switch (buffCT) {
@@ -111,7 +97,4 @@ public class GuiQDeenergizer extends GuiBase {
             buffCT = -1;
         }
     }
-
-
-
 }

@@ -19,7 +19,6 @@ public class TileQEInjector extends TileEnergySink implements
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
     public int upgradeID[] = {0, 0, 0, 0};
-    private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
@@ -90,9 +89,6 @@ public class TileQEInjector extends TileEnergySink implements
                 && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
-
-        _inv.setInventorySlotContents(i, itemstack);
-
     }
 
     public void process() {
@@ -158,7 +154,8 @@ public class TileQEInjector extends TileEnergySink implements
 
     @Override
     public void onBlockBreak() {
-        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
+        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 1);
+        tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
         dropUpgrades();
     }
 

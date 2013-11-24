@@ -6,6 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -16,6 +18,9 @@ import quantumcraft.core.interfaces.IUpgradable;
 import quantumcraft.core.interfaces.IUpgrade;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.BasicUtils;
+import quantumcraft.util.ItemEnergyUtils;
+
+import java.util.List;
 
 public abstract class BlockMachine extends BlockRotatable {
     protected Icon iconFront;
@@ -33,7 +38,6 @@ public abstract class BlockMachine extends BlockRotatable {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-
         TileMachineBase tile =
                 (TileMachineBase) BasicUtils.getTileEntity(world, new Coords(x, y, z), TileMachineBase.class);
         if (tile != null) {
@@ -43,6 +47,8 @@ public abstract class BlockMachine extends BlockRotatable {
         world.removeBlockTileEntity(x, y, z);
     }
 
+
+
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
@@ -50,7 +56,12 @@ public abstract class BlockMachine extends BlockRotatable {
 
         //PLAYER IS SNEAKING, SHOULD I REMOVE THE BLOCK?
         if (entityplayer.isSneaking() && BasicUtils.isHoldingWrench(entityplayer)) {
-            this.dropBlockAsItem(world, x, y, z, 1, 1);
+            TileMachineBase tile =
+                    (TileMachineBase) BasicUtils.getTileEntity(world, new Coords(x, y, z), TileMachineBase.class);
+            ItemStack dropItem = new ItemStack(this);
+            dropItem.setItemDamage(tile.getMaxEnergy() - tile.getCurrentEnergy());
+            dropItem.getItem().setMaxDamage(tile.getMaxEnergy() + 1);
+            this.dropBlockAsItem_do(world, x, y, z, dropItem);
             this.removeBlockByPlayer(world, entityplayer, x, y, z);
             return true;
         }
@@ -113,8 +124,7 @@ public abstract class BlockMachine extends BlockRotatable {
     public abstract void registerIcons(IconRegister iconRegister);
 
     @Override
-    public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
-                                int side) {
+    public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side) {
         TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
         //if (this.getTileEntity().getClass().isInstance(te)) {
         if (te instanceof TileMachineBase) {
