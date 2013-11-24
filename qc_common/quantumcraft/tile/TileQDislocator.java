@@ -12,7 +12,6 @@ import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 public class TileQDislocator extends TileMachineBase implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
-    private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
@@ -82,9 +81,6 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
                 && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
-
-        _inv.setInventorySlotContents(i, itemstack);
-
     }
 
     @Override
@@ -137,7 +133,8 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
 
     @Override
     public void onBlockBreak() {
-        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
+        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 64);
+        tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
     public boolean areCardsIn() {
