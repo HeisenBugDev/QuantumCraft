@@ -125,10 +125,6 @@ public abstract class GuiBase extends GuiContainer {
             return buff.toString();
         }
     }
-
-    int targetX;
-    int targetY;
-
     public boolean renderContents = true;
 
     protected GuiBase(Container container, int x, int y) {
