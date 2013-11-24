@@ -64,6 +64,8 @@ public class CraftingManager {
         GameRegistry
                 .addShapelessRecipe(new ItemStack(Loader.BlockQEExtractor, 1), new ItemStack(Loader.BlockQEInjector));
 
+        // [todo] - Capacitor recipe
+
         if (Loader.hasBuildCraft()) {
             // ELECTRIFIER
             GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQElectrifier, 1), "cxc", "kmk", "ppp", 'p',
