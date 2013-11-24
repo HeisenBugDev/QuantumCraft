@@ -54,11 +54,15 @@ public class TileQCapacitor extends TileEnergySink implements
         if (inventory[0] != null) {
             if (inventory[0].getItem() instanceof IQEnergizable) {
                 IQEnergizable item = ((IQEnergizable) inventory[0].getItem());
-                if ((item.getMaxQEnergyValue(inventory[0]) - item.getCurrentQEnergyBuffer(inventory[0])) >= 10) {
+                if ((item.getMaxQEnergyValue(inventory[0]) - item.getCurrentQEnergyBuffer(inventory[0])) >= 10
+                        && this.getCurrentEnergy() >= 10) {
                     item.setCurrentQEnergyBuffer(inventory[0], item.getCurrentQEnergyBuffer(inventory[0]) + 10);
+                    this.subtractEnergy(10);
                 } else
-                if ((item.getMaxQEnergyValue(inventory[0]) - item.getCurrentQEnergyBuffer(inventory[0])) >= 1) {
+                if ((item.getMaxQEnergyValue(inventory[0]) - item.getCurrentQEnergyBuffer(inventory[0])) >= 1
+                        && this.getCurrentEnergy() >= 1) {
                     item.setCurrentQEnergyBuffer(inventory[0], item.getCurrentQEnergyBuffer(inventory[0]) + 1);
+                    this.subtractEnergy(1);
                 }
             }
         }
