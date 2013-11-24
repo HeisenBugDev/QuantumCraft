@@ -18,7 +18,6 @@ public class TileQDeenergizer extends TileEnergySource implements
     public ItemStack[] inventory = new ItemStack[2];
     int processTime = -1;
     QDERecipe r;
-    private SimpleInventory _inv = new SimpleInventory(2, "qde", 64);
 
     @Override
     public int getSizeInventory() {
@@ -37,7 +36,8 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public void onBlockBreak() {
-        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
+        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 64);
+        tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
     @Override
@@ -73,8 +73,6 @@ public class TileQDeenergizer extends TileEnergySource implements
         }
         this.addEnergy(r.getEnergyValue());
         this.decrStackSize(0, 1);
-        _inv.setInventorySlotContents(0, inventory[0]);
-        _inv.setInventorySlotContents(1, inventory[1]);
     }
 
     private boolean canProcess() {
@@ -141,8 +139,6 @@ public class TileQDeenergizer extends TileEnergySource implements
                 && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
-
-        _inv.setInventorySlotContents(i, itemstack);
     }
 
     @Override
