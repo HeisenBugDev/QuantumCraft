@@ -8,9 +8,10 @@ import net.minecraft.nbt.NBTTagList;
 import quantumcraft.core.interfaces.IQEnergizable;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
+import quantumcraft.tile.abstracttiles.TileMachineBase;
 
-public class TileQEExtractor extends TileEnergySource implements
-        ISidedInventory {
+public class TileQEExtractor extends TileEnergySource implements ISidedInventory {
+    // [review] - Is this needed?
     public int currentival = 0;
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
@@ -79,16 +80,9 @@ public class TileQEExtractor extends TileEnergySource implements
     public void setInventorySlotContents(int i, ItemStack itemstack) {
         this.inventory[i] = itemstack;
 
-        if (itemstack != null
-                && itemstack.stackSize > this.getInventoryStackLimit()) {
+        if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
-    }
-
-    public void process() {
-        inventory[1] = inventory[0].copy();
-        decrStackSize(0, 1);
-        this.currentival = 0;
     }
 
     @Override
@@ -110,10 +104,9 @@ public class TileQEExtractor extends TileEnergySource implements
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-                this.zCoord) == this && entityplayer.getDistanceSq(
-                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-                (double) this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
+                .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
+                64.0D;
     }
 
     @Override
@@ -146,29 +139,7 @@ public class TileQEExtractor extends TileEnergySource implements
         if (inventory[0] == null && currentival != 0) {
             currentival = 0;
         }
-        if (inventory[0] != null && inventory[1] == null) {
-            if (inventory[0].getItem() instanceof IQEnergizable) {
-                IQEnergizable e = ((IQEnergizable) inventory[0].getItem());
-                int cycle = 5;
-
-                if (!(this.getCurrentEnergy() + cycle <= this.getMaxEnergy())) {
-                    cycle = this.getMaxEnergy() - this.getCurrentEnergy();
-                }
-                if (e.getCurrentQEnergyBuffer(inventory[0]) < cycle) {
-                    cycle = e.getCurrentQEnergyBuffer(inventory[0]);
-                }
-                e.setCurrentQEnergyBuffer(inventory[0], e.getCurrentQEnergyBuffer(inventory[0]) - cycle);
-                inventory[0].getItem().setDamage(inventory[0],
-                        e.getMaxQEnergyValue(inventory[0]) - e.getCurrentQEnergyBuffer(inventory[0]));
-                this.addEnergy(cycle);
-
-                this.maxival = e.getMaxQEnergyValue(inventory[0]);
-                this.currentival = e.getCurrentQEnergyBuffer(inventory[0]);
-                if (e.getCurrentQEnergyBuffer(inventory[0]) == 0) {
-                    process();
-                }
-            }
-        }
+        extractPower(inventory, this, this, true, 0);
         if (updateNextTick) {
             // All nearby players need to be updated if the status of work
             // changes, or if heat runs out / starts up, in order to change
@@ -179,6 +150,36 @@ public class TileQEExtractor extends TileEnergySource implements
         }
     }
 
+    public static void extractPower(ItemStack[] inventoryLocal, TileMachineBase tile, ISidedInventory inv,
+                                    boolean runProcess, int inputSlot) {
+        if (inventoryLocal[inputSlot] != null) {
+            if (inventoryLocal[inputSlot].getItem() instanceof IQEnergizable) {
+                IQEnergizable e = ((IQEnergizable) inventoryLocal[inputSlot].getItem());
+                int cycle = 5;
+
+                if (!(tile.getCurrentEnergy() + cycle <= tile.getMaxEnergy())) {
+                    cycle = tile.getMaxEnergy() - tile.getCurrentEnergy();
+                }
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]) < cycle) {
+                    cycle = e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]);
+                }
+                e.setCurrentQEnergyBuffer(inventoryLocal[inputSlot],
+                        e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]) - cycle);
+                inventoryLocal[inputSlot].getItem().setDamage(inventoryLocal[inputSlot],
+                        e.getMaxQEnergyValue(inventoryLocal[inputSlot]) -
+                                e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]));
+                tile.addEnergy(cycle);
+
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]) == 0 && runProcess &&
+                        inventoryLocal[1] == null) {
+                    inventoryLocal[1] = inventoryLocal[inputSlot].copy();
+                    inv.decrStackSize(0, 1);
+                }
+            }
+
+        }
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
@@ -186,13 +187,11 @@ public class TileQEExtractor extends TileEnergySource implements
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-                    .tagAt(i);
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.inventory.length) {
-                this.inventory[b0] = ItemStack
-                        .loadItemStackFromNBT(nbttagcompound1);
+                this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
         this.currentival = par1NBTTagCompound.getInteger("currentival");
