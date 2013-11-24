@@ -232,12 +232,12 @@ public class Loader {
         LanguageRegistry.addName(BlockIONHarvester, "ION Harvester");
         GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
 
-        if (Config.beta.getBoolean(false)) {
-            BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID).setCreativeTab(tabQuantumCraft)
-                    .setUnlocalizedName(Config.NameBlockQCP);
-            LanguageRegistry.addName(BlockQCapacitor, "Quantum Capacitor");
-            GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP);
+        BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID).setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName(Config.NameBlockQCP);
+        LanguageRegistry.addName(BlockQCapacitor, "Quantum Capacitor");
+        GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP);
 
+        if (Config.beta.getBoolean(false)) {
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS);
@@ -299,6 +299,7 @@ public class Loader {
         GameRegistry.registerTileEntity(TileIONHarvester.class, "IONHarvesterTE");
         GameRegistry.registerTileEntity(TileIONScanner.class, "IONScannerTE");
         GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
+        GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
@@ -306,7 +307,6 @@ public class Loader {
         }
 
         if (Config.beta.getBoolean(false)) {
-            GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
             GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         }
     }
