@@ -163,7 +163,7 @@ public class TileQEInjector extends TileEnergySink implements
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
             this.addEnergy(this.requestPacket(10));
         }
-        injectPower(inventory, upgradeID, this.getCurrentEnergy(), true, this, this);
+        injectPower(inventory, upgradeID, true, this, this);
         if (updateNextTick) {
             // All nearby players need to be updated if the status of work
             // changes, or if heat runs out / starts up, in order to change
@@ -174,14 +174,14 @@ public class TileQEInjector extends TileEnergySink implements
         }
     }
 
-    public static void injectPower(ItemStack[] inventoryLocal, int[] upgradeIDLocal, int currentEnergy, boolean runProcess, TileMachineBase tile, ISidedInventory inv ) {
+    public static void injectPower(ItemStack[] inventoryLocal, int[] upgradeIDLocal, boolean runProcess, TileMachineBase tile, ISidedInventory inv) {
         if (inventoryLocal[0] != null && inventoryLocal[1] == null) {
             if (inventoryLocal[0].getItem() instanceof IQEnergizable) {
                 IQEnergizable e = ((IQEnergizable) inventoryLocal[0].getItem());
                 int cycle = 5 + BasicUtils.overclockMultiplier(upgradeIDLocal);
                 if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) <= (e.getMaxQEnergyValue(inventoryLocal[0]) - cycle)) {
-                    if (currentEnergy < cycle) {
-                        cycle = currentEnergy;
+                    if (tile.getCurrentEnergy() < cycle) {
+                        cycle = tile.getCurrentEnergy();
                     }
                     if (cycle != 0) {
                         e.setCurrentQEnergyBuffer(
@@ -189,8 +189,8 @@ public class TileQEInjector extends TileEnergySink implements
                     }
                 } else {
                     cycle = e.getMaxQEnergyValue(inventoryLocal[0]) - e.getCurrentQEnergyBuffer(inventoryLocal[0]);
-                    if (currentEnergy < cycle) {
-                        cycle = currentEnergy;
+                    if (tile.getCurrentEnergy() < cycle) {
+                        cycle = tile.getCurrentEnergy();
                     }
                     if (cycle != 0) {
                         e.setCurrentQEnergyBuffer(
@@ -200,6 +200,7 @@ public class TileQEInjector extends TileEnergySink implements
                 inventoryLocal[0].getItem().setDamage(inventoryLocal[0],
                         e.getMaxQEnergyValue(inventoryLocal[0]) - e.getCurrentQEnergyBuffer(inventoryLocal[0]));
                 tile.subtractEnergy(cycle);
+                tile.updateNextTick = true;
 
                 if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue(inventoryLocal[0]) && runProcess) {
                     inventoryLocal[1] = inventoryLocal[0].copy();
