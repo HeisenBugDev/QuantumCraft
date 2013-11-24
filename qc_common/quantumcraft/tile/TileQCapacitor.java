@@ -3,13 +3,11 @@ package quantumcraft.tile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import quantumcraft.core.interfaces.IQEnergizable;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.net.Location;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
-public class TileQCapacitor extends TileEnergySink implements
-        ISidedInventory {
+public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
     public int upgradeID[] = {0, 0, 0, 0};
 
@@ -46,29 +44,13 @@ public class TileQCapacitor extends TileEnergySink implements
     public void updateEntity() {
         if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 100) {
             this.addEnergy(this.requestPacket(100));
-        } else
-        if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 10) {
+        } else if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 10) {
             this.addEnergy(this.requestPacket(10));
-        } else
-        if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 1) {
+        } else if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 1) {
             this.addEnergy(this.requestPacket(1));
         }
         TileQEInjector.injectPower(inventory, upgradeID, false, this, this);
-        if (inventory[1] != null) {
-            if (inventory[1].getItem() instanceof IQEnergizable) {
-                IQEnergizable item = ((IQEnergizable) inventory[1].getItem());
-                if (item.getCurrentQEnergyBuffer(inventory[1]) >= 10
-                        && (this.getMaxEnergy() - this.getCurrentEnergy()) >= 10) {
-                    item.setCurrentQEnergyBuffer(inventory[1], item.getCurrentQEnergyBuffer(inventory[1]) - 10);
-                    this.addEnergy(10);
-                } else
-                if (item.getCurrentQEnergyBuffer(inventory[1]) >= 1
-                        && (this.getMaxEnergy() - this.getCurrentEnergy()) >= 1) {
-                    item.setCurrentQEnergyBuffer(inventory[1], item.getCurrentQEnergyBuffer(inventory[1]) - 1);
-                    this.addEnergy(1);
-                }
-            }
-        }
+        TileQEExtractor.extractPower(inventory, this, this, false, 1);
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
@@ -120,8 +102,7 @@ public class TileQCapacitor extends TileEnergySink implements
     public void setInventorySlotContents(int i, ItemStack itemstack) {
         this.inventory[i] = itemstack;
 
-        if (itemstack != null
-                && itemstack.stackSize > this.getInventoryStackLimit()) {
+        if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
     }
@@ -148,10 +129,12 @@ public class TileQCapacitor extends TileEnergySink implements
     }
 
     @Override
-    public void openChest() {}
+    public void openChest() {
+    }
 
     @Override
-    public void closeChest() {}
+    public void closeChest() {
+    }
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
