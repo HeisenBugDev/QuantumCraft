@@ -66,6 +66,21 @@ public class TileQCapacitor extends TileEnergySink implements
                 }
             }
         }
+        if (inventory[1] != null) {
+            if (inventory[1].getItem() instanceof IQEnergizable) {
+                IQEnergizable item = ((IQEnergizable) inventory[1].getItem());
+                if (item.getCurrentQEnergyBuffer(inventory[1]) >= 10
+                        && (this.getMaxEnergy() - this.getCurrentEnergy()) >= 10) {
+                    item.setCurrentQEnergyBuffer(inventory[1], item.getCurrentQEnergyBuffer(inventory[1]) - 10);
+                    this.addEnergy(10);
+                } else
+                if (item.getCurrentQEnergyBuffer(inventory[1]) >= 1
+                        && (this.getMaxEnergy() - this.getCurrentEnergy()) >= 1) {
+                    item.setCurrentQEnergyBuffer(inventory[1], item.getCurrentQEnergyBuffer(inventory[1]) - 1);
+                    this.addEnergy(1);
+                }
+            }
+        }
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
