@@ -14,7 +14,6 @@ public class TileQEExtractor extends TileEnergySource implements
     public int currentival = 0;
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
-    private SimpleInventory _inv = new SimpleInventory(2, "qei", 64);
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
@@ -45,7 +44,6 @@ public class TileQEExtractor extends TileEnergySource implements
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
-        _inv.decrStackSize(i, j);
         if (this.inventory[i] != null) {
             ItemStack itemstack;
 
@@ -85,9 +83,6 @@ public class TileQEExtractor extends TileEnergySource implements
                 && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
-
-        _inv.setInventorySlotContents(i, itemstack);
-
     }
 
     public void process() {
@@ -141,7 +136,8 @@ public class TileQEExtractor extends TileEnergySource implements
 
     @Override
     public void onBlockBreak() {
-        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
+        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 64);
+        tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
