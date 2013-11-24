@@ -5,8 +5,10 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import quantumcraft.core.interfaces.IQEnergizable;
 import quantumcraft.core.interfaces.IUpgradable;
+import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.net.Location;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.util.BasicUtils;
 
 public class TileQCapacitor extends TileEnergySink implements
         ISidedInventory {
@@ -24,7 +26,8 @@ public class TileQCapacitor extends TileEnergySink implements
 
     @Override
     public void onBlockBreak() {
-
+        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 1);
+        tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
     public int requestQuantumEnergy(Location l, int request) {
