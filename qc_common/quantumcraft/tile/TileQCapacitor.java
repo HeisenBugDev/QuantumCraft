@@ -1,10 +1,17 @@
 package quantumcraft.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
+import quantumcraft.core.interfaces.IQEnergizable;
+import quantumcraft.core.interfaces.IUpgradable;
 import quantumcraft.net.Location;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
-public class TileQCapacitor extends TileEnergySink {
+public class TileQCapacitor extends TileEnergySink implements
+        ISidedInventory {
+    public ItemStack[] inventory = new ItemStack[2];
+
     @Override
     public int getMaxEnergy() {
         return 100000;
@@ -44,7 +51,87 @@ public class TileQCapacitor extends TileEnergySink {
         if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 1) {
             this.addEnergy(this.requestPacket(1));
         }
+        if (inventory[0] != null) {
+            if (inventory[0].getItem() instanceof IQEnergizable) {
+                IQEnergizable item = ((IQEnergizable) inventory[0].getItem());
+                if ((item.getMaxQEnergyValue(inventory[0]) - item.getCurrentQEnergyBuffer(inventory[0])) >= 10) {
+                    item.setCurrentQEnergyBuffer(inventory[0], item.getCurrentQEnergyBuffer(inventory[0]) + 10);
+                } else
+                if ((item.getMaxQEnergyValue(inventory[0]) - item.getCurrentQEnergyBuffer(inventory[0])) >= 1) {
+                    item.setCurrentQEnergyBuffer(inventory[0], item.getCurrentQEnergyBuffer(inventory[0]) + 1);
+                }
+            }
+        }
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
+    @Override
+    public int getSizeInventory() {
+        return inventory.length;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int i) {
+        return inventory[i];
+    }
+
+    @Override
+    public ItemStack decrStackSize(int i, int j) {
+        if (this.inventory[i] != null) {
+            ItemStack itemstack;
+
+            if (this.inventory[i].stackSize <= j) {
+                itemstack = this.inventory[i];
+                this.inventory[i] = null;
+                return itemstack;
+            } else {
+                itemstack = this.inventory[i].splitStack(j);
+
+                if (this.inventory[i].stackSize == 0) {
+                    this.inventory[i] = null;
+                }
+
+                return itemstack;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int i) {
+        if (this.inventory[i] != null) {
+            ItemStack itemstack = this.inventory[i];
+            this.inventory[i] = null;
+            return itemstack;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void setInventorySlotContents(int i, ItemStack itemstack) {
+        this.inventory[i] = itemstack;
+
+        if (itemstack != null
+                && itemstack.stackSize > this.getInventoryStackLimit()) {
+            itemstack.stackSize = this.getInventoryStackLimit();
+        }
+    }
+
+    @Override
+    public String getInvName() {
+        return "Quantum Capacitor";
+    }
+
+    @Override
+    public boolean isInvNameLocalized() {
+        return false;
+    }
+
+    @Override
+    public int getInventoryStackLimit() {
+        return 1;
     }
 
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
@@ -53,4 +140,29 @@ public class TileQCapacitor extends TileEnergySink {
                 64.0D;
     }
 
+    @Override
+    public void openChest() {}
+
+    @Override
+    public void closeChest() {}
+
+    @Override
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+        return true;
+    }
+
+    @Override
+    public int[] getAccessibleSlotsFromSide(int var1) {
+        return new int[0];
+    }
+
+    @Override
+    public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+        return false;
+    }
+
+    @Override
+    public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+        return false;
+    }
 }
