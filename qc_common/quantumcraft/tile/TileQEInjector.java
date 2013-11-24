@@ -205,6 +205,8 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
                     inventoryLocal[1] = inventoryLocal[0].copy();
                     inv.decrStackSize(0, 1);
                     inventoryLocal[1].getItem().setDamage(inventoryLocal[1], 1);
+                } else {
+                    inventoryLocal[0].getItem().setDamage(inventoryLocal[0], 1);
                 }
             }
         }
