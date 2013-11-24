@@ -14,7 +14,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     public ItemStack[] inventory = new ItemStack[4];
     public int progress = 0;
-    private SimpleInventory _inv = new SimpleInventory(4, "iof", 64);
     private int processTime = 0;
 
     @Override
@@ -29,7 +28,8 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public void onBlockBreak() {
-        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
+        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 64);
+        tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
     /**
@@ -125,8 +125,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
             inventory[output].stackSize++;
         }
         this.decrStackSize(input, 1);
-        _inv.setInventorySlotContents(input, inventory[input]);
-        _inv.setInventorySlotContents(output, inventory[output]);
     }
 
     /**
@@ -206,7 +204,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
                 && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
-        _inv.setInventorySlotContents(i, itemstack);
     }
 
     @Override
