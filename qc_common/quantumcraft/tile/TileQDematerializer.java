@@ -19,7 +19,6 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     public int upgradeID[] = {0, 0, 0, 0};
     Random rand = new Random();
     public int currentProcessTime = 0;
-    private SimpleInventory _inv = new SimpleInventory(1, "qdm", 64);
 
     @Override
     public int getMaxEnergy() {
@@ -55,8 +54,6 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
                 && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
-
-        _inv.setInventorySlotContents(i, itemstack);
     }
 
     @Override
@@ -156,8 +153,9 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void onBlockBreak() {
+        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 64);
+        tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
         dropUpgrades();
-        _inv.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
     @Override
