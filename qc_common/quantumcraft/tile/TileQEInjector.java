@@ -19,6 +19,7 @@ public class TileQEInjector extends TileEnergySink implements
     public int currentival = 0;
     public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
+    // [review] - Refactor to super class
     public int upgradeID[] = {0, 0, 0, 0};
 
     @Override
