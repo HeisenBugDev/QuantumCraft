@@ -92,7 +92,6 @@ public class TileQEInjector extends TileEnergySink implements
         }
 
         _inv.setInventorySlotContents(i, itemstack);
-
     }
 
     public void process() {
