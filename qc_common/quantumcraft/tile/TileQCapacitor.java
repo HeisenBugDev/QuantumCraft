@@ -35,8 +35,14 @@ public class TileQCapacitor extends TileEnergySink {
 
     @Override
     public void updateEntity() {
-        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
+        if ((this.getMaxEnergy() - this.getMaxEnergy()) >= 100) {
             this.addEnergy(this.requestPacket(100));
+        } else
+        if ((this.getMaxEnergy() - this.getMaxEnergy()) >= 10) {
+            this.addEnergy(this.requestPacket(10));
+        } else
+        if ((this.getMaxEnergy() - this.getMaxEnergy()) >= 1) {
+            this.addEnergy(this.requestPacket(1));
         }
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
