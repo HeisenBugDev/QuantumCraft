@@ -6,11 +6,11 @@ import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerQCapacitor;
 import quantumcraft.tile.TileQCapacitor;
 
-public class GuiQCapactior extends GuiBase {
+public class GuiQCapacitor extends GuiBase {
 
     private TileQCapacitor tile;
 
-    public GuiQCapactior(Container container) {
+    public GuiQCapacitor(Container container) {
         super(container, 200, 170);
         tile = ((ContainerQCapacitor) container).tile;
     }
@@ -42,6 +42,8 @@ public class GuiQCapactior extends GuiBase {
             drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
             bindImage(GuiTextures.GUI_DIVIDER_V);
             drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
+            bindImage(GuiTextures.GUI_CAPACITOR_2SLOT);
+            drawQuad(20, 20, 0, 1, 0, 1, 53, 25);
         }
     }
 
@@ -50,7 +52,7 @@ public class GuiQCapactior extends GuiBase {
         float flt = (float) tile.getCurrentEnergy() / (float) tile.getMaxEnergy();
         int w = (int) (flt * 79);
         int tarx = 23;
-        int tary = 48;
+        int tary = 44;
         bindImage(GuiTextures.GUI_POWER_BAR);
         drawTexturedModalRect(tarx, tary, 85, 35, 81, 16);
         drawTexturedModalRect(tarx+1, tary+1, 86, 69, w, 14);
@@ -63,11 +65,10 @@ public class GuiQCapactior extends GuiBase {
             GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
             drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
             GL11.glColor3f(1F, 1F, 1F);
-
             drawPowerBar();
 
             this.fontRenderer.drawString("Quantum Capacitor", 15, 15, 0x000000);
-            this.fontRenderer.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 67, 0x333333);
+            this.fontRenderer.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 63, 0x333333);
 
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
             this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);

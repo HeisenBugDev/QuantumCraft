@@ -36,4 +36,6 @@ public class GuiTextures {
             new ResourceLocation("quantumcraft", "textures/gui/progress_below.png");
     public static ResourceLocation GUI_DEMAT_ARROW =
             new ResourceLocation("quantumcraft", "textures/gui/demat.png");
+    public static ResourceLocation GUI_CAPACITOR_2SLOT =
+            new ResourceLocation("quantumcraft", "textures/gui/capacitor_2slot.png");
 }
