@@ -13,8 +13,7 @@ import quantumcraft.tile.abstracttiles.TileEnergySink;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.BasicUtils;
 
-public class TileQEInjector extends TileEnergySink implements
-        ISidedInventory, IUpgradable {
+public class TileQEInjector extends TileEnergySink implements ISidedInventory, IUpgradable {
 
     public int currentival = 0;
     public int maxival = 0;
@@ -87,8 +86,7 @@ public class TileQEInjector extends TileEnergySink implements
     public void setInventorySlotContents(int i, ItemStack itemstack) {
         this.inventory[i] = itemstack;
 
-        if (itemstack != null
-                && itemstack.stackSize > this.getInventoryStackLimit()) {
+        if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
     }
@@ -112,10 +110,9 @@ public class TileQEInjector extends TileEnergySink implements
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-                this.zCoord) == this && entityplayer.getDistanceSq(
-                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-                (double) this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
+                .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
+                64.0D;
     }
 
     @Override
@@ -174,7 +171,8 @@ public class TileQEInjector extends TileEnergySink implements
         }
     }
 
-    public static void injectPower(ItemStack[] inventoryLocal, int[] upgradeIDLocal, boolean runProcess, TileMachineBase tile, ISidedInventory inv) {
+    public static void injectPower(ItemStack[] inventoryLocal, int[] upgradeIDLocal, boolean runProcess,
+                                   TileMachineBase tile, ISidedInventory inv) {
         if (inventoryLocal[0] != null && inventoryLocal[1] == null) {
             if (inventoryLocal[0].getItem() instanceof IQEnergizable) {
                 IQEnergizable e = ((IQEnergizable) inventoryLocal[0].getItem());
@@ -184,8 +182,8 @@ public class TileQEInjector extends TileEnergySink implements
                         cycle = tile.getCurrentEnergy();
                     }
                     if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(
-                                inventoryLocal[0], e.getCurrentQEnergyBuffer(inventoryLocal[0]) + cycle);
+                        e.setCurrentQEnergyBuffer(inventoryLocal[0],
+                                e.getCurrentQEnergyBuffer(inventoryLocal[0]) + cycle);
                     }
                 } else {
                     cycle = e.getMaxQEnergyValue(inventoryLocal[0]) - e.getCurrentQEnergyBuffer(inventoryLocal[0]);
@@ -193,8 +191,8 @@ public class TileQEInjector extends TileEnergySink implements
                         cycle = tile.getCurrentEnergy();
                     }
                     if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(
-                                inventoryLocal[0], e.getCurrentQEnergyBuffer(inventoryLocal[0]) + cycle);
+                        e.setCurrentQEnergyBuffer(inventoryLocal[0],
+                                e.getCurrentQEnergyBuffer(inventoryLocal[0]) + cycle);
                     }
                 }
                 inventoryLocal[0].getItem().setDamage(inventoryLocal[0],
@@ -202,7 +200,8 @@ public class TileQEInjector extends TileEnergySink implements
                 tile.subtractEnergy(cycle);
                 tile.updateNextTick = true;
 
-                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue(inventoryLocal[0]) && runProcess) {
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue(inventoryLocal[0]) &&
+                        runProcess) {
                     inventoryLocal[1] = inventoryLocal[0].copy();
                     inv.decrStackSize(0, 1);
                     inventoryLocal[1].getItem().setDamage(inventoryLocal[1], 1);
@@ -218,13 +217,11 @@ public class TileQEInjector extends TileEnergySink implements
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-                    .tagAt(i);
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.inventory.length) {
-                this.inventory[b0] = ItemStack
-                        .loadItemStackFromNBT(nbttagcompound1);
+                this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
         this.currentival = par1NBTTagCompound.getInteger("currentival");
