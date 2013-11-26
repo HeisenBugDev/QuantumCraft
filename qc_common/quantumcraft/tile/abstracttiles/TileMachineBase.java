@@ -12,6 +12,7 @@ import quantumcraft.core.network.packets.MachineInitPacket;
 public abstract class TileMachineBase extends TileEntity implements
         IRotateableTile {
 
+    public int upgradeID[] = {0, 0, 0, 0};
     public boolean updateNextTick = false;
     private ForgeDirection _forwardDirection;
     private int energyBuffer = 0;
