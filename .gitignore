@@ -23,6 +23,7 @@ mcrun
 bin/**
 tmp/**
 tmp/**/*
+config
 *.tmp
 *.bak
 *.swp
