@@ -7,7 +7,7 @@ build
 .gradle
 .watsonrc
 .watsonresults
-
+run
 *.class
 *.DS_STORE
 # Package Files #
