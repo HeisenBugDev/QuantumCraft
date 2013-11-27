@@ -14,7 +14,6 @@ src/api
 mcrun
 *.DS_STORE
 # Package Files #
-*.jar
 *.war
 *.ear
 *.pydevproject
