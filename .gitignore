@@ -8,6 +8,8 @@ build
 .watsonrc
 .watsonresults
 run
+out
+src/api
 *.class
 *.DS_STORE
 # Package Files #
