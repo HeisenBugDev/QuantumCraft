@@ -11,6 +11,7 @@ run
 out
 src/api
 *.class
+mcrun
 *.DS_STORE
 # Package Files #
 *.jar
