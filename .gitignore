@@ -2,7 +2,9 @@
 .idea/
 *.iml
 *.iws
-
+# gradle stuff
+build
+.gradle
 .watsonrc
 .watsonresults
 
