@@ -28,6 +28,7 @@ config
 *.bak
 *.swp
 *~.nib
+saves
 local.properties
 .classpath
 .settings/
