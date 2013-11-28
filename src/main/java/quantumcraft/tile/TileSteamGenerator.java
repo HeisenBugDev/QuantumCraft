@@ -1,11 +1,15 @@
 package quantumcraft.tile;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 
-public class TileSteamGenerator extends TileMachineBase implements IFluidHandler{
+public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory{
     private FluidTank tank = new FluidTank(12000);
+    private ItemStack[] inventory = new ItemStack[2];
 
     @Override
     public int getMaxEnergy() {
@@ -51,5 +55,88 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection forgeDirection) {
         return new FluidTankInfo[0];
+    }
+
+    @Override
+    public int getSizeInventory() {
+        return 0;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int i) {
+        return inventory[i];
+    }
+
+    @Override
+    public ItemStack decrStackSize(int i, int j) {
+        if (this.inventory[i] != null) {
+            ItemStack itemstack;
+
+            if (this.inventory[i].stackSize <= j) {
+                itemstack = this.inventory[i];
+                this.inventory[i] = null;
+                return itemstack;
+            } else {
+                itemstack = this.inventory[i].splitStack(j);
+
+                if (this.inventory[i].stackSize == 0) {
+                    this.inventory[i] = null;
+                }
+
+                return itemstack;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int i) {
+        ItemStack stack = inventory[i];
+        inventory[i] = null;
+        return stack;
+    }
+
+    @Override
+    public void setInventorySlotContents(int i, ItemStack itemStack) {
+        inventory[i] = itemStack;
+    }
+
+    @Override
+    public String getInvName() {
+        return "Steam Generator";
+    }
+
+    @Override
+    public boolean isInvNameLocalized() {
+        return false;
+    }
+
+    @Override
+    public int getInventoryStackLimit() {
+        return 64;
+    }
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer entityPlayer) {
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
+                this.zCoord) == this && entityPlayer.getDistanceSq(
+                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
+                (double) this.zCoord + 0.5D) <= 64.0D;
+    }
+
+    @Override
+    public void openChest() {
+
+    }
+
+    @Override
+    public void closeChest() {
+
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int i, ItemStack itemStack) {
+        return false;
     }
 }
