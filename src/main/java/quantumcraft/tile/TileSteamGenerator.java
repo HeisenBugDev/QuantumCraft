@@ -1,13 +1,12 @@
 package quantumcraft.tile;
 
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.*;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler{
+    private FluidTank tank = new FluidTank(12000);
+
     @Override
     public int getMaxEnergy() {
         return 0;
