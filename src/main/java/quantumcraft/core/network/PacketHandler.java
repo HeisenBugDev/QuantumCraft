@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import quantumcraft.core.network.abstractpackets.ModernPacket;
+import quantumcraft.util.DebugHandler;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -35,7 +36,7 @@ public class PacketHandler implements IPacketHandler {
             packetmap = new HashMap<Class<? extends ModernPacket>, ModernPacket>(classes.size());
 
             int currentid = 0;
-            System.out.println("Loading " + classes.size() + " Packets");
+            DebugHandler.debugPrint("Loading" + classes.size() + "Packets");
 
             for (ClassInfo c : classes) {
                 final Class<?> cls = c.load();
@@ -43,7 +44,7 @@ public class PacketHandler implements IPacketHandler {
                 packetlist.add(instance);
                 packetmap.put((Class<? extends ModernPacket>) cls, instance);
 
-                System.out.println("Packet: " + c.getSimpleName() + " loaded");
+                DebugHandler.debugPrint("Packet" + c.getSimpleName() + " loaded");
                 currentid++;
             }
 
