@@ -11,9 +11,6 @@ import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 public class TileQEExtractor extends TileEnergySource implements ISidedInventory {
-    // [review] - Is this needed?
-    public int currentival = 0;
-    public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
 
     @Override
@@ -136,8 +133,7 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
-        if (inventory[0] == null && currentival != 0) {
-            currentival = 0;
+        if (inventory[0] == null) {
         }
         extractPower(inventory, this, this, true, 0);
         if (updateNextTick) {
@@ -194,8 +190,6 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
                 this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
-        this.currentival = par1NBTTagCompound.getInteger("currentival");
-        this.maxival = par1NBTTagCompound.getInteger("maxival");
         updateNextTick = true;
     }
 
@@ -205,8 +199,6 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("currentival", this.currentival);
-        par1NBTTagCompound.setInteger("maxival", this.maxival);
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.inventory.length; ++i) {
