@@ -14,6 +14,15 @@ This is the github repo for QuantumCraft which will add some fun machines and a 
 
 If you find an issue you can either submit it on GitHub which would be the best, fork it fix it and send us a PR, or lastly send us a PM/post on [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
 
+If you do find a bug we may need you to tell us some more info. The info we will need is here:
+
+ - QC Version
+ - Minecraft version
+ - Other mods
+ - Debug log
+
+The debug log is the most complicated. Make sure you can see the minecraft terminal or have access to the forge log (it's in .minecraft). First thing is delete the forge log from .minecraft and go to the QuantumCraft.cfg. There will be a debug value, change it to true. Then start up mc and do whatever you did that broke it. Go back to the forge log and upload it somewhere/put it in the ticket you opened. We'll then go from there.
+
 **If you find a bug and do not report it, it will most likely _not_ get fixed**
 
 ## Downloads
