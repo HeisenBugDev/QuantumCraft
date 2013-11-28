@@ -43,6 +43,7 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
 
     @Override
     public void updateEntity() {
+        super.updateEntity();
         // [review] - Why do we need all these?
         if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 100) {
             this.addEnergy(this.requestPacket(100));
