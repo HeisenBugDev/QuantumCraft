@@ -60,6 +60,7 @@ public class Loader {
     public static BlockIONTunneler BlockIONTunneler;
     public static BlockIONScanner BlockIONScanner;
     public static BlockIONHarvester BlockIONHarvester;
+    public static BlockSteamGenerator BlockSteamGenerator;
     public static Block BlockMachineCasing;
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
@@ -239,6 +240,11 @@ public class Loader {
         GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP);
 
         if (Config.beta.getBoolean(false)) {
+            BlockSteamGenerator = (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab
+                    (tabQuantumCraft).setUnlocalizedName(Config.NameBlockSGN);
+            LanguageRegistry.addName(BlockSteamGenerator, "Steam Generator");
+            GameRegistry.registerBlock(BlockSteamGenerator, Config.NameBlockSGN);
+
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS);
