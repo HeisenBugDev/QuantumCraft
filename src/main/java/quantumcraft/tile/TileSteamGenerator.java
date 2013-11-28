@@ -7,7 +7,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 
-public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory{
+public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
     private FluidTank tank = new FluidTank(12000);
     private ItemStack[] inventory = new ItemStack[2];
 
@@ -103,40 +103,24 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     }
 
     @Override
-    public String getInvName() {
-        return "Steam Generator";
-    }
-
-    @Override
-    public boolean isInvNameLocalized() {
+    public boolean isItemValidForSlot(int i, ItemStack itemStack) {
         return false;
-    }
-
-    @Override
-    public int getInventoryStackLimit() {
-        return 64;
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityPlayer) {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-                this.zCoord) == this && entityPlayer.getDistanceSq(
-                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-                (double) this.zCoord + 0.5D) <= 64.0D;
+        // This may need to be like the more complicated on in TileIONForge.java
+        return true;
     }
 
-    @Override
-    public void openChest() {
+    @Override public String getInvName() { return "Steam Generator"; }
 
-    }
+    @Override public boolean isInvNameLocalized() { return false; }
 
-    @Override
-    public void closeChest() {
+    @Override public int getInventoryStackLimit() { return 64; }
 
-    }
+    @Override public void openChest() {}
 
-    @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemStack) {
-        return false;
-    }
+    @Override public void closeChest() {}
+
 }
