@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.util.BasicUtils;
+import quantumcraft.util.DebugHandler;
 
 public class TileQDeelectrifier extends TileEnergySource implements IPowerReceptor {
     private PowerHandler powerHandler;
@@ -36,8 +37,6 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
     @Override
     public void updateEntity() {
         buildCraftBuffer += powerHandler.useEnergy(1, 100, true);
-        //System.out.println("Powerhandler use energy: " + powerHandler.useEnergy(1,100,false));
-        //System.out.println("Buildcraft buffer: " + buildCraftBuffer + " Energy Buffer:  " + energyBuffer);
         boolean redstonePower = BasicUtils.isRedstonePowered(this);
         if (!redstonePower) {
             if (buildCraftBuffer >= 1) {
@@ -57,7 +56,7 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
 
     @Override
     public void doWork(PowerHandler workProvider) {
-        System.out.println(this.getCurrentEnergy());
+        DebugHandler.debugPrint(this, "" + this.getCurrentEnergy());
     }
 
     @Override
