@@ -20,7 +20,8 @@ public class Config {
     public static String NameItemMultiTool = "multiTool";
     public static String NameItemPortableQCapacitor = "portQCapacitor";
     public static String NameItemUpgrade_ = "upgradeNONE";
-    public static String[] NameItemUpgrade = {"upgradeTemplate", "upgradeOverclock"};
+    public static String[] NameItemUpgrade =
+            {"upgradeTemplate", "upgradeOverclock"};
     public static String NameItemQSword = "quantumSword";
     public static String NameItemQAxe = "quantumAxe";
     public static String NameItemQPick = "quantumPick";
@@ -52,6 +53,7 @@ public class Config {
     public static LinkedList<String> supports32x = new LinkedList<String>();
     public static Property networkUpdateRange;
     public static Property beta;
+    public static Property debug;
     public static Boolean use32x;
     public static int ItemUnbioxeniumIngotID;
     public static int ItemCrystallizedQuantoniumID;
@@ -103,7 +105,8 @@ public class Config {
 
     public static void initConfig(FMLPreInitializationEvent event) {
         _configFolder = event.getModConfigurationDirectory();
-        _configFile = new File(_configFolder.getAbsolutePath() + "/QuantumCraft.cfg");
+        _configFile =
+                new File(_configFolder.getAbsolutePath() + "/QuantumCraft.cfg");
         add32x();
         loadPropertiesFromFile(_configFile);
     }
@@ -119,16 +122,26 @@ public class Config {
         Configuration config = new Configuration(file);
         config.load();
 
-        ItemUnbioxeniumIngotID = config.get("Items", "ItemIngotUnbioxenium", 4999).getInt();
-        ItemCrystallizedQuantoniumID = config.get("Items", "ItemCrystallizedQuantonium", 5000).getInt();
-        ItemRawQuantoniumID = config.get("Items", "ItemRawQuantonium", 5001).getInt();
-        ItemDepletedCrystalID = config.get("Items", "ItemDepletedCrystal", 5002).getInt();
-        ItemResearchBookID = config.get("Items", "ItemResearchBookID", 5003).getInt();
+        ItemUnbioxeniumIngotID =
+                config.get("Items", "ItemIngotUnbioxenium", 4999).getInt();
+        ItemCrystallizedQuantoniumID =
+                config.get("Items", "ItemCrystallizedQuantonium", 5000)
+                        .getInt();
+        ItemRawQuantoniumID =
+                config.get("Items", "ItemRawQuantonium", 5001).getInt();
+        ItemDepletedCrystalID =
+                config.get("Items", "ItemDepletedCrystal", 5002).getInt();
+        ItemResearchBookID =
+                config.get("Items", "ItemResearchBookID", 5003).getInt();
         ItemMultiToolID = config.get("Items", "ItemMultiTool", 5004).getInt();
-        ItemLocationdCardBlankID = config.get("Items", "ItemLocationCardBlank", 5005).getInt();
-        ItemLocationCardID = config.get("Items", "ItemLocationCard", 5006).getInt();
+        ItemLocationdCardBlankID =
+                config.get("Items", "ItemLocationCardBlank", 5005).getInt();
+        ItemLocationCardID =
+                config.get("Items", "ItemLocationCard", 5006).getInt();
 
-        ItemPortQCapacitorID = config.get("Items", "ItemPortableQuantumCapacitor", 5007).getInt();
+        ItemPortQCapacitorID =
+                config.get("Items", "ItemPortableQuantumCapacitor", 5007)
+                        .getInt();
         ItemUpgradeID = config.get("Items", "ItemUpgrade", 5008).getInt();
 
         ItemQSwordID = config.get("Items", "ItemQuantumSword", 5020).getInt();
@@ -136,18 +149,24 @@ public class Config {
         ItemQPickID = config.get("Items", "ItemQuantumPick", 5022).getInt();
         ItemQShovelID = config.get("Items", "ItemQuantumShovel", 5023).getInt();
 
-        ItemRPlaceHolderID = config.get("Items", "ItemRPlaceHolder", 4995).getInt();
+        ItemRPlaceHolderID =
+                config.get("Items", "ItemRPlaceHolder", 4995).getInt();
 
-        ItemHyperConductorID = config.get("Items", "ItemHyperConductor", 5009).getInt();
-        ItemQuantumPlatingID = config.get("Items", "ItemQuantumPlating", 5010).getInt();
+        ItemHyperConductorID =
+                config.get("Items", "ItemHyperConductor", 5009).getInt();
+        ItemQuantumPlatingID =
+                config.get("Items", "ItemQuantumPlating", 5010).getInt();
 
-        OreUnbioxeniumID = config.get("Blocks", "BlockOreUnbioxenium", 3499).getInt();
-        OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
+        OreUnbioxeniumID =
+                config.get("Blocks", "BlockOreUnbioxenium", 3499).getInt();
+        OreQuantoniumID =
+                config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
         BlockQEIID = config.get("Blocks", "BlockQEInjector", 3601).getInt();
         BlockQDSID = config.get("Blocks", "BlockQDislocator", 3602).getInt();
         BlockQESID = config.get("Blocks", "BlockQESucker", 3603).getInt();
-        BlockQDMID = config.get("Blocks", "BlockQDematerializer", 3606).getInt();
+        BlockQDMID =
+                config.get("Blocks", "BlockQDematerializer", 3606).getInt();
         BlockQELID = config.get("Blocks", "BlockQElectrifier", 3607).getInt();
         BlockQEEID = config.get("Blocks", "BlockQEExtractor", 3608).getInt();
         BlockQDLID = config.get("Blocks", "BlockQDeelectrifier", 3609).getInt();
@@ -157,20 +176,33 @@ public class Config {
         BlockIOHID = config.get("Blocks", "BlockIONHarvester", 3613).getInt();
         BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3614).getInt();
 
-        BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
-        BlockMCasingID = config.get("Blocks", "BlockMachineCasing", 3590).getInt();
+        BlockFiberWireID =
+                config.get("Blocks", "BlockQFiberWire", 3604).getInt();
+        BlockMCasingID =
+                config.get("Blocks", "BlockMachineCasing", 3590).getInt();
 
-        IONForgeEnergyCost = config.get("Units", "ION Forge Energy Cost", 3).getInt();
+        IONForgeEnergyCost =
+                config.get("Units", "ION Forge Energy Cost", 3).getInt();
 
-        networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
+        networkUpdateRange =
+                config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =
                 "This is the distance in which players will be notified.  Lower if you experience lag.";
 
-        use32x = config.get("general", "Use 32x32 textures", true).getBoolean(true);
+        use32x = config.get("general", "Use 32x32 textures", true)
+                .getBoolean(true);
         beta = config.get("general", "Enable beta features", false);
-        beta.comment = ("(WARNING! This could corrupt your world or break your game)");
+        beta.comment =
+                ("(WARNING! This could corrupt your world or break your game)");
 
-
+        debug = config.get("general", "Enable debug mode", false);
+        debug.comment =
+                ("This is going to be very annoying if you have a console open. Only enable\n" +
+                        "this if you were asked to or are reporting/fixing a bug. This is \n" +
+                        "not a\"feature\". We are not Microcrap™ so be warned. Also, by doing\n" +
+                        "this you are either making a really good or really bad choice. I hope\n" +
+                        "you know which one it is because I don't")
+        ;
         config.save();
     }
 
