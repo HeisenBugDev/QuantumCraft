@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockMachine;
+import quantumcraft.tile.TileSteamGenerator;
 
 public class BlockSteamGenerator extends BlockMachine{
 
@@ -19,6 +20,6 @@ public class BlockSteamGenerator extends BlockMachine{
     
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return null;
+        return new TileSteamGenerator();
     }
 }
