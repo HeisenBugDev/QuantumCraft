@@ -217,7 +217,6 @@ public class BasicUtils {
      *
      * @param items
      * @param maxQuantity
-     * @return
      */
     public static NBTTagList writeItemStacksToTag(ItemStack[] items, int maxQuantity) {
         NBTTagList tagList = new NBTTagList();
