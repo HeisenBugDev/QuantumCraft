@@ -1,5 +1,7 @@
 # Gradle forge instructons
 
+**First thing: Try to skip the downloading of forge. YOU WILL MOST LIKELY NOT NEED IT!**
+
 Gradle forge is very complicated to setup but easier to work with that ant scripts and the pahimar setup. Let's begin on what you need to do!
 
 First, go here: http://files.minecraftforge.net/ and download #964. Next, clone the repo somewhere (you're going to want to start fresh). Then extract the contents of that to the QC dir.
