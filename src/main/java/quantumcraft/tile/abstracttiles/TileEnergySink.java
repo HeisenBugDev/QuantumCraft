@@ -31,7 +31,6 @@ public abstract class TileEnergySink extends TileMachineBase {
         int possibleEnergy = this.getMaxEnergy() - this.getCurrentEnergy();
         if (possibleEnergy < size) useSize = possibleEnergy;
 
-        //System.out.println(sourceList.size());
         if (sourceList != null) return sourceList.requestQuantumEnergy(worldObj, useSize);
         System.out.println("[QuantumCraft] Sources list not initialized. Please report this.");
         return 0;
