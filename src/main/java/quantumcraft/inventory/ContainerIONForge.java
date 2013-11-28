@@ -24,7 +24,6 @@ public class ContainerIONForge extends ContainerUpdatedBase {
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
         ItemStack stack = null;
         Slot slotObject = (Slot) inventorySlots.get(slot);
-        System.out.println(slot);
         //null checks and checks if the item can be stacked (maxStackSize > 1)
         if (slotObject != null && slotObject.getHasStack()) {
             ItemStack stackInSlot = slotObject.getStack();
