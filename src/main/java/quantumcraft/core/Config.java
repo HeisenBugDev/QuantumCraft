@@ -199,7 +199,7 @@ public class Config {
         debug.comment =
                 ("This is going to be very annoying if you have a console open. Only enable\n" +
                         "this if you were asked to or are reporting/fixing a bug. This is \n" +
-                        "not a\"feature\". We are not Microcrap™ so be warned. Also, by doing\n" +
+                        "not a \"feature\". We are not Microcrap™ so be warned. Also, by doing\n" +
                         "this you are either making a really good or really bad choice. I hope\n" +
                         "you know which one it is because I don't")
         ;
