@@ -21,6 +21,7 @@ import quantumcraft.items.tools.ItemQuantumSword;
 import quantumcraft.render.RenderFiberWire;
 import quantumcraft.render.RenderOre;
 import quantumcraft.tile.*;
+import quantumcraft.util.DebugHandler;
 
 public class Loader {
 
@@ -328,9 +329,9 @@ public class Loader {
         public static Icon oreQuantonium_base;
 
         public static void loadAll(IconRegister i) {
-            System.out.println(Config.getTextureName(Config.NameTextureQOre));
+            DebugHandler.debugPrint(Config.getTextureName(Config.NameTextureQOre));
             oreQuantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQOre));
-            System.out.println(Config.getTextureName(Config.NameTextureQBase));
+            DebugHandler.debugPrint(Config.getTextureName(Config.NameTextureQBase));
             oreQuantonium_base = i.registerIcon(Config.getTextureName(Config.NameTextureQBase));
         }
     }
