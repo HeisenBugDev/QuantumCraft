@@ -34,13 +34,17 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     }
 
     @Override
-    public FluidStack drain(ForgeDirection forgeDirection, FluidStack fluidStack, boolean b) {
-        return null;
+    public FluidStack drain(ForgeDirection forgeDirection, FluidStack resource, boolean doDrain) {
+        if (resource.fluidID == FluidSteam.fluid.getID()) {
+            return tank.drain(resource.amount, doDrain);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public FluidStack drain(ForgeDirection forgeDirection, int i, boolean b) {
-        return null;
+    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+        return tank.drain(maxDrain, doDrain);
     }
 
     @Override
@@ -114,14 +118,27 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
         return true;
     }
 
-    @Override public String getInvName() { return "Steam Generator"; }
+    @Override
+    public String getInvName() {
+        return "Steam Generator";
+    }
 
-    @Override public boolean isInvNameLocalized() { return false; }
+    @Override
+    public boolean isInvNameLocalized() {
+        return false;
+    }
 
-    @Override public int getInventoryStackLimit() { return 64; }
+    @Override
+    public int getInventoryStackLimit() {
+        return 64;
+    }
 
-    @Override public void openChest() {}
+    @Override
+    public void openChest() {
+    }
 
-    @Override public void closeChest() {}
+    @Override
+    public void closeChest() {
+    }
 
 }
