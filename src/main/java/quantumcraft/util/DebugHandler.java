@@ -5,8 +5,10 @@ import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 public class DebugHandler {
     public static void debugPrint(String str) {
-        if (Config.debug.getBoolean(false)) {
-            System.out.println("[QuantumCraft][Debug] " + str);
+        if (Config.debug != null) {
+            if (Config.debug.getBoolean(false)) {
+                System.out.println("[QuantumCraft][Debug] " + str);
+            }
         }
     }
 
