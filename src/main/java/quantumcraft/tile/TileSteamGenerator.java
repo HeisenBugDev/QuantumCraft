@@ -54,7 +54,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
 
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection forgeDirection) {
-        return new FluidTankInfo[0];
+        return new FluidTankInfo[]{tank.getInfo()};
     }
 
     @Override
