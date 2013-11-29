@@ -5,6 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import quantumcraft.fluid.FluidSteam;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
@@ -49,7 +50,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
 
     @Override
     public boolean canDrain(ForgeDirection forgeDirection, Fluid fluid) {
-        return false;
+        return fluid.getID() == FluidSteam.fluid.getID();
     }
 
     @Override
