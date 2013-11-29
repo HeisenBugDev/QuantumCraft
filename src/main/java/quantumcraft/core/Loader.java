@@ -303,6 +303,7 @@ public class Loader {
         GameRegistry.registerTileEntity(TileIONScanner.class, "IONScannerTE");
         GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
         GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
+        GameRegistry.registerTileEntity(TileSteamGenerator.class, "SteamGeneratorTE");
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
