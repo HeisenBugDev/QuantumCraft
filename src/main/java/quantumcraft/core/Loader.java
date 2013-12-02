@@ -11,8 +11,10 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import quantumcraft.blocks.*;
+import quantumcraft.fluid.FluidSteam;
 import quantumcraft.items.*;
 import quantumcraft.items.tools.ItemQuantumAxe;
 import quantumcraft.items.tools.ItemQuantumPick;
@@ -176,7 +178,9 @@ public class Loader {
                 .setTextureName(Config.getTextureName(Config.NameItemQuantumPlating));
         LanguageRegistry.addName(ItemQuantumPlating, "Quantum Plating");
     }
-
+    public static void initFluids(){
+        FluidRegistry.registerFluid(FluidSteam.fluid);
+    }
     public static void initBlocks() {
         OreUnbioxenium = (BlockOre) new BlockOre(Config.OreUnbioxeniumID).setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameOreUnbioxenium)
