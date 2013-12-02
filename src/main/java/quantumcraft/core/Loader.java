@@ -179,9 +179,13 @@ public class Loader {
                 .setTextureName(Config.getTextureName(Config.NameItemQuantumPlating));
         LanguageRegistry.addName(ItemQuantumPlating, "Quantum Plating");
     }
-    public static void initFluids(){
-        FluidRegistry.registerFluid(FluidSteam.fluid);
+
+    public static void initFluids() {
+        if (Config.beta.getBoolean(false)) {
+            FluidRegistry.registerFluid(FluidSteam.fluid);
+        }
     }
+
     public static void initBlocks() {
         OreUnbioxenium = (BlockOre) new BlockOre(Config.OreUnbioxeniumID).setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameOreUnbioxenium)
@@ -244,8 +248,9 @@ public class Loader {
         GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP);
 
         if (Config.beta.getBoolean(false)) {
-            BlockSteamGenerator = (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab
-                    (tabQuantumCraft).setUnlocalizedName(Config.NameBlockSGN);
+            BlockSteamGenerator =
+                    (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab(tabQuantumCraft)
+                            .setUnlocalizedName(Config.NameBlockSGN);
             LanguageRegistry.addName(BlockSteamGenerator, "Steam Generator");
             GameRegistry.registerBlock(BlockSteamGenerator, Config.NameBlockSGN);
 
