@@ -15,7 +15,7 @@ public class BlockSteamGenerator extends BlockMachine{
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
-
+        //TODO icons!
     }
     
     @Override
