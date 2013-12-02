@@ -44,6 +44,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
 
     @Override
     public void updateEntity() {
+        super.updateEntity();
         FluidStack fs = new FluidStack(FluidSteam.fluid, 100);
         tank.fill(fs, true);
     }
