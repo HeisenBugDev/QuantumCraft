@@ -55,11 +55,13 @@ public class GuiQDematerializer extends GuiBase {
     protected void drawProgressBar() {
         int x = 33;
         int y = 70;
-        int width = 47-(int)((float) tile.processTime / (float) tile.currentProcessTime*47F);
-        if (width > 45) {width = 0;}
+        int width = 47 - (int) ((float) tile.processTime / (float) tile.currentProcessTime * 47F);
+        if (width > 45) {
+            width = 0;
+        }
         int height = 5;
         bindImage(GuiTextures.GUI_PROGRESS_BELOW);
-        drawQuad(x, y, 0, (float)width/47F, 0, (float)height/5F, width, height);
+        drawQuad(x, y, 0, (float) width / 47F, 0, (float) height / 5F, width, height);
     }
 
     protected void drawPowerBar() {
@@ -87,13 +89,12 @@ public class GuiQDematerializer extends GuiBase {
             drawPowerBar();
             drawProgressBar();
 
-            this.fontRenderer.drawString("Quantum De-Materializer", 15, 15, 0x000000);
+            this.fontRenderer.drawString(tile.getInvName(), 15, 15, 0x000000);
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
             this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
 
             handleHover();
         }
-
     }
 
     protected void handleHover() {
@@ -115,7 +116,6 @@ public class GuiQDematerializer extends GuiBase {
             buffCT = -1;
         }
     }
-
 
 
 }
