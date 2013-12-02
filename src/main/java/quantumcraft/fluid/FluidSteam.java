@@ -8,5 +8,6 @@ public class FluidSteam extends Fluid{
     public FluidSteam() {
         super("Steam");
         setUnlocalizedName("Steam");
+        setGaseous(true);
     }
 }
