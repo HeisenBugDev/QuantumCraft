@@ -17,7 +17,6 @@ public abstract class TileMachineBase extends TileEntity
     public boolean updateNextTick = false;
     private ForgeDirection _forwardDirection;
     private int energyBuffer = 0;
-    private int looper = 0;
 
     protected TileMachineBase() {
         _forwardDirection = ForgeDirection.NORTH;
@@ -164,12 +163,9 @@ public abstract class TileMachineBase extends TileEntity
 
     @Override
     public void updateEntity() {
-        if (looper >= 10) {
+        if (worldObj.getWorldTime() % 20 == 0) {
             DebugHandler.debugPrint(this,
                     "Current Energy is: " + this.getCurrentEnergy());
-            looper = 0;
-        }else{
-            looper++;
         }
     }
 
