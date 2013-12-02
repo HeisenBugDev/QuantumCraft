@@ -10,7 +10,7 @@ import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
     private FluidTank tank = new FluidTank(12000);
-    private ItemStack[] inventory = new ItemStack[2];
+    private ItemStack[] inventory = new ItemStack[1];
 
     @Override
     public int getMaxEnergy() {
