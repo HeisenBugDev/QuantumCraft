@@ -76,6 +76,7 @@ public class Loader {
         initRenderers();
         initWGen();
         initTEs();
+        initFluids();
         initOreDict();
         CraftingManager.addCrafting();
         CraftingManager.addSmelting();
