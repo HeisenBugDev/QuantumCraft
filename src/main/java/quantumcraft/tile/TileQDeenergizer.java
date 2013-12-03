@@ -97,6 +97,7 @@ public class TileQDeenergizer extends TileEnergySource implements
 
     @Override
     public void updateEntity() {
+        super.updateEntity();
         if (this.canProcess()) {
             this.lastItemValue = r.getEnergyValue();
             this.QEnergyItemBuffer = this.lastItemValue;

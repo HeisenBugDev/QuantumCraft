@@ -133,8 +133,7 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
-        if (inventory[0] == null) {
-        }
+        super.updateEntity();
         extractPower(inventory, this, this, true, 0);
         if (updateNextTick) {
             // All nearby players need to be updated if the status of work
