@@ -9,7 +9,7 @@ public class GuiSteamGenerator extends GuiBase {
 
     private TileSteamGenerator tile;
 
-    protected GuiSteamGenerator(Container container) {
+    public GuiSteamGenerator(Container container) {
         super(container, 200, 170);
         tile = ((ContainerSteamGenerator) container).tile;
     }
