@@ -19,8 +19,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
 
     @Override
     public int guiID() {
-        // Will be 8 when done
-        return -1;
+        return 8;
     }
 
     @Override
