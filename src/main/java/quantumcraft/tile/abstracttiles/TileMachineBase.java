@@ -8,6 +8,7 @@ import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.core.interfaces.IRotateableTile;
 import quantumcraft.core.network.PacketHandler;
 import quantumcraft.core.network.packets.MachineInitPacket;
+import quantumcraft.util.BasicUtils;
 import quantumcraft.util.DebugHandler;
 
 public abstract class TileMachineBase extends TileEntity
@@ -163,6 +164,7 @@ public abstract class TileMachineBase extends TileEntity
 
     @Override
     public void updateEntity() {
+        if (BasicUtils.isRedstonePowered(this)) return;
         if (worldObj.getWorldTime() % 20 == 0) {
             DebugHandler.debugPrint(this,
                     "Current Energy is: " + this.getCurrentEnergy());
