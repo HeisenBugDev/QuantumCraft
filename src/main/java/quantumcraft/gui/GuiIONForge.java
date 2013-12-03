@@ -111,7 +111,6 @@ public class GuiIONForge extends GuiBase {
                 case 0:
                     this.mc.thePlayer.closeScreen();
             }
-            buffCT = -1;
         }
     }
 }
