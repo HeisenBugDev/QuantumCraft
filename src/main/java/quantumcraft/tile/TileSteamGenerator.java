@@ -7,6 +7,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import quantumcraft.fluid.FluidSteam;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
+import quantumcraft.util.TileUtil;
 
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
     private FluidTank tank = new FluidTank(12000);
@@ -80,25 +81,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
-        if (this.inventory[i] != null) {
-            ItemStack itemstack;
-
-            if (this.inventory[i].stackSize <= j) {
-                itemstack = this.inventory[i];
-                this.inventory[i] = null;
-                return itemstack;
-            } else {
-                itemstack = this.inventory[i].splitStack(j);
-
-                if (this.inventory[i].stackSize == 0) {
-                    this.inventory[i] = null;
-                }
-
-                return itemstack;
-            }
-        } else {
-            return null;
-        }
+        return TileUtil.decrStackSize(i, j, inventory);
     }
 
     @Override
