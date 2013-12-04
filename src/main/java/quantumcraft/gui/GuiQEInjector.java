@@ -8,10 +8,6 @@ import quantumcraft.tile.TileQEInjector;
 
 public class GuiQEInjector extends GuiBase {
 
-
-    private TileQEInjector tile;
-    private boolean closeButtonHover = false;
-
     public GuiQEInjector(Container par1Container) {
         super(par1Container, 200, 170);
         tile = ((ContainerQEInjector) par1Container).tile;
@@ -83,23 +79,12 @@ public class GuiQEInjector extends GuiBase {
 
     }
 
-    protected void handleHover() {
-        if (buffHT[0]) {
-            renderTooltipText("Close this GUI", buffHX, buffHY);
-        }
-        if (buffHT[1]) {
-            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-        }
-    }
-
-
     protected void handleClick(int buffCT) {
         if (buffCT > -1) {
             switch (buffCT) {
                 case 0:
                     this.mc.thePlayer.closeScreen();
             }
-            buffCT = -1;
         }
     }
 
