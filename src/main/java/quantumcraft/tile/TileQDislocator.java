@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import quantumcraft.core.Loader;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
+import quantumcraft.util.TileUtil;
 
 public class TileQDislocator extends TileMachineBase implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
@@ -41,25 +42,7 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
-        if (this.inventory[i] != null) {
-            ItemStack itemstack;
-
-            if (this.inventory[i].stackSize <= j) {
-                itemstack = this.inventory[i];
-                this.inventory[i] = null;
-                return itemstack;
-            } else {
-                itemstack = this.inventory[i].splitStack(j);
-
-                if (this.inventory[i].stackSize == 0) {
-                    this.inventory[i] = null;
-                }
-
-                return itemstack;
-            }
-        } else {
-            return null;
-        }
+        return TileUtil.decrStackSize(i, j, inventory);
     }
 
     @Override
@@ -77,8 +60,7 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
     public void setInventorySlotContents(int i, ItemStack itemstack) {
         this.inventory[i] = itemstack;
 
-        if (itemstack != null
-                && itemstack.stackSize > this.getInventoryStackLimit()) {
+        if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
     }
@@ -102,10 +84,9 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-                this.zCoord) == this && entityplayer.getDistanceSq(
-                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-                (double) this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
+                .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
+                64.0D;
     }
 
     @Override
@@ -242,13 +223,11 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-                    .tagAt(i);
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.inventory.length) {
-                this.inventory[b0] = ItemStack
-                        .loadItemStackFromNBT(nbttagcompound1);
+                this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
         updateNextTick = true;
