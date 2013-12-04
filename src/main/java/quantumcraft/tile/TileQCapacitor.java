@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.net.Location;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
-import quantumcraft.util.DebugHandler;
+import quantumcraft.util.TileUtil;
 
 public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
@@ -87,8 +87,7 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     public void setInventorySlotContents(int i, ItemStack itemstack) {
         this.inventory[i] = itemstack;
 
-        if (itemstack != null &&
-                itemstack.stackSize > this.getInventoryStackLimit()) {
+        if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
     }
@@ -109,10 +108,8 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     }
 
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return this.worldObj
-                .getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) ==
-                this && entityplayer.getDistanceSq((double) this.xCoord + 0.5D,
-                (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
+                .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
                 64.0D;
     }
 
