@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagList;
 import quantumcraft.core.Config;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.util.TileUtil;
 
 public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
@@ -33,9 +34,8 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     }
 
     /**
-     * removeProcess is just a boolean for whether or not
-     * to remove something from the counter or to reset
-     * it back to 10.
+     * removeProcess is just a boolean for whether or not to remove something from the counter or to reset it back to
+     * 10.
      */
     @Override
     public void updateEntity() {
@@ -129,9 +129,8 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     }
 
     /**
-     * @param i Which iteration of slots.
-     *          Example: For slots 0 and 1 where 0 is
-     *          input you pass it 1 and for 2 and 3 you pass it 2
+     * @param i Which iteration of slots. Example: For slots 0 and 1 where 0 is input you pass it 1 and for 2 and 3 you
+     *          pass it 2
      * @return Is it able to process or not.
      */
     private boolean canProcess(int i) {
@@ -183,8 +182,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     public void setInventorySlotContents(int i, ItemStack itemstack) {
         this.inventory[i] = itemstack;
 
-        if (itemstack != null
-                && itemstack.stackSize > this.getInventoryStackLimit()) {
+        if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
     }
@@ -206,10 +204,9 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-                this.zCoord) == this && entityplayer.getDistanceSq(
-                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-                (double) this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
+                .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
+                64.0D;
     }
 
     @Override
@@ -251,13 +248,11 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-                    .tagAt(i);
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.inventory.length) {
-                this.inventory[b0] = ItemStack
-                        .loadItemStackFromNBT(nbttagcompound1);
+                this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
         updateNextTick = true;
