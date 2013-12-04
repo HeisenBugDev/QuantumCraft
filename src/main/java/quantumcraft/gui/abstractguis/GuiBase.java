@@ -54,7 +54,14 @@ public abstract class GuiBase extends GuiContainer {
         }
     }
 
-    protected abstract void handleClick(int buffCT);
+    protected void handleClick(int buffCT) {
+        if (buffCT > -1) {
+            switch (buffCT) {
+                case 0:
+                    this.mc.thePlayer.closeScreen();
+            }
+        }
+    }
 
     int buffCT = -1;
 
