@@ -31,6 +31,7 @@ public abstract class GuiBase extends GuiContainer {
     public static interface IClickHandler {
         public void onClick(int x, int y);
     }
+
     protected void handleHover() {
         if (buffHT[0]) {
             renderTooltipText("Close this GUI", buffHX, buffHY);
@@ -39,6 +40,7 @@ public abstract class GuiBase extends GuiContainer {
             renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
         }
     }
+
     public class ClickHandler implements IClickHandler {
 
         final int id;
@@ -140,6 +142,7 @@ public abstract class GuiBase extends GuiContainer {
             return buff.toString();
         }
     }
+
     public boolean renderContents = true;
 
     protected GuiBase(Container container, int x, int y) {
