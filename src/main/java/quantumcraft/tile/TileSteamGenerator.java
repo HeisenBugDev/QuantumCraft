@@ -1,6 +1,5 @@
 package quantumcraft.tile;
 
-import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -54,8 +53,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
         } else {
             int var1 = par0ItemStack.getItem().itemID;
 
-            if (par0ItemStack.getItem() instanceof ItemBlock
-                    && Block.blocksList[var1] != null) {
+            if (par0ItemStack.getItem() instanceof ItemBlock && Block.blocksList[var1] != null) {
                 Block var3 = Block.blocksList[var1];
 
                 if (var3 == Block.woodSingleSlab) {
@@ -67,29 +65,26 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
                 }
             }
 
-            if (var1 == Item.stick.itemID)
-                return 100;
-            if (var1 == Item.coal.itemID)
-                return 1600;
-            if (var1 == Item.bucketLava.itemID)
-                return 20000;
-            if (var1 == Block.sapling.blockID)
-                return 100;
-            if (var1 == Item.blazeRod.itemID)
-                return 2400;
+            if (var1 == Item.stick.itemID) return 100;
+            if (var1 == Item.coal.itemID) return 1600;
+            if (var1 == Item.bucketLava.itemID) return 20000;
+            if (var1 == Block.sapling.blockID) return 100;
+            if (var1 == Item.blazeRod.itemID) return 2400;
             return GameRegistry.getFuelValue(par0ItemStack);
         }
     }
 
     int fuelBuffer = 0;
+
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if(worldObj.getWorldTime() % 20 == 0){
-            if (getItemBurnTime(inventory[0]) > 0){
-                fuelBuffer += GameRegistry.getFuelValue(inventory[0]);
+        if (worldObj.getWorldTime() % 20 == 0) {
+            if (getItemBurnTime(inventory[0]) > 0) {
+                fuelBuffer += getItemBurnTime(inventory[0]);
+                decrStackSize(0, 1);
             }
-            if (fuelBuffer >= 100){
+            if (fuelBuffer >= 100) {
                 FluidStack fs = new FluidStack(FluidSteam.fluid, 100);
                 tank.fill(fs, true);
             }
