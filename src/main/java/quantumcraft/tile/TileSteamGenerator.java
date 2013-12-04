@@ -1,7 +1,13 @@
 package quantumcraft.tile;
 
+import cpw.mods.fml.common.IFuelHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
@@ -42,11 +48,52 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
         }
     }
 
+    public static int getItemBurnTime(ItemStack par0ItemStack) {
+        if (par0ItemStack == null) {
+            return 0;
+        } else {
+            int var1 = par0ItemStack.getItem().itemID;
+
+            if (par0ItemStack.getItem() instanceof ItemBlock
+                    && Block.blocksList[var1] != null) {
+                Block var3 = Block.blocksList[var1];
+
+                if (var3 == Block.woodSingleSlab) {
+                    return 150;
+                }
+
+                if (var3.blockMaterial == Material.wood) {
+                    return 300;
+                }
+            }
+
+            if (var1 == Item.stick.itemID)
+                return 100;
+            if (var1 == Item.coal.itemID)
+                return 1600;
+            if (var1 == Item.bucketLava.itemID)
+                return 20000;
+            if (var1 == Block.sapling.blockID)
+                return 100;
+            if (var1 == Item.blazeRod.itemID)
+                return 2400;
+            return GameRegistry.getFuelValue(par0ItemStack);
+        }
+    }
+
+    int fuelBuffer = 0;
     @Override
     public void updateEntity() {
         super.updateEntity();
-        FluidStack fs = new FluidStack(FluidSteam.fluid, 100);
-        tank.fill(fs, true);
+        if(worldObj.getWorldTime() % 20 == 0){
+            if (getItemBurnTime(inventory[0]) > 0){
+                fuelBuffer += GameRegistry.getFuelValue(inventory[0]);
+            }
+            if (fuelBuffer >= 100){
+                FluidStack fs = new FluidStack(FluidSteam.fluid, 100);
+                tank.fill(fs, true);
+            }
+        }
     }
 
     @Override
