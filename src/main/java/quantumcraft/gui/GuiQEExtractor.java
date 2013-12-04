@@ -8,9 +8,6 @@ import quantumcraft.tile.TileQEExtractor;
 
 public class GuiQEExtractor extends GuiBase {
 
-
-    private TileQEExtractor tile;
-
     public GuiQEExtractor(Container par1Container) {
         super(par1Container, 200, 170);
         tile = ((ContainerQEExtractor) par1Container).tile;
@@ -82,23 +79,12 @@ public class GuiQEExtractor extends GuiBase {
 
     }
 
-    protected void handleHover() {
-        if (buffHT[0]) {
-            renderTooltipText("Close this GUI", buffHX, buffHY);
-        }
-        if (buffHT[1]) {
-            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-        }
-    }
-
-
     protected void handleClick(int buffCT) {
         if (buffCT > -1) {
             switch (buffCT) {
                 case 0:
                     this.mc.thePlayer.closeScreen();
             }
-            buffCT = -1;
         }
     }
 
