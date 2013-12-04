@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.GuiTextures;
+import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public abstract class GuiBase extends GuiContainer {
     private boolean onBackground;
     private boolean isNativeRender;
     protected ResourceLocation bgImage = null;
-
+    protected TileMachineBase tile;
     public int buffHX;
     public int buffHY;
     public boolean[] buffHT = new boolean[64];
@@ -30,7 +31,14 @@ public abstract class GuiBase extends GuiContainer {
     public static interface IClickHandler {
         public void onClick(int x, int y);
     }
-
+    protected void handleHover() {
+        if (buffHT[0]) {
+            renderTooltipText("Close this GUI", buffHX, buffHY);
+        }
+        if (buffHT[1]) {
+            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
+        }
+    }
     public class ClickHandler implements IClickHandler {
 
         final int id;
