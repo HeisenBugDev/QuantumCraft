@@ -8,8 +8,6 @@ import quantumcraft.tile.TileQCapacitor;
 
 public class GuiQCapacitor extends GuiBase {
 
-    private TileQCapacitor tile;
-
     public GuiQCapacitor(Container container) {
         super(container, 200, 170);
         tile = ((ContainerQCapacitor) container).tile;
@@ -78,23 +76,4 @@ public class GuiQCapacitor extends GuiBase {
 
     }
 
-    protected void handleHover() {
-        if (buffHT[0]) {
-            renderTooltipText("Close this GUI", buffHX, buffHY);
-        }
-        if (buffHT[1]) {
-            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-        }
-    }
-
-    @Override
-    protected void handleClick(int buffCT) {
-        if (buffCT > -1) {
-            switch (buffCT) {
-                case 0:
-                    this.mc.thePlayer.closeScreen();
-            }
-            buffCT = -1;
-        }
-    }
 }

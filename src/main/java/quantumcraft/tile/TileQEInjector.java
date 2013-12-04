@@ -12,6 +12,7 @@ import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.BasicUtils;
+import quantumcraft.util.TileUtil;
 
 public class TileQEInjector extends TileEnergySink implements ISidedInventory, IUpgradable {
 
@@ -48,25 +49,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
-        if (this.inventory[i] != null) {
-            ItemStack itemstack;
-
-            if (this.inventory[i].stackSize <= j) {
-                itemstack = this.inventory[i];
-                this.inventory[i] = null;
-                return itemstack;
-            } else {
-                itemstack = this.inventory[i].splitStack(j);
-
-                if (this.inventory[i].stackSize == 0) {
-                    this.inventory[i] = null;
-                }
-
-                return itemstack;
-            }
-        } else {
-            return null;
-        }
+        return TileUtil.decrStackSize(i, j, inventory);
     }
 
     @Override
@@ -152,6 +135,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
+        super.updateEntity();
         if (inventory[0] == null && currentival != 0) {
             currentival = 0;
         }
@@ -203,7 +187,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
                     inventoryLocal[1] = inventoryLocal[0].copy();
                     inv.decrStackSize(0, 1);
                     inventoryLocal[1].getItem().setDamage(inventoryLocal[1], 1);
-                } else if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue(inventoryLocal[0])){
+                } else if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue(inventoryLocal[0])) {
                     inventoryLocal[0].getItem().setDamage(inventoryLocal[0], 1);
                 }
             }

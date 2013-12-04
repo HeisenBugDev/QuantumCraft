@@ -4,14 +4,9 @@ import net.minecraft.inventory.Container;
 import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerIONForge;
-import quantumcraft.inventory.ContainerQDeenergizer;
 import quantumcraft.tile.TileIONForge;
-import quantumcraft.tile.TileQDeenergizer;
-import quantumcraft.util.BasicUtils;
 
 public class GuiIONForge extends GuiBase {
-
-    private TileIONForge tile;
 
     public GuiIONForge(Container par1Container) {
         super(par1Container, 200, 170);
@@ -53,7 +48,7 @@ public class GuiIONForge extends GuiBase {
     protected void drawProgressBar() {
         int x = 33;
         int y = 59;
-        int width = (int)((float) tile.progress / 16F * 47F);
+        int width = (int)((float) ((TileIONForge) tile).progress / 16F * 47F);
         if (width == 47) {width = 0;}
         int height = 5;
         bindImage(GuiTextures.GUI_PROGRESS_BELOW);
@@ -95,23 +90,4 @@ public class GuiIONForge extends GuiBase {
 
     }
 
-    protected void handleHover() {
-        if (buffHT[0]) {
-            renderTooltipText("Close this GUI", buffHX, buffHY);
-        }
-        if (buffHT[1]) {
-            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-        }
-    }
-
-
-    protected void handleClick(int buffCT) {
-        if (buffCT > -1) {
-            switch (buffCT) {
-                case 0:
-                    this.mc.thePlayer.closeScreen();
-            }
-            buffCT = -1;
-        }
-    }
 }

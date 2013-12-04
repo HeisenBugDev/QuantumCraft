@@ -30,6 +30,7 @@ public class TileQEnergySucker extends TileEnergySink {
 
     @Override
     public void updateEntity() {
+        super.updateEntity();
         this.requestPacket(10);
     }
 

@@ -3,15 +3,10 @@ package quantumcraft.gui;
 import net.minecraft.inventory.Container;
 import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
-import quantumcraft.inventory.ContainerQDeenergizer;
 import quantumcraft.inventory.ContainerQDematerializer;
-import quantumcraft.tile.TileQDeenergizer;
 import quantumcraft.tile.TileQDematerializer;
-import quantumcraft.util.BasicUtils;
 
 public class GuiQDematerializer extends GuiBase {
-
-    private TileQDematerializer tile;
 
     public GuiQDematerializer(Container par1Container) {
         super(par1Container, 200, 170);
@@ -55,11 +50,14 @@ public class GuiQDematerializer extends GuiBase {
     protected void drawProgressBar() {
         int x = 33;
         int y = 70;
-        int width = 47-(int)((float) tile.processTime / (float) tile.currentProcessTime*47F);
-        if (width > 45) {width = 0;}
+        int width = 47 - (int) ((float) ((TileQDematerializer) tile).processTime /
+                (float) ((TileQDematerializer) tile).currentProcessTime * 47F);
+        if (width > 45) {
+            width = 0;
+        }
         int height = 5;
         bindImage(GuiTextures.GUI_PROGRESS_BELOW);
-        drawQuad(x, y, 0, (float)width/47F, 0, (float)height/5F, width, height);
+        drawQuad(x, y, 0, (float) width / 47F, 0, (float) height / 5F, width, height);
     }
 
     protected void drawPowerBar() {
@@ -87,13 +85,12 @@ public class GuiQDematerializer extends GuiBase {
             drawPowerBar();
             drawProgressBar();
 
-            this.fontRenderer.drawString("Quantum De-Materializer", 15, 15, 0x000000);
+            this.fontRenderer.drawString(((TileQDematerializer) tile).getInvName(), 15, 15, 0x000000);
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
             this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
 
             handleHover();
         }
-
     }
 
     protected void handleHover() {
@@ -104,18 +101,4 @@ public class GuiQDematerializer extends GuiBase {
             renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
         }
     }
-
-
-    protected void handleClick(int buffCT) {
-        if (buffCT > -1) {
-            switch (buffCT) {
-                case 0:
-                    this.mc.thePlayer.closeScreen();
-            }
-            buffCT = -1;
-        }
-    }
-
-
-
 }

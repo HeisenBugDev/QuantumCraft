@@ -11,8 +11,10 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import quantumcraft.blocks.*;
+import quantumcraft.fluid.FluidSteam;
 import quantumcraft.items.*;
 import quantumcraft.items.tools.ItemQuantumAxe;
 import quantumcraft.items.tools.ItemQuantumPick;
@@ -60,6 +62,7 @@ public class Loader {
     public static BlockIONTunneler BlockIONTunneler;
     public static BlockIONScanner BlockIONScanner;
     public static BlockIONHarvester BlockIONHarvester;
+    public static BlockSteamGenerator BlockSteamGenerator;
     public static Block BlockMachineCasing;
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
@@ -73,6 +76,7 @@ public class Loader {
         initRenderers();
         initWGen();
         initTEs();
+        initFluids();
         initOreDict();
         CraftingManager.addCrafting();
         CraftingManager.addSmelting();
@@ -176,6 +180,12 @@ public class Loader {
         LanguageRegistry.addName(ItemQuantumPlating, "Quantum Plating");
     }
 
+    public static void initFluids() {
+        if (Config.beta.getBoolean(false)) {
+            FluidRegistry.registerFluid(FluidSteam.fluid);
+        }
+    }
+
     public static void initBlocks() {
         OreUnbioxenium = (BlockOre) new BlockOre(Config.OreUnbioxeniumID).setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameOreUnbioxenium)
@@ -196,34 +206,33 @@ public class Loader {
         GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
 
         BlockQDeenergizer = (BlockQDeenergizer) new BlockQDeenergizer(Config.BlockQDEID).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockQDE).setTextureName(Config.getTextureName(Config.NameBlockQDE));
+                .setUnlocalizedName(Config.NameBlockQDE);
         LanguageRegistry.addName(BlockQDeenergizer, "Quantum De-Energizer");
         GameRegistry.registerBlock(BlockQDeenergizer, Config.NameBlockQDE);
 
         BlockQDematerializer =
                 (BlockQDematerializer) new BlockQDematerializer(Config.BlockQDMID).setCreativeTab(tabQuantumCraft)
-                        .setUnlocalizedName(Config.NameBlockQDM)
-                        .setTextureName(Config.getTextureName(Config.NameBlockQDM));
+                        .setUnlocalizedName(Config.NameBlockQDM);
         LanguageRegistry.addName(BlockQDematerializer, "Quantum De-Materializer");
         GameRegistry.registerBlock(BlockQDematerializer, Config.NameBlockQDM);
 
         BlockQEInjector = (BlockQEInjector) new BlockQEInjector(Config.BlockQEIID).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockQEI).setTextureName(Config.getTextureName(Config.NameBlockQEI));
+                .setUnlocalizedName(Config.NameBlockQEI);
         LanguageRegistry.addName(BlockQEInjector, "Quantum Energy Injector");
         GameRegistry.registerBlock(BlockQEInjector, Config.NameBlockQEI);
 
         BlockIONForge = (BlockIONForge) new BlockIONForge(Config.BlockIOFID).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockIOF).setTextureName(Config.getTextureName(Config.NameBlockIOF));
+                .setUnlocalizedName(Config.NameBlockIOF);
         LanguageRegistry.addName(BlockIONForge, "ION Forge");
         GameRegistry.registerBlock(BlockIONForge, Config.NameBlockIOF);
 
         BlockIONTunneler = (BlockIONTunneler) new BlockIONTunneler(Config.BlockIOTID).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockIOT).setTextureName(Config.getTextureName(Config.NameBlockIOT));
+                .setUnlocalizedName(Config.NameBlockIOT);
         LanguageRegistry.addName(BlockIONTunneler, "ION Tunneler");
         GameRegistry.registerBlock(BlockIONTunneler, Config.NameBlockIOT);
 
         BlockIONScanner = (BlockIONScanner) new BlockIONScanner(Config.BlockIOSID).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockIOS).setTextureName(Config.getTextureName(Config.NameBlockIOS));
+                .setUnlocalizedName(Config.NameBlockIOS);
         LanguageRegistry.addName(BlockIONScanner, "ION Scanner");
         GameRegistry.registerBlock(BlockIONScanner, Config.NameBlockIOS);
 
@@ -239,6 +248,12 @@ public class Loader {
         GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP);
 
         if (Config.beta.getBoolean(false)) {
+            BlockSteamGenerator =
+                    (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab(tabQuantumCraft)
+                            .setUnlocalizedName(Config.NameBlockSGN);
+            LanguageRegistry.addName(BlockSteamGenerator, "Steam Generator");
+            GameRegistry.registerBlock(BlockSteamGenerator, Config.NameBlockSGN);
+
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS);
@@ -255,27 +270,24 @@ public class Loader {
         if (hasBuildCraft()) {
             BlockQElectrifier =
                     (BlockQElectrifier) new BlockQElectrifier(Config.BlockQELID).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockQEL)
-                            .setTextureName(Config.getTextureName(Config.NameBlockQEL));
+                            .setUnlocalizedName(Config.NameBlockQEL);
             LanguageRegistry.addName(BlockQElectrifier, "Quantum Electrifier");
             GameRegistry.registerBlock(BlockQElectrifier, Config.NameBlockQEL);
 
             BlockQDeelectrifier =
                     (BlockQDeelectrifier) new BlockQDeelectrifier(Config.BlockQDLID).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockQDL)
-                            .setTextureName(Config.getTextureName(Config.NameBlockQDL));
+                            .setUnlocalizedName(Config.NameBlockQDL);
             LanguageRegistry.addName(BlockQDeelectrifier, "Quantum Deelectrifier");
             GameRegistry.registerBlock(BlockQDeelectrifier, Config.NameBlockQDL);
         }
 
         BlockQEExtractor = (BlockQEExtractor) new BlockQEExtractor(Config.BlockQEEID).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockQEE).setTextureName(Config.getTextureName(Config.NameBlockQEE));
+                .setUnlocalizedName(Config.NameBlockQEE);
         LanguageRegistry.addName(BlockQEExtractor, "Quantum Energy Extractor");
         GameRegistry.registerBlock(BlockQEExtractor, Config.NameBlockQEE);
 
         BlockMachineCasing = new Block(Config.BlockMCasingID, Material.rock).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockMCasing)
-                .setTextureName(Config.getTextureName(Config.NameBlockMCasing));
+                .setUnlocalizedName(Config.NameBlockMCasing);
         LanguageRegistry.addName(BlockMachineCasing, "Quantum Machine Casing");
         GameRegistry.registerBlock(BlockMachineCasing, Config.NameBlockMCasing);
 
@@ -301,6 +313,7 @@ public class Loader {
         GameRegistry.registerTileEntity(TileIONScanner.class, "IONScannerTE");
         GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
         GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
+        GameRegistry.registerTileEntity(TileSteamGenerator.class, "SteamGeneratorTE");
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");

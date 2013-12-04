@@ -10,6 +10,7 @@ import quantumcraft.core.interfaces.IUpgradable;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.util.BasicUtils;
+import quantumcraft.util.TileUtil;
 
 import java.util.Random;
 
@@ -50,8 +51,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     public void setInventorySlotContents(int i, ItemStack itemstack) {
         this.inventory[i] = itemstack;
 
-        if (itemstack != null
-                && itemstack.stackSize > this.getInventoryStackLimit()) {
+        if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
             itemstack.stackSize = this.getInventoryStackLimit();
         }
     }
@@ -73,10 +73,9 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-                this.zCoord) == this && entityplayer.getDistanceSq(
-                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-                (double) this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
+                .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
+                64.0D;
     }
 
     @Override
@@ -104,29 +103,12 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
-        if (this.inventory[i] != null) {
-            ItemStack itemstack;
-
-            if (this.inventory[i].stackSize <= j) {
-                itemstack = this.inventory[i];
-                this.inventory[i] = null;
-                return itemstack;
-            } else {
-                itemstack = this.inventory[i].splitStack(j);
-
-                if (this.inventory[i].stackSize == 0) {
-                    this.inventory[i] = null;
-                }
-
-                return itemstack;
-            }
-        } else {
-            return null;
-        }
+        return TileUtil.decrStackSize(i, j, inventory);
     }
 
     @Override
     public void updateEntity() {
+        super.updateEntity();
         currentProcessTime = 40 / (BasicUtils.overclockMultiplier(upgradeID) + 1);
         if (inventory[0] != null) {
             if (processTime > 0) processTime--;
@@ -166,13 +148,11 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-                    .tagAt(i);
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.inventory.length) {
-                this.inventory[b0] = ItemStack
-                        .loadItemStackFromNBT(nbttagcompound1);
+                this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
         updateNextTick = true;
@@ -227,7 +207,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void dropUpgrades() {
-        for (int i = 0; i < upgradeID.length; i++){
+        for (int i = 0; i < upgradeID.length; i++) {
             if (upgradeID[i] != 0) {
                 BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
                         new ItemStack(Loader.ItemUpgrade, 1, upgradeID[i])); //DROP DA UPGRADE

@@ -8,16 +8,15 @@ import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.core.interfaces.IRotateableTile;
 import quantumcraft.core.network.PacketHandler;
 import quantumcraft.core.network.packets.MachineInitPacket;
+import quantumcraft.util.BasicUtils;
 import quantumcraft.util.DebugHandler;
 
-public abstract class TileMachineBase extends TileEntity
-        implements IRotateableTile {
+public abstract class TileMachineBase extends TileEntity implements IRotateableTile {
 
     public int upgradeID[] = {0, 0, 0, 0};
     public boolean updateNextTick = false;
     private ForgeDirection _forwardDirection;
     private int energyBuffer = 0;
-    private int looper = 0;
 
     protected TileMachineBase() {
         _forwardDirection = ForgeDirection.NORTH;
@@ -43,8 +42,7 @@ public abstract class TileMachineBase extends TileEntity
     }
 
     /**
-     * Adds energy to current buffer. uses substractEnergy with negative
-     * nubers.
+     * Adds energy to current buffer. uses substractEnergy with negative nubers.
      *
      * @param req amount to add
      * @return energy buffer _AFTER_ addition
@@ -68,8 +66,7 @@ public abstract class TileMachineBase extends TileEntity
 
     @Override
     public Packet getDescriptionPacket() {
-        MachineInitPacket packet =
-                PacketHandler.getPacket(MachineInitPacket.class);
+        MachineInitPacket packet = PacketHandler.getPacket(MachineInitPacket.class);
         packet.posX = xCoord;
         packet.posY = yCoord;
         packet.posZ = zCoord;
@@ -157,27 +154,23 @@ public abstract class TileMachineBase extends TileEntity
             }
 
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50,
-                    worldObj.provider.dimensionId, getDescriptionPacket());
+            PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.provider.dimensionId,
+                    getDescriptionPacket());
         }
     }
 
     @Override
     public void updateEntity() {
-        if (looper >= 10) {
-            DebugHandler.debugPrint(this,
-                    "Current Energy is: " + this.getCurrentEnergy());
-            looper = 0;
-        }else{
-            looper++;
+        if (BasicUtils.isRedstonePowered(this)) return;
+        if (worldObj.getWorldTime() % 20 == 0) {
+            DebugHandler.debugPrint(this, "Current Energy is: " + this.getCurrentEnergy());
         }
     }
 
     public boolean useRotated() {
         //NORTH and SOUTH = false
         //WEST and EAST = true
-        return !(_forwardDirection == ForgeDirection.WEST ||
-                _forwardDirection == ForgeDirection.EAST);
+        return !(_forwardDirection == ForgeDirection.WEST || _forwardDirection == ForgeDirection.EAST);
     }
 
     public void rotateDirectlyTo(int rotation) {

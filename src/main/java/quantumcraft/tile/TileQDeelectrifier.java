@@ -36,13 +36,11 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
 
     @Override
     public void updateEntity() {
+        super.updateEntity();
         buildCraftBuffer += powerHandler.useEnergy(1, 100, true);
-        boolean redstonePower = BasicUtils.isRedstonePowered(this);
-        if (!redstonePower) {
-            if (buildCraftBuffer >= 1) {
-                addEnergy(1);
-                buildCraftBuffer--;
-            }
+        if (buildCraftBuffer >= 1) {
+            addEnergy(1);
+            buildCraftBuffer--;
         }
 
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);

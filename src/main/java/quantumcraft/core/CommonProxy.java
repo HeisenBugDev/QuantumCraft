@@ -40,8 +40,10 @@ public class CommonProxy implements IGuiHandler {
                 case 7:
                     return new ContainerQCapacitor(player.inventory,
                             (TileQCapacitor) world.getBlockTileEntity(x, y, z));
+                case 8:
+                    return new ContainerSteamGenerator(player.inventory,
+                            (TileSteamGenerator) world.getBlockTileEntity(x, y, z));
             }
-        }
-        return null;
+        } return null;
     }
 }

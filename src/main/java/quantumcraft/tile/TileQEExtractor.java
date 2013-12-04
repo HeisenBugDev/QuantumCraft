@@ -9,6 +9,7 @@ import quantumcraft.core.interfaces.IQEnergizable;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
+import quantumcraft.util.TileUtil;
 
 public class TileQEExtractor extends TileEnergySource implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
@@ -42,24 +43,7 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
 
     @Override
     public ItemStack decrStackSize(int i, int j) {
-        if (this.inventory[i] != null) {
-            ItemStack itemstack;
-
-            if (this.inventory[i].stackSize <= j) {
-                itemstack = this.inventory[i];
-                this.inventory[i] = null;
-                return itemstack;
-            } else {
-                itemstack = this.inventory[i].splitStack(j);
-
-                if (this.inventory[i].stackSize == 0) {
-                    this.inventory[i] = null;
-                }
-                return itemstack;
-            }
-        } else {
-            return null;
-        }
+        return TileUtil.decrStackSize(i, j, inventory);
     }
 
     @Override
@@ -133,8 +117,7 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
-        if (inventory[0] == null) {
-        }
+        super.updateEntity();
         extractPower(inventory, this, this, true, 0);
         if (updateNextTick) {
             // All nearby players need to be updated if the status of work
