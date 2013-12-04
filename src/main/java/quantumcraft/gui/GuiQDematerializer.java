@@ -3,15 +3,10 @@ package quantumcraft.gui;
 import net.minecraft.inventory.Container;
 import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
-import quantumcraft.inventory.ContainerQDeenergizer;
 import quantumcraft.inventory.ContainerQDematerializer;
-import quantumcraft.tile.TileQDeenergizer;
 import quantumcraft.tile.TileQDematerializer;
-import quantumcraft.util.BasicUtils;
 
 public class GuiQDematerializer extends GuiBase {
-
-    private TileQDematerializer tile;
 
     public GuiQDematerializer(Container par1Container) {
         super(par1Container, 200, 170);
@@ -55,7 +50,8 @@ public class GuiQDematerializer extends GuiBase {
     protected void drawProgressBar() {
         int x = 33;
         int y = 70;
-        int width = 47 - (int) ((float) tile.processTime / (float) tile.currentProcessTime * 47F);
+        int width = 47 - (int) ((float) ((TileQDematerializer) tile).processTime / (float) ((TileQDematerializer) tile)
+        .currentProcessTime * 47F);
         if (width > 45) {
             width = 0;
         }
@@ -89,7 +85,7 @@ public class GuiQDematerializer extends GuiBase {
             drawPowerBar();
             drawProgressBar();
 
-            this.fontRenderer.drawString(tile.getInvName(), 15, 15, 0x000000);
+            this.fontRenderer.drawString(((TileQDematerializer) tile).getInvName(), 15, 15, 0x000000);
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
             this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
 
@@ -113,7 +109,6 @@ public class GuiQDematerializer extends GuiBase {
                 case 0:
                     this.mc.thePlayer.closeScreen();
             }
-            buffCT = -1;
         }
     }
 
