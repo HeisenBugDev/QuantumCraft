@@ -12,12 +12,4 @@ public class GuiSteamGenerator extends GuiBase {
         tile = ((ContainerSteamGenerator) container).tile;
     }
 
-    @Override protected void handleClick(int buffCT) {
-        if (buffCT > -1) {
-            switch (buffCT) {
-                case 0:
-                    this.mc.thePlayer.closeScreen();
-            }
-        }
-    }
 }

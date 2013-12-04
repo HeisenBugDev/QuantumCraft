@@ -50,8 +50,8 @@ public class GuiQDematerializer extends GuiBase {
     protected void drawProgressBar() {
         int x = 33;
         int y = 70;
-        int width = 47 - (int) ((float) ((TileQDematerializer) tile).processTime / (float) ((TileQDematerializer) tile)
-        .currentProcessTime * 47F);
+        int width = 47 - (int) ((float) ((TileQDematerializer) tile).processTime /
+                (float) ((TileQDematerializer) tile).currentProcessTime * 47F);
         if (width > 45) {
             width = 0;
         }
@@ -101,16 +101,4 @@ public class GuiQDematerializer extends GuiBase {
             renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
         }
     }
-
-
-    protected void handleClick(int buffCT) {
-        if (buffCT > -1) {
-            switch (buffCT) {
-                case 0:
-                    this.mc.thePlayer.closeScreen();
-            }
-        }
-    }
-
-
 }

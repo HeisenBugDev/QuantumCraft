@@ -79,15 +79,4 @@ public class GuiQEExtractor extends GuiBase {
 
     }
 
-    protected void handleClick(int buffCT) {
-        if (buffCT > -1) {
-            switch (buffCT) {
-                case 0:
-                    this.mc.thePlayer.closeScreen();
-            }
-        }
-    }
-
-
-
 }
