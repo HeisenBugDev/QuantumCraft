@@ -9,8 +9,6 @@ import quantumcraft.util.BasicUtils;
 
 public class GuiQDeenergizer extends GuiBase {
 
-    private TileQDeenergizer tile;
-
     public GuiQDeenergizer(Container par1Container) {
         super(par1Container, 200, 170);
         tile = ((ContainerQDeenergizer) par1Container).tile;
@@ -51,7 +49,8 @@ public class GuiQDeenergizer extends GuiBase {
     protected void drawProgressBar() {
         int x = 33;
         int y = 70;
-        int width = 47-(int)((float) tile.QEnergyItemBuffer / (float) tile.lastItemValue*47F);
+        int width = 47-(int)((float) ((TileQDeenergizer) tile).QEnergyItemBuffer / (float) ((TileQDeenergizer)tile)
+                .lastItemValue*47F);
         if (width == 47) {width = 0;}
         int height = 5;
         bindImage(GuiTextures.GUI_PROGRESS_BELOW);
@@ -92,23 +91,12 @@ public class GuiQDeenergizer extends GuiBase {
 
     }
 
-    protected void handleHover() {
-        if (buffHT[0]) {
-            renderTooltipText("Close this GUI", buffHX, buffHY);
-        }
-        if (buffHT[1]) {
-            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-        }
-    }
-
-
     protected void handleClick(int buffCT) {
         if (buffCT > -1) {
             switch (buffCT) {
                 case 0:
                     this.mc.thePlayer.closeScreen();
             }
-            buffCT = -1;
         }
     }
 
