@@ -22,8 +22,4 @@ public class ContainerSteamGenerator extends ContainerUpdatedBase {
         return this.tile.isUseableByPlayer(entityPlayer);
     }
 
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
-        return null;
-    }
 }
