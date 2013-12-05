@@ -15,6 +15,7 @@ import net.minecraftforge.fluids.*;
 import quantumcraft.fluid.FluidSteam;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
+import quantumcraft.util.DebugHandler;
 import quantumcraft.util.TileUtil;
 
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
@@ -52,6 +53,8 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
         }
         nbttagcompound.setTag("Items", nbttaglist);
         super.writeToNBT(nbttagcompound);
+        DebugHandler.debugPrint(this,
+                "After write to nbt: Fuel buffer, tankFluidAmount: " + fuelBuffer + " | " + tank.getFluidAmount());
     }
 
     @Override
@@ -70,6 +73,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
                 this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
+        DebugHandler.debugPrint(this, "After readFromNbt: Fuel buffer, tankFluidAmount: " + fuelBuffer + " | " + tank.getFluidAmount());
         updateNextTick = true;
     }
 
