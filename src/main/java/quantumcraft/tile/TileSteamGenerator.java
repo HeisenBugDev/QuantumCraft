@@ -34,6 +34,18 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     }
 
     @Override
+    public void writeToNBT(NBTTagCompound nbttagcompound) {
+        super.writeToNBT(nbttagcompound);
+        nbttagcompound.setInteger("tankAmount", this.tank.getCapacity());
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbttagcompound) {
+        super.writeToNBT(nbttagcompound);
+        this.tank.setCapacity(nbttagcompound.getInteger("tankAmount"));
+    }
+
+    @Override
     public int fill(ForgeDirection forgeDirection, FluidStack fluidStack, boolean b) {
         return 0;
     }
