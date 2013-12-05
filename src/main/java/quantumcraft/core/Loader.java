@@ -247,13 +247,13 @@ public class Loader {
         LanguageRegistry.addName(BlockQCapacitor, "Quantum Capacitor");
         GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP);
 
-        if (Config.beta.getBoolean(false)) {
-            BlockSteamGenerator =
-                    (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockSGN);
-            LanguageRegistry.addName(BlockSteamGenerator, "Steam Generator");
-            GameRegistry.registerBlock(BlockSteamGenerator, Config.NameBlockSGN);
+        BlockSteamGenerator =
+                (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab(tabQuantumCraft)
+                        .setUnlocalizedName(Config.NameBlockSGN);
+        LanguageRegistry.addName(BlockSteamGenerator, "Steam Generator");
+        GameRegistry.registerBlock(BlockSteamGenerator, Config.NameBlockSGN);
 
+        if (Config.beta.getBoolean(false)) {
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS);
