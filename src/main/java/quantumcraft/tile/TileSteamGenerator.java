@@ -8,15 +8,18 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import quantumcraft.fluid.FluidSteam;
+import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.TileUtil;
 
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
     private FluidTank tank = new FluidTank(12000);
-    private ItemStack[] inventory = new ItemStack[1];
+    public ItemStack[] inventory = new ItemStack[1];
 
     @Override
     public int getMaxEnergy() {
@@ -30,19 +33,43 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
 
     @Override
     public void onBlockBreak() {
-
+        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 64);
+        tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbttagcompound) {
-        super.writeToNBT(nbttagcompound);
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.inventory.length; ++i) {
+            if (this.inventory[i] != null) {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte) i);
+                this.inventory[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+        nbttagcompound.setTag("Items", nbttaglist);
         nbttagcompound.setInteger("tankAmount", this.tank.getCapacity());
+        super.writeToNBT(nbttagcompound);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.writeToNBT(nbttagcompound);
+        NBTTagList nbttaglist = nbttagcompound.getTagList("Items");
+        this.inventory = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
+
+            if (b0 >= 0 && b0 < this.inventory.length) {
+                this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
         this.tank.setCapacity(nbttagcompound.getInteger("tankAmount"));
+        updateNextTick = true;
     }
 
     @Override
@@ -92,13 +119,19 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     public void updateEntity() {
         super.updateEntity();
         if (worldObj.getWorldTime() % 20 == 0) {
-            if (getItemBurnTime(inventory[0]) > 0) {
+            if (getItemBurnTime(inventory[0]) > 0 && fuelBuffer <= 0 && tank.getCapacity() > tank.getFluidAmount()) {
                 fuelBuffer += getItemBurnTime(inventory[0]);
                 decrStackSize(0, 1);
             }
-            if (fuelBuffer >= 100) {
-                FluidStack fs = new FluidStack(FluidSteam.fluid, 100);
+            if (fuelBuffer >= 0) {
+                System.out.println(tank.getFluidAmount());
+                int fluidUse = 100;
+                if (fluidUse > fuelBuffer) fluidUse = fuelBuffer;
+                if (fluidUse > tank.getCapacity() - tank.getFluidAmount())
+                    fluidUse = tank.getCapacity() - tank.getFluidAmount();
+                FluidStack fs = new FluidStack(FluidSteam.fluid, fluidUse);
                 tank.fill(fs, true);
+                fuelBuffer -= fluidUse;
             }
         }
     }
@@ -125,7 +158,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
 
     @Override
     public int getSizeInventory() {
-        return 0;
+        return inventory.length;
     }
 
     @Override
@@ -148,18 +181,24 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     @Override
     public void setInventorySlotContents(int i, ItemStack itemStack) {
         inventory[i] = itemStack;
+
+        if (itemStack != null && itemStack.stackSize > this.getInventoryStackLimit()) {
+            itemStack.stackSize = this.getInventoryStackLimit();
+        }
     }
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityPlayer) {
-        // This may need to be like the more complicated on in TileIONForge.java
-        return true;
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityPlayer
+                .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
+                64.0D;
     }
+
 
     @Override
     public String getInvName() {
