@@ -129,7 +129,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
                 decrStackSize(0, 1);
             }
             if (fuelBuffer >= 0) {
-                System.out.println(tank.getFluidAmount());
+                DebugHandler.debugPrint(this, "Fluid in tank: " + tank.getFluidAmount());
                 int fluidUse = 100;
                 if (fluidUse > fuelBuffer) fluidUse = fuelBuffer;
                 if (fluidUse > tank.getCapacity() - tank.getFluidAmount())
