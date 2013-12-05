@@ -39,8 +39,9 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
 
     @Override
     public void writeToNBT(NBTTagCompound nbttagcompound) {
+        tank.writeToNBT(nbttagcompound);
         NBTTagList nbttaglist = new NBTTagList();
-
+        nbttagcompound.setInteger("fuelBuffer", fuelBuffer);
         for (int i = 0; i < this.inventory.length; ++i) {
             if (this.inventory[i] != null) {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
@@ -50,13 +51,14 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
             }
         }
         nbttagcompound.setTag("Items", nbttaglist);
-        nbttagcompound.setInteger("tankAmount", this.tank.getCapacity());
         super.writeToNBT(nbttagcompound);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
-        super.writeToNBT(nbttagcompound);
+        super.readFromNBT(nbttagcompound);
+        fuelBuffer = nbttagcompound.getInteger("fuelBuffer");
+        tank.readFromNBT(nbttagcompound);
         NBTTagList nbttaglist = nbttagcompound.getTagList("Items");
         this.inventory = new ItemStack[this.getSizeInventory()];
 
@@ -68,7 +70,6 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
                 this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
-        this.tank.setCapacity(nbttagcompound.getInteger("tankAmount"));
         updateNextTick = true;
     }
 
