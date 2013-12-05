@@ -181,9 +181,7 @@ public class Loader {
     }
 
     public static void initFluids() {
-        if (Config.beta.getBoolean(false)) {
-            FluidRegistry.registerFluid(FluidSteam.fluid);
-        }
+        FluidRegistry.registerFluid(FluidSteam.fluid);
     }
 
     public static void initBlocks() {
