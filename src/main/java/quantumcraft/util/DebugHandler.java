@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class DebugHandler {
     private static Date lastDate = new Date();
@@ -18,7 +19,8 @@ public class DebugHandler {
                 try {
                     PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("QuantumCraft.log", true)));
                     String time = "";
-                    if (new Date().getTime() != lastDate.getTime()){
+                    if (TimeUnit.MILLISECONDS.toSeconds(new Date().getTime()) !=
+                            TimeUnit.MILLISECONDS.toSeconds(lastDate.getTime())) {
                         lastDate = new Date();
                         time = lastDate + "\n";
                     }
