@@ -55,6 +55,7 @@ public class Config {
     public static Property networkUpdateRange;
     public static Property beta;
     public static Property debug;
+    public static Property debugPrompt;
     public static Boolean use32x;
     public static int ItemUnbioxeniumIngotID;
     public static int ItemCrystallizedQuantoniumID;
