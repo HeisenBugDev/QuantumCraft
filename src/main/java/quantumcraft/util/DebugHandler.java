@@ -66,6 +66,7 @@ public class DebugHandler {
     }
 
     public static void postToHastebin() throws Exception {
+        if (!Config.debugPrompt.getBoolean(true)) return;
         FileInputStream inputStream = new FileInputStream("QuantumCraft.log");
         FileInputStream inputStream1 = new FileInputStream("ForgeModLoader-client-0.log");
         String everything = "########################\n" +
