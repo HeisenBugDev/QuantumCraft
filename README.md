@@ -1,6 +1,6 @@
 # QuantumCraft
 
-!(Logo)[http://i.imgur.com/h6cUsrb.png]
+![Logo](http://i.imgur.com/h6cUsrb.png)
 
 Yet another minecraft tech mod that ends with -craft.
 IRC: irc.esper.net #QuantumCraft :)
