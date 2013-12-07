@@ -64,6 +64,12 @@ public class DebugHandler {
         String decodedString;
         while ((decodedString = in.readLine()) != null) {
             System.out.println(decodedString);
+            decodedString = decodedString.replaceAll("\\{", "");
+            decodedString = decodedString.replaceAll("}", "");
+            decodedString = decodedString.replaceAll("\"","");
+            decodedString = decodedString.replaceAll(":","");
+            decodedString = decodedString.replaceAll("key","");
+            new DebugPrompt(decodedString);
         }
         in.close();
     }
