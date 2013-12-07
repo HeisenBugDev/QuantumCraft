@@ -57,17 +57,10 @@ public class DebugHandler {
     public static void resetLogs() {
         if (Config.debug.getBoolean(false)) {
             File qcLog = new File("QuantumCraft.log");
-            File forgeLog = new File("ForgeModLoader-client-0.log");
-
             if (qcLog.delete()) {
                 debugPrint("QuantumCraft log was reset successfully");
             } else {
                 debugPrint("QuantumCraft log could not be deleted");
-            }
-            if (forgeLog.delete()) {
-                debugPrint("FML Log was reset successfully");
-            } else {
-                debugPrint("FML Log could not be deleted");
             }
         }
     }
