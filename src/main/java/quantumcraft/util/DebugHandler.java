@@ -43,6 +43,17 @@ public class DebugHandler {
                 tile.zCoord + " => " + str);
     }
 
+    public static void notifyUser(){
+        if (Config.debug.getBoolean(false)){
+            try {
+                DebugHandler.postToHastebin();
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        }
+    }
+
     public static void postToHastebin() throws Exception {
         FileInputStream inputStream = new FileInputStream("QuantumCraft.log");
         FileInputStream inputStream1 = new FileInputStream("ForgeModLoader-client-0.log");

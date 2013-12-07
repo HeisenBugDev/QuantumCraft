@@ -41,12 +41,6 @@ public class QuantumCraft {
 
     @Mod.EventHandler
     public void serverStop(FMLServerStoppingEvent event) {
-        if (Config.debug.getBoolean(false)) {
-            try {
-                DebugHandler.postToHastebin();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        DebugHandler.notifyUser();
     }
 }
