@@ -24,6 +24,7 @@ public class QuantumCraft {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        DebugHandler.resetLogs();
         NetworkRegistry.instance().registerGuiHandler(this, new ClientProxy());
         Config.initConfig(event);
     }
