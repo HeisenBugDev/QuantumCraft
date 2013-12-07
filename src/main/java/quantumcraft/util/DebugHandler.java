@@ -43,13 +43,31 @@ public class DebugHandler {
                 tile.zCoord + " => " + str);
     }
 
-    public static void notifyUser(){
-        if (Config.debug.getBoolean(false)){
+    public static void notifyUser() {
+        if (Config.debug.getBoolean(false)) {
             try {
                 DebugHandler.postToHastebin();
             } catch (Exception e) {
                 e.printStackTrace();
 
+            }
+        }
+    }
+
+    public static void resetLogs() {
+        if (Config.debug.getBoolean(false)) {
+            File qcLog = new File("QuantumCraft.log");
+            File forgeLog = new File("ForgeModLoader-client-0.log");
+
+            if (qcLog.delete()) {
+                debugPrint("QuantumCraft log was reset successfully");
+            } else {
+                debugPrint("QuantumCraft log could not be deleted");
+            }
+            if (forgeLog.delete()) {
+                debugPrint("FML Log was reset successfully");
+            } else {
+                debugPrint("FML Log could not be deleted");
             }
         }
     }
