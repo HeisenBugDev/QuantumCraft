@@ -45,11 +45,21 @@ public class DebugHandler {
 
     public static void postToHastebin() throws Exception {
         FileInputStream inputStream = new FileInputStream("QuantumCraft.log");
-        String everything;
+        FileInputStream inputStream1 = new FileInputStream("ForgeModLoader-client-0.log");
+        String everything = "########################\n" +
+                "### QuantumCraft Log ###\n" +
+                "########################\n\n\n";
         try {
-            everything = IOUtils.toString(inputStream);
+            everything += IOUtils.toString(inputStream);
+            everything += "\n\n\n########################\n" +
+                    "### FML Client Log 0 ###\n" +
+                    "########################\n" +
+                    "\n" +
+                    "\n";
+            everything += IOUtils.toString(inputStream1);
         } finally {
             inputStream.close();
+            inputStream1.close();
         }
 
         URL url = new URL("http://hastebin.com/documents");
@@ -66,9 +76,9 @@ public class DebugHandler {
             System.out.println(decodedString);
             decodedString = decodedString.replaceAll("\\{", "");
             decodedString = decodedString.replaceAll("}", "");
-            decodedString = decodedString.replaceAll("\"","");
-            decodedString = decodedString.replaceAll(":","");
-            decodedString = decodedString.replaceAll("key","");
+            decodedString = decodedString.replaceAll("\"", "");
+            decodedString = decodedString.replaceAll(":", "");
+            decodedString = decodedString.replaceAll("key", "");
             new DebugPrompt(decodedString);
         }
         in.close();
