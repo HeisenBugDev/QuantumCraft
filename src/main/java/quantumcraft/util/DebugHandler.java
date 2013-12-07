@@ -96,7 +96,6 @@ public class DebugHandler {
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String decodedString;
         while ((decodedString = in.readLine()) != null) {
-            System.out.println(decodedString);
             decodedString = decodedString.replaceAll("\\{", "");
             decodedString = decodedString.replaceAll("}", "");
             decodedString = decodedString.replaceAll("\"", "");
