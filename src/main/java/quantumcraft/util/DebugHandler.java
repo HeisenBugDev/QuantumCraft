@@ -1,12 +1,12 @@
 package quantumcraft.util;
 
+import org.apache.commons.io.IOUtils;
 import quantumcraft.core.Config;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -41,5 +41,30 @@ public class DebugHandler {
         debugPrint(tile.getClass().toString() + " at: [x]" + tile.xCoord + " | [y]" +
                 tile.yCoord + " | [z]" +
                 tile.zCoord + " => " + str);
+    }
+
+    public static void postToHastebin() throws Exception {
+        FileInputStream inputStream = new FileInputStream("QuantumCraft.log");
+        String everything;
+        try {
+            everything = IOUtils.toString(inputStream);
+        } finally {
+            inputStream.close();
+        }
+
+        URL url = new URL("http://hastebin.com/documents");
+        URLConnection connection = url.openConnection();
+        connection.setDoOutput(true);
+
+        OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+        out.write(everything);
+        out.close();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String decodedString;
+        while ((decodedString = in.readLine()) != null) {
+            System.out.println(decodedString);
+        }
+        in.close();
     }
 }
