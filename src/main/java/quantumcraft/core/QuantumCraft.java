@@ -6,9 +6,11 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import quantumcraft.core.network.PacketHandler;
+import quantumcraft.util.DebugHandler;
 
 @Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Config.modNetworkChannel},
@@ -35,5 +37,16 @@ public class QuantumCraft {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
+    }
+
+    @Mod.EventHandler
+    public void serverStop(FMLServerStoppingEvent event) {
+        if (Config.debug.getBoolean(false)) {
+            try {
+                DebugHandler.postToHastebin();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
