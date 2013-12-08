@@ -9,8 +9,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import debughandler.DebugRegistry;
+import debughandler.LogHandler;
 import quantumcraft.core.network.PacketHandler;
-import quantumcraft.util.DebugHandler;
 
 @Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Config.modNetworkChannel},
@@ -21,12 +22,12 @@ public class QuantumCraft {
     public static CommonProxy proxy;
     @Instance("QuantumCraft")
     public static QuantumCraft instance;
-
+    public static LogHandler logHandler = new LogHandler("Quantumcraft");
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        DebugRegistry.addLogHandler(logHandler);
         NetworkRegistry.instance().registerGuiHandler(this, new ClientProxy());
         Config.initConfig(event);
-        DebugHandler.resetLogs();
     }
 
     @Mod.EventHandler
@@ -42,6 +43,6 @@ public class QuantumCraft {
 
     @Mod.EventHandler
     public void serverStop(FMLServerStoppingEvent event) {
-        DebugHandler.notifyUser();
+
     }
 }
