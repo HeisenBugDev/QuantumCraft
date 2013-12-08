@@ -20,8 +20,8 @@ after:
  - other stuff
 
 Now here comes the fun part. Make sure you have gradle installed! There is a wrapper but that doesn't seem to be
-working. Open up a terminal, go cd into the QC dir, run this command: `gradle setupDevWorkspace` but it _may_
-actually be `gradle setupDecompWorkspace`, it's kinda weird.
+working. Open up a terminal, go cd into the QC dir, run this command: `gradle setupDecompWorkspace
+ideaModule`
 
 Now open up intellij and go to _File> Import Project_. Select the build.gradle file for import. Once the project is open, click JetGradle on the right and then tasks at the top. Run genIntellijRuns. Then configure your runs and change VM Options in server to `-Xmx1G -Xms512M -Dfml.ignoreInvalidMinecraftCertificates=true -Djava.library.path="../../build/natives"` Then in both Client and Server change the working directory to `/Volumes/MacStorage/Code/QC/mcrun`
 
