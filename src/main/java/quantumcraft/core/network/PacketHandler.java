@@ -7,8 +7,8 @@ import cpw.mods.fml.common.network.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
+import quantumcraft.core.QuantumCraft;
 import quantumcraft.core.network.abstractpackets.ModernPacket;
-import quantumcraft.util.DebugHandler;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -36,7 +36,7 @@ public class PacketHandler implements IPacketHandler {
             packetmap = new HashMap<Class<? extends ModernPacket>, ModernPacket>(classes.size());
 
             int currentid = 0;
-            DebugHandler.debugPrint("Loading" + classes.size() + "Packets");
+            QuantumCraft.logHandler.debugPrint("Loading" + classes.size() + "Packets");
 
             for (ClassInfo c : classes) {
                 final Class<?> cls = c.load();
@@ -44,7 +44,7 @@ public class PacketHandler implements IPacketHandler {
                 packetlist.add(instance);
                 packetmap.put((Class<? extends ModernPacket>) cls, instance);
 
-                DebugHandler.debugPrint("Packet" + c.getSimpleName() + " loaded");
+                QuantumCraft.logHandler.debugPrint("Packet" + c.getSimpleName() + " loaded");
                 currentid++;
             }
 

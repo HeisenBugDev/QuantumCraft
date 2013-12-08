@@ -1,10 +1,9 @@
 package quantumcraft.tile.abstracttiles;
 
 import net.minecraft.nbt.NBTTagCompound;
+import quantumcraft.core.QuantumCraft;
 import quantumcraft.net.EnergySourceList;
 import quantumcraft.net.Location;
-import quantumcraft.net.QuantumEnergyNet;
-import quantumcraft.util.DebugHandler;
 
 public abstract class TileEnergySink extends TileMachineBase {
     private EnergySourceList sourceList;
@@ -17,7 +16,7 @@ public abstract class TileEnergySink extends TileMachineBase {
 
     public void replaceSourceList(Location l, EnergySourceList sources) {
         sourceList = sources;
-        DebugHandler.debugPrint(this, "SourceList size is: " + sourceList.size());
+        QuantumCraft.logHandler.debugPrint(this, "SourceList size is: " + sourceList.size());
     }
 
     /**

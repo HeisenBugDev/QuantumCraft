@@ -5,9 +5,8 @@ import buildcraft.api.power.PowerHandler;
 import buildcraft.api.power.PowerHandler.Type;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.core.QuantumCraft;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
-import quantumcraft.util.BasicUtils;
-import quantumcraft.util.DebugHandler;
 
 public class TileQDeelectrifier extends TileEnergySource implements IPowerReceptor {
     private PowerHandler powerHandler;
@@ -54,7 +53,7 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
 
     @Override
     public void doWork(PowerHandler workProvider) {
-        DebugHandler.debugPrint(this, "" + this.getCurrentEnergy());
+        QuantumCraft.logHandler.debugPrint(this, "" + this.getCurrentEnergy());
     }
 
     @Override

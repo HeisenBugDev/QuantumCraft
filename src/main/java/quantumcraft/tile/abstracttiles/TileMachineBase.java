@@ -5,11 +5,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import quantumcraft.core.QuantumCraft;
 import quantumcraft.core.interfaces.IRotateableTile;
 import quantumcraft.core.network.PacketHandler;
 import quantumcraft.core.network.packets.MachineInitPacket;
 import quantumcraft.util.BasicUtils;
-import quantumcraft.util.DebugHandler;
 
 public abstract class TileMachineBase extends TileEntity implements IRotateableTile {
 
@@ -163,7 +163,7 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
     public void updateEntity() {
         if (BasicUtils.isRedstonePowered(this)) return;
         if (worldObj.getWorldTime() % 20 == 0) {
-            DebugHandler.debugPrint(this, "Current Energy is: " + this.getCurrentEnergy());
+            QuantumCraft.logHandler.debugPrint(this, "Current Energy is: " + this.getCurrentEnergy());
         }
     }
 

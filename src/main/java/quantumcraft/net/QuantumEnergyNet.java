@@ -2,8 +2,8 @@ package quantumcraft.net;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
+import quantumcraft.core.QuantumCraft;
 import quantumcraft.net.RecursiveScanner.IDataGatherer;
-import quantumcraft.util.DebugHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +99,7 @@ public class QuantumEnergyNet {
     }
 
     public static void onChangedLink(World w, Location[] tips) {
-        DebugHandler.debugPrint("[QuantumEnergyNet] Changed link detected");
+        QuantumCraft.logHandler.debugPrint("[QuantumEnergyNet] Changed link detected");
         List<Location> memory = new ArrayList<Location>();
         for (Location tip : tips) {
             ChangedLinkDG dataGatherer = new ChangedLinkDG();

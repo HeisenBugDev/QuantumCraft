@@ -12,10 +12,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import quantumcraft.core.QuantumCraft;
 import quantumcraft.fluid.FluidSteam;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
-import quantumcraft.util.DebugHandler;
 import quantumcraft.util.TileUtil;
 
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
@@ -53,7 +53,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
         }
         nbttagcompound.setTag("Items", nbttaglist);
         super.writeToNBT(nbttagcompound);
-        DebugHandler.debugPrint(this,
+        QuantumCraft.logHandler.debugPrint(this,
                 "After write to nbt: Fuel buffer, tankFluidAmount: " + fuelBuffer + " | " + tank.getFluidAmount());
     }
 
@@ -73,7 +73,8 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
                 this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
-        DebugHandler.debugPrint(this, "After readFromNbt: Fuel buffer, tankFluidAmount: " + fuelBuffer + " | " + tank.getFluidAmount());
+        QuantumCraft.logHandler.debugPrint(this,
+                "After readFromNbt: Fuel buffer, tankFluidAmount: " + fuelBuffer + " | " + tank.getFluidAmount());
         updateNextTick = true;
     }
 
@@ -129,7 +130,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
                 decrStackSize(0, 1);
             }
             if (fuelBuffer >= 0) {
-                DebugHandler.debugPrint(this, "Fluid in tank: " + tank.getFluidAmount());
+                QuantumCraft.logHandler.debugPrint(this, "Fluid in tank: " + tank.getFluidAmount());
                 int fluidUse = 100;
                 if (fluidUse > fuelBuffer) fluidUse = fuelBuffer;
                 if (fluidUse > tank.getCapacity() - tank.getFluidAmount())
