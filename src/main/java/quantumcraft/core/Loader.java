@@ -23,6 +23,7 @@ import quantumcraft.items.tools.ItemQuantumSword;
 import quantumcraft.render.RenderFiberWire;
 import quantumcraft.render.RenderOre;
 import quantumcraft.tile.*;
+import quantumcraft.util.CapacitorName;
 
 public class Loader {
 
@@ -244,7 +245,7 @@ public class Loader {
                     (tabQuantumCraft)
                     .setUnlocalizedName(Config.NameBlockQCP + i);
             BlockQCapacitor.setMaxEnergyMultiplier(i);
-            LanguageRegistry.addName(BlockQCapacitor, "Quantum Capacitor" + i);
+            LanguageRegistry.addName(BlockQCapacitor, "Quantum " + CapacitorName.getName(i) + " Capacitor");
             GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
         }
         BlockSteamGenerator =
