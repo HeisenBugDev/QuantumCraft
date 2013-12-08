@@ -11,10 +11,15 @@ import quantumcraft.util.TileUtil;
 public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
     public int upgradeID[] = {0, 0, 0, 0};
+    private int maxEnergyMultiplier = 1;
+
+    public void setMaxEnergyMultiplier(int max){
+        maxEnergyMultiplier = max;
+    }
 
     @Override
     public int getMaxEnergy() {
-        return 100000;
+        return 100000 * maxEnergyMultiplier;
     }
 
     @Override
