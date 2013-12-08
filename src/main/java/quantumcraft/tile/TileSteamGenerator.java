@@ -21,6 +21,7 @@ import quantumcraft.util.TileUtil;
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
     private FluidTank tank = new FluidTank(12000);
     public ItemStack[] inventory = new ItemStack[1];
+    private int heat = 0;
 
     @Override
     public int getMaxEnergy() {
@@ -125,19 +126,25 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     public void updateEntity() {
         super.updateEntity();
         if (worldObj.getWorldTime() % 20 == 0) {
+            QuantumCraft.logHandler.debugPrint(this,"Heat value: " + heat);
             if (getItemBurnTime(inventory[0]) > 0 && fuelBuffer <= 0 && tank.getCapacity() > tank.getFluidAmount()) {
                 fuelBuffer += getItemBurnTime(inventory[0]);
                 decrStackSize(0, 1);
             }
             if (fuelBuffer >= 0) {
+                if (heat < 100) heat++;
                 QuantumCraft.logHandler.debugPrint(this, "Fluid in tank: " + tank.getFluidAmount());
+
+                int fuelUse = (100/heat) * 10;
                 int fluidUse = 100;
                 if (fluidUse > fuelBuffer) fluidUse = fuelBuffer;
                 if (fluidUse > tank.getCapacity() - tank.getFluidAmount())
                     fluidUse = tank.getCapacity() - tank.getFluidAmount();
                 FluidStack fs = new FluidStack(FluidSteam.fluid, fluidUse);
                 tank.fill(fs, true);
-                fuelBuffer -= fluidUse;
+                fuelBuffer -= fuelUse;
+            }else{
+                if (heat > 0) heat--;
             }
         }
     }
