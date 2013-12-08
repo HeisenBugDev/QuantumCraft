@@ -239,11 +239,14 @@ public class Loader {
         LanguageRegistry.addName(BlockIONHarvester, "ION Harvester");
         GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
 
-        BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockQCP);
-        LanguageRegistry.addName(BlockQCapacitor, "Quantum Capacitor");
-        GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP);
-
+        for (int i = 1; i <= 5; i++) {
+            BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID + i).setCreativeTab
+                    (tabQuantumCraft)
+                    .setUnlocalizedName(Config.NameBlockQCP + i);
+            BlockQCapacitor.setMaxEnergyMultiplier(i);
+            LanguageRegistry.addName(BlockQCapacitor, "Quantum Capacitor" + i);
+            GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
+        }
         BlockSteamGenerator =
                 (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab(tabQuantumCraft)
                         .setUnlocalizedName(Config.NameBlockSGN);
