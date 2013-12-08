@@ -53,8 +53,6 @@ public class Config {
     public static LinkedList<String> supports32x = new LinkedList<String>();
     public static Property networkUpdateRange;
     public static Property beta;
-    public static Property debug;
-    public static Property debugPrompt;
     public static Boolean use32x;
     public static int ItemUnbioxeniumIngotID;
     public static int ItemCrystallizedQuantoniumID;
@@ -175,17 +173,6 @@ public class Config {
         beta = config.get("general", "Enable beta features", false);
         beta.comment = ("(WARNING! This could corrupt your world or break your game)");
 
-        debug = config.get("general", "Enable debug mode", false);
-        debug.comment = ("This is going to be very annoying if you have a console open. Only enable\n" +
-                "this if you were asked to or are reporting/fixing a bug. This is \n" +
-                "not a \"feature\". We are not Microcrap™ so be warned. Also, by doing\n" +
-                "this you are either making a really good or really bad choice. I hope\n" +
-                "you know which one it is because I don't");
-
-        debugPrompt = config.get("general", "Be prompted with debug log", true);
-        debugPrompt.comment = ("If you have debug enabled and would like to be given a link to the uploaded logs " +
-                "AUTOMATICALLY whenever you close the game. This should only be disabled by devs because otherwise it" +
-                " is mostly useless having debug enabled");
         config.save();
     }
 
