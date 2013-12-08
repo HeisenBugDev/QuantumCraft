@@ -92,13 +92,4 @@ public class GuiQDematerializer extends GuiBase {
             handleHover();
         }
     }
-
-    protected void handleHover() {
-        if (buffHT[0]) {
-            renderTooltipText("Close this GUI", buffHX, buffHY);
-        }
-        if (buffHT[1]) {
-            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-        }
-    }
 }
