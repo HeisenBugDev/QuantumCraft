@@ -157,7 +157,7 @@ public class Config {
         BlockIOTID = config.get("Blocks", "BlockIONTunneler", 3611).getInt();
         BlockIOSID = config.get("Blocks", "BlockIONScanner", 3612).getInt();
         BlockIOHID = config.get("Blocks", "BlockIONHarvester", 3613).getInt();
-        BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3614).getInt();
+        BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3630).getInt();
         BlockSGNID = config.get("Blocks", "BlockSteamGenerator", 3615).getInt();
 
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
