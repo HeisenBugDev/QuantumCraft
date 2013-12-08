@@ -125,17 +125,25 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (worldObj.getWorldTime() % 20 == 0) {
-            QuantumCraft.logHandler.debugPrint(this,"Heat value: " + heat);
+        if (worldObj.getWorldTime() % 60 == 0) {
+            if (fuelBuffer >= 0) {
+                if (heat < 100) heat++;
+            } else {
+                heat--;
+            }
+        }
+        if (worldObj.getWorldTime() % 10 == 0) {
+            QuantumCraft.logHandler.debugPrint(this, "Heat value: " + heat);
             if (getItemBurnTime(inventory[0]) > 0 && fuelBuffer <= 0 && tank.getCapacity() > tank.getFluidAmount()) {
                 fuelBuffer += getItemBurnTime(inventory[0]);
                 decrStackSize(0, 1);
             }
             if (fuelBuffer >= 0) {
-                if (heat < 100) heat++;
+                if (tank.getFluidAmount() >= tank.getCapacity()) return;
                 QuantumCraft.logHandler.debugPrint(this, "Fluid in tank: " + tank.getFluidAmount());
 
-                int fuelUse = (100/heat) * 10;
+                if (heat <= 0) heat = 1;
+                int fuelUse = (100 / heat) * 10;
                 int fluidUse = 100;
                 if (fluidUse > fuelBuffer) fluidUse = fuelBuffer;
                 if (fluidUse > tank.getCapacity() - tank.getFluidAmount())
@@ -143,8 +151,6 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
                 FluidStack fs = new FluidStack(FluidSteam.fluid, fluidUse);
                 tank.fill(fs, true);
                 fuelBuffer -= fuelUse;
-            }else{
-                if (heat > 0) heat--;
             }
         }
     }
