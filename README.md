@@ -22,7 +22,7 @@ If you do find a bug we may need you to tell us some more info. The info we will
  - Other mods
  - Debug log
 
-The debug log is the most complicated. First thing is delete the forge log from .minecraft (and possibly QuantumCraft.log if it exists) and go to the QuantumCraft.cfg. There will be a debug value, change it to true. Then start up mc and do whatever you did that broke it. Go back to the forge log and QuantumCraft.log and upload them somewhere/put it in the ticket you opened. We'll then go from there.
+The debug log is the most complicated. Go to the DebugHandler.cfg. There will be a debug value, change it to true. Then start up mc and do whatever you did that broke it. When you leave the world there will be a popup with a URL. Give us that URL. Then disable the debug option in the config to keep it from being annoying. We'll then go from there.
 
 **If you find a bug and do not report it, it will most likely _not_ get fixed**
 
