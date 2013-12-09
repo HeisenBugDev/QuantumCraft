@@ -120,7 +120,8 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
         }
     }
 
-    int fuelBuffer = 0;
+    public int fuelBuffer = 0;
+    public int curMaxFuelBuffer = 0;
 
     @Override
     public void updateEntity() {
@@ -136,6 +137,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
             QuantumCraft.logHandler.debugPrint(this, "Heat value: " + heat);
             if (getItemBurnTime(inventory[0]) > 0 && fuelBuffer <= 0 && tank.getCapacity() > tank.getFluidAmount()) {
                 fuelBuffer += getItemBurnTime(inventory[0]);
+                curMaxFuelBuffer = getItemBurnTime(inventory[0]);
                 decrStackSize(0, 1);
             }
             if (fuelBuffer >= 0) {
