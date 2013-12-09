@@ -41,6 +41,36 @@ public abstract class GuiBase extends GuiContainer {
         }
     }
 
+    protected void drawBaseBG(){
+        bindImage(GuiTextures.GUI_TOP_BG);
+        drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
+        bindImage(GuiTextures.GUI_COLOR_STRIP);
+        GL11.glColor3f(1F, 0F, 0F);
+        drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
+        bindImage(GuiTextures.GUI_BOTTOM_BG);
+        GL11.glColor3f(1F, 1F, 1F);
+        drawQuad(0, 31, 0, 1, 0, 1, 200, 139);
+        bindImage(GuiTextures.GUI_INVENTORY_BG);
+        drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
+        bindImage(GuiTextures.GUI_ARMOR_BG);
+        drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
+    }
+
+    protected void drawBasePowerBar(){
+        float flt = (float) tile.getCurrentEnergy() / (float) tile.getMaxEnergy();
+        int h = (int) (flt * 67);
+        int tarx = 213 + 3;
+        int tary = 40 + 11 + 8 + (67 - h);
+        bindImage(GuiTextures.GUI_POWER_BAR);
+        drawTexturedModalRect(213, 40, 8, 9, 17, 105);
+        drawTexturedModalRect(tarx, tary, 51, 9 + (67 - h), 10, h);
+        drawTexturedModalRect(tarx, 40 + 11 + 8, 33, 9, 10, 67);
+
+        if (buffHT[1]) {
+            drawTexturedModalRect(tarx, 40 + 11 + 8, 69, 9, 10, 67);
+        }
+    }
+
     public class ClickHandler implements IClickHandler {
 
         final int id;
