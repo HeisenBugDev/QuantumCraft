@@ -21,7 +21,15 @@ import quantumcraft.util.TileUtil;
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
     private FluidTank tank = new FluidTank(120000);
     public ItemStack[] inventory = new ItemStack[1];
-    private int heat = 0;
+    public int heat = 0;
+
+    public int getSteamBuffer() {
+        return tank.getFluidAmount();
+    }
+
+    public int getSteamTankMax() {
+        return tank.getCapacity();
+    }
 
     @Override
     public int getMaxEnergy() {
@@ -44,6 +52,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
         tank.writeToNBT(nbttagcompound);
         NBTTagList nbttaglist = new NBTTagList();
         nbttagcompound.setInteger("fuelBuffer", fuelBuffer);
+        nbttagcompound.setInteger("heat", heat);
         for (int i = 0; i < this.inventory.length; ++i) {
             if (this.inventory[i] != null) {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
@@ -61,6 +70,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
+        heat = nbttagcompound.getInteger("heat");
         fuelBuffer = nbttagcompound.getInteger("fuelBuffer");
         tank.readFromNBT(nbttagcompound);
         NBTTagList nbttaglist = nbttagcompound.getTagList("Items");
@@ -130,7 +140,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
             if (fuelBuffer >= 0) {
                 if (heat < 100) heat++;
             } else {
-                heat--;
+                if (!(heat <= 1)) heat--;
             }
         }
         if (worldObj.getWorldTime() % 10 == 0) {
