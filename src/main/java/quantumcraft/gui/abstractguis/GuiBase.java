@@ -10,7 +10,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import quantumcraft.gui.GuiSteamGenerator;
 import quantumcraft.gui.GuiTextures;
+import quantumcraft.tile.TileSteamGenerator;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 import java.util.ArrayList;
@@ -37,11 +39,16 @@ public abstract class GuiBase extends GuiContainer {
             renderTooltipText("Close this GUI", buffHX, buffHY);
         }
         if (buffHT[1]) {
-            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
+            if (this instanceof GuiSteamGenerator) {
+                renderTooltipText(((TileSteamGenerator) tile).getSteamBuffer() + " / " +
+                        ((TileSteamGenerator) tile).getSteamTankMax() + " Steam", buffHX, buffHY);
+            } else {
+                renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
+            }
         }
     }
 
-    protected void drawBaseBG(){
+    protected void drawBaseBG() {
         bindImage(GuiTextures.GUI_TOP_BG);
         drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
         bindImage(GuiTextures.GUI_COLOR_STRIP);
@@ -56,7 +63,7 @@ public abstract class GuiBase extends GuiContainer {
         drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
     }
 
-    protected void drawBasePowerBar(){
+    protected void drawBasePowerBar() {
         float flt = (float) tile.getCurrentEnergy() / (float) tile.getMaxEnergy();
         int h = (int) (flt * 67);
         int tarx = 213 + 3;
