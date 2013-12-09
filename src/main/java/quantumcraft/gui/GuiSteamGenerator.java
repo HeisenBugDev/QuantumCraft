@@ -46,13 +46,25 @@ public class GuiSteamGenerator extends GuiBase {
             GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
             drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
             GL11.glColor3f(1F, 1F, 1F);
-        
-            drawBasePowerBar();
+
+            float flt = (float) ((TileSteamGenerator) tile).getSteamBuffer() /
+                    (float) ((TileSteamGenerator) tile).getSteamTankMax();
+            int h = (int) (flt * 67);
+            int tarx = 213 + 3;
+            int tary = 40 + 11 + 8 + (67 - h);
+            bindImage(GuiTextures.GUI_POWER_BAR);
+            drawTexturedModalRect(213, 40, 8, 9, 17, 105);
+            drawTexturedModalRect(tarx, tary, 51, 9 + (67 - h), 10, h);
+            drawTexturedModalRect(tarx, 40 + 11 + 8, 33, 9, 10, 67);
+
+            drawTexturedModalRect(tarx, 40 + 11 + 8, 69, 9, 10, 67);
+
             drawProgressBar();
 
             this.fontRenderer.drawString(((TileSteamGenerator) tile).getInvName(), 15, 15, 0x000000);
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
             this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
+            this.fontRenderer.drawString("Heat: " + ((TileSteamGenerator)tile).heat, 60, 65, 0x333333);
 
             handleHover();
         }
