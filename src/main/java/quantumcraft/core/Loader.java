@@ -288,7 +288,7 @@ public class Loader {
         GameRegistry.registerBlock(BlockQEExtractor, Config.NameBlockQEE);
 
         BlockMachineCasing = new Block(Config.BlockMCasingID, Material.rock).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockMCasing);
+                .setUnlocalizedName(Config.NameBlockMCasing).setTextureName(Config.getTextureName(Config.NameBlockMCasing));
         LanguageRegistry.addName(BlockMachineCasing, "Quantum Machine Casing");
         GameRegistry.registerBlock(BlockMachineCasing, Config.NameBlockMCasing);
 
