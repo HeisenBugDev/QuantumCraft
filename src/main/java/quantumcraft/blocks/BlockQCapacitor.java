@@ -14,6 +14,7 @@ import quantumcraft.tile.TileQCapacitor;
 
 public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
     private int maxEnergyMultiplier = 1;
+
     public BlockQCapacitor(int id) {
         super(id);
     }
@@ -27,8 +28,8 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
-        // [todo] - Icons for Quantum Capicator
-        // See #22 for info.
+        iconFront = iconTopR =
+                iconTop = iconSide = iconBottom = iconBack = iconRegister.registerIcon("QuantumCraft:Capacitor" + maxEnergyMultiplier);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
         return te;
     }
 
-    public void setMaxEnergyMultiplier(int max){
+    public void setMaxEnergyMultiplier(int max) {
         maxEnergyMultiplier = max;
     }
 
