@@ -19,7 +19,7 @@ import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.TileUtil;
 
 public class TileSteamGenerator extends TileMachineBase implements IFluidHandler, IInventory {
-    private FluidTank tank = new FluidTank(120000);
+    private FluidTank tank = new FluidTank(12000);
     public ItemStack[] inventory = new ItemStack[1];
     public int heat = 0;
 
@@ -137,10 +137,10 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
     public void updateEntity() {
         super.updateEntity();
         if (worldObj.getWorldTime() % 60 == 0) {
-            if (fuelBuffer >= 0) {
+            if (fuelBuffer > 0) {
                 if (heat < 100) heat++;
             } else {
-                if (!(heat <= 1)) heat--;
+                if (!(heat <= 1))heat--;
             }
         }
         if (worldObj.getWorldTime() % 10 == 0) {
@@ -156,7 +156,7 @@ public class TileSteamGenerator extends TileMachineBase implements IFluidHandler
 
                 if (heat <= 0) heat = 1;
                 int fuelUse = (100 / heat) * 10;
-                int fluidUse = 100;
+                int fluidUse = 10;
                 if (fluidUse > fuelBuffer) fluidUse = fuelBuffer;
                 if (fluidUse > tank.getCapacity() - tank.getFluidAmount())
                     fluidUse = tank.getCapacity() - tank.getFluidAmount();
