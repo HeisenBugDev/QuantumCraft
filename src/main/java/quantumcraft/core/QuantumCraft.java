@@ -9,9 +9,18 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import debughandler.DebugRegistry;
 import debughandler.LogHandler;
+import net.minecraft.util.Icon;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeSubscribe;
 import quantumcraft.core.network.PacketHandler;
+import quantumcraft.fluid.FluidSteam;
+
+import java.util.HashMap;
 
 @Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Config.modNetworkChannel},
@@ -23,9 +32,11 @@ public class QuantumCraft {
     @Instance("QuantumCraft")
     public static QuantumCraft instance;
     public static LogHandler logHandler = new LogHandler("Quantumcraft");
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         DebugRegistry.addLogHandler(logHandler);
+        MinecraftForge.EVENT_BUS.register(this);
         NetworkRegistry.instance().registerGuiHandler(this, new ClientProxy());
         Config.initConfig(event);
     }
@@ -41,8 +52,9 @@ public class QuantumCraft {
 
     }
 
-    @Mod.EventHandler
-    public void serverStop(FMLServerStoppingEvent event) {
-
+    @ForgeSubscribe @SideOnly(Side.CLIENT)
+    public void beforeTextureStitch(TextureStitchEvent.Pre event) {
+        logHandler.debugPrint("preStitch called");
+        FluidSteam.fluid.setIcons(event.map.registerIcon("QuantumCraft:fluidSteam"));
     }
 }
