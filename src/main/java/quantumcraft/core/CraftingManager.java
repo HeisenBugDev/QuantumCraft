@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import quantumcraft.blocks.BlockQCapacitor;
 
 public class CraftingManager {
 
@@ -64,8 +65,6 @@ public class CraftingManager {
         GameRegistry
                 .addShapelessRecipe(new ItemStack(Loader.BlockQEExtractor, 1), new ItemStack(Loader.BlockQEInjector));
 
-        // [todo] - Capacitor recipe
-
         if (Loader.hasBuildCraft()) {
             // ELECTRIFIER
             GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQElectrifier, 1), "cxc", "kmk", "ppp", 'p',
@@ -99,6 +98,16 @@ public class CraftingManager {
                 new ItemStack(Loader.ItemIngotUnbioxenium), 'q', new ItemStack(Loader.ItemQuantumPlating), 'm',
                 new ItemStack(Loader.BlockMachineCasing), 'h', new ItemStack(Loader.ItemHyperConductor));
 
+        // Basic Capacitor
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.capacitors[0]), "cpc", "hmh", "cpc", 'c',
+                new ItemStack(Loader.ItemHyperConductor), 'p', new ItemStack(Loader.ItemQuantumPlating), 'h',
+                new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing));
+
+        for (int c = 1; c < Loader.capacitors.length; c++) {
+            GameRegistry.addShapedRecipe(new ItemStack(Loader.capacitors[c]), "cpc", "hmh", "cpc", 'c',
+                    new ItemStack(Loader.capacitors[c - 1]), 'p', new ItemStack(Loader.ItemQuantumPlating), 'h',
+                    new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing));
+        }
         // TOOLS
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemQuantumAxe, 1), "ccp", "csp", " s ", 'p',
                 new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack, 's', new ItemStack(Item.stick));
