@@ -19,7 +19,7 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
 
     @Override
     public int getMaxEnergy() {
-        return 100000 * maxEnergyMultiplier;
+        return 50000 * (int) Math.pow(4.0D, (double) maxEnergyMultiplier);
     }
 
     @Override
