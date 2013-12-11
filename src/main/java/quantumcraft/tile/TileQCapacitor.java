@@ -3,9 +3,11 @@ package quantumcraft.tile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import quantumcraft.core.QuantumCraft;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.net.Location;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.util.CapacitorName;
 import quantumcraft.util.TileUtil;
 
 public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
@@ -13,7 +15,7 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     public int upgradeID[] = {0, 0, 0, 0};
     private int maxEnergyMultiplier = 1;
 
-    public void setMaxEnergyMultiplier(int max){
+    public void setMaxEnergyMultiplier(int max) {
         maxEnergyMultiplier = max;
     }
 
@@ -99,7 +101,7 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
 
     @Override
     public String getInvName() {
-        return "Quantum Capacitor";
+        return "Quantum " + CapacitorName.getName(maxEnergyMultiplier) + " Capacitor";
     }
 
     @Override

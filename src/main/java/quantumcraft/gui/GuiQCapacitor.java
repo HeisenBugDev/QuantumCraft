@@ -65,7 +65,7 @@ public class GuiQCapacitor extends GuiBase {
             GL11.glColor3f(1F, 1F, 1F);
             drawPowerBar();
 
-            this.fontRenderer.drawString("Quantum Capacitor", 15, 15, 0x000000);
+            this.fontRenderer.drawString(((TileQCapacitor) tile).getInvName(), 15, 15, 0x000000);
             this.fontRenderer.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 63, 0x333333);
 
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
