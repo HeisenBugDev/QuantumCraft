@@ -25,6 +25,8 @@ import quantumcraft.render.RenderOre;
 import quantumcraft.tile.*;
 import quantumcraft.util.CapacitorName;
 
+import java.util.ArrayList;
+
 public class Loader {
 
     /* ITEMS */
@@ -64,6 +66,7 @@ public class Loader {
     public static BlockIONHarvester BlockIONHarvester;
     public static BlockSteamGenerator BlockSteamGenerator;
     public static Block BlockMachineCasing;
+    public static BlockQCapacitor[] capacitors = new BlockQCapacitor[5];
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
     /* CREATIVE TABS */
@@ -245,6 +248,7 @@ public class Loader {
                     (tabQuantumCraft)
                     .setUnlocalizedName(Config.NameBlockQCP + i);
             BlockQCapacitor.setMaxEnergyMultiplier(i);
+            capacitors[i] = BlockQCapacitor;
             LanguageRegistry.addName(BlockQCapacitor, "Quantum " + CapacitorName.getName(i) + " Capacitor");
             GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
         }
