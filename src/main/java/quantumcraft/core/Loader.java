@@ -248,7 +248,7 @@ public class Loader {
                     (tabQuantumCraft)
                     .setUnlocalizedName(Config.NameBlockQCP + i);
             BlockQCapacitor.setMaxEnergyMultiplier(i);
-            capacitors[i] = BlockQCapacitor;
+            capacitors[i - 1] = BlockQCapacitor;
             LanguageRegistry.addName(BlockQCapacitor, "Quantum " + CapacitorName.getName(i) + " Capacitor");
             GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
         }
