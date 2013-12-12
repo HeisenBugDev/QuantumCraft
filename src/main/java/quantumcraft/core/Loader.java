@@ -25,8 +25,6 @@ import quantumcraft.render.RenderOre;
 import quantumcraft.tile.*;
 import quantumcraft.util.CapacitorName;
 
-import java.util.ArrayList;
-
 public class Loader {
 
     /* ITEMS */
@@ -252,13 +250,13 @@ public class Loader {
             LanguageRegistry.addName(BlockQCapacitor, "Quantum " + CapacitorName.getName(i) + " Capacitor");
             GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
         }
-        BlockSteamGenerator =
-                (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab(tabQuantumCraft)
-                        .setUnlocalizedName(Config.NameBlockSGN);
-        LanguageRegistry.addName(BlockSteamGenerator, "Steam Generator");
-        GameRegistry.registerBlock(BlockSteamGenerator, Config.NameBlockSGN);
-
         if (Config.beta.getBoolean(false)) {
+            BlockSteamGenerator =
+                    (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab(tabQuantumCraft)
+                            .setUnlocalizedName(Config.NameBlockSGN);
+            LanguageRegistry.addName(BlockSteamGenerator, "Steam Generator");
+            GameRegistry.registerBlock(BlockSteamGenerator, Config.NameBlockSGN);
+
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS);
