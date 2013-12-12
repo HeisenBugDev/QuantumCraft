@@ -1,6 +1,5 @@
 package quantumcraft.net;
 
-import debughandler.DebugHandler;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import quantumcraft.core.QuantumCraft;
