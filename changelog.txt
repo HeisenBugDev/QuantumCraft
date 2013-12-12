@@ -1,3 +1,10 @@
+ * Fix Capacitor GUI hover
+ * debug handler not needed
+ * Update gforge-instruction.md
+ * Change dir for mcrun
+ * move steam back to beta
+ * improper array element
+ * update changelog file. Preparing for release
  * crafting for capacitors! fixes #124!
  * add the capacitors to an arrayList so that they can be accessed later
  * inv name based off of multiplier
