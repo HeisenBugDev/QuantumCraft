@@ -1,0 +1,12 @@
+- Shift-clicking in all guis.
+- New GUIs for ALL machines.
+- Multitool stuff: shift right click on a machine to drop it and keep its power.
+- Upgrade stuff: Dematerializer supports overclock upgrades. To add them, shift-right click on the machine with the upgrade. To remove, shift right click with an empty hand.
+- Quantum Capacitors. There are 5 tiers: Basic to Insane. They are simply a battery! Put anywhere on your energy net to use.
+- The Capacitors support injecting/extraction of power like the injector and extractor.
+- Tons of code cleanup.
+- Changed over to ForgeGradle for building jars. We build universial, src, deobf, and javadoc.
+- A debug system. This will require you to add a small extra mod to be able to play but makes it easier for us to help you with problems.
+- Redstone control for all. Send a redstone signal to turn OFF!
+- Bad jokes in code.
+- Secret stuff that's not ready yet.
