@@ -20,7 +20,7 @@ public class GuiQCapacitor extends GuiBase {
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
         addHoverHandler(new HoverHandler(0, this), 189, 9, 9, 9);
-        addHoverHandler(new HoverHandler(1, this), 15, 40, 81, 16);
+        addHoverHandler(new HoverHandler(1, this), 15, 36, 81, 16);
         addClickHandler(new ClickHandler(0), 189, 9, 9, 9);
     }
 
