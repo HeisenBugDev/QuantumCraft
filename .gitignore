@@ -2,13 +2,18 @@
 .idea/
 *.iml
 *.iws
-
-
-
+# gradle stuff
+build
+.gradle
+.watsonrc
+.watsonresults
+run
+out
+src/api
 *.class
+mcrun
 *.DS_STORE
 # Package Files #
-*.jar
 *.war
 *.ear
 *.pydevproject
@@ -17,10 +22,12 @@
 bin/**
 tmp/**
 tmp/**/*
+config
 *.tmp
 *.bak
 *.swp
 *~.nib
+saves
 local.properties
 .classpath
 .settings/

@@ -1,5 +1,6 @@
 # QuantumCraft
 
+![Logo](http://i.imgur.com/h6cUsrb.png)
 
 Yet another minecraft tech mod that ends with -craft.
 IRC: irc.esper.net #QuantumCraft :)
@@ -13,6 +14,15 @@ This is the github repo for QuantumCraft which will add some fun machines and a 
 ## [Todo and bug tracker](https://github.com/QuantumCraft/QuantumCraft/issues?state=open)
 
 If you find an issue you can either submit it on GitHub which would be the best, fork it fix it and send us a PR, or lastly send us a PM/post on [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
+
+If you do find a bug we may need you to tell us some more info. The info we will need is here:
+
+ - QC Version
+ - Minecraft version
+ - Other mods
+ - Debug log
+
+The debug log is the most complicated. Go to the DebugHandler.cfg. There will be a debug value, change it to true. Then start up mc and do whatever you did that broke it. When you leave the world there will be a popup with a URL. Give us that URL. Then disable the debug option in the config to keep it from being annoying. We'll then go from there.
 
 **If you find a bug and do not report it, it will most likely _not_ get fixed**
 
