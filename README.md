@@ -28,9 +28,9 @@ The debug log is the most complicated. Go to the DebugHandler.cfg. There will be
 
 ## Downloads
 
-You have a couple options for getting your hands on this mod. First, you can build from source with out nice and simple buildLocal.xml script.
-Your option is to go to the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-quantumcraft-wip/) and get a download from there.
-Lastly, you could always bug us for a bleeding edge latest build (more info on contact below). _Note: both the minecraftforum option and asking us will most likely be through adf.ly, this is not because we hate you, it is because we would like to take five seconds of your time to try and make some $$$ off of this mod_
+You MUST have DebugHandler to use this mod!
+You have a couple options for getting your hands on this mod. First, you can build from source with out nice and simple build.gradle script `gradle build`.
+Your other option is to go to the [minecraftforum post](http://www.minecraftforum.net/topic/http://heisenbugdev.com/downloads) and get a download from there.
 
 ## Contact
 
