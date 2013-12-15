@@ -5,7 +5,7 @@
   "description": "Yet another Minecraft tech mod that ends with -craft.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "http://www.minecraftforum.net/topic/546192-",
+  "url": "",
   "updateUrl": "",
   "authors": ["hunterboerner", "sammko", "LordFokas", "wtg62"],
   "credits": "",
