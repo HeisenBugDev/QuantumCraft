@@ -1,0 +1,16 @@
+[
+{
+  "modid": "QuantumCraft",
+  "name": "QuantumCraft",
+  "description": "Yet another Minecraft tech mod that ends with -craft.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://www.minecraftforum.net/topic/546192-",
+  "updateUrl": "",
+  "authors": ["hunterboerner", "sammko", "LordFokas", "wtg62"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
