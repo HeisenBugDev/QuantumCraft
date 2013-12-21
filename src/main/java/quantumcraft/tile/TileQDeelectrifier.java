@@ -37,9 +37,12 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
     public void updateEntity() {
         super.updateEntity();
         buildCraftBuffer += powerHandler.useEnergy(1, 100, true);
+        int powerUse = 100;
+        if (powerUse > buildCraftBuffer) powerUse = (int) buildCraftBuffer;
+        if (powerUse > getMaxEnergy() - getCurrentEnergy()) powerUse = getMaxEnergy() - getCurrentEnergy();
         if (buildCraftBuffer >= 1) {
-            addEnergy(1);
-            buildCraftBuffer--;
+            addEnergy(powerUse);
+            buildCraftBuffer -= powerUse;
         }
 
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
