@@ -169,7 +169,7 @@ public class Config {
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
         BlockMCasingID = config.get("Blocks", "BlockMachineCasing", 3590).getInt();
 
-        IONForgeEnergyCost = config.get("Units", "ION Forge Energy Cost", 3).getInt();
+        IONForgeEnergyCost = config.get("Units", "ION Forge Energy Cost", 128).getInt();
 
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =
