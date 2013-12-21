@@ -48,7 +48,6 @@ public abstract class BlockMachine extends BlockRotatable {
     }
 
 
-
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
@@ -96,9 +95,11 @@ public abstract class BlockMachine extends BlockRotatable {
             te.rotate();
             return true;
         }
-
-        entityplayer.openGui(QuantumCraft.instance, te.guiID(), world, x, y, z);
-        return true;
+        if (te.guiID() != -1) {
+            entityplayer.openGui(QuantumCraft.instance, te.guiID(), world, x, y, z);
+            return true;
+        }
+        return false;
     }
 
     public Icon getIconFromSide(int side, boolean topAlternative) {
