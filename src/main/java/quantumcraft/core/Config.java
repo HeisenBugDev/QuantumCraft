@@ -3,6 +3,7 @@ package quantumcraft.core;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
+import quantumcraft.items.ItemInfinitePower;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -63,6 +64,7 @@ public class Config {
     public static int ItemLocationCardID;
     public static int ItemLocationdCardBlankID;
     public static int ItemPortQCapacitorID;
+    public static int ItemInfinitePowerID;
     public static int ItemUpgradeID;
     public static int ItemQSwordID;
     public static int ItemQAxeID;
@@ -142,6 +144,8 @@ public class Config {
 
         ItemHyperConductorID = config.get("Items", "ItemHyperConductor", 5009).getInt();
         ItemQuantumPlatingID = config.get("Items", "ItemQuantumPlating", 5010).getInt();
+
+        ItemInfinitePowerID = config.get("Items", "InfinitePowerItem", 5024).getInt();
 
         OreUnbioxeniumID = config.get("Blocks", "BlockOreUnbioxenium", 3499).getInt();
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
