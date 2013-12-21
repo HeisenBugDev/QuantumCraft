@@ -31,7 +31,7 @@ public class TileIONHarvester extends TileEnergySink {
                 Block b = Block.blocksList[blockId];
                 List<ItemStack> drops = b.getBlockDropped(worldObj, x, y, z, blockMeta, 0);
                 worldObj.setBlockToAir(x, y, z);
-                subtractEnergy(5);
+                subtractEnergy(64);
                 for (int i = drops.size(); i-- > 0; ) {
                     ItemStack dropStack = drops.get(i);
                     UtilInventory.dropStack(this, dropStack, this.getDropDirection());
@@ -46,7 +46,7 @@ public class TileIONHarvester extends TileEnergySink {
     public void updateEntity() {
         super.updateEntity();
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
-            this.addEnergy(this.requestPacket(10));
+            this.addEnergy(this.requestPacket(100));
         }
     }
 }
