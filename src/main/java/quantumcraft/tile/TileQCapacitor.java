@@ -64,8 +64,7 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     @Override
     public void updateEntity() {
         super.updateEntity();
-        // [review] - Why do we need all these?
-        this.addEnergy(this.requestPacket(100));
+        this.addEnergy(this.requestPacket(10000));
         TileQEInjector.injectPower(inventory, upgradeID, false, this, this);
         TileQEExtractor.extractPower(inventory, this, this, false, 1);
     }
