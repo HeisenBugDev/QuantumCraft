@@ -161,8 +161,8 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
 
     @Override
     public void updateEntity() {
-        if (BasicUtils.isRedstonePowered(this)) return;
         if (worldObj.getWorldTime() % 20 == 0) {
+            if (BasicUtils.isRedstonePowered(this)) return;
             QuantumCraft.logHandler.debugPrint(this, "Current Energy is: " + this.getCurrentEnergy());
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
