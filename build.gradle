@@ -15,6 +15,7 @@ buildscript {
 apply plugin: "forge"
 
 dependencies {
+    compile fileTree(dir: 'mcrun/mods', include: '*')
     compile fileTree(dir: 'libs', include: '*.jar')
 }
 
