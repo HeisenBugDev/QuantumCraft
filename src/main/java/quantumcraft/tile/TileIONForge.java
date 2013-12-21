@@ -227,7 +227,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
         if (var1 == 0) {
-            return new int[]{1};
+            return new int[]{1,3};
         } else return new int[]{0};
     }
 
