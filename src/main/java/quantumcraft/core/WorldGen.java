@@ -17,10 +17,10 @@ public class WorldGen implements IWorldGenerator {
     }
 
     private void generateOres(World world, Random random, int cX, int cZ) {
-        WorldGenMinable quantonium = new WorldGenMinable(Loader.OreQuantonium.blockID, 20);
+        WorldGenMinable quantonium = new WorldGenMinable(Loader.OreQuantonium.blockID, 10);
         quantonium.generate(world, random, (cX * 16) + random.nextInt(16), 8 + random.nextInt(56),
                 (cZ * 16) + random.nextInt(16));
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             WorldGenMinable unbioxenium = new WorldGenMinable(Loader.OreUnbioxenium.blockID, 20);
             unbioxenium.generate(world, random, (cX * 16) + random.nextInt(16), 8 + random.nextInt(56),
                     (cZ * 16) + random.nextInt(16));
