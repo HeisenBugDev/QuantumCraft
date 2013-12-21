@@ -59,7 +59,7 @@ public abstract class BlockMachine extends BlockRotatable {
             TileMachineBase tile =
                     (TileMachineBase) BasicUtils.getTileEntity(world, new Coords(x, y, z), TileMachineBase.class);
             ItemStack dropItem = new ItemStack(this);
-            dropItem.setItemDamage(tile.getMaxEnergy() - tile.getCurrentEnergy());
+            dropItem.setItemDamage(tile.getMaxEnergy() - tile.getCurrentEnergy() + 1);
             dropItem.getItem().setMaxDamage(tile.getMaxEnergy() + 1);
             this.dropBlockAsItem_do(world, x, y, z, dropItem);
             this.removeBlockByPlayer(world, entityplayer, x, y, z);
