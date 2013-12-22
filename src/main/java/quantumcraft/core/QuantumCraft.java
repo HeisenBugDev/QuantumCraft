@@ -22,7 +22,7 @@ import quantumcraft.fluid.FluidSteam;
 
 import java.util.HashMap;
 
-@Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
+@Mod(modid = "QuantumCraftA", name = "QuantumCraftA", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Config.modNetworkChannel},
         packetHandler = PacketHandler.class)
 public class QuantumCraft {
