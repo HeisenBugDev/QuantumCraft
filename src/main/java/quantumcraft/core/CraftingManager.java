@@ -129,7 +129,7 @@ public class CraftingManager {
     }
 
     public static void addQDE() {
-        QRecipeHandler.addQDERecipe(new QDERecipe(new ItemStack(Loader.ItemCrystalQuantonium), 100));
+        QRecipeHandler.addQDERecipe(new QDERecipe(new ItemStack(Loader.ItemCrystalQuantonium), 1100));
     }
 
 }
