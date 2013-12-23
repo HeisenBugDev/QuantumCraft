@@ -7,7 +7,9 @@ IRC: irc.esper.net #QuantumCraft :)
 
 ## Intro
 Visit the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-quantumcraft-wip/)
+
 [GitHub repo](https://github.com/heisenbugdev/quantumcraft)
+
 QuantumCraft will add some fun machines and a nice research system into Minecraft.
 
 **We would love feedback so just send it on over!**
