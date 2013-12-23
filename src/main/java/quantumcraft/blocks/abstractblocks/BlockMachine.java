@@ -28,7 +28,7 @@ public abstract class BlockMachine extends BlockRotatable {
 
     public BlockMachine(int id, Material material) {
         super(id, material);
-        setHardness(10F);
+        setHardness(20F);
         setResistance(5F);
     }
 
