@@ -10,6 +10,8 @@ Visit the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-
 
 [GitHub repo](https://github.com/heisenbugdev/quantumcraft)
 
+[Website](http://heisenbugdev.com)
+
 QuantumCraft will add some fun machines and a nice research system into Minecraft.
 
 **We would love feedback so just send it on over!**
@@ -60,8 +62,6 @@ We looked at TEX code for examples.
 ## Version explanation (no 11vB39Lq versions)
 
 We will be using [Semantic Versioning 2.0.0](http://semver.org/) _except_ anthing before 1.0. If it is 0.x then it means we have not officially released it and will not be considered stable or in anyway complete for playing. Once we get to 1.0 we will start using the [Semantic Versioning 2.0.0](http://semver.org/) scheme. I actually have no clue if this makes sense. How 'bout we just say that if it is a 0.x version then we are still working a lot on leveling everything out. Okay?
-
-We will also be setting up some documentation soon with a todo list on what we are going to implement. We _may_ use what we did on the last version of QuantumCraft and just make a php site with bootstrap that is static.
 
 ## Helping out with the coding
 
