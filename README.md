@@ -7,7 +7,8 @@ IRC: irc.esper.net #QuantumCraft :)
 
 ## Intro
 Visit the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-quantumcraft-wip/)
-This is the github repo for QuantumCraft which will add some fun machines and a nice research system into Minecraft.
+[GitHub repo](https://github.com/heisenbugdev/quantumcraft)
+QuantumCraft will add some fun machines and a nice research system into Minecraft.
 
 **We would love feedback so just send it on over!**
 
@@ -36,7 +37,7 @@ Go here to do the downloads: http://heisenbugdev.com/downloads
 If you would like to contact us directly for some reason (I dunno why), you can through either the IRC or minecraftforum.
 
  - hunterboerner
-  - [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
+  - **[minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)**
   - IRC: irc.esper.net #QuantumCraft username: hunterb (If I don't respond within 5 minutes, I will most likely not get the message so please send it to me on mc forums so that it does not get lost in the terrible logs of doom)
  - sammko
   - im sammko on minecraftforums, too lazy to find the link
