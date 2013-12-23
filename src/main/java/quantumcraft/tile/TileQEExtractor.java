@@ -140,7 +140,7 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
                     cycle = 100000;
 
                 } else {
-                    cycle = 5;
+                    cycle = 50;
                 }
                 if (!(tile.getCurrentEnergy() + cycle <= tile.getMaxEnergy())) {
                     cycle = tile.getMaxEnergy() - tile.getCurrentEnergy();
