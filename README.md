@@ -14,7 +14,7 @@ QuantumCraft will add some fun machines and a nice research system into Minecraf
 
 **We would love feedback so just send it on over!**
 
-## [Todo and bug tracker](https://github.com/QuantumCraft/QuantumCraft/issues?state=open)
+## **[Todo and bug tracker](https://github.com/QuantumCraft/QuantumCraft/issues?state=open)**
 
 If you find an issue you can either submit it on GitHub which would be the best, fork it fix it and send us a PR, or lastly send us a PM/post on [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
 
