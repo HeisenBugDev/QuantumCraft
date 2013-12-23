@@ -29,7 +29,7 @@ public abstract class BlockMachine extends BlockRotatable {
     public BlockMachine(int id, Material material) {
         super(id, material);
         setHardness(20F);
-        setResistance(5F);
+        setResistance(10F);
     }
 
     @Override
