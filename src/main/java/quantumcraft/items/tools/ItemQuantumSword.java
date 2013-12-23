@@ -53,9 +53,9 @@ public class ItemQuantumSword extends ItemSword implements IQEnergizable {
     @Override
     public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6,
                                     EntityLivingBase par7EntityLivingBase) {
-        if (getCurrentQEnergyBuffer(par1ItemStack) < 50) return false;
+        if (getCurrentQEnergyBuffer(par1ItemStack) < 20) return false;
         if ((double) Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
-            setCurrentQEnergyBuffer(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack) - 50);
+            setCurrentQEnergyBuffer(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack) - 20);
             ItemEnergyUtils.setDamage(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack), maxQenergyValue);
         }
 
@@ -64,7 +64,7 @@ public class ItemQuantumSword extends ItemSword implements IQEnergizable {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
-        if (getCurrentQEnergyBuffer(stack) > 0) {
+        if (getCurrentQEnergyBuffer(stack) >= 50) {
             setCurrentQEnergyBuffer(stack, getCurrentQEnergyBuffer(stack) - 1);
             ItemEnergyUtils.setDamage(stack, getCurrentQEnergyBuffer(stack), maxQenergyValue);
             return false;

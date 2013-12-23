@@ -60,7 +60,7 @@ public class ItemQuantumShovel extends ItemSpade implements IQEnergizable {
 
     @Override
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
-        if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
+        if (getCurrentQEnergyBuffer(par1ItemStack) >= 50) {
             return 10.0F;
         } else {
             ItemEnergyUtils.emptyEnergy(par1ItemStack, maxQenergyValue);

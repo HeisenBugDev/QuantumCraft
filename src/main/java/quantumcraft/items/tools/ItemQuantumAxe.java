@@ -61,7 +61,7 @@ public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
 
     @Override
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
-        if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
+        if (getCurrentQEnergyBuffer(par1ItemStack) >= 50) {
             if (!(par2Block.blockMaterial == Material.ground || par2Block.blockMaterial == Material.grass ||
                     par2Block.blockMaterial == Material.sand)) {
                 return (par2Block.blockMaterial == Material.wood || par2Block.blockMaterial == Material.plants ||

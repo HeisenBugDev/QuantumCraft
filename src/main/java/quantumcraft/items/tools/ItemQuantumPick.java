@@ -60,12 +60,12 @@ public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable {
 
     @Override
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
-        if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
+        if (getCurrentQEnergyBuffer(par1ItemStack) >= 50) {
             if (!(par2Block.blockMaterial == Material.ground || par2Block.blockMaterial == Material.grass ||
                     par2Block.blockMaterial == Material.sand)) {
-                return (par2Block.blockMaterial == Material.iron || par2Block.blockMaterial == Material.anvil ||
+                return ((par2Block.blockMaterial == Material.iron || par2Block.blockMaterial == Material.anvil ||
                         par2Block.blockMaterial == Material.rock) ? this.efficiencyOnProperMaterial :
-                        super.getStrVsBlock(par1ItemStack, par2Block);
+                        super.getStrVsBlock(par1ItemStack, par2Block)) + 1F;
             } else return 0.001F;
         } else {
             ItemEnergyUtils.emptyEnergy(par1ItemStack, maxQenergyValue);
