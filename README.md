@@ -40,7 +40,8 @@ If you would like to contact us directly for some reason (I dunno why), you can 
   - [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
   - IRC: irc.esper.net #QuantumCraft username: hunterb (If I don't respond within 5 minutes, I will most likely not get the message so please send it to me on mc forums so that it does not get lost in the terrible logs of doom)
  - sammko
-  - he has to put his info here :P
+  - im sammko on minecraftforums, too lazy to find the link
+  - IRC: irc.esper.net im sometimes on #QuantumCraft and #Minecraftforge. not too often
 
 ## Credits
 
