@@ -29,8 +29,7 @@ The debug log is the most complicated. Go to the DebugHandler.cfg. There will be
 ## Downloads
 
 You MUST have DebugHandler to use this mod!
-You have a couple options for getting your hands on this mod. First, you can build from source with out nice and simple build.gradle script `gradle build`.
-Your other option is to go to the [minecraftforum post](http://www.minecraftforum.net/topic/http://heisenbugdev.com/downloads) and get a download from there.
+Go here to do the downloads: http://heisenbugdev.com/downloads
 
 ## Contact
 
