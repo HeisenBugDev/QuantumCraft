@@ -14,6 +14,7 @@ public class BlockOreQuantonium extends BlockOre {
         super(par1);
         setHardness(2.5F);
         setResistance(1.0F);
+        setLightValue(0.3F);
     }
 
     public void setIcon(Icon i) {

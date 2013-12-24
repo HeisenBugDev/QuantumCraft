@@ -140,7 +140,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
             currentival = 0;
         }
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
-            this.addEnergy(this.requestPacket(10));
+            this.addEnergy(this.requestPacket(60));
         }
         injectPower(inventory, upgradeID, true, this, this);
         if (updateNextTick) {
@@ -158,7 +158,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
         if (inventoryLocal[0] != null && inventoryLocal[1] == null) {
             if (inventoryLocal[0].getItem() instanceof IQEnergizable) {
                 IQEnergizable e = ((IQEnergizable) inventoryLocal[0].getItem());
-                int cycle = 5 + BasicUtils.overclockMultiplier(upgradeIDLocal);
+                int cycle = 50 + BasicUtils.overclockMultiplier(upgradeIDLocal);
                 if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) <= (e.getMaxQEnergyValue(inventoryLocal[0]) - cycle)) {
                     if (tile.getCurrentEnergy() < cycle) {
                         cycle = tile.getCurrentEnergy();

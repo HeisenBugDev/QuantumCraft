@@ -7,7 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -18,9 +17,6 @@ import quantumcraft.core.interfaces.IUpgradable;
 import quantumcraft.core.interfaces.IUpgrade;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.BasicUtils;
-import quantumcraft.util.ItemEnergyUtils;
-
-import java.util.List;
 
 public abstract class BlockMachine extends BlockRotatable {
     protected Icon iconFront;
@@ -32,8 +28,8 @@ public abstract class BlockMachine extends BlockRotatable {
 
     public BlockMachine(int id, Material material) {
         super(id, material);
-        setHardness(10F);
-        setResistance(5F);
+        setHardness(20F);
+        setResistance(10F);
     }
 
     @Override
@@ -48,7 +44,6 @@ public abstract class BlockMachine extends BlockRotatable {
     }
 
 
-
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
@@ -59,8 +54,10 @@ public abstract class BlockMachine extends BlockRotatable {
             TileMachineBase tile =
                     (TileMachineBase) BasicUtils.getTileEntity(world, new Coords(x, y, z), TileMachineBase.class);
             ItemStack dropItem = new ItemStack(this);
-            dropItem.setItemDamage(tile.getMaxEnergy() - tile.getCurrentEnergy());
-            dropItem.getItem().setMaxDamage(tile.getMaxEnergy() + 1);
+            if (tile != null) {
+                dropItem.setItemDamage(tile.getMaxEnergy() - tile.getCurrentEnergy() + 1);
+                dropItem.getItem().setMaxDamage(tile.getMaxEnergy() + 1);
+            }
             this.dropBlockAsItem_do(world, x, y, z, dropItem);
             this.removeBlockByPlayer(world, entityplayer, x, y, z);
             return true;
@@ -96,9 +93,11 @@ public abstract class BlockMachine extends BlockRotatable {
             te.rotate();
             return true;
         }
-
-        entityplayer.openGui(QuantumCraft.instance, te.guiID(), world, x, y, z);
-        return true;
+        if (te.guiID() != -1) {
+            entityplayer.openGui(QuantumCraft.instance, te.guiID(), world, x, y, z);
+            return true;
+        }
+        return false;
     }
 
     public Icon getIconFromSide(int side, boolean topAlternative) {

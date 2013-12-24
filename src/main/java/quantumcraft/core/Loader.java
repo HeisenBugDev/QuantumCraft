@@ -11,10 +11,8 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraftforge.common.EnumHelper;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import quantumcraft.blocks.*;
-import quantumcraft.fluid.FluidSteam;
 import quantumcraft.items.*;
 import quantumcraft.items.tools.ItemQuantumAxe;
 import quantumcraft.items.tools.ItemQuantumPick;
@@ -37,6 +35,7 @@ public class Loader {
     public static ItemLocationCard ItemLocationCard;
     public static ItemLocationCardBlank ItemLocationCardBlank;
     public static ItemPortableQCapacitor ItemPortableQCapacitor;
+    public static ItemInfinitePower ItemInfinitePower;
     public static ItemUpgrade ItemUpgrade;
     public static ItemQuantumSword ItemQuantumSword;
     public static ItemQuantumAxe ItemQuantumAxe;
@@ -62,7 +61,6 @@ public class Loader {
     public static BlockIONTunneler BlockIONTunneler;
     public static BlockIONScanner BlockIONScanner;
     public static BlockIONHarvester BlockIONHarvester;
-    public static BlockSteamGenerator BlockSteamGenerator;
     public static Block BlockMachineCasing;
     public static BlockQCapacitor[] capacitors = new BlockQCapacitor[5];
     /* OTHER BLOCKS */
@@ -77,7 +75,6 @@ public class Loader {
         initRenderers();
         initWGen();
         initTEs();
-        initFluids();
         initOreDict();
         CraftingManager.addCrafting();
         CraftingManager.addSmelting();
@@ -147,6 +144,11 @@ public class Loader {
                 .setTextureName(Config.getTextureName(Config.NameItemPortableQCapacitor));
         LanguageRegistry.addName(ItemPortableQCapacitor, "Portable Quantum Capacitor");
 
+        ItemInfinitePower =
+                (ItemInfinitePower) new ItemInfinitePower(Config.ItemInfinitePowerID).setCreativeTab(tabQuantumCraft)
+                        .setUnlocalizedName("ItemInfinitePower");
+        LanguageRegistry.addName(ItemInfinitePower, "Infinite Power!");
+
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword(Config.ItemQSwordID).setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemQSword).setTextureName(Config.getTextureName(Config.NameItemQSword));
         LanguageRegistry.addName(ItemQuantumSword, "Quantum Sword");
@@ -179,10 +181,6 @@ public class Loader {
                 .setUnlocalizedName(Config.NameItemQuantumPlating)
                 .setTextureName(Config.getTextureName(Config.NameItemQuantumPlating));
         LanguageRegistry.addName(ItemQuantumPlating, "Quantum Plating");
-    }
-
-    public static void initFluids() {
-        FluidRegistry.registerFluid(FluidSteam.fluid);
     }
 
     public static void initBlocks() {
@@ -242,21 +240,15 @@ public class Loader {
         GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
 
         for (int i = 1; i <= 5; i++) {
-            BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID + i).setCreativeTab
-                    (tabQuantumCraft)
-                    .setUnlocalizedName(Config.NameBlockQCP + i);
+            BlockQCapacitor =
+                    (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID + i).setCreativeTab(tabQuantumCraft)
+                            .setUnlocalizedName(Config.NameBlockQCP + i);
             BlockQCapacitor.setMaxEnergyMultiplier(i);
             capacitors[i - 1] = BlockQCapacitor;
             LanguageRegistry.addName(BlockQCapacitor, "Quantum " + CapacitorName.getName(i) + " Capacitor");
             GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
         }
         if (Config.beta.getBoolean(false)) {
-            BlockSteamGenerator =
-                    (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockSGN);
-            LanguageRegistry.addName(BlockSteamGenerator, "Steam Generator");
-            GameRegistry.registerBlock(BlockSteamGenerator, Config.NameBlockSGN);
-
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS);
@@ -290,7 +282,8 @@ public class Loader {
         GameRegistry.registerBlock(BlockQEExtractor, Config.NameBlockQEE);
 
         BlockMachineCasing = new Block(Config.BlockMCasingID, Material.rock).setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameBlockMCasing).setTextureName(Config.getTextureName(Config.NameBlockMCasing));
+                .setUnlocalizedName(Config.NameBlockMCasing)
+                .setTextureName(Config.getTextureName(Config.NameBlockMCasing));
         LanguageRegistry.addName(BlockMachineCasing, "Quantum Machine Casing");
         GameRegistry.registerBlock(BlockMachineCasing, Config.NameBlockMCasing);
 
@@ -316,7 +309,6 @@ public class Loader {
         GameRegistry.registerTileEntity(TileIONScanner.class, "IONScannerTE");
         GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
         GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
-        GameRegistry.registerTileEntity(TileSteamGenerator.class, "SteamGeneratorTE");
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");

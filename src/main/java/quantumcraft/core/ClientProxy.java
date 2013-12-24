@@ -34,9 +34,6 @@ public class ClientProxy extends CommonProxy {
             case 7:
                 TileQCapacitor te7 = (TileQCapacitor) world.getBlockTileEntity(x,y,z);
                 return new GuiQCapacitor(new ContainerQCapacitor(player.inventory, te7));
-            case 8:
-                TileSteamGenerator te8 = (TileSteamGenerator) world.getBlockTileEntity(x,y,z);
-                return new GuiSteamGenerator(new ContainerSteamGenerator(player.inventory, te8));
         }
         return null;
 

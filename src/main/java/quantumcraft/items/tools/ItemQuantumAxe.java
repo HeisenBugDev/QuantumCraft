@@ -12,7 +12,7 @@ import quantumcraft.util.ItemEnergyUtils;
 
 public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
 
-    int maxQenergyValue = 1000;
+    int maxQenergyValue = 10000;
 
     public ItemQuantumAxe(int par1) {
         super(par1, Loader.ToolMaterials.QUANTUMTOOL);
@@ -50,11 +50,10 @@ public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
     @Override
     public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6,
                                     EntityLivingBase par7EntityLivingBase) {
+        if (getCurrentQEnergyBuffer(par1ItemStack) < 50) return false;
         if ((double) Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
-            if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
-                setCurrentQEnergyBuffer(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack) - 1);
-                ItemEnergyUtils.setDamage(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack), maxQenergyValue);
-            }
+            setCurrentQEnergyBuffer(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack) - 50);
+            ItemEnergyUtils.setDamage(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack), maxQenergyValue);
         }
 
         return true;
@@ -62,7 +61,7 @@ public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
 
     @Override
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
-        if (getCurrentQEnergyBuffer(par1ItemStack) > 0) {
+        if (getCurrentQEnergyBuffer(par1ItemStack) >= 50) {
             if (!(par2Block.blockMaterial == Material.ground || par2Block.blockMaterial == Material.grass ||
                     par2Block.blockMaterial == Material.sand)) {
                 return (par2Block.blockMaterial == Material.wood || par2Block.blockMaterial == Material.plants ||

@@ -17,6 +17,7 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
     public boolean updateNextTick = false;
     private ForgeDirection _forwardDirection;
     private int energyBuffer = 0;
+    public boolean redstonePower = false;
 
     protected TileMachineBase() {
         _forwardDirection = ForgeDirection.NORTH;
@@ -161,12 +162,12 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
 
     @Override
     public void updateEntity() {
-        if (BasicUtils.isRedstonePowered(this)) return;
         if (worldObj.getWorldTime() % 20 == 0) {
+            redstonePower = BasicUtils.isRedstonePowered(this);
             QuantumCraft.logHandler.debugPrint(this, "Current Energy is: " + this.getCurrentEnergy());
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
-        }
+        } if (redstonePower) return;
     }
 
     public boolean useRotated() {

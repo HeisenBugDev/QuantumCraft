@@ -3,6 +3,7 @@ package quantumcraft.core;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
+import quantumcraft.items.ItemInfinitePower;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -44,7 +45,6 @@ public class Config {
     public static String NameBlockIOS = "machineIOS";  // Block ION Scanner
     public static String NameBlockIOH = "machineIOH";  // Block ION Harvester
     public static String NameBlockQCP = "machineQCP";  // Block Q Capacitor
-    public static String NameBlockSGN = "machineSGN";  // Block Steam Generator
     public static String NameBlockQFiberWire = "blockFiberWire";
     public static String NameBlockMCasing = "quantumMachineCasing";
     public static String NameTextureQOre = "oreQuantonium.ore";
@@ -63,6 +63,7 @@ public class Config {
     public static int ItemLocationCardID;
     public static int ItemLocationdCardBlankID;
     public static int ItemPortQCapacitorID;
+    public static int ItemInfinitePowerID;
     public static int ItemUpgradeID;
     public static int ItemQSwordID;
     public static int ItemQAxeID;
@@ -86,7 +87,6 @@ public class Config {
     public static int BlockIOSID;
     public static int BlockIOHID;
     public static int BlockQCPID;
-    public static int BlockSGNID;
     public static int BlockFiberWireID;
     public static int BlockMCasingID;
     public static int IONForgeEnergyCost;
@@ -143,6 +143,8 @@ public class Config {
         ItemHyperConductorID = config.get("Items", "ItemHyperConductor", 5009).getInt();
         ItemQuantumPlatingID = config.get("Items", "ItemQuantumPlating", 5010).getInt();
 
+        ItemInfinitePowerID = config.get("Items", "InfinitePowerItem", 5024).getInt();
+
         OreUnbioxeniumID = config.get("Blocks", "BlockOreUnbioxenium", 3499).getInt();
         OreQuantoniumID = config.get("Blocks", "BlockOreQuantonium", 3500).getInt();
         BlockQDEID = config.get("Blocks", "BlockQDeenergizer", 3600).getInt();
@@ -157,7 +159,6 @@ public class Config {
         BlockIOTID = config.get("Blocks", "BlockIONTunneler", 3611).getInt();
         BlockIOSID = config.get("Blocks", "BlockIONScanner", 3612).getInt();
         BlockIOHID = config.get("Blocks", "BlockIONHarvester", 3613).getInt();
-        BlockSGNID = config.get("Blocks", "BlockSteamGenerator", 3615).getInt();
 
         // DO NOT PUT ANY BLOCK IDS FROM 3630 TO 3635!
         BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3630).getInt();
@@ -165,7 +166,7 @@ public class Config {
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
         BlockMCasingID = config.get("Blocks", "BlockMachineCasing", 3590).getInt();
 
-        IONForgeEnergyCost = config.get("Units", "ION Forge Energy Cost", 3).getInt();
+        IONForgeEnergyCost = config.get("Units", "ION Forge Energy Cost", 128).getInt();
 
         networkUpdateRange = config.get("general", "Network Update Range", 50.0D);
         networkUpdateRange.comment =

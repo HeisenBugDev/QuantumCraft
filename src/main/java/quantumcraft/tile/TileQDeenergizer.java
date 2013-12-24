@@ -18,6 +18,7 @@ public class TileQDeenergizer extends TileEnergySource implements ISidedInventor
     public ItemStack[] inventory = new ItemStack[2];
     int processTime = -1;
     QDERecipe r;
+    private boolean isProcessing = false;
 
     @Override
     public int getSizeInventory() {
@@ -78,7 +79,8 @@ public class TileQDeenergizer extends TileEnergySource implements ISidedInventor
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (this.canProcess()) {
+        if (worldObj.getWorldTime() % 20 == 0) isProcessing = canProcess();
+        if (isProcessing) {
             this.lastItemValue = r.getEnergyValue();
             this.QEnergyItemBuffer = this.lastItemValue;
 

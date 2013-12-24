@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import quantumcraft.core.interfaces.IQEnergizable;
 import quantumcraft.inventory.SimpleInventory;
+import quantumcraft.items.ItemInfinitePower;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 import quantumcraft.util.TileUtil;
@@ -134,8 +135,13 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
         if (inventoryLocal[inputSlot] != null) {
             if (inventoryLocal[inputSlot].getItem() instanceof IQEnergizable) {
                 IQEnergizable e = ((IQEnergizable) inventoryLocal[inputSlot].getItem());
-                int cycle = 5;
+                int cycle;
+                if (e instanceof ItemInfinitePower) {
+                    cycle = 100000;
 
+                } else {
+                    cycle = 50;
+                }
                 if (!(tile.getCurrentEnergy() + cycle <= tile.getMaxEnergy())) {
                     cycle = tile.getMaxEnergy() - tile.getCurrentEnergy();
                 }

@@ -7,11 +7,16 @@ IRC: irc.esper.net #QuantumCraft :)
 
 ## Intro
 Visit the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-quantumcraft-wip/)
-This is the github repo for QuantumCraft which will add some fun machines and a nice research system into Minecraft.
+
+[GitHub repo](https://github.com/heisenbugdev/quantumcraft)
+
+[Website](http://heisenbugdev.com)
+
+QuantumCraft will add some fun machines and a nice research system into Minecraft.
 
 **We would love feedback so just send it on over!**
 
-## [Todo and bug tracker](https://github.com/QuantumCraft/QuantumCraft/issues?state=open)
+## **[Todo and bug tracker](https://github.com/QuantumCraft/QuantumCraft/issues?state=open)**
 
 If you find an issue you can either submit it on GitHub which would be the best, fork it fix it and send us a PR, or lastly send us a PM/post on [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
 
@@ -28,19 +33,19 @@ The debug log is the most complicated. Go to the DebugHandler.cfg. There will be
 
 ## Downloads
 
-You have a couple options for getting your hands on this mod. First, you can build from source with out nice and simple buildLocal.xml script.
-Your option is to go to the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-quantumcraft-wip/) and get a download from there.
-Lastly, you could always bug us for a bleeding edge latest build (more info on contact below). _Note: both the minecraftforum option and asking us will most likely be through adf.ly, this is not because we hate you, it is because we would like to take five seconds of your time to try and make some $$$ off of this mod_
+You MUST have DebugHandler to use this mod!
+Go here to do the downloads: http://heisenbugdev.com/downloads
 
 ## Contact
 
 If you would like to contact us directly for some reason (I dunno why), you can through either the IRC or minecraftforum.
 
  - hunterboerner
-  - [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
+  - **[minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)**
   - IRC: irc.esper.net #QuantumCraft username: hunterb (If I don't respond within 5 minutes, I will most likely not get the message so please send it to me on mc forums so that it does not get lost in the terrible logs of doom)
  - sammko
-  - he has to put his info here :P
+  - im sammko on minecraftforums, too lazy to find the link
+  - IRC: irc.esper.net im sometimes on #QuantumCraft and #Minecraftforge. not too often
 
 ## Credits
 
@@ -58,13 +63,11 @@ We looked at TEX code for examples.
 
 We will be using [Semantic Versioning 2.0.0](http://semver.org/) _except_ anthing before 1.0. If it is 0.x then it means we have not officially released it and will not be considered stable or in anyway complete for playing. Once we get to 1.0 we will start using the [Semantic Versioning 2.0.0](http://semver.org/) scheme. I actually have no clue if this makes sense. How 'bout we just say that if it is a 0.x version then we are still working a lot on leveling everything out. Okay?
 
-We will also be setting up some documentation soon with a todo list on what we are going to implement. We _may_ use what we did on the last version of QuantumCraft and just make a php site with bootstrap that is static.
-
 ## Helping out with the coding
 
 If you would like to help out with coding, you can fork the branch and do some coding and the whole git routine. We are using git flow for our branching model. **Naming for branch: #-Name where # is the ticket number and name is what you are adding** I may put some more stuff here eventually.
 Buildcraft API is required.
 
-CURRENTLY USING FORGE 9.11.0.942! (http://adf.ly/673885/http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.4-9.11.1.942.zip)
+CURRENTLY USING FORGE 9.11.1.964! (http://adf.ly/673885/http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.4-9.11.1.964.zip)
 
 _PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF_

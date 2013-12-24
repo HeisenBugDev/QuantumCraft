@@ -3,6 +3,7 @@ package quantumcraft.tile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.net.Location;
@@ -30,6 +31,18 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     }
 
     @Override
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
+        super.readFromNBT(par1NBTTagCompound);
+        maxEnergyMultiplier = par1NBTTagCompound.getInteger("energyMultiplier");
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
+        super.writeToNBT(par1NBTTagCompound);
+        par1NBTTagCompound.setInteger("energyMultiplier", maxEnergyMultiplier);
+    }
+
+    @Override
     public void onBlockBreak() {
         SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 1);
         tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
@@ -51,17 +64,9 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     @Override
     public void updateEntity() {
         super.updateEntity();
-        // [review] - Why do we need all these?
-        if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 100) {
-            this.addEnergy(this.requestPacket(100));
-        } else if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 10) {
-            this.addEnergy(this.requestPacket(10));
-        } else if ((this.getMaxEnergy() - this.getCurrentEnergy()) >= 1) {
-            this.addEnergy(this.requestPacket(1));
-        }
+        this.addEnergy(this.requestPacket(10000));
         TileQEInjector.injectPower(inventory, upgradeID, false, this, this);
         TileQEExtractor.extractPower(inventory, this, this, false, 1);
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
     @Override
