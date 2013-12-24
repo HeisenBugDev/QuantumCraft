@@ -3,21 +3,21 @@ package quantumcraft.util;
 import java.util.ArrayList;
 
 public class QIGUtil {
-    private static ArrayList<Location> generators = new ArrayList<Location>();
+    private static ArrayList<Coords> generators = new ArrayList<Coords>();
 
-    public static ArrayList<Location> getGenerators() {
+    public static ArrayList<Coords> getGenerators() {
         return generators;
     }
     
-    public static void setGenerators(ArrayList<Location> generators) {
+    public static void setGenerators(ArrayList<Coords> generators) {
         QIGUtil.generators = generators;
     }
 
-    public static boolean addGenerator(Location location) {
-        return generators.add(location);
+    public static boolean addGenerator(Coords Coords) {
+        return generators.add(Coords);
     }
 
-    public static Location removeGenerator(int index) {
+    public static Coords removeGenerator(int index) {
         return generators.remove(index);
     }
 

@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import quantumcraft.net.EnergySourceList;
 import quantumcraft.net.IQEnergySink;
-import quantumcraft.util.Location;
 import quantumcraft.net.QuantumEnergyNet;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.util.Coords;
 
 public abstract class BlockEnergySink extends BlockEnergyComponent implements IQEnergySink {
     public BlockEnergySink(int id) {
@@ -16,7 +16,7 @@ public abstract class BlockEnergySink extends BlockEnergyComponent implements IQ
     }
 
     @Override
-    public void addSourceToList(World w, Location l, Location source) {
+    public void addSourceToList(World w, Coords l, Coords source) {
         ((TileEnergySink) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord())).addSourceToList(l, source);
     }
 
@@ -24,13 +24,13 @@ public abstract class BlockEnergySink extends BlockEnergyComponent implements IQ
     public void onBlockPlacedBy(World world, int x, int y, int z,
                                 EntityLivingBase entity, ItemStack stack) {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
-        Location l = new Location(x, y, z);
-        replaceSourceList(world, l, new EnergySourceList(QuantumEnergyNet.getSourceLocations(world, l)));
+        Coords l = new Coords(x, y, z);
+        replaceSourceList(world, l, new EnergySourceList(QuantumEnergyNet.getSourceLocation(world, l)));
     }
 
 
     @Override
-    public void replaceSourceList(World w, Location l, EnergySourceList sources) {
+    public void replaceSourceList(World w, Coords l, EnergySourceList sources) {
         ((TileEnergySink) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
                 .replaceSourceList(l, sources);
     }

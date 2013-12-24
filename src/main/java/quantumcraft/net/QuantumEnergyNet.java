@@ -5,21 +5,21 @@ import net.minecraft.world.World;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.net.RecursiveScanner.IDataGatherer;
 import quantumcraft.tile.TileQCapacitor;
-import quantumcraft.util.Location;
+import quantumcraft.util.Coords;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuantumEnergyNet {
     private static class SourcePropagationDG implements IDataGatherer {
-        private Location source;
+        private Coords source;
 
-        public SourcePropagationDG(Location src) {
+        public SourcePropagationDG(Coords src) {
             this.source = src;
         }
 
         @Override
-        public void gatherDataOnTile(World w, Location l) {
+        public void gatherDataOnTile(World w, Coords l) {
             int id = w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord());
             Block b = Block.blocksList[id];
             if (b instanceof IQEnergySink) {
@@ -29,10 +29,10 @@ public class QuantumEnergyNet {
     }
 
     private static class SourceScanningDG implements IDataGatherer {
-        private List<Location> sources = new ArrayList<Location>();
+        private List<Coords> sources = new ArrayList<Coords>();
 
         @Override
-        public void gatherDataOnTile(World w, Location l) {
+        public void gatherDataOnTile(World w, Coords l) {
             int id = w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord());
             Block b = Block.blocksList[id];
             if (b instanceof IQEnergySource) {
@@ -40,18 +40,18 @@ public class QuantumEnergyNet {
             }
         }
 
-        public List<Location> getList() {
+        public List<Coords> getList() {
             return sources;
         }
 
     }
 
     private static class ChangedLinkDG implements IDataGatherer {
-        private List<Location> sources = new ArrayList<Location>();
-        private List<Location> sinks = new ArrayList<Location>();
+        private List<Coords> sources = new ArrayList<Coords>();
+        private List<Coords> sinks = new ArrayList<Coords>();
 
         @Override
-        public void gatherDataOnTile(World w, Location l) {
+        public void gatherDataOnTile(World w, Coords l) {
             int id = w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord());
             Block b = Block.blocksList[id];
             if (b instanceof IQEnergySource) {
@@ -63,10 +63,10 @@ public class QuantumEnergyNet {
         }
 
         public void addAllSourcesToAllSinks(World w) {
-            for (Location sink : sinks) {
-                List<Location> sources2 = new ArrayList<Location>(sources);
-                List<Location> sourcesTmp = new ArrayList<Location>();
-                for (Location source : sources2) {
+            for (Coords sink : sinks) {
+                List<Coords> sources2 = new ArrayList<Coords>(sources);
+                List<Coords> sourcesTmp = new ArrayList<Coords>();
+                for (Coords source : sources2) {
                     if (sink.compareCoords(source)) {
                         sourcesTmp.add(source);
                         //sources2.remove(source);
@@ -83,7 +83,7 @@ public class QuantumEnergyNet {
                                 source.getYCoord(),source.getZCoord()), "Is the source");
                     }
                 }
-                for (Location source : sourcesTmp) {
+                for (Coords source : sourcesTmp) {
                     sources2.remove(source);
                 }
                 int id = w.getBlockId(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
@@ -96,25 +96,25 @@ public class QuantumEnergyNet {
 
     }
 
-    public static void propagateSourceLocation(World w, Location l) {
+    public static void propagateSourceLocation(World w, Coords l) {
         SourcePropagationDG dataGatherer = new SourcePropagationDG(l);
         RecursiveScanner.scan(w, l, dataGatherer);
     }
 
-    public static List<Location> getSourceLocations(World w, Location l) {
+    public static List<Coords> getSourceLocation(World w, Coords l) {
         SourceScanningDG dataGatherer = new SourceScanningDG();
         RecursiveScanner.scan(w, l, dataGatherer);
         return dataGatherer.getList();
     }
 
-    public static void onAddedLink(World w, Location l) {
-        onChangedLink(w, new Location[]{l});
+    public static void onAddedLink(World w, Coords l) {
+        onChangedLink(w, new Coords[]{l});
     }
 
-    public static void onChangedLink(World w, Location[] tips) {
+    public static void onChangedLink(World w, Coords[] tips) {
         QuantumCraft.logHandler.debugPrint("[QuantumEnergyNet] Changed link detected");
-        List<Location> memory = new ArrayList<Location>();
-        for (Location tip : tips) {
+        List<Coords> memory = new ArrayList<Coords>();
+        for (Coords tip : tips) {
             ChangedLinkDG dataGatherer = new ChangedLinkDG();
             RecursiveScanner.scan(w, tip, dataGatherer, memory);
             dataGatherer.addAllSourcesToAllSinks(w);

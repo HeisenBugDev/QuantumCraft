@@ -3,24 +3,24 @@ package quantumcraft.net;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import quantumcraft.util.Location;
+import quantumcraft.util.Coords;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EnergySourceList {
-    private List<Location> sources = new ArrayList<Location>();
+    private List<Coords> sources = new ArrayList<Coords>();
 
     public EnergySourceList() {
     }
 
-    public EnergySourceList(List<Location> src) {
+    public EnergySourceList(List<Coords> src) {
         sources.addAll(src);
     }
 
     public int requestQuantumEnergy(World w, int request) {
         int retrieved = 0;
-        for (Location source : sources) {
+        for (Coords source : sources) {
             int id = w.getBlockId(source.getXCoord(), source.getYCoord(), source.getZCoord());
             Block b = Block.blocksList[id];
             if (b instanceof IQEnergySource) {
@@ -34,7 +34,7 @@ public class EnergySourceList {
         return sources.size();
     }
 
-    public void addSource(Location src) {
+    public void addSource(Coords src) {
         sources.add(src);
     }
 
@@ -45,7 +45,7 @@ public class EnergySourceList {
             for (int i = 0; i < sz; i++) {
                 if (nbt.hasKey("location_" + i)) {
                     NBTTagCompound data = nbt.getCompoundTag("location_" + i);
-                    Location location = Location.read(data);
+                    Coords location = Coords.read(data);
                     if (location != null) esl.addSource(location);
                 }
             }
@@ -57,7 +57,7 @@ public class EnergySourceList {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("size", sources.size());
         for (int i = 0; i < sources.size(); i++) {
-            Location source = sources.get(i);
+            Coords source = sources.get(i);
             nbt.setCompoundTag("location_" + i, source.write());
         }
         return nbt;

@@ -54,6 +54,36 @@ public class Coords {
         return new Coords(this.x, this.y, this.z, this.orientation);
     }
 
+    /**
+     * Saves this Coords to NBT
+     *
+     * @return An NBTTagCompound containing this Coords's data.
+     */
+    public NBTTagCompound write() {
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setInteger("x", x);
+        nbt.setInteger("y", y);
+        nbt.setInteger("z", z);
+        return nbt;
+    }
+
+    /**
+     * Reads a Coords from NBT
+     *
+     * @param nbt NBTTagCompound containing the Coords's data.
+     * @return a Coords object in case of success, null otherwise.
+     */
+    public static Coords read(NBTTagCompound nbt) {
+        Coords Coords = null;
+        if (nbt.hasKey("x") && nbt.hasKey("y") && nbt.hasKey("z")) {
+            int x = nbt.getInteger("x");
+            int y = nbt.getInteger("y");
+            int z = nbt.getInteger("z");
+            Coords = new Coords(x, y, z);
+        }
+        return Coords;
+    }
+    
     public void moveRight(int step) {
         switch (orientation) {
             case SOUTH:
@@ -136,12 +166,58 @@ public class Coords {
         return "{" + this.x + ", " + this.y + ", " + this.z + ";" + this.orientation.toString() + "}";
     }
 
-    public boolean equals(Object obj) {
+    public boolean equalsWithOrientation(Object obj) {
         if (!(obj instanceof Coords)) {
             return false;
         }
         Coords bp = (Coords) obj;
         return (bp.x == this.x) && (bp.y == this.y) && (bp.z == this.z) && (bp.orientation == this.orientation);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Coords) {
+            Coords l = (Coords) o;
+            return (x == l.x && y == l.y && z == l.z);
+        }
+        return false;
+    }
+
+    public int getXCoord() {
+        return x;
+    }
+
+    public void setXCoord(int x) {
+        this.x = x;
+    }
+
+    public int getYCoord() {
+        return y;
+    }
+
+    public void setYCoord(int y) {
+        this.y = y;
+    }
+
+    public int getZCoord() {
+        return z;
+    }
+
+    public void setZCoord(int z) {
+        this.z = z;
+    }
+
+    public ForgeDirection getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(ForgeDirection orientation) {
+        this.orientation = orientation;
+    }
+
+    public boolean compareCoords(Coords source) {
+        return source.getXCoord() == getXCoord() && source.getYCoord() == getYCoord() &&
+                source.getZCoord() == getZCoord();
     }
 
     public int hashCode() {

@@ -7,9 +7,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import quantumcraft.net.IQEnergySource;
-import quantumcraft.util.Location;
 import quantumcraft.net.QuantumEnergyNet;
 import quantumcraft.tile.TileQCapacitor;
+import quantumcraft.util.Coords;
 
 public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
     private int maxEnergyMultiplier = 1;
@@ -20,9 +20,9 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        QuantumEnergyNet.propagateSourceLocation(world, new Location(x, y, z));
+        QuantumEnergyNet.propagateSourceLocation(world, new Coords(x, y, z));
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
-        QuantumEnergyNet.onAddedLink(world, new Location(x, y, z));
+        QuantumEnergyNet.onAddedLink(world, new Coords(x, y, z));
     }
 
     @Override
@@ -43,7 +43,7 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
     }
 
     @Override
-    public int requestQuantumEnergy(World w, Location l, int request) {
+    public int requestQuantumEnergy(World w, Coords l, int request) {
         return ((TileQCapacitor) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
                 .requestQuantumEnergy(l, request);
     }

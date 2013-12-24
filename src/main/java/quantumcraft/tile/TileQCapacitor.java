@@ -5,9 +5,9 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import quantumcraft.inventory.SimpleInventory;
-import quantumcraft.util.Location;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 import quantumcraft.util.CapacitorName;
+import quantumcraft.util.Coords;
 import quantumcraft.util.TileUtil;
 
 public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
@@ -47,7 +47,7 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
         tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
-    public int requestQuantumEnergy(Location l, int request) {
+    public int requestQuantumEnergy(Coords l, int request) {
         if (getCurrentEnergy() >= request) {
             subtractEnergy(request);
             updateNextTick = true;
