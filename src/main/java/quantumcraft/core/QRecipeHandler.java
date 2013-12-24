@@ -24,6 +24,4 @@ public class QRecipeHandler {
         }
         return null;
     }
-//TEST COMMIT
-
 }
