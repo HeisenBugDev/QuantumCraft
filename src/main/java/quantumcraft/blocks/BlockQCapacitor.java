@@ -6,9 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySink;
-import quantumcraft.net.EnergySourceList;
 import quantumcraft.net.IQEnergySource;
-import quantumcraft.net.Location;
+import quantumcraft.util.Location;
 import quantumcraft.net.QuantumEnergyNet;
 import quantumcraft.tile.TileQCapacitor;
 

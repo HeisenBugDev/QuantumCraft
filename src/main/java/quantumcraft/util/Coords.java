@@ -1,10 +1,9 @@
-package quantumcraft.core;
+package quantumcraft.util;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import quantumcraft.util.BasicUtils;
 
 import java.util.ArrayList;
 import java.util.List;

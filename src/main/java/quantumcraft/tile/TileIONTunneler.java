@@ -1,7 +1,7 @@
 package quantumcraft.tile;
 
 import net.minecraftforge.common.ForgeDirection;
-import quantumcraft.core.Coords;
+import quantumcraft.util.Coords;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
 import java.util.ArrayList;

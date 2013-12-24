@@ -2,6 +2,7 @@ package quantumcraft.net;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
+import quantumcraft.util.Location;
 
 import java.util.ArrayList;
 import java.util.List;

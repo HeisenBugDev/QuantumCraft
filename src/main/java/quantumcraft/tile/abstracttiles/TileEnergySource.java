@@ -1,6 +1,6 @@
 package quantumcraft.tile.abstracttiles;
 
-import quantumcraft.net.Location;
+import quantumcraft.util.Location;
 
 public abstract class TileEnergySource extends TileMachineBase {
 

@@ -1,7 +1,7 @@
 package quantumcraft.util.scheduler;
 
 import net.minecraft.tileentity.TileEntity;
-import quantumcraft.core.Coords;
+import quantumcraft.util.Coords;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.core.Config;
-import quantumcraft.core.Coords;
 import quantumcraft.core.interfaces.IMultiTool;
 import quantumcraft.core.interfaces.IUpgrade;
 

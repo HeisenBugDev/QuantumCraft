@@ -1,4 +1,4 @@
-package quantumcraft.net;
+package quantumcraft.util;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;

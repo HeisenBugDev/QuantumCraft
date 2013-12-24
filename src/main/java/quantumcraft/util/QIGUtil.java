@@ -1,7 +1,5 @@
 package quantumcraft.util;
 
-import quantumcraft.net.Location;
-
 import java.util.ArrayList;
 
 public class QIGUtil {

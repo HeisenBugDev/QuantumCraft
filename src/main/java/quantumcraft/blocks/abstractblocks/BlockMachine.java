@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import quantumcraft.core.Coords;
+import quantumcraft.util.Coords;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.core.interfaces.IUpgradable;
 import quantumcraft.core.interfaces.IUpgrade;

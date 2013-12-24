@@ -3,7 +3,7 @@ package quantumcraft.tile.abstracttiles;
 import net.minecraft.nbt.NBTTagCompound;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.net.EnergySourceList;
-import quantumcraft.net.Location;
+import quantumcraft.util.Location;
 
 public abstract class TileEnergySink extends TileMachineBase {
     private EnergySourceList sourceList;

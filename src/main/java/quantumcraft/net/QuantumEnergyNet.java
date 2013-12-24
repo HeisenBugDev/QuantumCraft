@@ -5,6 +5,7 @@ import net.minecraft.world.World;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.net.RecursiveScanner.IDataGatherer;
 import quantumcraft.tile.TileQCapacitor;
+import quantumcraft.util.Location;
 
 import java.util.ArrayList;
 import java.util.List;

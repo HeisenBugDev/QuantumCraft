@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import quantumcraft.net.EnergySourceList;
 import quantumcraft.net.IQEnergySink;
-import quantumcraft.net.Location;
+import quantumcraft.util.Location;
 import quantumcraft.net.QuantumEnergyNet;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
