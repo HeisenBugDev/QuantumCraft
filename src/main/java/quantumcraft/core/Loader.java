@@ -11,10 +11,8 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraftforge.common.EnumHelper;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import quantumcraft.blocks.*;
-import quantumcraft.fluid.FluidSteam;
 import quantumcraft.items.*;
 import quantumcraft.items.tools.ItemQuantumAxe;
 import quantumcraft.items.tools.ItemQuantumPick;
@@ -63,7 +61,6 @@ public class Loader {
     public static BlockIONTunneler BlockIONTunneler;
     public static BlockIONScanner BlockIONScanner;
     public static BlockIONHarvester BlockIONHarvester;
-    public static BlockSteamGenerator BlockSteamGenerator;
     public static Block BlockMachineCasing;
     public static BlockQCapacitor[] capacitors = new BlockQCapacitor[5];
     /* OTHER BLOCKS */
@@ -78,7 +75,6 @@ public class Loader {
         initRenderers();
         initWGen();
         initTEs();
-        initFluids();
         initOreDict();
         CraftingManager.addCrafting();
         CraftingManager.addSmelting();
@@ -187,10 +183,6 @@ public class Loader {
         LanguageRegistry.addName(ItemQuantumPlating, "Quantum Plating");
     }
 
-    public static void initFluids() {
-        FluidRegistry.registerFluid(FluidSteam.fluid);
-    }
-
     public static void initBlocks() {
         OreUnbioxenium = (BlockOre) new BlockOre(Config.OreUnbioxeniumID).setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameOreUnbioxenium)
@@ -257,12 +249,6 @@ public class Loader {
             GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
         }
         if (Config.beta.getBoolean(false)) {
-            BlockSteamGenerator =
-                    (BlockSteamGenerator) new BlockSteamGenerator(Config.BlockSGNID).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockSGN);
-            LanguageRegistry.addName(BlockSteamGenerator, "Steam Generator");
-            GameRegistry.registerBlock(BlockSteamGenerator, Config.NameBlockSGN);
-
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS);
@@ -323,7 +309,6 @@ public class Loader {
         GameRegistry.registerTileEntity(TileIONScanner.class, "IONScannerTE");
         GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
         GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
-        GameRegistry.registerTileEntity(TileSteamGenerator.class, "SteamGeneratorTE");
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");

@@ -45,7 +45,6 @@ public class Config {
     public static String NameBlockIOS = "machineIOS";  // Block ION Scanner
     public static String NameBlockIOH = "machineIOH";  // Block ION Harvester
     public static String NameBlockQCP = "machineQCP";  // Block Q Capacitor
-    public static String NameBlockSGN = "machineSGN";  // Block Steam Generator
     public static String NameBlockQFiberWire = "blockFiberWire";
     public static String NameBlockMCasing = "quantumMachineCasing";
     public static String NameTextureQOre = "oreQuantonium.ore";
@@ -88,7 +87,6 @@ public class Config {
     public static int BlockIOSID;
     public static int BlockIOHID;
     public static int BlockQCPID;
-    public static int BlockSGNID;
     public static int BlockFiberWireID;
     public static int BlockMCasingID;
     public static int IONForgeEnergyCost;
@@ -161,7 +159,6 @@ public class Config {
         BlockIOTID = config.get("Blocks", "BlockIONTunneler", 3611).getInt();
         BlockIOSID = config.get("Blocks", "BlockIONScanner", 3612).getInt();
         BlockIOHID = config.get("Blocks", "BlockIONHarvester", 3613).getInt();
-        BlockSGNID = config.get("Blocks", "BlockSteamGenerator", 3615).getInt();
 
         // DO NOT PUT ANY BLOCK IDS FROM 3630 TO 3635!
         BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3630).getInt();

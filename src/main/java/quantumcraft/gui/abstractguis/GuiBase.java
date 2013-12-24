@@ -10,9 +10,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import quantumcraft.gui.GuiSteamGenerator;
 import quantumcraft.gui.GuiTextures;
-import quantumcraft.tile.TileSteamGenerator;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 
 import java.util.ArrayList;
@@ -39,13 +37,8 @@ public abstract class GuiBase extends GuiContainer {
             renderTooltipText("Close this GUI", buffHX, buffHY);
         }
         if (buffHT[1]) {
-            if (this instanceof GuiSteamGenerator) {
-                renderTooltipText(((TileSteamGenerator) tile).getSteamBuffer() + " / " +
-                        ((TileSteamGenerator) tile).getSteamTankMax() + " Steam", buffHX, buffHY);
-            } else {
-                renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-            }
-        }
+            renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
+       }
     }
 
     protected void drawBaseBG() {
