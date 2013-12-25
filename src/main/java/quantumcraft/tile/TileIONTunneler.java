@@ -1,8 +1,9 @@
 package quantumcraft.tile;
 
 import net.minecraftforge.common.ForgeDirection;
-import quantumcraft.util.Coords;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.util.Coords;
+import quantumcraft.util.IONTunnelerGlobalRemovalList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -198,6 +199,7 @@ public class TileIONTunneler extends TileEnergySink {
                     int y = blockRemovalQueue.get(0).y;
                     int z = blockRemovalQueue.get(0).z;
                     worldObj.setBlockToAir(x, y, z);
+                    IONTunnelerGlobalRemovalList.blocks.remove(blockRemovalQueue.get(0));
                     blockRemovalQueue.remove(0);
                     pause = 0;
                 }
@@ -212,6 +214,7 @@ public class TileIONTunneler extends TileEnergySink {
      * @param coord Coords object that contains where that block is.
      */
     public void addBlockRemoval(Coords coord) {
+        IONTunnelerGlobalRemovalList.blocks.add(coord);
         blockRemovalQueue.add(coord);
     }
 
