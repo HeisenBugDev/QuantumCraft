@@ -51,9 +51,9 @@ public class BlockHighlighterHandler {
         double iPY = event.player.prevPosY + (event.player.posY - event.player.prevPosY) * event.partialTicks;
         double iPZ = event.player.prevPosZ + (event.player.posZ - event.player.prevPosZ) * event.partialTicks;
 
-        float xScale = 1.1F;
-        float yScale = 1.1F;
-        float zScale = 1.1F;
+        float xScale = 1.01F;
+        float yScale = 1.01F;
+        float zScale = 1.01F;
         float xShift = 0.5F;
         float yShift = 0.5F;
         float zShift = 0.5F;
