@@ -12,6 +12,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import debughandler.DebugRegistry;
 import debughandler.LogHandler;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -25,6 +26,7 @@ public class QuantumCraft {
 
     @SidedProxy(clientSide = "quantumcraft.core.ClientProxy", serverSide = "quantumcraft.core.CommonProxy")
     public static CommonProxy proxy;
+    public static ResourceLocation overlayTex = new ResourceLocation("quantumcraft", "textures/blocks/Capacitor1.png");
     @Instance("QuantumCraft")
     public static QuantumCraft instance;
     public static LogHandler logHandler = new LogHandler("Quantumcraft");
@@ -49,7 +51,8 @@ public class QuantumCraft {
 
     }
 
-    @ForgeSubscribe @SideOnly(Side.CLIENT)
+    @ForgeSubscribe
+    @SideOnly(Side.CLIENT)
     public void beforeTextureStitch(TextureStitchEvent.Pre event) {
         logHandler.debugPrint("preStitch called");
     }
