@@ -2,15 +2,12 @@ package quantumcraft.render;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.event.ForgeSubscribe;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import quantumcraft.core.QuantumCraft;
-import quantumcraft.util.BasicUtils;
 import quantumcraft.util.Coords;
 import quantumcraft.util.IONTunnelerGlobalRemovalList;
 
@@ -23,8 +20,8 @@ public class BlockHighlighterHandler {
         if (IONTunnelerGlobalRemovalList.blocks == null) return;
         for (int i = 0; i < IONTunnelerGlobalRemovalList.blocks.size(); i++) {
             ArrayList<Coords> blocks = IONTunnelerGlobalRemovalList.getBlocks();
-            if(event.player.getEntityWorld().getBlockId(blocks.get(i).x, blocks.get(i).y, blocks.get(i).z) != 0)
-            drawInWorldTransmutationOverlay(event, IONTunnelerGlobalRemovalList.blocks.get(i));
+            if (event.player.getEntityWorld().getBlockId(blocks.get(i).x, blocks.get(i).y, blocks.get(i).z) != 0)
+                drawInWorldTransmutationOverlay(event, IONTunnelerGlobalRemovalList.blocks.get(i));
         }
     }
 
