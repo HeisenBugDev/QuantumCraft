@@ -16,6 +16,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
 import quantumcraft.core.network.PacketHandler;
+import quantumcraft.render.BlockHighlighterHandler;
 
 @Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Config.modNetworkChannel},
@@ -32,6 +33,7 @@ public class QuantumCraft {
     public void preInit(FMLPreInitializationEvent event) {
         DebugRegistry.addLogHandler(logHandler);
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new BlockHighlighterHandler());
         NetworkRegistry.instance().registerGuiHandler(this, new ClientProxy());
         Config.initConfig(event);
     }
