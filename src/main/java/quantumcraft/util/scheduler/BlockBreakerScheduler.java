@@ -15,6 +15,10 @@ public class BlockBreakerScheduler extends Scheduler {
         tile = tileSet;
     }
 
+    public List<Coords> getBlocks() {
+        return blocks;
+    }
+
     @Override
     public void process() {
         if (blocks.size() > 0) {

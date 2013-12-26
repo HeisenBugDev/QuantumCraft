@@ -29,6 +29,10 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
         return 7;
     }
 
+    @Override public String getStatusText() {
+        return "N/A";
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);

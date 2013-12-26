@@ -34,32 +34,34 @@ public class TileQElectrifier extends TileEnergySink implements IPowerEmitter, I
     }
 
     public boolean isPoweredTile(TileEntity tile, ForgeDirection side) {
-        if (tile instanceof IPowerReceptor) {
-            return ((IPowerReceptor) tile).getPowerReceiver(side) != null;
-        }
+        return tile instanceof IPowerReceptor && ((IPowerReceptor) tile).getPowerReceiver(side) != null;
 
-        return false;
+    }
+
+    @Override public String getStatusText() {
+        return currentOutput + " MJ/t";
     }
 
     private void sendPower() {
         List<BlockPosition> adjBlocks = new BlockPosition(this.xCoord, this.yCoord, this.zCoord).getAdjacent(true);
+        boolean powerNeeded = false;
+        for (BlockPosition adjBlock : adjBlocks) {
+            TileEntity tile = adjBlock.getTileEntity(worldObj);
 
-        for (int iterator = 0; iterator < adjBlocks.size(); iterator++) {
-            TileEntity tile = adjBlocks.get(iterator).getTileEntity(worldObj);
-            BlockPosition bTile = adjBlocks.get(iterator);
-
-            if (isPoweredTile(tile, bTile.orientation.getOpposite())) {
+            if (isPoweredTile(tile, adjBlock.orientation.getOpposite())) {
                 PowerHandler.PowerReceiver receptor =
-                        ((IPowerReceptor) tile).getPowerReceiver(bTile.orientation.getOpposite());
+                        ((IPowerReceptor) tile).getPowerReceiver(adjBlock.orientation.getOpposite());
                 float extracted = getPowerToExtract(tile);
                 if (extracted > 0) {
                     float needed = receptor.receiveEnergy(PowerHandler.Type.ENGINE, extracted,
-                            bTile.orientation.getOpposite());
+                            adjBlock.orientation.getOpposite());
+                    powerNeeded = true;
                     //extractEnergy(receptor.getMinEnergyReceived(), needed, true); // Comment out for constant power
                     currentOutput = extractEnergy(0, needed, true); // Uncomment for constant power
                 }
             }
         }
+        if (!powerNeeded) currentOutput = 0;
     }
 
     private float getPowerToExtract(TileEntity tile) {

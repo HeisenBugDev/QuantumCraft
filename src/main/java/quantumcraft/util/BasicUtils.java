@@ -18,6 +18,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.core.Config;
 import quantumcraft.core.interfaces.IMultiTool;
@@ -50,6 +51,15 @@ public class BasicUtils {
 
     public static Block getBlockInstance(IBlockAccess world, int x, int y, int z) {
         return Block.blocksList[world.getBlockId(x, y, z)];
+    }
+
+    public static Block getBlockAtTarget(DrawBlockHighlightEvent event) {
+        return getBlockInstance(event.player.worldObj, event.target.blockX, event.target.blockY, event.target.blockZ);
+    }
+
+    public static TileEntity getTileEntityAtTarget(DrawBlockHighlightEvent event) {
+        return event.player.getEntityWorld()
+                .getBlockTileEntity(event.target.blockX, event.target.blockY, event.target.blockZ);
     }
 
     public static int overclockMultiplier(int[] uids) {
@@ -176,8 +186,7 @@ public class BasicUtils {
     }
 
     /**
-     * Notify all blocks around of neighbor change. If flag is true, also notify
-     * the actual block given.
+     * Notify all blocks around of neighbor change. If flag is true, also notify the actual block given.
      *
      * @param world
      * @param coord

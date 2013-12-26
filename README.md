@@ -58,6 +58,8 @@ We took some of our code from MineFactory Reloaded if you are wondering why thin
 We also got some code from MrTJP who makes [Project: Red](https://github.com/MrTJP/ProjectRed)
 We looked at TEX code for examples.
 
+Thanks @RS485 for the in game gui code. That made my life much easier.
+
 
 ## Version explanation (no 11vB39Lq versions)
 

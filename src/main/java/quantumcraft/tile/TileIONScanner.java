@@ -3,8 +3,8 @@ package quantumcraft.tile;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.oredict.OreDictionary;
-import quantumcraft.core.QuantumCraft;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 import quantumcraft.util.BasicUtils;
 import quantumcraft.util.scheduler.IONScannerScheduler;
@@ -51,6 +51,20 @@ public class TileIONScanner extends TileEnergySink {
                 }
             }
         }
+    }
+
+    @Override public String getStatusText() {
+        if (this.getCurrentEnergy() < 5) return EnumChatFormatting.RED + "Need power!";
+        EnumChatFormatting harvesterStatusColor =
+                ((scheduler.getHarvesters().size() > 0) ? EnumChatFormatting.GREEN : EnumChatFormatting.RED);
+        return EnumChatFormatting.GREEN + "" + scheduler.getBlocks().size() + " Ores " + harvesterStatusColor +
+                scheduler.getHarvesters().size() + " IOHs";
+    }
+
+    public String getSpeed() {
+        if (scheduler.getHarvesters().size() > 0)
+            return EnumChatFormatting.GREEN + "" + (100 / scheduler.getHarvesters().size()) + " ticks/b";
+        return EnumChatFormatting.RED + "0 blocks/t";
     }
 
     @Override
