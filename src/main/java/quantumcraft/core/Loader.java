@@ -241,7 +241,7 @@ public class Loader {
 
         for (int i = 1; i <= 5; i++) {
             BlockQCapacitor =
-                    (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID + i).setCreativeTab(tabQuantumCraft)
+                    (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID.getInt() + i).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQCP + i);
             BlockQCapacitor.setMaxEnergyMultiplier(i);
             capacitors[i - 1] = BlockQCapacitor;

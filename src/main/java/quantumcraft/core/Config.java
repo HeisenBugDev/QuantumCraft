@@ -87,7 +87,7 @@ public class Config {
     public static int BlockIOSID;
     public static int BlockIOHID;
     public static int BlockQIGID;
-    public static int BlockQCPID;
+    public static Property BlockQCPID;
     public static int BlockFiberWireID;
     public static int BlockMCasingID;
     public static int IONForgeEnergyCost;
@@ -163,7 +163,10 @@ public class Config {
         BlockQIGID = config.get("Blocks", "BlockQInterdimensionalGenerator", 3614).getInt();
 
         // DO NOT PUT ANY BLOCK IDS FROM 3630 TO 3635!
-        BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3630).getInt();
+        BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3630);
+        BlockQCPID.comment =
+                "Whatever ID you set, there will be 4 more used after it. ie: if you use 10, it will also use 11,12," +
+                        " 13,and 14";
 
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
         BlockMCasingID = config.get("Blocks", "BlockMachineCasing", 3590).getInt();
