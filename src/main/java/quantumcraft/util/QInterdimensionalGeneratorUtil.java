@@ -6,7 +6,7 @@ import quantumcraft.tile.TileQInterdimensionalGenerator;
 import java.util.HashSet;
 import java.util.Set;
 
-public class QIGUtil {
+public class QInterdimensionalGeneratorUtil {
     private static Set<Coords> generators = new HashSet<Coords>();
 
     public static Set<Coords> getGenerators() {
@@ -14,7 +14,7 @@ public class QIGUtil {
     }
 
     public static void setGenerators(HashSet<Coords> generators) {
-        QIGUtil.generators = generators;
+        QInterdimensionalGeneratorUtil.generators = generators;
     }
 
     public static boolean addGenerator(Coords Coords) {

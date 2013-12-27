@@ -3,7 +3,7 @@ package quantumcraft.tile;
 import net.minecraft.nbt.NBTTagCompound;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.util.Coords;
-import quantumcraft.util.QIGUtil;
+import quantumcraft.util.QInterdimensionalGeneratorUtil;
 
 public class TileQInterdimensionalGenerator extends TileEnergySource {
     @Override
@@ -29,7 +29,7 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
-        QIGUtil.addGenerator(new Coords(xCoord, yCoord, zCoord));
-        QIGUtil.updateAllGenerators(worldObj);
+        QInterdimensionalGeneratorUtil.addGenerator(new Coords(xCoord, yCoord, zCoord));
+        QInterdimensionalGeneratorUtil.updateAllGenerators(worldObj);
     }
 }

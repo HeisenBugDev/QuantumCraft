@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySource;
 import quantumcraft.tile.TileQInterdimensionalGenerator;
 import quantumcraft.util.Coords;
-import quantumcraft.util.QIGUtil;
+import quantumcraft.util.QInterdimensionalGeneratorUtil;
 
 public class BlockQInterdimensionalGenerator extends BlockEnergySource {
     public BlockQInterdimensionalGenerator(int id) {
@@ -28,13 +28,13 @@ public class BlockQInterdimensionalGenerator extends BlockEnergySource {
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
-        QIGUtil.addGenerator(new Coords(x, y, z));
-        QIGUtil.updateAllGenerators(world);
+        QInterdimensionalGeneratorUtil.addGenerator(new Coords(x, y, z));
+        QInterdimensionalGeneratorUtil.updateAllGenerators(world);
     }
 
     @Override
     public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
         super.breakBlock(world, x, y, z, par5, par6);
-        QIGUtil.removeGeneratorFromNewCoords(new Coords(x, y, z));
+        QInterdimensionalGeneratorUtil.removeGeneratorFromNewCoords(new Coords(x, y, z));
     }
 }
