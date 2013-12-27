@@ -47,6 +47,7 @@ public class Loader {
     /* BLOCKS */
     public static BlockOre OreUnbioxenium;
     public static BlockOreQuantonium OreQuantonium;
+    public static Block BlockMachineCasing;
     /* MACHINE BLOCKS */
     public static BlockQDeenergizer BlockQDeenergizer;
     public static BlockQEInjector BlockQEInjector;
@@ -61,7 +62,6 @@ public class Loader {
     public static BlockIONTunneler BlockIONTunneler;
     public static BlockIONScanner BlockIONScanner;
     public static BlockIONHarvester BlockIONHarvester;
-    public static Block BlockMachineCasing;
     public static BlockQCapacitor[] capacitors = new BlockQCapacitor[5];
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
