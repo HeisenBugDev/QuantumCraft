@@ -11,7 +11,7 @@ import quantumcraft.util.QInterdimensionalGeneratorUtil;
 public class TileQInterdimensionalGenerator extends TileEnergySource {
 
     private int outputRate = 0;
-    private int generatorsInChunk = 1;
+    private int generatorsInChunk = 0;
 
     @Override
     public int getMaxEnergy() {
@@ -20,13 +20,14 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
 
     @Override
     public int guiID() {
-        // TODO - Change this
         return -1;
     }
 
     @Override
     public void onBlockBreak() {
-
+        System.out.println("onblockBreak");
+        QInterdimensionalGeneratorUtil.removeGeneratorFromNewCoords(
+                new QInterdimensionalGeneratorDataObject(worldObj, new Coords(xCoord, yCoord, zCoord)));
     }
 
     @Override
