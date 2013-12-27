@@ -160,6 +160,7 @@ public class Config {
         BlockIOTID = config.get("Blocks", "BlockIONTunneler", 3611).getInt();
         BlockIOSID = config.get("Blocks", "BlockIONScanner", 3612).getInt();
         BlockIOHID = config.get("Blocks", "BlockIONHarvester", 3613).getInt();
+        BlockQIGID = config.get("Blocks", "BlockQInterdimensionalGenerator", 3614).getInt();
 
         // DO NOT PUT ANY BLOCK IDS FROM 3630 TO 3635!
         BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3630).getInt();
