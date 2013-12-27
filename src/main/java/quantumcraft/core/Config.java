@@ -3,7 +3,6 @@ package quantumcraft.core;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
-import quantumcraft.items.ItemInfinitePower;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -45,6 +44,7 @@ public class Config {
     public static String NameBlockIOS = "machineIOS";  // Block ION Scanner
     public static String NameBlockIOH = "machineIOH";  // Block ION Harvester
     public static String NameBlockQCP = "machineQCP";  // Block Q Capacitor
+    public static String NameBlockQIG = "machineQIG";  // Block Q Interdimensional Generator
     public static String NameBlockQFiberWire = "blockFiberWire";
     public static String NameBlockMCasing = "quantumMachineCasing";
     public static String NameTextureQOre = "oreQuantonium.ore";
@@ -86,6 +86,7 @@ public class Config {
     public static int BlockIOTID;
     public static int BlockIOSID;
     public static int BlockIOHID;
+    public static int BlockQIGID;
     public static int BlockQCPID;
     public static int BlockFiberWireID;
     public static int BlockMCasingID;
@@ -97,7 +98,7 @@ public class Config {
     public static String getTextureName(String name) {
         if (use32x) {
             for (String s : supports32x) {
-                if (s == name) return texturePrefix + name + ".32";
+                if (s.equals(name)) return texturePrefix + name + ".32";
             }
         }
         return texturePrefix + name;
