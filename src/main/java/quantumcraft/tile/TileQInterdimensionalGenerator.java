@@ -19,5 +19,8 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
 
     }
 
+    public void onQIGChange(){
+
+    }
 
 }
