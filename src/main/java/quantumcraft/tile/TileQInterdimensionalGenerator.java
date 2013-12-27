@@ -30,5 +30,6 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
         QIGUtil.addGenerator(new Coords(xCoord, yCoord, zCoord));
+        QIGUtil.updateAllGenerators(worldObj);
     }
 }
