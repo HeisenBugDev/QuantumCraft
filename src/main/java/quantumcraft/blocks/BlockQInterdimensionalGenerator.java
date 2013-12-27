@@ -33,11 +33,4 @@ public class BlockQInterdimensionalGenerator extends BlockEnergySource {
                 .addGenerator(new QInterdimensionalGeneratorDataObject(world, new Coords(x, y, z)));
         QInterdimensionalGeneratorUtil.updateAllGenerators();
     }
-
-    @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-        super.breakBlock(world, x, y, z, par5, par6);
-        QInterdimensionalGeneratorUtil
-                .removeGeneratorFromNewCoords(new QInterdimensionalGeneratorDataObject(world, new Coords(x, y, z)));
-    }
 }
