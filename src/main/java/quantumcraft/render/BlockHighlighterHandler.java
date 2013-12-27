@@ -47,7 +47,9 @@ public class BlockHighlighterHandler {
         GL11.glScalef(0.01F, 0.01F, 1F);
         GL11.glColor3f(1F, 1F, 1F);
 
-        Gui.drawRect(0, 0, 100, 50, 0xCC555555);
+        int length = (int) Math.round(BasicUtils.getBlockAtTarget(event).getLocalizedName().length() * 3.7);
+        if (length < 100) length = 100;
+        Gui.drawRect(0, 0, length, 50, 0xCC555555);
 
         GL11.glTranslatef(0F, 0F, -0.1F);
         GL11.glScalef(0.6F, 0.6F, 1F);
