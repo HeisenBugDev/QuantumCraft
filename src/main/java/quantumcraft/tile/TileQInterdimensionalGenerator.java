@@ -8,7 +8,7 @@ import quantumcraft.util.QIGUtil;
 public class TileQInterdimensionalGenerator extends TileEnergySource {
     @Override
     public int getMaxEnergy() {
-        return 0;
+        return 300;
     }
 
     @Override
