@@ -3,16 +3,17 @@ package quantumcraft.util;
 import net.minecraft.world.IBlockAccess;
 import quantumcraft.tile.TileQInterdimensionalGenerator;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class QIGUtil {
-    private static ArrayList<Coords> generators = new ArrayList<Coords>();
+    private static Set<Coords> generators = new HashSet<Coords>();
 
-    public static ArrayList<Coords> getGenerators() {
+    public static Set<Coords> getGenerators() {
         return generators;
     }
 
-    public static void setGenerators(ArrayList<Coords> generators) {
+    public static void setGenerators(HashSet<Coords> generators) {
         QIGUtil.generators = generators;
     }
 
