@@ -1,5 +1,6 @@
 package quantumcraft.util;
 
+import net.minecraft.world.IBlockAccess;
 import quantumcraft.tile.TileQInterdimensionalGenerator;
 
 import java.util.ArrayList;
@@ -20,8 +21,9 @@ public class QInterdimensionalGeneratorUtil {
     }
 
     public static boolean addGenerator(QInterdimensionalGeneratorDataObject QIGData) {
+        if (QIGData == null) return false;
         for (QInterdimensionalGeneratorDataObject generator : generators) {
-            if (QIGData.getWorld() == generator.getWorld() && QIGData.getCoords().x == generator.getCoords().x &&
+            if (QIGData.getCoords().x == generator.getCoords().x &&
                     QIGData.getCoords().y == generator.getCoords().y &&
                     QIGData.getCoords().z == generator.getCoords().z) return false;
         }
@@ -32,31 +34,36 @@ public class QInterdimensionalGeneratorUtil {
         return generators.remove(generator);
     }
 
-    public static void removeGeneratorFromNewCoords(QInterdimensionalGeneratorDataObject generatorParam) {
+    public static void removeGeneratorFromNewCoords(QInterdimensionalGeneratorDataObject generatorParam,
+                                                    IBlockAccess access) {
         Set<QInterdimensionalGeneratorDataObject> tmpList = new HashSet<QInterdimensionalGeneratorDataObject>();
         for (QInterdimensionalGeneratorDataObject generator : generators) {
-            if (generator.getCoords().compareCoords(generatorParam.getCoords()) &&
-                    (generatorParam.getWorld() == generator.getWorld())) tmpList.add(generator);
+            if (generator.getCoords().compareCoords(generatorParam.getCoords())) {
+                tmpList.add(generator);
+                System.out.println("removeGenFromNewCoords");
+            }
         }
 
         for (QInterdimensionalGeneratorDataObject generator : tmpList) {
-            generators.remove(generator);
+            System.out.println(generators.remove(generator));
         }
+        updateAllGenerators(access);
     }
 
     public static void clearGenerators() {
         generators.clear();
     }
 
-    public static void updateAllGenerators() {
+    public static void updateAllGenerators(IBlockAccess access) {
         ArrayList<TileQInterdimensionalGenerator> tmpList = new ArrayList<TileQInterdimensionalGenerator>();
         for (QInterdimensionalGeneratorDataObject generator : generators) {
             TileQInterdimensionalGenerator tile = (TileQInterdimensionalGenerator) BasicUtils
-                    .getTileEntity(generator.getWorld(), generator.getCoords(), TileQInterdimensionalGenerator.class);
+                    .getTileEntity(access, generator.getCoords(), TileQInterdimensionalGenerator.class);
             tmpList.add(tile);
         }
 
         for (TileQInterdimensionalGenerator tile : tmpList) {
+            System.out.println(tile);
             if (tile != null) tile.onQIGChange();
         }
     }

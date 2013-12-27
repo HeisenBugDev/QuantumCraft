@@ -27,12 +27,13 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     public void onBlockBreak() {
         System.out.println("onblockBreak");
         QInterdimensionalGeneratorUtil.removeGeneratorFromNewCoords(
-                new QInterdimensionalGeneratorDataObject(worldObj, new Coords(xCoord, yCoord, zCoord)));
+                new QInterdimensionalGeneratorDataObject(new Coords(xCoord, yCoord, zCoord)), worldObj);
     }
 
     @Override
     public void updateEntity() {
         super.updateEntity();
+        if (generatorsInChunk == 0) return;
         if (worldObj.getWorldTime() % 20 == 0) this.addEnergy(10 / generatorsInChunk);
         outputRate = 10 / generatorsInChunk;
     }
@@ -44,9 +45,10 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
         generatorsInChunk = 0;
 
         for (QInterdimensionalGeneratorDataObject generator : QInterdimensionalGeneratorUtil.getGenerators()) {
+            if (generator == null) return;
             int localXChunk = BasicUtils.getChunk(generator.getCoords().x);
             int localZChunk = BasicUtils.getChunk(generator.getCoords().z);
-            if (xChunk == localXChunk && zChunk == localZChunk && generator.getWorld() == worldObj) generatorsInChunk++;
+            if (xChunk == localXChunk && zChunk == localZChunk) generatorsInChunk++;
         }
     }
 
@@ -60,7 +62,7 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
         QInterdimensionalGeneratorUtil
-                .addGenerator(new QInterdimensionalGeneratorDataObject(worldObj, new Coords(xCoord, yCoord, zCoord)));
-        QInterdimensionalGeneratorUtil.updateAllGenerators();
+                .addGenerator(new QInterdimensionalGeneratorDataObject(new Coords(xCoord, yCoord, zCoord)));
+        QInterdimensionalGeneratorUtil.updateAllGenerators(worldObj);
     }
 }

@@ -30,7 +30,7 @@ public class BlockQInterdimensionalGenerator extends BlockEnergySource {
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
         QInterdimensionalGeneratorUtil
-                .addGenerator(new QInterdimensionalGeneratorDataObject(world, new Coords(x, y, z)));
-        QInterdimensionalGeneratorUtil.updateAllGenerators();
+                .addGenerator(new QInterdimensionalGeneratorDataObject(new Coords(x, y, z)));
+        QInterdimensionalGeneratorUtil.updateAllGenerators(world);
     }
 }
