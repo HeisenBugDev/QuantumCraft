@@ -205,6 +205,15 @@ public class BasicUtils {
         return !clazz.isInstance(te) ? null : te;
     }
 
+    /**
+     * Pass a single coord int and get the chunk's equivalent one back.
+     * @param q Either x or z location
+     * @return The chunk coord
+     */
+    public static int getChunk(int q) {
+        return (int) Math.floor(q / 16);
+    }
+
     public static MovingObjectPosition retraceBlock(World world, EntityPlayer player, int x, int y, int z) {
         Vec3 headVec = Vec3.createVectorHelper(player.posX, (player.posY + 1.62) - player.yOffset, player.posZ);
         Vec3 lookVec = player.getLook(1.0F);
