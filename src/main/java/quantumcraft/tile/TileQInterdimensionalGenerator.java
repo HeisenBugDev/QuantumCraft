@@ -1,6 +1,7 @@
 package quantumcraft.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.util.BasicUtils;
 import quantumcraft.util.Coords;
@@ -9,6 +10,7 @@ import quantumcraft.util.QInterdimensionalGeneratorUtil;
 
 public class TileQInterdimensionalGenerator extends TileEnergySource {
 
+    private int outputRate = 0;
     private int generatorsInChunk = 1;
 
     @Override
@@ -31,6 +33,7 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     public void updateEntity() {
         super.updateEntity();
         if (worldObj.getWorldTime() % 20 == 0) this.addEnergy(10 / generatorsInChunk);
+        outputRate = 10 / generatorsInChunk;
     }
 
     public void onQIGChange() {
@@ -44,6 +47,12 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
             int localZChunk = BasicUtils.getChunk(generator.getCoords().z);
             if (xChunk == localXChunk && zChunk == localZChunk && generator.getWorld() == worldObj) generatorsInChunk++;
         }
+    }
+
+    @Override
+    public String getStatusText() {
+        EnumChatFormatting color = outputRate > 5 ? EnumChatFormatting.GREEN : EnumChatFormatting.YELLOW;
+        return color + "" + outputRate + " QEU/t";
     }
 
     @Override
