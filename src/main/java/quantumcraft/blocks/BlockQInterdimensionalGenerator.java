@@ -3,9 +3,10 @@ package quantumcraft.blocks;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import quantumcraft.blocks.abstractblocks.BlockEnergySink;
+import quantumcraft.blocks.abstractblocks.BlockEnergySource;
+import quantumcraft.tile.TileQInterdimensionalGenerator;
 
-public class BlockQInterdimensionalGenerator extends BlockEnergySink {
+public class BlockQInterdimensionalGenerator extends BlockEnergySource {
     public BlockQInterdimensionalGenerator(int id) {
         super(id);
     }
@@ -17,6 +18,6 @@ public class BlockQInterdimensionalGenerator extends BlockEnergySink {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return null;
+        return new TileQInterdimensionalGenerator();
     }
 }
