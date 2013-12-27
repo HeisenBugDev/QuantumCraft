@@ -3,7 +3,6 @@ package quantumcraft.core;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
-import quantumcraft.items.ItemInfinitePower;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -45,6 +44,7 @@ public class Config {
     public static String NameBlockIOS = "machineIOS";  // Block ION Scanner
     public static String NameBlockIOH = "machineIOH";  // Block ION Harvester
     public static String NameBlockQCP = "machineQCP";  // Block Q Capacitor
+    public static String NameBlockQIG = "machineQIG";  // Block Q Interdimensional Generator
     public static String NameBlockQFiberWire = "blockFiberWire";
     public static String NameBlockMCasing = "quantumMachineCasing";
     public static String NameTextureQOre = "oreQuantonium.ore";
@@ -86,7 +86,8 @@ public class Config {
     public static int BlockIOTID;
     public static int BlockIOSID;
     public static int BlockIOHID;
-    public static int BlockQCPID;
+    public static int BlockQIGID;
+    public static Property BlockQCPID;
     public static int BlockFiberWireID;
     public static int BlockMCasingID;
     public static int IONForgeEnergyCost;
@@ -97,7 +98,7 @@ public class Config {
     public static String getTextureName(String name) {
         if (use32x) {
             for (String s : supports32x) {
-                if (s == name) return texturePrefix + name + ".32";
+                if (s.equals(name)) return texturePrefix + name + ".32";
             }
         }
         return texturePrefix + name;
@@ -159,9 +160,13 @@ public class Config {
         BlockIOTID = config.get("Blocks", "BlockIONTunneler", 3611).getInt();
         BlockIOSID = config.get("Blocks", "BlockIONScanner", 3612).getInt();
         BlockIOHID = config.get("Blocks", "BlockIONHarvester", 3613).getInt();
+        BlockQIGID = config.get("Blocks", "BlockQInterdimensionalGenerator", 3614).getInt();
 
         // DO NOT PUT ANY BLOCK IDS FROM 3630 TO 3635!
-        BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3630).getInt();
+        BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3630);
+        BlockQCPID.comment =
+                "Whatever ID you set, there will be 4 more used after it. ie: if you use 10, it will also use 11,12," +
+                        " 13,and 14";
 
         BlockFiberWireID = config.get("Blocks", "BlockQFiberWire", 3604).getInt();
         BlockMCasingID = config.get("Blocks", "BlockMachineCasing", 3590).getInt();
