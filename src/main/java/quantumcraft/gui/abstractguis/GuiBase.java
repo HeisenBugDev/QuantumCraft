@@ -81,7 +81,7 @@ public abstract class GuiBase extends GuiContainer {
     }
 
     protected void drawProgressBelow(int width, int x, int y, int widthCheck) {
-        if (width == 47) {
+        if (width == widthCheck) {
             width = 0;
         }
         int height = 5;
