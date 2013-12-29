@@ -1,7 +1,6 @@
 package quantumcraft.gui;
 
 import net.minecraft.inventory.Container;
-import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerIONForge;
 import quantumcraft.tile.TileIONForge;
@@ -11,6 +10,7 @@ public class GuiIONForge extends GuiBase {
     public GuiIONForge(Container par1Container) {
         super(par1Container, 200, 170);
         tile = ((ContainerIONForge) par1Container).tile;
+        setStripColor(1, 0.5F, 0);
     }
 
     @Override
@@ -37,19 +37,18 @@ public class GuiIONForge extends GuiBase {
     protected void drawProgressBar() {
         int x = 33;
         int y = 59;
-        int width = (int)((float) ((TileIONForge) tile).progress / 16F * 47F);
-        if (width == 47) {width = 0;}
+        int width = (int) ((float) ((TileIONForge) tile).progress / 16F * 47F);
+        if (width == 47) {
+            width = 0;
+        }
         int height = 5;
         bindImage(GuiTextures.GUI_PROGRESS_BELOW);
-        drawQuad(x, y, 0, (float)width/47F, 0, (float)height/5F, width, height);
+        drawQuad(x, y, 0, (float) width / 47F, 0, (float) height / 5F, width, height);
     }
 
     protected void drawForeground() {
         if (this.renderContents) {
-            bindImage(GuiTextures.GUI_BUTTON_CLOSE);
-            GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
-            drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
-            GL11.glColor3f(1F, 1F, 1F);
+            drawBaseForeground();
 
             drawBasePowerBar();
             drawProgressBar();

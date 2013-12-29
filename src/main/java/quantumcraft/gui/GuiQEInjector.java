@@ -1,7 +1,6 @@
 package quantumcraft.gui;
 
 import net.minecraft.inventory.Container;
-import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerQEInjector;
 
@@ -10,6 +9,7 @@ public class GuiQEInjector extends GuiBase {
     public GuiQEInjector(Container par1Container) {
         super(par1Container, 200, 170);
         tile = ((ContainerQEInjector) par1Container).tile;
+        setStripColor(1, 1, 0);
     }
 
     @Override
@@ -36,10 +36,7 @@ public class GuiQEInjector extends GuiBase {
 
     protected void drawForeground() {
         if (this.renderContents) {
-            bindImage(GuiTextures.GUI_BUTTON_CLOSE);
-            GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
-            drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
-            GL11.glColor3f(1F, 1F, 1F);
+            drawBaseForeground();
 
             drawBasePowerBar();
 

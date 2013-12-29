@@ -1,7 +1,6 @@
 package quantumcraft.gui;
 
 import net.minecraft.inventory.Container;
-import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerQCapacitor;
 import quantumcraft.tile.TileQCapacitor;
@@ -11,6 +10,7 @@ public class GuiQCapacitor extends GuiBase {
     public GuiQCapacitor(Container container) {
         super(container, 200, 170);
         tile = ((ContainerQCapacitor) container).tile;
+        setStripColor(0, 0.8F, 0.8F);
     }
 
     @Override
@@ -42,16 +42,14 @@ public class GuiQCapacitor extends GuiBase {
         int tary = 44;
         bindImage(GuiTextures.GUI_POWER_BAR);
         drawTexturedModalRect(tarx, tary, 85, 35, 81, 16);
-        drawTexturedModalRect(tarx+1, tary+1, 86, 69, w, 14);
+        drawTexturedModalRect(tarx + 1, tary + 1, 86, 69, w, 14);
         drawTexturedModalRect(tarx, tary, 85, 13, 81, 16);
     }
 
     protected void drawForeground() {
         if (this.renderContents) {
-            bindImage(GuiTextures.GUI_BUTTON_CLOSE);
-            GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
-            drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
-            GL11.glColor3f(1F, 1F, 1F);
+            drawBaseForeground();
+
             drawPowerBar();
 
             this.fontRenderer.drawString(((TileQCapacitor) tile).getInvName(), 15, 15, 0x000000);

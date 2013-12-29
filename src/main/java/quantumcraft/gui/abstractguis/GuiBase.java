@@ -25,6 +25,10 @@ public abstract class GuiBase extends GuiContainer {
     public int buffHY;
     public boolean[] buffHT = new boolean[64];
 
+    protected float stripR = 0;
+    protected float stripG = 0;
+    protected float stripB = 0;
+
     private ArrayList<HandlerWrapper<IClickHandler>> clickHandlers = new ArrayList<HandlerWrapper<IClickHandler>>();
     private ArrayList<HandlerWrapper<IHoverHandler>> hoverHandlers = new ArrayList<HandlerWrapper<IHoverHandler>>();
 
@@ -41,12 +45,25 @@ public abstract class GuiBase extends GuiContainer {
         }
     }
 
+    /**
+     * Ya know that strip at the top that's colored?
+     *
+     * @param r Red
+     * @param g Green
+     * @param b Blue
+     */
+    protected void setStripColor(float r, float g, float b) {
+        stripR = r;
+        stripG = g;
+        stripB = b;
+    }
+
     protected void drawBackground() {
         if (this.renderContents) {
             bindImage(GuiTextures.GUI_TOP_BG);
             drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_COLOR_STRIP);
-            GL11.glColor3f(1F, 0F, 0F);
+            GL11.glColor3f(stripR, stripG, stripB);
             drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_BOTTOM_BG);
             GL11.glColor3f(1F, 1F, 1F);
@@ -71,6 +88,13 @@ public abstract class GuiBase extends GuiContainer {
         if (buffHT[1]) {
             drawTexturedModalRect(tarx, 40 + 11 + 8, 69, 9, 10, 67);
         }
+    }
+
+    protected void drawBaseForeground() {
+        bindImage(GuiTextures.GUI_BUTTON_CLOSE);
+        GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
+        drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
+        GL11.glColor3f(1F, 1F, 1F);
     }
 
     public class ClickHandler implements IClickHandler {

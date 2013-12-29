@@ -1,17 +1,16 @@
 package quantumcraft.gui;
 
 import net.minecraft.inventory.Container;
-import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerQDeenergizer;
 import quantumcraft.tile.TileQDeenergizer;
-import quantumcraft.util.BasicUtils;
 
 public class GuiQDeenergizer extends GuiBase {
 
     public GuiQDeenergizer(Container par1Container) {
         super(par1Container, 200, 170);
         tile = ((ContainerQDeenergizer) par1Container).tile;
+        setStripColor(0.7F, 0.7F, 0.7F);
     }
 
     @Override
@@ -38,20 +37,19 @@ public class GuiQDeenergizer extends GuiBase {
     protected void drawProgressBar() {
         int x = 33;
         int y = 70;
-        int width = 47-(int)((float) ((TileQDeenergizer) tile).QEnergyItemBuffer / (float) ((TileQDeenergizer)tile)
-                .lastItemValue*47F);
-        if (width == 47) {width = 0;}
+        int width = 47 - (int) ((float) ((TileQDeenergizer) tile).QEnergyItemBuffer /
+                (float) ((TileQDeenergizer) tile).lastItemValue * 47F);
+        if (width == 47) {
+            width = 0;
+        }
         int height = 5;
         bindImage(GuiTextures.GUI_PROGRESS_BELOW);
-        drawQuad(x, y, 0, (float)width/47F, 0, (float)height/5F, width, height);
+        drawQuad(x, y, 0, (float) width / 47F, 0, (float) height / 5F, width, height);
     }
 
     protected void drawForeground() {
         if (this.renderContents) {
-            bindImage(GuiTextures.GUI_BUTTON_CLOSE);
-            GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
-            drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
-            GL11.glColor3f(1F, 1F, 1F);
+            drawBaseForeground();
 
             drawBasePowerBar();
             drawProgressBar();
