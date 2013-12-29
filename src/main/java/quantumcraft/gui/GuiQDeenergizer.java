@@ -39,12 +39,7 @@ public class GuiQDeenergizer extends GuiBase {
         int y = 70;
         int width = 47 - (int) ((float) ((TileQDeenergizer) tile).QEnergyItemBuffer /
                 (float) ((TileQDeenergizer) tile).lastItemValue * 47F);
-        if (width == 47) {
-            width = 0;
-        }
-        int height = 5;
-        bindImage(GuiTextures.GUI_PROGRESS_BELOW);
-        drawQuad(x, y, 0, (float) width / 47F, 0, (float) height / 5F, width, height);
+        drawProgressBelow(width, x, y);
     }
 
     protected void drawForeground() {

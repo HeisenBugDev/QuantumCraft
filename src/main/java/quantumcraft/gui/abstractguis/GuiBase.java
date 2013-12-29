@@ -58,6 +58,15 @@ public abstract class GuiBase extends GuiContainer {
         stripB = b;
     }
 
+    protected void drawProgressBelow(int width, int x, int y){
+        if (width == 47) {
+            width = 0;
+        }
+        int height = 5;
+        bindImage(GuiTextures.GUI_PROGRESS_BELOW);
+        drawQuad(x, y, 0, (float) width / 47F, 0, (float) height / 5F, width, height);
+    }
+
     protected void drawBackground() {
         if (this.renderContents) {
             bindImage(GuiTextures.GUI_TOP_BG);

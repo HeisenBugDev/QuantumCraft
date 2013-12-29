@@ -38,12 +38,7 @@ public class GuiIONForge extends GuiBase {
         int x = 33;
         int y = 59;
         int width = (int) ((float) ((TileIONForge) tile).progress / 16F * 47F);
-        if (width == 47) {
-            width = 0;
-        }
-        int height = 5;
-        bindImage(GuiTextures.GUI_PROGRESS_BELOW);
-        drawQuad(x, y, 0, (float) width / 47F, 0, (float) height / 5F, width, height);
+        drawProgressBelow(width, x, y);
     }
 
     protected void drawForeground() {
