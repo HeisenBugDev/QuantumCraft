@@ -1,16 +1,15 @@
 package quantumcraft.gui;
 
 import net.minecraft.inventory.Container;
-import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerQCapacitor;
-import quantumcraft.tile.TileQCapacitor;
 
 public class GuiQCapacitor extends GuiBase {
 
     public GuiQCapacitor(Container container) {
         super(container, 200, 170);
         tile = ((ContainerQCapacitor) container).tile;
+        setStripColor(0, 0.8F, 0.8F);
     }
 
     @Override
@@ -25,21 +24,9 @@ public class GuiQCapacitor extends GuiBase {
     }
 
     protected void drawBackground() {
+        super.drawBackground();
         if (this.renderContents) {
-            bindImage(GuiTextures.GUI_TOP_BG);
-            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-            bindImage(GuiTextures.GUI_COLOR_STRIP);
-            GL11.glColor3f(0F, .8F, .8F);
-            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-            bindImage(GuiTextures.GUI_BOTTOM_BG);
-            GL11.glColor3f(1F, 1F, 1F);
-            drawQuad(0, 31, 0, 1, 0, 1, 200, 139);
-            bindImage(GuiTextures.GUI_INVENTORY_BG);
-            drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
-            bindImage(GuiTextures.GUI_ARMOR_BG);
-            drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
-            bindImage(GuiTextures.GUI_DIVIDER_V);
-            drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
+            drawDivider();
             bindImage(GuiTextures.GUI_CAPACITOR_2SLOT);
             drawQuad(30, 60, 0, 1, 0, 1, 53, 25);
         }
@@ -53,23 +40,16 @@ public class GuiQCapacitor extends GuiBase {
         int tary = 44;
         bindImage(GuiTextures.GUI_POWER_BAR);
         drawTexturedModalRect(tarx, tary, 85, 35, 81, 16);
-        drawTexturedModalRect(tarx+1, tary+1, 86, 69, w, 14);
+        drawTexturedModalRect(tarx + 1, tary + 1, 86, 69, w, 14);
         drawTexturedModalRect(tarx, tary, 85, 13, 81, 16);
     }
 
     protected void drawForeground() {
         if (this.renderContents) {
-            bindImage(GuiTextures.GUI_BUTTON_CLOSE);
-            GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
-            drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
-            GL11.glColor3f(1F, 1F, 1F);
+            drawBaseForeground();
             drawPowerBar();
-
-            this.fontRenderer.drawString(((TileQCapacitor) tile).getInvName(), 15, 15, 0x000000);
+            renderStandardText();
             this.fontRenderer.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 63, 0x333333);
-
-            this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
-            this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
 
             handleHover();
         }

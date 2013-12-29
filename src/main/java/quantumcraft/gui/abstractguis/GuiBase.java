@@ -7,6 +7,7 @@ package quantumcraft.gui.abstractguis;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GuiBase extends GuiContainer {
+
     private boolean onBackground;
     private boolean isNativeRender;
     protected ResourceLocation bgImage = null;
@@ -25,11 +27,21 @@ public abstract class GuiBase extends GuiContainer {
     public int buffHY;
     public boolean[] buffHT = new boolean[64];
 
+    protected float stripR = 0;
+    protected float stripG = 0;
+    protected float stripB = 0;
+
     private ArrayList<HandlerWrapper<IClickHandler>> clickHandlers = new ArrayList<HandlerWrapper<IClickHandler>>();
     private ArrayList<HandlerWrapper<IHoverHandler>> hoverHandlers = new ArrayList<HandlerWrapper<IHoverHandler>>();
 
     public static interface IClickHandler {
+
         public void onClick(int x, int y);
+    }
+
+    protected void drawDivider() {
+        bindImage(GuiTextures.GUI_DIVIDER_V);
+        drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
     }
 
     protected void handleHover() {
@@ -38,22 +50,60 @@ public abstract class GuiBase extends GuiContainer {
         }
         if (buffHT[1]) {
             renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-       }
+        }
     }
 
-    protected void drawBaseBG() {
-        bindImage(GuiTextures.GUI_TOP_BG);
-        drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-        bindImage(GuiTextures.GUI_COLOR_STRIP);
-        GL11.glColor3f(1F, 0F, 0F);
-        drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-        bindImage(GuiTextures.GUI_BOTTOM_BG);
-        GL11.glColor3f(1F, 1F, 1F);
-        drawQuad(0, 31, 0, 1, 0, 1, 200, 139);
-        bindImage(GuiTextures.GUI_INVENTORY_BG);
-        drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
-        bindImage(GuiTextures.GUI_ARMOR_BG);
-        drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
+    /**
+     * Ya know that strip at the top that's colored?
+     *
+     * @param r Red
+     * @param g Green
+     * @param b Blue
+     */
+    protected void setStripColor(float r, float g, float b) {
+        stripR = r;
+        stripG = g;
+        stripB = b;
+    }
+
+    protected void drawTwoSlot() {
+        if (this.renderContents) {
+            bindImage(GuiTextures.GUI_2SLOT_BG);
+            drawQuad(30, 50, 0, 1, 0, 1, 53, 18);
+            drawDivider();
+        }
+    }
+
+    protected void renderStandardText() {
+        this.fontRenderer.drawString(((IInventory) tile).getInvName(), 15, 15, 0x000000);
+        this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
+        this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
+    }
+
+    protected void drawProgressBelow(int width, int x, int y, int widthCheck) {
+        if (width == 47) {
+            width = 0;
+        }
+        int height = 5;
+        bindImage(GuiTextures.GUI_PROGRESS_BELOW);
+        drawQuad(x, y, 0, (float) width / 47F, 0, (float) height / 5F, width, height);
+    }
+
+    protected void drawBackground() {
+        if (this.renderContents) {
+            bindImage(GuiTextures.GUI_TOP_BG);
+            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
+            bindImage(GuiTextures.GUI_COLOR_STRIP);
+            GL11.glColor3f(stripR, stripG, stripB);
+            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
+            bindImage(GuiTextures.GUI_BOTTOM_BG);
+            GL11.glColor3f(1F, 1F, 1F);
+            drawQuad(0, 31, 0, 1, 0, 1, 200, 139);
+            bindImage(GuiTextures.GUI_INVENTORY_BG);
+            drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
+            bindImage(GuiTextures.GUI_ARMOR_BG);
+            drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
+        }
     }
 
     protected void drawBasePowerBar() {
@@ -69,6 +119,13 @@ public abstract class GuiBase extends GuiContainer {
         if (buffHT[1]) {
             drawTexturedModalRect(tarx, 40 + 11 + 8, 69, 9, 10, 67);
         }
+    }
+
+    protected void drawBaseForeground() {
+        bindImage(GuiTextures.GUI_BUTTON_CLOSE);
+        GL11.glColor3f(1F, buffHT[0] ? 0F : 0.4F, buffHT[0] ? 0F : 0.4F);
+        drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
+        GL11.glColor3f(1F, 1F, 1F);
     }
 
     public class ClickHandler implements IClickHandler {
@@ -98,6 +155,7 @@ public abstract class GuiBase extends GuiContainer {
     int buffCT = -1;
 
     public static interface IHoverHandler {
+
         public void onHover(int x, int y);
 
         public void onLeave();
@@ -135,6 +193,7 @@ public abstract class GuiBase extends GuiContainer {
 
 
     private static class HandlerWrapper<H> {
+
         public final H handler;
         public final int minX, minY, maxX, maxY;
 
@@ -148,6 +207,7 @@ public abstract class GuiBase extends GuiContainer {
     }
 
     public class TextHandler {
+
         private char[] chars = new char[64];
         private int pos = 0;
 
@@ -301,9 +361,6 @@ public abstract class GuiBase extends GuiContainer {
         drawLocalQuad(24, ySize - 9, 24, 40, 55, 64, xSize - 48, 9);
         drawLocalQuad(0, 24, 0, 9, 24, 40, 9, ySize - 48);
         drawLocalQuad(xSize - 9, 24, 55, 64, 24, 40, 9, ySize - 48);
-    }
-
-    protected void drawBackground() {
     }
 
     @Override
