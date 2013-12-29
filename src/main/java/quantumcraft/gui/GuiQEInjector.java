@@ -4,7 +4,6 @@ import net.minecraft.inventory.Container;
 import org.lwjgl.opengl.GL11;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerQEInjector;
-import quantumcraft.tile.TileQEInjector;
 
 public class GuiQEInjector extends GuiBase {
 
@@ -35,21 +34,6 @@ public class GuiQEInjector extends GuiBase {
         }
     }
 
-    protected void drawPowerBar() {
-        float flt = (float) tile.getCurrentEnergy() / (float) tile.getMaxEnergy();
-        int h = (int) (flt * 67);
-        int tarx = 213 + 3;
-        int tary = 40 + 11 + 8 + (67 - h);
-        bindImage(GuiTextures.GUI_POWER_BAR);
-        drawTexturedModalRect(213, 40, 8, 9, 17, 105);
-        drawTexturedModalRect(tarx, tary, 51, 9 + (67 - h), 10, h);
-        drawTexturedModalRect(tarx, 40 + 11 + 8, 33, 9, 10, 67);
-
-        if (buffHT[1]) {
-            drawTexturedModalRect(tarx, 40 + 11 + 8, 69, 9, 10, 67);
-        }
-    }
-
     protected void drawForeground() {
         if (this.renderContents) {
             bindImage(GuiTextures.GUI_BUTTON_CLOSE);
@@ -57,7 +41,7 @@ public class GuiQEInjector extends GuiBase {
             drawQuad(189, 9, 0, 1, 0, 1, 9, 9);
             GL11.glColor3f(1F, 1F, 1F);
 
-            drawPowerBar();
+            drawBasePowerBar();
 
             this.fontRenderer.drawString("Quantum Energy Injector", 15, 15, 0x000000);
             this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
