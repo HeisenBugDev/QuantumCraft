@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GuiBase extends GuiContainer {
+
     private boolean onBackground;
     private boolean isNativeRender;
     protected ResourceLocation bgImage = null;
@@ -33,7 +34,13 @@ public abstract class GuiBase extends GuiContainer {
     private ArrayList<HandlerWrapper<IHoverHandler>> hoverHandlers = new ArrayList<HandlerWrapper<IHoverHandler>>();
 
     public static interface IClickHandler {
+
         public void onClick(int x, int y);
+    }
+
+    protected void drawDivider() {
+        bindImage(GuiTextures.GUI_DIVIDER_V);
+        drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
     }
 
     protected void handleHover() {
@@ -58,7 +65,16 @@ public abstract class GuiBase extends GuiContainer {
         stripB = b;
     }
 
-    protected void drawProgressBelow(int width, int x, int y){
+    protected void drawTwoSlot() {
+        if (this.renderContents) {
+            bindImage(GuiTextures.GUI_2SLOT_BG);
+            drawQuad(30, 50, 0, 1, 0, 1, 53, 18);
+            drawDivider();
+        }
+    }
+
+
+    protected void drawProgressBelow(int width, int x, int y, int widthCheck) {
         if (width == 47) {
             width = 0;
         }
@@ -133,6 +149,7 @@ public abstract class GuiBase extends GuiContainer {
     int buffCT = -1;
 
     public static interface IHoverHandler {
+
         public void onHover(int x, int y);
 
         public void onLeave();
@@ -170,6 +187,7 @@ public abstract class GuiBase extends GuiContainer {
 
 
     private static class HandlerWrapper<H> {
+
         public final H handler;
         public final int minX, minY, maxX, maxY;
 
@@ -183,6 +201,7 @@ public abstract class GuiBase extends GuiContainer {
     }
 
     public class TextHandler {
+
         private char[] chars = new char[64];
         private int pos = 0;
 

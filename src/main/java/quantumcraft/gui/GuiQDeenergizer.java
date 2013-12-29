@@ -26,12 +26,7 @@ public class GuiQDeenergizer extends GuiBase {
 
     protected void drawBackground() {
         super.drawBackground();
-        if (this.renderContents) {
-            bindImage(GuiTextures.GUI_2SLOT_BG);
-            drawQuad(30, 50, 0, 1, 0, 1, 53, 18);
-            bindImage(GuiTextures.GUI_DIVIDER_V);
-            drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
-        }
+        drawTwoSlot();
     }
 
     protected void drawProgressBar() {
@@ -39,7 +34,7 @@ public class GuiQDeenergizer extends GuiBase {
         int y = 70;
         int width = 47 - (int) ((float) ((TileQDeenergizer) tile).QEnergyItemBuffer /
                 (float) ((TileQDeenergizer) tile).lastItemValue * 47F);
-        drawProgressBelow(width, x, y);
+        drawProgressBelow(width, x, y, 47);
     }
 
     protected void drawForeground() {

@@ -31,8 +31,7 @@ public class GuiQDematerializer extends GuiBase {
             drawQuad(30, 50, 0, 1, 0, 1, 18, 18);
             bindImage(GuiTextures.GUI_DEMAT_ARROW);
             drawQuad(50, 55, 0, 1, 0, 1, 21, 9);
-            bindImage(GuiTextures.GUI_DIVIDER_V);
-            drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
+            drawDivider();
         }
     }
 
@@ -41,12 +40,7 @@ public class GuiQDematerializer extends GuiBase {
         int y = 70;
         int width = 47 - (int) ((float) ((TileQDematerializer) tile).processTime /
                 (float) ((TileQDematerializer) tile).currentProcessTime * 47F);
-        if (width > 45) {
-            width = 0;
-        }
-        int height = 5;
-        bindImage(GuiTextures.GUI_PROGRESS_BELOW);
-        drawQuad(x, y, 0, (float) width / 47F, 0, (float) height / 5F, width, height);
+        drawProgressBelow(width, x, y, 45);
     }
 
     protected void drawForeground() {

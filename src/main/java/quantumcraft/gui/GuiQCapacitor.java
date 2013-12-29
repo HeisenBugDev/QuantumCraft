@@ -27,8 +27,7 @@ public class GuiQCapacitor extends GuiBase {
     protected void drawBackground() {
         super.drawBackground();
         if (this.renderContents) {
-            bindImage(GuiTextures.GUI_DIVIDER_V);
-            drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
+            drawDivider();
             bindImage(GuiTextures.GUI_CAPACITOR_2SLOT);
             drawQuad(30, 60, 0, 1, 0, 1, 53, 25);
         }

@@ -29,8 +29,7 @@ public class GuiIONForge extends GuiBase {
         if (this.renderContents) {
             bindImage(GuiTextures.GUI_4SLOT_BG);
             drawQuad(30, 38, 0, 1, 0, 1, 53, 46);
-            bindImage(GuiTextures.GUI_DIVIDER_V);
-            drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
+            drawDivider();
         }
     }
 
@@ -38,7 +37,7 @@ public class GuiIONForge extends GuiBase {
         int x = 33;
         int y = 59;
         int width = (int) ((float) ((TileIONForge) tile).progress / 16F * 47F);
-        drawProgressBelow(width, x, y);
+        drawProgressBelow(width, x, y, 47);
     }
 
     protected void drawForeground() {
