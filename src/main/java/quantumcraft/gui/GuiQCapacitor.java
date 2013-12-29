@@ -25,19 +25,8 @@ public class GuiQCapacitor extends GuiBase {
     }
 
     protected void drawBackground() {
+        super.drawBackground();
         if (this.renderContents) {
-            bindImage(GuiTextures.GUI_TOP_BG);
-            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-            bindImage(GuiTextures.GUI_COLOR_STRIP);
-            GL11.glColor3f(0F, .8F, .8F);
-            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-            bindImage(GuiTextures.GUI_BOTTOM_BG);
-            GL11.glColor3f(1F, 1F, 1F);
-            drawQuad(0, 31, 0, 1, 0, 1, 200, 139);
-            bindImage(GuiTextures.GUI_INVENTORY_BG);
-            drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
-            bindImage(GuiTextures.GUI_ARMOR_BG);
-            drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
             bindImage(GuiTextures.GUI_DIVIDER_V);
             drawQuad(110, 31, 0, 1, 0, 1, 2, 59);
             bindImage(GuiTextures.GUI_CAPACITOR_2SLOT);
