@@ -38,22 +38,24 @@ public abstract class GuiBase extends GuiContainer {
         }
         if (buffHT[1]) {
             renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-       }
+        }
     }
 
-    protected void drawBaseBG() {
-        bindImage(GuiTextures.GUI_TOP_BG);
-        drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-        bindImage(GuiTextures.GUI_COLOR_STRIP);
-        GL11.glColor3f(1F, 0F, 0F);
-        drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-        bindImage(GuiTextures.GUI_BOTTOM_BG);
-        GL11.glColor3f(1F, 1F, 1F);
-        drawQuad(0, 31, 0, 1, 0, 1, 200, 139);
-        bindImage(GuiTextures.GUI_INVENTORY_BG);
-        drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
-        bindImage(GuiTextures.GUI_ARMOR_BG);
-        drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
+    protected void drawBackground() {
+        if (this.renderContents) {
+            bindImage(GuiTextures.GUI_TOP_BG);
+            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
+            bindImage(GuiTextures.GUI_COLOR_STRIP);
+            GL11.glColor3f(1F, 0F, 0F);
+            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
+            bindImage(GuiTextures.GUI_BOTTOM_BG);
+            GL11.glColor3f(1F, 1F, 1F);
+            drawQuad(0, 31, 0, 1, 0, 1, 200, 139);
+            bindImage(GuiTextures.GUI_INVENTORY_BG);
+            drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
+            bindImage(GuiTextures.GUI_ARMOR_BG);
+            drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
+        }
     }
 
     protected void drawBasePowerBar() {
@@ -301,9 +303,6 @@ public abstract class GuiBase extends GuiContainer {
         drawLocalQuad(24, ySize - 9, 24, 40, 55, 64, xSize - 48, 9);
         drawLocalQuad(0, 24, 0, 9, 24, 40, 9, ySize - 48);
         drawLocalQuad(xSize - 9, 24, 55, 64, 24, 40, 9, ySize - 48);
-    }
-
-    protected void drawBackground() {
     }
 
     @Override

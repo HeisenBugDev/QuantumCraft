@@ -26,19 +26,8 @@ public class GuiQDeenergizer extends GuiBase {
     }
 
     protected void drawBackground() {
+        super.drawBackground();
         if (this.renderContents) {
-            bindImage(GuiTextures.GUI_TOP_BG);
-            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-            bindImage(GuiTextures.GUI_COLOR_STRIP);
-            GL11.glColor3f(.7F, .7F, .7F);
-            drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
-            bindImage(GuiTextures.GUI_BOTTOM_BG);
-            GL11.glColor3f(1F, 1F, 1F);
-            drawQuad(0, 31, 0, 1, 0, 1, 200, 139);
-            bindImage(GuiTextures.GUI_INVENTORY_BG);
-            drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
-            bindImage(GuiTextures.GUI_ARMOR_BG);
-            drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
             bindImage(GuiTextures.GUI_2SLOT_BG);
             drawQuad(30, 50, 0, 1, 0, 1, 53, 18);
             bindImage(GuiTextures.GUI_DIVIDER_V);
