@@ -5,6 +5,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumChatFormatting;
 import quantumcraft.core.QDERecipe;
 import quantumcraft.core.QRecipeHandler;
 import quantumcraft.inventory.SimpleInventory;
@@ -74,6 +75,11 @@ public class TileQDeenergizer extends TileEnergySource implements ISidedInventor
         if (this.getMaxEnergy() - this.getCurrentEnergy() < r.getEnergyValue()) flag = false;
         return flag;
 
+    }
+
+    @Override public String getStatusText() {
+        if (isProcessing) return EnumChatFormatting.GREEN + "Working";
+        return EnumChatFormatting.YELLOW + "Idle";
     }
 
     @Override

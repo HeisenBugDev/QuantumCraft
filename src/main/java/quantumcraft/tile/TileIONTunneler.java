@@ -1,5 +1,6 @@
 package quantumcraft.tile;
 
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 import quantumcraft.util.Coords;
@@ -18,6 +19,7 @@ public class TileIONTunneler extends TileEnergySink {
     int z = zCoord;
     int location = 0;
     int useLength = length;
+    private boolean done = false;
     private List<Coords> blockRemovalQueue = new ArrayList<Coords>();
 
     @Override
@@ -105,6 +107,14 @@ public class TileIONTunneler extends TileEnergySink {
                 break;
         }
         return tmpValue;
+    }
+
+    @Override
+    public String getStatusText() {
+        if (done) return EnumChatFormatting.GREEN + "Done";
+        if (this.getCurrentEnergy() < 1 && stop) return EnumChatFormatting.RED + "Waiting for power!";
+        if (this.getCurrentEnergy() < 1) return EnumChatFormatting.RED + "Out of Power!";
+        return EnumChatFormatting.GREEN + "" + blockRemovalQueue.size() + " blocks left";
     }
 
     /**
@@ -203,6 +213,8 @@ public class TileIONTunneler extends TileEnergySink {
                     blockRemovalQueue.remove(0);
                     pause = 0;
                 }
+            } else if (stop) {
+                done = true;
             }
         }
         pause++;
@@ -221,7 +233,7 @@ public class TileIONTunneler extends TileEnergySink {
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
+        if (this.getCurrentEnergy() < this.getMaxEnergy() && blockRemovalQueue.size() > this.getCurrentEnergy()) {
             this.addEnergy(this.requestPacket(100));
         }
         processBlockRemoval();

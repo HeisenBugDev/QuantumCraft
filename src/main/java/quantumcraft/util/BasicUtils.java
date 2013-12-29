@@ -18,6 +18,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.core.Config;
 import quantumcraft.core.interfaces.IMultiTool;
@@ -50,6 +51,15 @@ public class BasicUtils {
 
     public static Block getBlockInstance(IBlockAccess world, int x, int y, int z) {
         return Block.blocksList[world.getBlockId(x, y, z)];
+    }
+
+    public static Block getBlockAtTarget(DrawBlockHighlightEvent event) {
+        return getBlockInstance(event.player.worldObj, event.target.blockX, event.target.blockY, event.target.blockZ);
+    }
+
+    public static TileEntity getTileEntityAtTarget(DrawBlockHighlightEvent event) {
+        return event.player.getEntityWorld()
+                .getBlockTileEntity(event.target.blockX, event.target.blockY, event.target.blockZ);
     }
 
     public static int overclockMultiplier(int[] uids) {
@@ -176,8 +186,7 @@ public class BasicUtils {
     }
 
     /**
-     * Notify all blocks around of neighbor change. If flag is true, also notify
-     * the actual block given.
+     * Notify all blocks around of neighbor change. If flag is true, also notify the actual block given.
      *
      * @param world
      * @param coord
@@ -192,8 +201,18 @@ public class BasicUtils {
     }
 
     public static TileEntity getTileEntity(IBlockAccess access, Coords coords, Class clazz) {
+        if (access == null) return null;
         TileEntity te = access.getBlockTileEntity(coords.x, coords.y, coords.z);
         return !clazz.isInstance(te) ? null : te;
+    }
+
+    /**
+     * Pass a single coord int and get the chunk's equivalent one back.
+     * @param q Either x or z location
+     * @return The chunk coord
+     */
+    public static int getChunk(int q) {
+        return (int) Math.floor(q / 16);
     }
 
     public static MovingObjectPosition retraceBlock(World world, EntityPlayer player, int x, int y, int z) {
@@ -376,6 +395,5 @@ public class BasicUtils {
         ent.motionZ = (vel.zCoord * mult);
         worldObj.spawnEntityInWorld(ent);
     }
-
 
 }

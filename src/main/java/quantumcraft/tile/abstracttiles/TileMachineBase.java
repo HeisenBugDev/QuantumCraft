@@ -4,14 +4,16 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.core.interfaces.IRotateableTile;
 import quantumcraft.core.network.PacketHandler;
 import quantumcraft.core.network.packets.MachineInitPacket;
+import quantumcraft.render.IInWorldGui;
 import quantumcraft.util.BasicUtils;
 
-public abstract class TileMachineBase extends TileEntity implements IRotateableTile {
+public abstract class TileMachineBase extends TileEntity implements IRotateableTile, IInWorldGui{
 
     public int upgradeID[] = {0, 0, 0, 0};
     public boolean updateNextTick = false;
@@ -21,6 +23,25 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
 
     protected TileMachineBase() {
         _forwardDirection = ForgeDirection.NORTH;
+    }
+
+    @Override
+    public String getPowerInfo() {
+        if (this.getMaxEnergy() == 0) return "N/A";
+        String chatColor = "";
+        int powerPercent = (this.getCurrentEnergy() * 100) / this.getMaxEnergy();
+        if (powerPercent > 66){
+            chatColor = EnumChatFormatting.GREEN.toString();
+        }else if (powerPercent >= 33){
+            chatColor = EnumChatFormatting.DARK_BLUE.toString();
+        }else{
+            chatColor = EnumChatFormatting.RED.toString();
+        }
+        return chatColor + this.getCurrentEnergy() + " / " + this.getMaxEnergy() + " (" + powerPercent + "%)";
+    }
+
+    public String getStatusText(){
+        return EnumChatFormatting.RED + "Unknown";
     }
 
     /**

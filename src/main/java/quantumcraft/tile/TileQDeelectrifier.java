@@ -3,6 +3,7 @@ package quantumcraft.tile;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import buildcraft.api.power.PowerHandler.Type;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.core.QuantumCraft;
@@ -31,6 +32,10 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
     @Override
     public void onBlockBreak() {
 
+    }
+
+    @Override public String getStatusText() {
+        return buildCraftBuffer + " MJ";
     }
 
     @Override

@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumChatFormatting;
 import quantumcraft.core.Config;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
@@ -16,6 +17,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[4];
     public int progress = 0;
     private int processTime = 0;
+    public boolean isProcessing = false;
 
     @Override
     public int getMaxEnergy() {
@@ -31,6 +33,11 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     public void onBlockBreak() {
         SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 64);
         tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
+    }
+
+    @Override public String getStatusText() {
+        if (isProcessing) return EnumChatFormatting.GREEN + "Working";
+        return EnumChatFormatting.YELLOW + "Idle";
     }
 
     /**
@@ -58,9 +65,12 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
             }
 
             if (removeProcess) {
+                isProcessing = true;
                 if (processTime >= 0) {
                     processTime--;
                 }
+            } else {
+                isProcessing = false;
             }
             if (processTime < 0) {
                 progress = 0;

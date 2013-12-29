@@ -47,6 +47,7 @@ public class Loader {
     /* BLOCKS */
     public static BlockOre OreUnbioxenium;
     public static BlockOreQuantonium OreQuantonium;
+    public static Block BlockMachineCasing;
     /* MACHINE BLOCKS */
     public static BlockQDeenergizer BlockQDeenergizer;
     public static BlockQEInjector BlockQEInjector;
@@ -61,7 +62,7 @@ public class Loader {
     public static BlockIONTunneler BlockIONTunneler;
     public static BlockIONScanner BlockIONScanner;
     public static BlockIONHarvester BlockIONHarvester;
-    public static Block BlockMachineCasing;
+    public static BlockQInterdimensionalGenerator BlockQInterdimensionalGenerator;
     public static BlockQCapacitor[] capacitors = new BlockQCapacitor[5];
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
@@ -240,15 +241,20 @@ public class Loader {
         GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
 
         for (int i = 1; i <= 5; i++) {
-            BlockQCapacitor =
-                    (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID + i).setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameBlockQCP + i);
+            BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID.getInt() + i)
+                    .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQCP + i);
             BlockQCapacitor.setMaxEnergyMultiplier(i);
             capacitors[i - 1] = BlockQCapacitor;
             LanguageRegistry.addName(BlockQCapacitor, "Quantum " + CapacitorName.getName(i) + " Capacitor");
             GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
         }
         if (Config.beta.getBoolean(false)) {
+            BlockQInterdimensionalGenerator =
+                    (BlockQInterdimensionalGenerator) new BlockQInterdimensionalGenerator(Config.BlockQIGID)
+                            .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQIG);
+            LanguageRegistry.addName(BlockQInterdimensionalGenerator, "Quantum Interdimensional Generator");
+            GameRegistry.registerBlock(BlockQInterdimensionalGenerator, Config.NameBlockQIG);
+
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS);
@@ -316,6 +322,7 @@ public class Loader {
         }
 
         if (Config.beta.getBoolean(false)) {
+            GameRegistry.registerTileEntity(TileQInterdimensionalGenerator.class, "QInterdimensionalGeneratorTE");
             GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         }
     }
