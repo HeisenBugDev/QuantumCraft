@@ -50,9 +50,7 @@ public class GuiQDematerializer extends GuiBase {
             drawBasePowerBar();
             drawProgressBar();
 
-            this.fontRenderer.drawString(((TileQDematerializer) tile).getInvName(), 15, 15, 0x000000);
-            this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
-            this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
+            renderStandardText();
 
             handleHover();
         }

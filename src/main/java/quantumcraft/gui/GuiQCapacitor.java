@@ -3,7 +3,6 @@ package quantumcraft.gui;
 import net.minecraft.inventory.Container;
 import quantumcraft.gui.abstractguis.GuiBase;
 import quantumcraft.inventory.ContainerQCapacitor;
-import quantumcraft.tile.TileQCapacitor;
 
 public class GuiQCapacitor extends GuiBase {
 
@@ -48,14 +47,9 @@ public class GuiQCapacitor extends GuiBase {
     protected void drawForeground() {
         if (this.renderContents) {
             drawBaseForeground();
-
             drawPowerBar();
-
-            this.fontRenderer.drawString(((TileQCapacitor) tile).getInvName(), 15, 15, 0x000000);
+            renderStandardText();
             this.fontRenderer.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 63, 0x333333);
-
-            this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
-            this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
 
             handleHover();
         }

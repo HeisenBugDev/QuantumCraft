@@ -7,6 +7,7 @@ package quantumcraft.gui.abstractguis;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -73,6 +74,11 @@ public abstract class GuiBase extends GuiContainer {
         }
     }
 
+    protected void renderStandardText() {
+        this.fontRenderer.drawString(((IInventory) tile).getInvName(), 15, 15, 0x000000);
+        this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
+        this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
+    }
 
     protected void drawProgressBelow(int width, int x, int y, int widthCheck) {
         if (width == 47) {
