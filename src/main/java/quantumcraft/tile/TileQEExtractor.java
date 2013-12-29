@@ -151,7 +151,7 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
                 e.setCurrentQEnergyBuffer(inventoryLocal[inputSlot],
                         e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]) - cycle);
                 inventoryLocal[inputSlot].getItem().setDamage(inventoryLocal[inputSlot],
-                        e.getMaxQEnergyValue(inventoryLocal[inputSlot]) -
+                        e.getMaxQEnergyValue() -
                                 e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]));
                 tile.addEnergy(cycle);
 

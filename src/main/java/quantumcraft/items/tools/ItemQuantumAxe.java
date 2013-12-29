@@ -20,7 +20,7 @@ public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
     }
 
     @Override
-    public int getMaxQEnergyValue(ItemStack itemStack) {
+    public int getMaxQEnergyValue() {
         return maxQenergyValue;
     }
 
@@ -35,28 +35,20 @@ public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
     }
 
     @Override
+    public int setCurrentQEnergyBuffer(ItemStack itemStack, int value) {
+        return ToolHelper.setCurrentQEnergyBuffer(itemStack, value, this);
+    }
+
+    @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         return false;
     }
 
     @Override
-    public int setCurrentQEnergyBuffer(ItemStack itemStack, int value) {
-        if (value < 0) value = 0;
-        if (value > getMaxQEnergyValue(itemStack)) value = getMaxQEnergyValue(itemStack);
-        ItemEnergyUtils.setEnergy(itemStack, value);
-        return value;
-    }
-
-    @Override
     public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6,
                                     EntityLivingBase par7EntityLivingBase) {
-        if (getCurrentQEnergyBuffer(par1ItemStack) < 50) return false;
-        if ((double) Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
-            setCurrentQEnergyBuffer(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack) - 50);
-            ItemEnergyUtils.setDamage(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack), maxQenergyValue);
-        }
-
-        return true;
+        return ToolHelper
+                .onBlockDestroyed(par1ItemStack, par2World, par3, par4, par5, par6, par7EntityLivingBase, this);
     }
 
     @Override

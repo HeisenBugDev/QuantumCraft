@@ -37,7 +37,7 @@ public class ItemChargable extends ItemBase implements IQEnergizable {
     }
 
     @Override
-    public int getMaxQEnergyValue(ItemStack itemStack) {
+    public int getMaxQEnergyValue() {
         return maxenergy;
     }
 
@@ -48,7 +48,7 @@ public class ItemChargable extends ItemBase implements IQEnergizable {
 
     public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean flag) {
         if (itemstack != null && displayEnergy) {
-            list.add("QEU: " + this.getCurrentQEnergyBuffer(itemstack) + " / " + this.getMaxQEnergyValue(itemstack));
+            list.add("QEU: " + this.getCurrentQEnergyBuffer(itemstack) + " / " + this.getMaxQEnergyValue());
             ItemEnergyUtils.setDamage(itemstack, this.getCurrentQEnergyBuffer(itemstack), this.maxenergy);
         }
         super.addInformation(itemstack, player, list, flag);
@@ -57,7 +57,7 @@ public class ItemChargable extends ItemBase implements IQEnergizable {
     @Override
     public int setCurrentQEnergyBuffer(ItemStack itemStack, int value) {
         if (value < 0) value = 0;
-        if (value > getMaxQEnergyValue(itemStack)) value = getMaxQEnergyValue(itemStack);
+        if (value > getMaxQEnergyValue()) value = getMaxQEnergyValue();
         ItemEnergyUtils.setEnergy(itemStack, value);
         return value;
     }

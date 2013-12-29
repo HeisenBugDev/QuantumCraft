@@ -7,7 +7,7 @@ public interface IQEnergizable {
     /**
      * @return maximum energy the item can hold
      */
-    public int getMaxQEnergyValue(ItemStack itemStack);
+    public int getMaxQEnergyValue();
 
     /**
      * @return the current energy value the item's got

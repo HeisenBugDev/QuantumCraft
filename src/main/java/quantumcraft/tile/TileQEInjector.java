@@ -159,7 +159,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
             if (inventoryLocal[0].getItem() instanceof IQEnergizable) {
                 IQEnergizable e = ((IQEnergizable) inventoryLocal[0].getItem());
                 int cycle = 50 + BasicUtils.overclockMultiplier(upgradeIDLocal);
-                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) <= (e.getMaxQEnergyValue(inventoryLocal[0]) - cycle)) {
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) <= (e.getMaxQEnergyValue() - cycle)) {
                     if (tile.getCurrentEnergy() < cycle) {
                         cycle = tile.getCurrentEnergy();
                     }
@@ -168,7 +168,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
                                 e.getCurrentQEnergyBuffer(inventoryLocal[0]) + cycle);
                     }
                 } else {
-                    cycle = e.getMaxQEnergyValue(inventoryLocal[0]) - e.getCurrentQEnergyBuffer(inventoryLocal[0]);
+                    cycle = e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer(inventoryLocal[0]);
                     if (tile.getCurrentEnergy() < cycle) {
                         cycle = tile.getCurrentEnergy();
                     }
@@ -178,16 +178,16 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
                     }
                 }
                 inventoryLocal[0].getItem().setDamage(inventoryLocal[0],
-                        e.getMaxQEnergyValue(inventoryLocal[0]) - e.getCurrentQEnergyBuffer(inventoryLocal[0]));
+                        e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer(inventoryLocal[0]));
                 tile.subtractEnergy(cycle);
                 tile.updateNextTick = true;
 
-                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue(inventoryLocal[0]) &&
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue() &&
                         runProcess) {
                     inventoryLocal[1] = inventoryLocal[0].copy();
                     inv.decrStackSize(0, 1);
                     inventoryLocal[1].getItem().setDamage(inventoryLocal[1], 1);
-                } else if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue(inventoryLocal[0])) {
+                } else if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue()) {
                     inventoryLocal[0].getItem().setDamage(inventoryLocal[0], 1);
                 }
             }
