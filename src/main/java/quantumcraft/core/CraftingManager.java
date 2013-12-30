@@ -5,7 +5,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import quantumcraft.blocks.BlockQCapacitor;
 
 public class CraftingManager {
 
@@ -21,6 +20,10 @@ public class CraftingManager {
         // HYPER CONDUCTOR   x6
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemHyperConductor, 6), "xxx", "yyy", "xxx", 'x',
                 new ItemStack(Block.glass), 'y', crystalStack);
+        // Quantum Converter x1
+        GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemQuantumConverter, 1), crystalStack, ironStack,
+                Loader.ItemHyperConductor, Loader.ItemQuantumPlating);
+        
         // FIBER WIRE        x6
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQuantumFiberWire, 6), "xxx", "yyy", "xxx", 'x',
                 new ItemStack(Loader.ItemQuantumPlating), 'y', new ItemStack(Loader.ItemHyperConductor));

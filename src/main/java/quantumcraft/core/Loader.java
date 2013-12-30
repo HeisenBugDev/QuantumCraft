@@ -44,6 +44,7 @@ public class Loader {
     public static ItemPlaceholder ItemRPlaceHolder;
     public static ItemBase ItemHyperConductor;
     public static ItemBase ItemQuantumPlating;
+    public static ItemBase ItemQuantumConverter;
     /* BLOCKS */
     public static BlockOre OreUnbioxenium;
     public static BlockOreQuantonium OreQuantonium;
@@ -182,6 +183,11 @@ public class Loader {
                 .setUnlocalizedName(Config.NameItemQuantumPlating)
                 .setTextureName(Config.getTextureName(Config.NameItemQuantumPlating));
         LanguageRegistry.addName(ItemQuantumPlating, "Quantum Plating");
+
+        ItemQuantumConverter = (ItemBase) new ItemBase(Config.ItemQuantumConverterID).setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName(Config.NameItemQuantumConverter)
+                .setTextureName(Config.getTextureName(Config.NameItemQuantumConverter));
+        LanguageRegistry.addName(ItemQuantumConverter, "Quantum Converter");
     }
 
     public static void initBlocks() {
@@ -333,6 +339,7 @@ public class Loader {
     }
 
     public static class ToolMaterials {
+
         //The following values are subject to change.
         public static EnumToolMaterial QUANTUMTOOL = EnumHelper.addToolMaterial("QUANTUMTOOL", 3, 0, 7.0F, 2, 30);
         //the 3rd argument (0) is not used...

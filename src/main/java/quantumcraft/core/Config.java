@@ -29,6 +29,7 @@ public class Config {
     public static String NameItemLocationCardBlank = "locationCardBlank";
     public static String NameItemHyperConductor = "hyperConductor";
     public static String NameItemQuantumPlating = "quantumPlating";
+    public static String NameItemQuantumConverter = "quantumConverter";
     public static String NameOreUnbioxenium = "oreUnbioxenium";
     public static String NameOreQuantonium = "oreQuantonium";
     public static String NameBlockQDE = "machineQDE";
@@ -72,6 +73,7 @@ public class Config {
     public static int ItemRPlaceHolderID;
     public static int ItemHyperConductorID;
     public static int ItemQuantumPlatingID;
+    public static int ItemQuantumConverterID;
     public static int OreUnbioxeniumID;
     public static int OreQuantoniumID;
     public static int BlockQDEID;
@@ -143,6 +145,7 @@ public class Config {
 
         ItemHyperConductorID = config.get("Items", "ItemHyperConductor", 5009).getInt();
         ItemQuantumPlatingID = config.get("Items", "ItemQuantumPlating", 5010).getInt();
+        ItemQuantumConverterID = config.get("Items", "ItemQuantumConverter", 5025).getInt();
 
         ItemInfinitePowerID = config.get("Items", "InfinitePowerItem", 5024).getInt();
 
