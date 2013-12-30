@@ -14,9 +14,8 @@ public class CraftingManager {
         ItemStack crystalStack = new ItemStack(Loader.ItemCrystalQuantonium);
 
         // QUATUM PLATING    x4
-        GameRegistry
-                .addShapedRecipe(new ItemStack(Loader.ItemQuantumPlating, 4), "xxx", "xyx", "xxx", 'x', unbioxeniumStack, 'y',
-                        crystalStack);
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemQuantumPlating, 4), "xxx", "xyx", "xxx", 'x',
+                unbioxeniumStack, 'y', crystalStack);
         // HYPER CONDUCTOR   x6
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemHyperConductor, 6), "xxx", "yyy", "xxx", 'x',
                 new ItemStack(Block.glass), 'y', crystalStack);
@@ -28,8 +27,8 @@ public class CraftingManager {
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQuantumFiberWire, 6), "xxx", "yyy", "xxx", 'x',
                 new ItemStack(Loader.ItemQuantumPlating), 'y', new ItemStack(Loader.ItemHyperConductor));
         // MULTI TOOL        x1
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemMultiTool, 1), " i ", "rii", " r ", 'i', unbioxeniumStack, 'r',
-                new ItemStack(Item.dyePowder, 1, 1));
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemMultiTool, 1), " i ", "rii", " r ", 'i', unbioxeniumStack,
+                'r', new ItemStack(Item.dyePowder, 1, 1));
 
         // BLANK UPGRADE
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemUpgrade, 1, 1), "bbb", "bab", "bbb", 'b',
@@ -41,6 +40,12 @@ public class CraftingManager {
             // BLANK LOC CARD    x2 <-- cannot do 2 cause maxstacksize is 1
             GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemLocationCardBlank), new ItemStack(Item.paper),
                     new ItemStack(Item.paper), new ItemStack(Item.dyePowder, 1, 0));
+
+            // Q Interdimensional Generator
+            GameRegistry
+                    .addShapedRecipe(new ItemStack(Loader.BlockQInterdimensionalGenerator, 1), "ucu", "kmk", "ucu", 'u',
+                            unbioxeniumStack, 'c', crystalStack, 'k', new ItemStack(Loader.ItemQuantumConverter), 'm',
+                            new ItemStack(Loader.BlockMachineCasing));
         }
         // PORT. CAPACITOR   x1
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemPortableQCapacitor, 1), "pcp", "xcx", "pcp", 'p',
