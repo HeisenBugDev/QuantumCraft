@@ -165,7 +165,7 @@ public class Config {
         BlockIOHID = config.get("Blocks", "BlockIONHarvester", 3613).getInt();
         BlockQIGID = config.get("Blocks", "BlockQInterdimensionalGenerator", 3614).getInt();
 
-        // DO NOT PUT ANY BLOCK IDS FROM 3630 TO 3635!
+        // DO NOT PUT ANY BLOCK IDS FROM 3630 TO 3634!
         BlockQCPID = config.get("Blocks", "BlockQCapacitor", 3630);
         BlockQCPID.comment =
                 "Whatever ID you set, there will be 4 more used after it. ie: if you use 10, it will also use 11,12," +

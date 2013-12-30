@@ -12,6 +12,8 @@ Visit the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-
 
 [Website](http://heisenbugdev.com)
 
+[Block ID List](https://docs.google.com/spreadsheet/ccc?key=0AieTtHwOv7hFdGt5LTh5S2FmNkZUM3VEdWt6dXVQTFE&usp=sharing) Use this when adding new blocks. You too @sammko.
+
 QuantumCraft will add some fun machines and a nice research system into Minecraft.
 
 **We would love feedback so just send it on over!**
