@@ -10,25 +10,25 @@ public class CraftingManager {
 
     public static void addCrafting() {
 
-        ItemStack ironStack = new ItemStack(Loader.ItemIngotUnbioxenium);
+        ItemStack unbioxeniumStack = new ItemStack(Loader.ItemIngotUnbioxenium);
         ItemStack crystalStack = new ItemStack(Loader.ItemCrystalQuantonium);
 
         // QUATUM PLATING    x4
         GameRegistry
-                .addShapedRecipe(new ItemStack(Loader.ItemQuantumPlating, 4), "xxx", "xyx", "xxx", 'x', ironStack, 'y',
+                .addShapedRecipe(new ItemStack(Loader.ItemQuantumPlating, 4), "xxx", "xyx", "xxx", 'x', unbioxeniumStack, 'y',
                         crystalStack);
         // HYPER CONDUCTOR   x6
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemHyperConductor, 6), "xxx", "yyy", "xxx", 'x',
                 new ItemStack(Block.glass), 'y', crystalStack);
         // Quantum Converter x1
-        GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemQuantumConverter, 1), crystalStack, ironStack,
+        GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemQuantumConverter, 1), crystalStack, unbioxeniumStack,
                 Loader.ItemHyperConductor, Loader.ItemQuantumPlating);
-        
+
         // FIBER WIRE        x6
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQuantumFiberWire, 6), "xxx", "yyy", "xxx", 'x',
                 new ItemStack(Loader.ItemQuantumPlating), 'y', new ItemStack(Loader.ItemHyperConductor));
         // MULTI TOOL        x1
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemMultiTool, 1), " i ", "rii", " r ", 'i', ironStack, 'r',
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemMultiTool, 1), " i ", "rii", " r ", 'i', unbioxeniumStack, 'r',
                 new ItemStack(Item.dyePowder, 1, 1));
 
         // BLANK UPGRADE
