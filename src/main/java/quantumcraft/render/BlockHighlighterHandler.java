@@ -1,6 +1,8 @@
 package quantumcraft.render;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.Tessellator;
@@ -18,6 +20,7 @@ import quantumcraft.util.Coords;
 public class BlockHighlighterHandler {
 
     @ForgeSubscribe
+    @SideOnly(Side.CLIENT)
     public void onDrawBlockHighlightEvent(DrawBlockHighlightEvent event) {
         if (BasicUtils.getTileEntityAtTarget(event) instanceof IInWorldGui) {
             drawInWorldGui(event);
