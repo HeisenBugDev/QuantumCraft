@@ -34,8 +34,10 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     public void updateEntity() {
         super.updateEntity();
         if (generatorsInChunk == 0) return;
-        if (worldObj.getWorldTime() % 20 == 0) this.addEnergy(10 / generatorsInChunk);
-        outputRate = 10 / generatorsInChunk;
+        if (worldObj.getWorldTime() % 20 == 0) {
+            this.addEnergy((int) Math.floor(10 / generatorsInChunk));
+            outputRate = (int) Math.floor(10 / generatorsInChunk);
+        }
     }
 
     public void onQIGChange() {
