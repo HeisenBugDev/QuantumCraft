@@ -57,7 +57,7 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     @Override
     public String getStatusText() {
         EnumChatFormatting color = outputRate > 5 ? EnumChatFormatting.GREEN : EnumChatFormatting.YELLOW;
-        return color + "" + outputRate + " QEU/t";
+        return color + "" + outputRate + " QEU/s";
     }
 
     @Override
