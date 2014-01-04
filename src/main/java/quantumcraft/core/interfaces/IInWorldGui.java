@@ -1,4 +1,4 @@
-package quantumcraft.render;
+package quantumcraft.core.interfaces;
 
 public interface IInWorldGui {
     String[] text = new String[0];

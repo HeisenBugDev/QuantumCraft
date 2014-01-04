@@ -13,6 +13,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.event.ForgeSubscribe;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+import quantumcraft.core.interfaces.IInWorldGui;
 import quantumcraft.tile.TileIONScanner;
 import quantumcraft.util.BasicUtils;
 import quantumcraft.util.Coords;
