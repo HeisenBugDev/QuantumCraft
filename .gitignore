@@ -44,3 +44,10 @@ local.properties
 
 # PDT-specific
 .buildpath
+/classes/
+/stats/
+/mods/
+/resourcepacks/
+*.log
+*.lck
+/options.txt
