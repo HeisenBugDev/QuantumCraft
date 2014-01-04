@@ -115,10 +115,10 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
         tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
     }
 
-    //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
     @Override
     public void updateEntity() {
         super.updateEntity();
+        if (!shouldRun) return;
         extractPower(inventory, this, this, true, 0);
         if (updateNextTick) {
             // All nearby players need to be updated if the status of work
@@ -128,6 +128,7 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
         }
+
     }
 
     public static void extractPower(ItemStack[] inventoryLocal, TileMachineBase tile, ISidedInventory inv,

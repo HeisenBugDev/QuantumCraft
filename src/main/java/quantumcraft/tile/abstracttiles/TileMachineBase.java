@@ -7,19 +7,23 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.core.QuantumCraft;
+import quantumcraft.core.interfaces.IRedstoneControllable;
 import quantumcraft.core.interfaces.IRotateableTile;
+import quantumcraft.core.interfaces.RedstoneControl;
 import quantumcraft.core.network.PacketHandler;
 import quantumcraft.core.network.packets.MachineInitPacket;
 import quantumcraft.core.interfaces.IInWorldGui;
 import quantumcraft.util.BasicUtils;
 
-public abstract class TileMachineBase extends TileEntity implements IRotateableTile, IInWorldGui{
+public abstract class TileMachineBase extends TileEntity implements IRotateableTile, IInWorldGui, IRedstoneControllable{
 
     public int upgradeID[] = {0, 0, 0, 0};
     public boolean updateNextTick = false;
     private ForgeDirection _forwardDirection;
     private int energyBuffer = 0;
     public boolean redstonePower = false;
+    public boolean shouldRun = true;
+    private RedstoneControl redstoneControl = RedstoneControl.STOP_ON_PWR;
 
     protected TileMachineBase() {
         _forwardDirection = ForgeDirection.NORTH;
@@ -38,6 +42,13 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
             chatColor = EnumChatFormatting.RED.toString();
         }
         return chatColor + this.getCurrentEnergy() + " / " + this.getMaxEnergy() + " (" + powerPercent + "%)";
+    }
+
+    public RedstoneControl getRedstoneControlType(){
+        return redstoneControl;
+    }
+    public void setRedstoneControlType(RedstoneControl t) {
+        this.redstoneControl = t;
     }
 
     public String getStatusText(){
@@ -181,14 +192,29 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
         }
     }
 
+    public void updateShouldRun() {
+
+        //System.out.printf("%b\n", redstonePower);
+        switch (getRedstoneControlType()) {
+            case IGNORE:
+                shouldRun = true;
+                break;
+            case STOP_ON_PWR:
+                shouldRun = !redstonePower;
+        }
+    }
+
     @Override
     public void updateEntity() {
+        redstonePower = BasicUtils.isRedstonePowered(this);
+        updateShouldRun();
         if (worldObj.getWorldTime() % 20 == 0) {
-            redstonePower = BasicUtils.isRedstonePowered(this);
             QuantumCraft.logHandler.debugPrint(this, "Current Energy is: " + this.getCurrentEnergy());
-            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            //This stuff broke my ignore redstone from som reason so i commented it. we can uncomment it and fix
+            //ignore redstone later when we need this.
+            //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
-        } if (redstonePower) return;
+        }
     }
 
     public boolean useRotated() {

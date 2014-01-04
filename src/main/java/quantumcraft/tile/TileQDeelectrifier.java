@@ -41,6 +41,7 @@ public class TileQDeelectrifier extends TileEnergySource implements IPowerRecept
     @Override
     public void updateEntity() {
         super.updateEntity();
+        if (!shouldRun) return;
         buildCraftBuffer += powerHandler.useEnergy(1, 100, true);
         int powerUse = 100;
         if (powerUse > buildCraftBuffer) powerUse = (int) buildCraftBuffer;

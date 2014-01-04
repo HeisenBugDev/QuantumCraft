@@ -85,6 +85,7 @@ public class TileQDeenergizer extends TileEnergySource implements ISidedInventor
     @Override
     public void updateEntity() {
         super.updateEntity();
+        if (!shouldRun) return;
         if (worldObj.getWorldTime() % 20 == 0) isProcessing = canProcess();
         if (isProcessing) {
             this.lastItemValue = r.getEnergyValue();
