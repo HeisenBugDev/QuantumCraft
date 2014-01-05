@@ -199,6 +199,9 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
             case IGNORE:
                 shouldRun = true;
                 break;
+            case RUN_ON_PWR:
+                shouldRun = redstonePower;
+                break;
             case STOP_ON_PWR:
                 shouldRun = !redstonePower;
         }

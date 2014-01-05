@@ -58,6 +58,9 @@ public abstract class GuiBase extends GuiContainer {
                 case IGNORE:
                     s = "redstone = don't care";
                     break;
+                case RUN_ON_PWR:
+                    s = "redstone = run";
+                    break;
                 case STOP_ON_PWR:
                     //FALL THROUGH
                 default:
@@ -178,6 +181,9 @@ public abstract class GuiBase extends GuiContainer {
                 case 1:
                     switch (tile.getRedstoneControlType()) {
                         case IGNORE:
+                            this.tile.setRedstoneControlType(RedstoneControl.RUN_ON_PWR);
+                            break;
+                        case RUN_ON_PWR:
                             this.tile.setRedstoneControlType(RedstoneControl.STOP_ON_PWR);
                             break;
                         case STOP_ON_PWR:
@@ -224,7 +230,6 @@ public abstract class GuiBase extends GuiContainer {
         List<String> l = new ArrayList<String>();
         l.add(text);
         this.drawHoveringText(l, x, y, this.fontRenderer);
-
     }
 
 
