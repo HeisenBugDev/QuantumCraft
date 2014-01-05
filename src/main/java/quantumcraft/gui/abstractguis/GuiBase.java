@@ -14,6 +14,7 @@ import org.lwjgl.opengl.GL11;
 import quantumcraft.core.interfaces.RedstoneControl;
 import quantumcraft.gui.GuiTextures;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
+import quantumcraft.util.RedstoneControlStrings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,20 +54,7 @@ public abstract class GuiBase extends GuiContainer {
             renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
         }
         if (buffHT[2]) {
-            String s;
-            switch (tile.getRedstoneControlType()) {
-                case IGNORE:
-                    s = "redstone = don't care";
-                    break;
-                case RUN_ON_PWR:
-                    s = "redstone = run";
-                    break;
-                case STOP_ON_PWR:
-                    //FALL THROUGH
-                default:
-                    s = "redstone = stop";
-            }
-            renderTooltipText(s, buffHX, buffHY);
+            renderTooltipText(RedstoneControlStrings.getByOrdinal(tile.getRedstoneControlType().ordinal()), buffHX, buffHY);
         }
     }
 
