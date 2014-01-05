@@ -53,3 +53,4 @@ local.properties
 *.lck
 /options.txt
 /crash-reports/
+/screenshots/
