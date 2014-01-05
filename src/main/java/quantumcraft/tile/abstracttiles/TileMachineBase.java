@@ -14,7 +14,6 @@ import quantumcraft.core.network.PacketHandler;
 import quantumcraft.core.network.packets.MachineInitPacket;
 import quantumcraft.core.interfaces.IInWorldGui;
 import quantumcraft.util.BasicUtils;
-import quantumcraft.util.RedstoneControlStrings;
 
 public abstract class TileMachineBase extends TileEntity implements IRotateableTile, IInWorldGui, IRedstoneControllable{
 
@@ -47,9 +46,6 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
 
     public RedstoneControl getRedstoneControlType(){
         return redstoneControl;
-    }
-    public String getRedstoneControlTypeString() {
-        return RedstoneControlStrings.getByOrdinal(this.getRedstoneControlType().ordinal());
     }
     public void setRedstoneControlType(RedstoneControl t) {
         this.redstoneControl = t;

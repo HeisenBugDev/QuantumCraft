@@ -75,9 +75,6 @@ public class BlockHighlighterHandler {
                     .drawString("Speed: " + ((TileIONScanner) BasicUtils.getTileEntityAtTarget(event)).getSpeed(), 13,
                             46, 0);
         }
-        mc.fontRenderer
-                .drawString(((IInWorldGui) BasicUtils.getTileEntityAtTarget(event)).getRedstoneControlTypeString(), 13,
-                        58, 0);
 
         GL11.glPopMatrix();
     }
