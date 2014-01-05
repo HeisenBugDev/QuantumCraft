@@ -172,8 +172,6 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
 
     @Override
     public void updateEntity() {
-        super.updateEntity();
-        if (!shouldRun) return;
         if (areCardsIn() && worldObj != null) {
             int currAid = getCardBID(0);
             int currAmt = getCardBMT(0);

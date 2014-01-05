@@ -24,8 +24,6 @@ public class GuiTextures {
             new ResourceLocation("quantumcraft", "textures/gui/powerbar.png");
     public static ResourceLocation GUI_BUTTON_CLOSE =
             new ResourceLocation("quantumcraft", "textures/gui/button_close.png");
-    public static ResourceLocation GUI_BUTTON_REDSTONE =
-            new ResourceLocation("quantumcraft", "textures/gui/button_rs.png");
     public static ResourceLocation GUI_DIVIDER_V =
             new ResourceLocation("quantumcraft", "textures/gui/dividerV.png");
     public static ResourceLocation GUI_1SLOT_BG =

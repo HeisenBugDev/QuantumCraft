@@ -136,7 +136,6 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (!shouldRun) return;
         if (inventory[0] == null && currentival != 0) {
             currentival = 0;
         }

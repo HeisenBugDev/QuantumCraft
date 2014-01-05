@@ -109,7 +109,6 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (!shouldRun) return;
         currentProcessTime = 40 / (BasicUtils.overclockMultiplier(upgradeID) + 1);
         if (inventory[0] != null) {
             if (processTime > 0) processTime--;

@@ -233,7 +233,6 @@ public class TileIONTunneler extends TileEnergySink {
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (!shouldRun) return;
         if (this.getCurrentEnergy() < this.getMaxEnergy() && blockRemovalQueue.size() > this.getCurrentEnergy()) {
             this.addEnergy(this.requestPacket(100));
         }

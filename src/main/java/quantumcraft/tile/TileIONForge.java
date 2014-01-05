@@ -47,7 +47,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (!shouldRun) return;
         if (this.getCurrentEnergy() < this.getMaxEnergy()) {
             this.addEnergy(this.requestPacket(100));
         }

@@ -21,7 +21,6 @@ public class GuiQCapacitor extends GuiBase {
         addHoverHandler(new HoverHandler(0, this), 189, 9, 9, 9);
         addHoverHandler(new HoverHandler(1, this), 15, 36, 81, 16);
         addClickHandler(new ClickHandler(0), 189, 9, 9, 9);
-        registerRedstoneButton(this);
     }
 
     protected void drawBackground() {
@@ -51,7 +50,7 @@ public class GuiQCapacitor extends GuiBase {
             drawPowerBar();
             renderStandardText();
             this.fontRenderer.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 63, 0x333333);
-            drawRedstoneControl();
+
             handleHover();
         }
 

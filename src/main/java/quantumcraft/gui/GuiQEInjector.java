@@ -21,7 +21,6 @@ public class GuiQEInjector extends GuiBase {
         addHoverHandler(new HoverHandler(0, this), 189, 9, 9, 9);
         addHoverHandler(new HoverHandler(1, this), 206, 50, 12, 68);
         addClickHandler(new ClickHandler(0), 189, 9, 9, 9);
-        registerRedstoneButton(this);
     }
 
     protected void drawBackground() {
@@ -35,7 +34,7 @@ public class GuiQEInjector extends GuiBase {
 
             drawBasePowerBar();
             renderStandardText();
-            drawRedstoneControl();
+
             handleHover();
         }
 

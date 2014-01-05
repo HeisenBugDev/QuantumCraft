@@ -11,7 +11,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import quantumcraft.core.interfaces.RedstoneControl;
 import quantumcraft.gui.GuiTextures;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
 
@@ -51,19 +50,6 @@ public abstract class GuiBase extends GuiContainer {
         }
         if (buffHT[1]) {
             renderTooltipText(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy() + " QEU", buffHX, buffHY);
-        }
-        if (buffHT[2]) {
-            String s;
-            switch (tile.getRedstoneControlType()) {
-                case IGNORE:
-                    s = "redstone = don't care";
-                    break;
-                case STOP_ON_PWR:
-                    //FALL THROUGH
-                default:
-                    s = "redstone = stop";
-            }
-            renderTooltipText(s, buffHX, buffHY);
         }
     }
 
@@ -142,14 +128,6 @@ public abstract class GuiBase extends GuiContainer {
         GL11.glColor3f(1F, 1F, 1F);
     }
 
-
-    public void drawRedstoneControl() {
-        bindImage(GuiTextures.GUI_BUTTON_REDSTONE);
-        GL11.glColor3f(1F, buffHT[2] ? 0F : 0.4F, buffHT[2] ? 0F : 0.4F);
-        drawQuad(178, 9, 0, 1, 0, 1, 9, 9);
-        GL11.glColor3f(1F, 1F, 1F);
-    }
-
     public class ClickHandler implements IClickHandler {
 
         final int id;
@@ -165,25 +143,11 @@ public abstract class GuiBase extends GuiContainer {
         }
     }
 
-    public void registerRedstoneButton(GuiBase that) {
-        addHoverHandler(new HoverHandler(2, that), 178, 9, 9, 9);
-        addClickHandler(new ClickHandler(1), 178, 9, 9, 9);
-    }
-
     protected void handleClick(int buffCT) {
         if (buffCT > -1) {
             switch (buffCT) {
                 case 0:
                     this.mc.thePlayer.closeScreen();
-                case 1:
-                    switch (tile.getRedstoneControlType()) {
-                        case IGNORE:
-                            this.tile.setRedstoneControlType(RedstoneControl.STOP_ON_PWR);
-                            break;
-                        case STOP_ON_PWR:
-                            this.tile.setRedstoneControlType(RedstoneControl.IGNORE);
-                            break;
-                    }
             }
         }
     }

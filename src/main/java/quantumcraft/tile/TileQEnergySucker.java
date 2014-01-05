@@ -31,7 +31,6 @@ public class TileQEnergySucker extends TileEnergySink {
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (!shouldRun) return;
         this.requestPacket(10);
     }
 
