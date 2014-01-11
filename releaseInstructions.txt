@@ -1,0 +1,27 @@
+How to release a new version of QuantumCraft!
+
+Step one, be hunterboerner. Please, nobody else do this. Srsly, even he breaks stuff.
+
+Version should be x.x.x NEVER EVER x.x
+EX: 0.4.0 NOT 0.4, Build script will get funky
+
+Before release:
+Make sure all issues on GitHub for that version are closed
+Test it!!!!
+
+Check readme and update if needed.
+Create a new release with git flow with the version as the release name. Ex: 1.3.0 NOT v1.3.0
+Do any last minute changes.
+Finish the release
+Push to remote.
+
+Go to GitHub and edit the release notes for this tag version (this is the changelog!)
+Go to the jenkins(don't put a link here anyone) and download the file for the version released in the job called QuantumCraft NOT QuantumCraft-dev
+Put the file on dropbox under public/QuantumCraft
+Go to adf.ly and shorten the link.
+Edit the minecraftforum post to reflect the new versions.
+Reply to the post on MCForums and have:
+    A link to the changelog
+    The actual changelog (for the lazy)
+    And obviously the version number!
+Go to #notenoughmods in irc.esper.net and give them the info for the new version

@@ -1,0 +1,113 @@
+// this part adds in ForgeGradle
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+    }
+}
+
+apply plugin: "forge"
+
+dependencies {
+    compile fileTree(dir: 'mcrun/mods', include: '**')
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+// stuff specific to my mod
+group = 'quantumcraft'
+version = "4.6.2"
+archivesBaseName = 'QuantumCraft'
+
+// spit out the version for debugging sake
+logger.lifecycle ""+version
+
+minecraft {
+  version = "1.6.4-9.11.1.964" // grab latest forge
+  assetDir = "run/assets"
+}
+
+/*
+ * Gets the version name from the latest Git tag
+ */
+def getVersionName = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--tags', '--abbrev=0'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+// add some stuff to the version
+version = "${minecraft.version}-${getVersionName()}.${System.getenv().BUILD_NUMBER}"
+
+processResources
+{
+  // replace stuff in text files, not binary ones.
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.lang'
+        include '**/*.info'
+    
+    // replace version and MCVersion
+    // forge version is also accessible via project.minecraftforgeVersion
+    // it contains the full minecraft version, including buildNumber
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+  
+  // copy everything else, thats not text
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.lang'
+        exclude '**/*.info'
+    }
+}
+
+repositories {
+  mavenCentral()
+}
+
+// change the name of my obfuscated jar
+jar {
+  appendix = 'universal'
+}
+
+// add a source jar
+task sourceJar(type: Jar) {
+  from sourceSets.main.allSource
+  appendix = 'src'
+}
+
+// add a javadoc jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  appendix = 'javadoc'
+  from 'build/docs/javadoc'
+}
+
+// because the normal output has been made to be obfuscated
+task deobfJar(type: Jar) {
+  from sourceSets.main.output
+  appendix = 'deobf'
+}
+
+// another obf jar
+//task obfJar(type: Jar) {
+//  from sourceSets.main.output
+//  appendix = 'obfAgain'
+//}
+
+//reobf
+//{
+//  reobf obfJar
+//}
+
+artifacts {
+  archives sourceJar
+  archives deobfJar
+  archives javadocJar
+  //archives obfJar
+}
