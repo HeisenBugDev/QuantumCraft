@@ -23,8 +23,8 @@ public class CraftingManager {
         GameRegistry.addShapelessRecipe(new ItemStack(Loader.ItemQuantumConverter, 1), crystalStack, unbioxeniumStack,
                 Loader.ItemHyperConductor, Loader.ItemQuantumPlating);
 
-        // FIBER WIRE        x6
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQuantumFiberWire, 6), "xxx", "yyy", "xxx", 'x',
+        // FIBER WIRE        x18
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQuantumFiberWire, 18), "xxx", "yyy", "xxx", 'x',
                 new ItemStack(Loader.ItemQuantumPlating), 'y', new ItemStack(Loader.ItemHyperConductor));
         // MULTI TOOL        x1
         GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemMultiTool, 1), " i ", "rii", " r ", 'i', unbioxeniumStack,
