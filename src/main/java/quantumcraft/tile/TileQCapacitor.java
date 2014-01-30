@@ -36,12 +36,14 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
+        TileUtil.readInventory(par1NBTTagCompound, this.inventory);
         maxEnergyMultiplier = par1NBTTagCompound.getInteger("energyMultiplier");
     }
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
         super.writeToNBT(par1NBTTagCompound);
+        TileUtil.saveInventory(par1NBTTagCompound, this.inventory);
         par1NBTTagCompound.setInteger("energyMultiplier", maxEnergyMultiplier);
     }
 
