@@ -182,8 +182,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
                 tile.subtractEnergy(cycle);
                 tile.updateNextTick = true;
 
-                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue() &&
-                        runProcess) {
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue() && runProcess) {
                     inventoryLocal[1] = inventoryLocal[0].copy();
                     inv.decrStackSize(0, 1);
                     inventoryLocal[1].getItem().setDamage(inventoryLocal[1], 1);
@@ -197,17 +196,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
-        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
-        this.inventory = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
-            byte b0 = nbttagcompound1.getByte("Slot");
-
-            if (b0 >= 0 && b0 < this.inventory.length) {
-                this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-            }
-        }
+        TileUtil.readInventory(par1NBTTagCompound, this.inventory);
         this.currentival = par1NBTTagCompound.getInteger("currentival");
         this.maxival = par1NBTTagCompound.getInteger("maxival");
         updateNextTick = true;
@@ -221,18 +210,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
         par1NBTTagCompound.setInteger("currentival", this.currentival);
         par1NBTTagCompound.setInteger("maxival", this.maxival);
-        NBTTagList nbttaglist = new NBTTagList();
-
-        for (int i = 0; i < this.inventory.length; ++i) {
-            if (this.inventory[i] != null) {
-                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte) i);
-                this.inventory[i].writeToNBT(nbttagcompound1);
-                nbttaglist.appendTag(nbttagcompound1);
-            }
-        }
-
-        par1NBTTagCompound.setTag("Items", nbttaglist);
+        TileUtil.saveInventory(par1NBTTagCompound, this.inventory);
         super.writeToNBT(par1NBTTagCompound);
     }
 

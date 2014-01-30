@@ -15,6 +15,7 @@ import quantumcraft.util.TileUtil;
 import java.util.Random;
 
 public class TileQDematerializer extends TileEnergySource implements ISidedInventory, IUpgradable {
+
     public ItemStack[] inventory = new ItemStack[1];
     public int processTime = -1;
 
@@ -143,18 +144,8 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
-        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
         upgradeID = par1NBTTagCompound.getIntArray("Upgrades");
-        this.inventory = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
-            byte b0 = nbttagcompound1.getByte("Slot");
-
-            if (b0 >= 0 && b0 < this.inventory.length) {
-                this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-            }
-        }
+        TileUtil.readInventory(par1NBTTagCompound, this.inventory);
         updateNextTick = true;
     }
 
@@ -164,18 +155,8 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        NBTTagList nbttaglist = new NBTTagList();
-
-        for (int i = 0; i < this.inventory.length; ++i) {
-            if (this.inventory[i] != null) {
-                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte) i);
-                this.inventory[i].writeToNBT(nbttagcompound1);
-                nbttaglist.appendTag(nbttagcompound1);
-            }
-        }
+        TileUtil.saveInventory(par1NBTTagCompound, this.inventory);
         par1NBTTagCompound.setIntArray("Upgrades", upgradeID);
-        par1NBTTagCompound.setTag("Items", nbttaglist);
         super.writeToNBT(par1NBTTagCompound);
     }
 
