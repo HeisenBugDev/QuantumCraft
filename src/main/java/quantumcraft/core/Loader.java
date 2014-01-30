@@ -246,6 +246,12 @@ public class Loader {
         LanguageRegistry.addName(BlockIONHarvester, "ION Harvester");
         GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
 
+        BlockQInterdimensionalGenerator =
+                (BlockQInterdimensionalGenerator) new BlockQInterdimensionalGenerator(Config.BlockQIGID)
+                        .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQIG);
+        LanguageRegistry.addName(BlockQInterdimensionalGenerator, "Quantum Interdimensional Generator");
+        GameRegistry.registerBlock(BlockQInterdimensionalGenerator, Config.NameBlockQIG);
+
         for (int i = 1; i <= 5; i++) {
             BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID.getInt() + i)
                     .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQCP + i);
@@ -255,12 +261,6 @@ public class Loader {
             GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
         }
         if (Config.beta.getBoolean(false)) {
-            BlockQInterdimensionalGenerator =
-                    (BlockQInterdimensionalGenerator) new BlockQInterdimensionalGenerator(Config.BlockQIGID)
-                            .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameBlockQIG);
-            LanguageRegistry.addName(BlockQInterdimensionalGenerator, "Quantum Interdimensional Generator");
-            GameRegistry.registerBlock(BlockQInterdimensionalGenerator, Config.NameBlockQIG);
-
             BlockQDislocator =
                     (BlockQDislocator) new BlockQDislocator(Config.BlockQDSID).setCreativeTab(tabQuantumCraft)
                             .setUnlocalizedName(Config.NameBlockQDS);
@@ -321,6 +321,7 @@ public class Loader {
         GameRegistry.registerTileEntity(TileIONScanner.class, "IONScannerTE");
         GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
         GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
+        GameRegistry.registerTileEntity(TileQInterdimensionalGenerator.class, "QInterdimensionalGeneratorTE");
 
         if (hasBuildCraft()) {
             GameRegistry.registerTileEntity(TileQElectrifier.class, "QElectrifierTE");
@@ -328,7 +329,6 @@ public class Loader {
         }
 
         if (Config.beta.getBoolean(false)) {
-            GameRegistry.registerTileEntity(TileQInterdimensionalGenerator.class, "QInterdimensionalGeneratorTE");
             GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         }
     }
