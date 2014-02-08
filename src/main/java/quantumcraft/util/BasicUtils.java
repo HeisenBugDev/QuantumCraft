@@ -279,17 +279,17 @@ public class BasicUtils {
     }
 
     public static void writeItemStackToData(ItemStack[] stack, DataOutputStream data) throws IOException {
-        for (int i = 0; i < stack.length; i++) {
+        for (ItemStack aStack : stack) {
             // Itemstack
-            if (stack[i] == null) {
+            if (aStack == null) {
                 data.writeShort(-1);
             } else {
-                data.writeShort(stack[i].itemID);
-                data.writeByte(stack[i].stackSize);
-                data.writeShort(stack[i].getItemDamage());
+                data.writeShort(aStack.itemID);
+                data.writeByte(aStack.stackSize);
+                data.writeShort(aStack.getItemDamage());
 
                 // NBT
-                NBTTagCompound compound = stack[i].stackTagCompound;
+                NBTTagCompound compound = aStack.stackTagCompound;
                 if (compound == null) {
                     data.writeShort(-1);
                 } else {
