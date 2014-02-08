@@ -3,6 +3,7 @@
 ![Logo](http://i.imgur.com/h6cUsrb.png)
 
 Yet another minecraft tech mod that ends with -craft.
+If you're a fancy developer, you know what you do, you join the chat! [![Gitter chat](https://badges.gitter.im/HeisenBugDev/QuantumCraft.png)](https://gitter.im/HeisenBugDev/QuantumCraft)
 IRC: irc.esper.net #QuantumCraft :)
 
 ## Intro
