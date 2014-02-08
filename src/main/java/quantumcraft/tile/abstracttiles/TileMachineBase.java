@@ -13,7 +13,7 @@ import quantumcraft.core.network.PacketHandler;
 import quantumcraft.core.network.packets.MachineInitPacket;
 import quantumcraft.util.BasicUtils;
 
-public abstract class TileMachineBase extends TileEntity implements IRotateableTile, IInWorldGui{
+public abstract class TileMachineBase extends TileEntity implements IRotateableTile, IInWorldGui {
 
     public int upgradeID[] = {0, 0, 0, 0};
     public boolean updateNextTick = false;
@@ -30,17 +30,17 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
         if (this.getMaxEnergy() == 0) return "N/A";
         String chatColor = "";
         int powerPercent = (this.getCurrentEnergy() * 100) / this.getMaxEnergy();
-        if (powerPercent > 66){
+        if (powerPercent > 66) {
             chatColor = EnumChatFormatting.GREEN.toString();
-        }else if (powerPercent >= 33){
+        } else if (powerPercent >= 33) {
             chatColor = EnumChatFormatting.DARK_BLUE.toString();
-        }else{
+        } else {
             chatColor = EnumChatFormatting.RED.toString();
         }
         return chatColor + this.getCurrentEnergy() + " / " + this.getMaxEnergy() + " (" + powerPercent + "%)";
     }
 
-    public String getStatusText(){
+    public String getStatusText() {
         return EnumChatFormatting.RED + "Unknown";
     }
 
@@ -188,7 +188,7 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
             QuantumCraft.logHandler.debugPrint(this, "Current Energy is: " + this.getCurrentEnergy());
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
-        } if (redstonePower) return;
+        }
     }
 
     public boolean useRotated() {
