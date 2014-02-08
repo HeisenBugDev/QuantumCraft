@@ -33,6 +33,7 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     @Override
     public void updateEntity() {
         super.updateEntity();
+        if (redstonePower) return;
         if (generatorsInChunk == 0) return;
         if (worldObj.getWorldTime() % 20 == 0) {
             this.addEnergy((int) Math.floor(10 / generatorsInChunk));

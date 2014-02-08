@@ -69,6 +69,7 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     @Override
     public void updateEntity() {
         super.updateEntity();
+        if (redstonePower) return;
         this.addEnergy(this.requestPacket(10000));
         TileQEInjector.injectPower(inventory, upgradeID, false, this, this);
         TileQEExtractor.extractPower(inventory, this, this, false, 1);

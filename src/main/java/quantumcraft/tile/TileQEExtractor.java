@@ -119,6 +119,7 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
     @Override
     public void updateEntity() {
         super.updateEntity();
+        if (redstonePower) return;
         extractPower(inventory, this, this, true, 0);
         if (updateNextTick) {
             // All nearby players need to be updated if the status of work
