@@ -92,8 +92,8 @@ public class BasicUtils {
         return world != null && !world.isRemote;
     }
 
-    public static boolean isClient(World world) {
-        return world != null && world.isRemote;
+    public static boolean isNotClient(World world) {
+        return world == null || !world.isRemote;
     }
 
     public static boolean isHoldingWrench(EntityPlayer player) {
@@ -144,7 +144,7 @@ public class BasicUtils {
     }
 
     public static void dropItem(World world, int x, int y, int z, ItemStack itemStack) {
-        if (!isClient(world)) {
+        if (isNotClient(world)) {
             double var5 = 0.7D;
             double var7 = (double) world.rand.nextFloat() * var5 + (1.0D - var5) * 0.5D;
             double var9 = (double) world.rand.nextFloat() * var5 + (1.0D - var5) * 0.5D;
@@ -166,7 +166,7 @@ public class BasicUtils {
      * @param blockId
      */
     public static void updateIndirectNeighbors(World world, int x, int y, int z, int blockId) {
-        if (!isClient(world)) {
+        if (isNotClient(world)) {
             for (int var5 = -3; var5 <= 3; ++var5) {
                 for (int var6 = -3; var6 <= 3; ++var6) {
                     for (int var7 = -3; var7 <= 3; ++var7) {
@@ -275,24 +275,21 @@ public class BasicUtils {
     }
 
     public static boolean areStacksTheSame(ItemStack is1, ItemStack is2) {
-        if (is1 == null || is2 == null) {
-            return false;
-        }
-        return is1.itemID == is2.itemID && is1.getItemDamage() == is2.getItemDamage();
+        return !(is1 == null || is2 == null) && is1.itemID == is2.itemID && is1.getItemDamage() == is2.getItemDamage();
     }
 
     public static void writeItemStackToData(ItemStack[] stack, DataOutputStream data) throws IOException {
-        for (int i = 0; i < stack.length; i++) {
+        for (ItemStack aStack : stack) {
             // Itemstack
-            if (stack[i] == null) {
+            if (aStack == null) {
                 data.writeShort(-1);
             } else {
-                data.writeShort(stack[i].itemID);
-                data.writeByte(stack[i].stackSize);
-                data.writeShort(stack[i].getItemDamage());
+                data.writeShort(aStack.itemID);
+                data.writeByte(aStack.stackSize);
+                data.writeShort(aStack.getItemDamage());
 
                 // NBT
-                NBTTagCompound compound = stack[i].stackTagCompound;
+                NBTTagCompound compound = aStack.stackTagCompound;
                 if (compound == null) {
                     data.writeShort(-1);
                 } else {

@@ -225,7 +225,7 @@ public abstract class GuiBase extends GuiContainer {
 
         public String getString(int count) {
             int start = count < pos ? pos - count : 0;
-            StringBuffer buff = new StringBuffer();
+            StringBuilder buff = new StringBuilder();
             for (int i = start; i < pos; i++) {
                 buff.append(chars[i]);
             }
