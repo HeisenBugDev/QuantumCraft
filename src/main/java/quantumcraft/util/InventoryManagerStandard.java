@@ -1,35 +1,33 @@
 package quantumcraft.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import quantumcraft.util.UtilInventory;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeDirection;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class InventoryManagerStandard implements IInventoryManager
 {
 	private IInventory _inv;
 	protected ForgeDirection _targetSide;
-	
+
 	public InventoryManagerStandard(IInventory inventory, ForgeDirection targetSide)
 	{
 		_inv = inventory;
 		_targetSide = targetSide;
 	}
-	
+
 	protected boolean canAddItem(ItemStack stack, int slot)
 	{
 		return _inv.isItemValidForSlot(slot, stack);
 	}
-	
+
 	protected boolean canRemoveItem(ItemStack stack, int slot)
 	{
 		return true;
 	}
-	
+
 	@Override
 	public ItemStack addItem(ItemStack stack)
 	{
@@ -37,7 +35,7 @@ public class InventoryManagerStandard implements IInventoryManager
 		{
 			return null;
 		}
-		
+
 		int quantitytoadd = stack.stackSize;
 		ItemStack remaining = stack.copy();
 		int[] slots = getSlots();
@@ -45,7 +43,7 @@ public class InventoryManagerStandard implements IInventoryManager
 		{
 			return remaining;
 		}
-		
+
 		for(int i : slots)
 		{
 			int maxStackSize = Math.min(_inv.getInventoryStackLimit(), stack.getMaxStackSize());
@@ -54,7 +52,7 @@ public class InventoryManagerStandard implements IInventoryManager
 			{
 				ItemStack add = stack.copy();
 				add.stackSize = Math.min(quantitytoadd, maxStackSize);
-				
+
 				if(canAddItem(add, i))
 				{
 					quantitytoadd -= add.stackSize;
@@ -65,7 +63,7 @@ public class InventoryManagerStandard implements IInventoryManager
 			{
 				ItemStack add = stack.copy();
 				add.stackSize = Math.min(quantitytoadd, maxStackSize - s.stackSize);
-				
+
 				if(add.stackSize > 0 && canAddItem(add, i))
 				{
 					s.stackSize += add.stackSize;
@@ -78,7 +76,7 @@ public class InventoryManagerStandard implements IInventoryManager
 				break;
 			}
 		}
-		
+
 		remaining.stackSize = quantitytoadd;
 		if(remaining.stackSize == 0)
 		{
@@ -97,13 +95,13 @@ public class InventoryManagerStandard implements IInventoryManager
 		{
 			return null;
 		}
-		
+
 		int[] slots = getSlots();
 		if(slots == null)
 		{
 			return null;
 		}
-		
+
 		for(int i : slots)
 		{
 			ItemStack s = getSlotContents(i);
@@ -134,13 +132,13 @@ public class InventoryManagerStandard implements IInventoryManager
 		{
 			return null;
 		}
-		
+
 		int[] slots = getSlots();
 		if(slots == null)
 		{
 			return null;
 		}
-		
+
 		for(int i : slots)
 		{
 			ItemStack s = getSlotContents(i);
@@ -192,7 +190,7 @@ public class InventoryManagerStandard implements IInventoryManager
 		{
 			return -1;
 		}
-		
+
 		for(int i : slots)
 		{
 			ItemStack s = _inv.getStackInSlot(i);

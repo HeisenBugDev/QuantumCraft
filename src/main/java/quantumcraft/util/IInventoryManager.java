@@ -1,8 +1,8 @@
 package quantumcraft.util;
 
-import java.util.Map;
-
 import net.minecraft.item.ItemStack;
+
+import java.util.Map;
 
 public interface IInventoryManager
 {
@@ -11,11 +11,11 @@ public interface IInventoryManager
 	public ItemStack removeItem(int maxRemove, ItemStack type);
 
 	public ItemStack getSlotContents(int slot);
-	
+
 	public int hasItem(ItemStack type);
-	
+
 	public int findItem(ItemStack type);
-	
+
 	public int[] getSlots();
 	public Map<Integer, ItemStack> getContents();
 }

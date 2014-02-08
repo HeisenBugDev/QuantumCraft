@@ -1,10 +1,5 @@
 package quantumcraft.util;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
@@ -13,6 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public abstract class UtilInventory
 {
@@ -24,7 +24,7 @@ public abstract class UtilInventory
 	{
 		return findChests(world, x, y, z, ForgeDirection.VALID_DIRECTIONS);
 	}
-	
+
 	/**
 	 * Searches from position x, y, z, checking for inventories in each directiontocheck.
 	 * @return Map<ForgeDirection, IInventory> specifying all found inventories and their directions.
@@ -45,7 +45,7 @@ public abstract class UtilInventory
 		}
 		return chests;
 	}
-	
+
 	private static IInventory checkForDoubleChest(World world, TileEntity te, BlockPosition chestloc)
 	{
 		if(world.getBlockId(chestloc.x, chestloc.y, chestloc.z) == Block.chest.blockID)
@@ -60,11 +60,11 @@ public abstract class UtilInventory
 		}
 		return ((IInventory)te);
 	}
-	
+
 	/**
 	 * Drops an ItemStack, checking all directions for pipes > chests. DOESN'T drop items into the world.
 	 * Example of this behavior: Cargo dropoff rail, item collector.
-	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
+	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped.
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack)
 	{
@@ -75,48 +75,48 @@ public abstract class UtilInventory
 	 * Drops an ItemStack, checking all directions for pipes > chests. Drops items into the world.
 	 * Example of this behavior: Harvesters, sludge boilers, etc.
 	 * @param	airdropdirection	the direction that the stack may be dropped into air.
-	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
+	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped.
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection airdropdirection)
 	{
 		return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, ForgeDirection.VALID_DIRECTIONS, airdropdirection);
 	}
-	
+
 	/**
 	 * Drops an ItemStack, into chests > pipes > the world, but only in a single direction.
 	 * Example of this behavior: Item Router, Ejector
 	 * @param	dropdirection a -single- direction in which to check for pipes/chests
 	 * @param	airdropdirection	the direction that the stack may be dropped into air.
-	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
+	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped.
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection dropdirection, ForgeDirection airdropdirection)
 	{
 		ForgeDirection[] dropdirections = {dropdirection};
 		return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, dropdirections, airdropdirection);
 	}
-	
+
 	/**
 	 * Drops an ItemStack, checks pipes > chests > world in that order.
 	 * @param	from				the TileEntity doing the dropping
 	 * @param	stack				the ItemStack being dropped
 	 * @param	dropdirections		directions in which stack may be dropped into chests or pipes
 	 * @param	airdropdirection	the direction that the stack may be dropped into air. ForgeDirection.UNKNOWN or other invalid directions indicate that stack shouldn't be dropped into the world.
-	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
+	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped.
 	 */
 	public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection[] dropdirections, ForgeDirection airdropdirection)
 	{
 		return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, dropdirections, airdropdirection);
 	}
-	
+
 	/**
 	 * Drops an ItemStack, checks pipes > chests > world in that order.
-	 * It generally shouldn't be necessary to call this explicitly. 
+	 * It generally shouldn't be necessary to call this explicitly.
 	 * @param	world				the worldObj
 	 * @param	bp					the BlockPosition to drop from
 	 * @param	stack				the ItemStack being dropped
 	 * @param	dropdirections		directions in which stack may be dropped into chests or pipes
 	 * @param	airdropdirection	the direction that the stack may be dropped into air. ForgeDirection.UNKNOWN or other invalid directions indicate that stack shouldn't be dropped into the world.
-	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped. 
+	 * @return	The remainder of the ItemStack. Whatever -wasn't- successfully dropped.
 	 */
 	public static ItemStack dropStack(World world, BlockPosition bp, ItemStack stack, ForgeDirection[] dropdirections, ForgeDirection airdropdirection)
 	{
@@ -125,7 +125,7 @@ public abstract class UtilInventory
 		{
 			return stack;
 		}
-		stack = stack.copy();		
+		stack = stack.copy();
 
 		// (2) Try to put stack in chests that are in valid directions
 		for(Entry<ForgeDirection, IInventory> chest : findChests(world, bp.x, bp.y, bp.z, dropdirections).entrySet())
@@ -149,13 +149,13 @@ public abstract class UtilInventory
 		// (4) Is the stack still here? :( Better give it back.
 		return stack;
 	}
-	
+
 	private static void dropStackInAir(ItemStack stack, BlockPosition bp, World world, ForgeDirection towards)
 	{
 		float dropOffsetX = 0.0F;
 		float dropOffsetY = 0.0F;
 		float dropOffsetZ = 0.0F;
-		
+
 		switch(towards)
 		{
 			case UNKNOWN:
@@ -191,9 +191,9 @@ public abstract class UtilInventory
 				break;
 			default:
 				break;
-				
+
 		}
-		
+
 		EntityItem entityitem = new EntityItem(world, bp.x + dropOffsetX, bp.y + dropOffsetY, bp.z + dropOffsetZ, stack.copy());
 		entityitem.motionX = 0.0D;
 		if(towards != ForgeDirection.DOWN) entityitem.motionY = 0.3D;
@@ -218,16 +218,16 @@ public abstract class UtilInventory
 		else
 		{
 			return stack.splitStack(1);
-		}	
+		}
 	}
 
 	public static void mergeStacks(ItemStack to, ItemStack from)
 	{
 		if(to == null || from == null) return;
-		
+
 		if(to.itemID != from.itemID || to.getItemDamage() != from.getItemDamage()) return;
 		if(to.getTagCompound() != null || from.getTagCompound() != null) return;
-		
+
 		int amountToCopy = Math.min(to.getMaxStackSize() - to.stackSize, from.stackSize);
 		to.stackSize += amountToCopy;
 		from.stackSize -= amountToCopy;
@@ -242,14 +242,14 @@ public abstract class UtilInventory
 	{
 		if(s1 == null || s2 == null) return false;
 		if(!s1.isItemEqual(s2)) return false;
-		
+
 		if(nbtSensitive)
 		{
 			if(s1.getTagCompound() == null && s2.getTagCompound() == null) return true;
 			if(s1.getTagCompound() == null || s2.getTagCompound() == null) return false;
 			return s1.getTagCompound().equals(s2.getTagCompound());
 		}
-		
+
 		return true;
 	}
 }

@@ -7,10 +7,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.ForgeDirection;
 import quantumcraft.core.QuantumCraft;
+import quantumcraft.core.interfaces.IInWorldGui;
 import quantumcraft.core.interfaces.IRotateableTile;
 import quantumcraft.core.network.PacketHandler;
 import quantumcraft.core.network.packets.MachineInitPacket;
-import quantumcraft.core.interfaces.IInWorldGui;
 import quantumcraft.util.BasicUtils;
 
 public abstract class TileMachineBase extends TileEntity implements IRotateableTile, IInWorldGui{

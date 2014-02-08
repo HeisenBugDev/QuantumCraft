@@ -4,7 +4,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySink;
-import quantumcraft.tile.TileIONForge;
 import quantumcraft.tile.TileIONTunneler;
 
 public class BlockIONTunneler extends BlockEnergySink {
