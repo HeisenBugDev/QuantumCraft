@@ -275,10 +275,7 @@ public class BasicUtils {
     }
 
     public static boolean areStacksTheSame(ItemStack is1, ItemStack is2) {
-        if (is1 == null || is2 == null) {
-            return false;
-        }
-        return is1.itemID == is2.itemID && is1.getItemDamage() == is2.getItemDamage();
+        return !(is1 == null || is2 == null) && is1.itemID == is2.itemID && is1.getItemDamage() == is2.getItemDamage();
     }
 
     public static void writeItemStackToData(ItemStack[] stack, DataOutputStream data) throws IOException {

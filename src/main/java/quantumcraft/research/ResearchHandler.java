@@ -35,10 +35,7 @@ public class ResearchHandler {
     }
 
     public boolean canUnlockRI(ResearchItem ri) {
-        if (ri.parentAchievement != null) {
-            return hasRIUnlocked(ri.parentAchievement);
-        }
-        return true;
+        return ri.parentAchievement == null || hasRIUnlocked(ri.parentAchievement);
     }
 
 }

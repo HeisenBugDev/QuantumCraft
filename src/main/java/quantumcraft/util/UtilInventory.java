@@ -246,9 +246,9 @@ public abstract class UtilInventory
 		if(nbtSensitive)
 		{
 			if(s1.getTagCompound() == null && s2.getTagCompound() == null) return true;
-			if(s1.getTagCompound() == null || s2.getTagCompound() == null) return false;
-			return s1.getTagCompound().equals(s2.getTagCompound());
-		}
+            return !(s1.getTagCompound() == null || s2.getTagCompound() == null) &&
+                    s1.getTagCompound().equals(s2.getTagCompound());
+        }
 
 		return true;
 	}
