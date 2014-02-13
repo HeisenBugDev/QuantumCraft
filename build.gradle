@@ -6,9 +6,13 @@ buildscript {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.1-SNAPSHOT'
     }
 }
 
@@ -21,14 +25,13 @@ dependencies {
 
 // stuff specific to my mod
 group = 'quantumcraft'
-version = "4.6.2"
 archivesBaseName = 'QuantumCraft'
 
 // spit out the version for debugging sake
 logger.lifecycle ""+version
 
 minecraft {
-  version = "1.6.4-9.11.1.964" // grab latest forge
+  version = "1.7.2-10.12.0.1029" // grab latest forge
   assetDir = "run/assets"
 }
 
@@ -53,13 +56,13 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.lang'
         include '**/*.info'
-    
+
     // replace version and MCVersion
     // forge version is also accessible via project.minecraftforgeVersion
     // it contains the full minecraft version, including buildNumber
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-  
+
   // copy everything else, thats not text
     from(sourceSets.main.resources.srcDirs) {
         exclude '**/*.lang'
