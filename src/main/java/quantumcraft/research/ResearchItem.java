@@ -1,7 +1,7 @@
 package quantumcraft.research;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import quantumcraft.core.Loader;
 
 public class ResearchItem {
@@ -22,7 +22,7 @@ public class ResearchItem {
     /**
      * Holds the ItemStack that will be used to draw the achievement into the GUI.
      */
-    public final Icon theIcon;
+    public final IIcon theIcon;
 
     public final String n;
 
@@ -47,7 +47,7 @@ public class ResearchItem {
         return new ItemStack(Loader.ItemRPlaceHolder);
     }
 
-    public ResearchItem(String name, String desc, int i, int par3, int par4, Icon is, ResearchItem parent) {
+    public ResearchItem(String name, String desc, int i, int par3, int par4, IIcon is, ResearchItem parent) {
         this.index = i;
         this.parentAchievement = parent;
         this.n = name;

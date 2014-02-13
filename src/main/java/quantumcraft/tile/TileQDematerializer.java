@@ -73,7 +73,7 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
                 .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
                 64.0D;
     }

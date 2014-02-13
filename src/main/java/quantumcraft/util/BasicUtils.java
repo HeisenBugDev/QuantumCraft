@@ -59,7 +59,7 @@ public class BasicUtils {
 
     public static TileEntity getTileEntityAtTarget(DrawBlockHighlightEvent event) {
         return event.player.getEntityWorld()
-                .getBlockTileEntity(event.target.blockX, event.target.blockY, event.target.blockZ);
+                .getTileEntity(event.target.blockX, event.target.blockY, event.target.blockZ);
     }
 
     public static int overclockMultiplier(int[] uids) {
@@ -202,7 +202,7 @@ public class BasicUtils {
 
     public static TileEntity getTileEntity(IBlockAccess access, Coords coords, Class clazz) {
         if (access == null) return null;
-        TileEntity te = access.getBlockTileEntity(coords.x, coords.y, coords.z);
+        TileEntity te = access.getTileEntity(coords.x, coords.y, coords.z);
         return !clazz.isInstance(te) ? null : te;
     }
 

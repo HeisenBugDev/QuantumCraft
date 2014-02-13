@@ -1,6 +1,6 @@
 package quantumcraft.items;
 
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public class ItemPlaceholder extends ItemBase {
 
@@ -8,7 +8,7 @@ public class ItemPlaceholder extends ItemBase {
         super(id);
     }
 
-    public void setTexture(Icon i) {
+    public void setTexture(IIcon i) {
         this.itemIcon = i;
     }
 }

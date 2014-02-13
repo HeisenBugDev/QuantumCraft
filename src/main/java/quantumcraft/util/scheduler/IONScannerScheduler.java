@@ -58,7 +58,7 @@ public class IONScannerScheduler extends BlockBreakerScheduler {
     public void checkHarvesters(World worldObj) {
         if (iteration >= useOften) {
             for (TileIONHarvester te : getHarvesters()) {
-                if (worldObj.getBlockTileEntity(te.xCoord, te.yCoord, te.zCoord) == null) {
+                if (worldObj.getTileEntity(te.xCoord, te.yCoord, te.zCoord) == null) {
                     removeHarvestersQueueAdd(te);
                 }
             }

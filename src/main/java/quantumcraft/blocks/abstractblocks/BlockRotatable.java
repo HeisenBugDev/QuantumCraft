@@ -13,7 +13,7 @@ public abstract class BlockRotatable extends BlockContainer {
 
 
     public BlockRotatable(int id, Material material) {
-        super(id, material);
+        super(material);
     }
 
     @Override
@@ -22,7 +22,7 @@ public abstract class BlockRotatable extends BlockContainer {
         if (entity == null) {
             return;
         }
-        TileEntity te = world.getBlockTileEntity(x, y, z);
+        TileEntity te = world.getTileEntity(x, y, z);
         if (stack.getTagCompound() != null) {
             stack.getTagCompound().setInteger("x", x);
             stack.getTagCompound().setInteger("y", y);

@@ -15,31 +15,31 @@ public class CommonProxy implements IGuiHandler {
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
 
         if (tileEntity != null) {
             switch (ID) {
                 case 1:
                     return new ContainerQDeenergizer(player.inventory,
-                            (TileQDeenergizer) world.getBlockTileEntity(x, y, z));
+                            (TileQDeenergizer) world.getTileEntity(x, y, z));
                 case 2:
                     return new ContainerQEInjector(player.inventory,
-                            (TileQEInjector) world.getBlockTileEntity(x, y, z));
+                            (TileQEInjector) world.getTileEntity(x, y, z));
                 case 3:
                     return new ContainerQDislocator(player.inventory,
-                            (TileQDislocator) world.getBlockTileEntity(x, y, z));
+                            (TileQDislocator) world.getTileEntity(x, y, z));
                 case 4:
                     return new ContainerQDematerializer(player.inventory,
-                            (TileQDematerializer) world.getBlockTileEntity(x, y, z));
+                            (TileQDematerializer) world.getTileEntity(x, y, z));
                 case 5:
                     return new ContainerQEExtractor(player.inventory,
-                            (TileQEExtractor) world.getBlockTileEntity(x, y, z));
+                            (TileQEExtractor) world.getTileEntity(x, y, z));
                 case 6:
                     return new ContainerIONForge(player.inventory,
-                            (TileIONForge) world.getBlockTileEntity(x, y, z));
+                            (TileIONForge) world.getTileEntity(x, y, z));
                 case 7:
                     return new ContainerQCapacitor(player.inventory,
-                            (TileQCapacitor) world.getBlockTileEntity(x, y, z));
+                            (TileQCapacitor) world.getTileEntity(x, y, z));
             }
         } return null;
     }

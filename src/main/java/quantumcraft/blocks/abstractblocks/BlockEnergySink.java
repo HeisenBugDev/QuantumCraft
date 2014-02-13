@@ -17,7 +17,7 @@ public abstract class BlockEnergySink extends BlockEnergyComponent implements IQ
 
     @Override
     public void addSourceToList(World w, Coords l, Coords source) {
-        ((TileEnergySink) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord())).addSourceToList(l, source);
+        ((TileEnergySink) w.getTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord())).addSourceToList(l, source);
     }
 
     @Override
@@ -31,7 +31,7 @@ public abstract class BlockEnergySink extends BlockEnergyComponent implements IQ
 
     @Override
     public void replaceSourceList(World w, Coords l, EnergySourceList sources) {
-        ((TileEnergySink) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
+        ((TileEnergySink) w.getTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
                 .replaceSourceList(l, sources);
     }
 }

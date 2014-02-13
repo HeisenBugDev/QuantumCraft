@@ -71,15 +71,15 @@ public class QuantumEnergyNet {
                         sourcesTmp.add(source);
                         //sources2.remove(source);
                     }
-                    if (w.getBlockTileEntity(sink.getXCoord(), sink.getYCoord(),
+                    if (w.getTileEntity(sink.getXCoord(), sink.getYCoord(),
                             sink.getZCoord()) instanceof TileQCapacitor &&
-                            w.getBlockTileEntity(source.getXCoord(), source.getYCoord(),
+                            w.getTileEntity(source.getXCoord(), source.getYCoord(),
                                     source.getZCoord()) instanceof TileQCapacitor) {
                         sourcesTmp.add(source);
                         QuantumCraft.logHandler.debugPrint("In QuantumEnergy Net, sink and source are capacitors");
-                        QuantumCraft.logHandler.debugPrint(w.getBlockTileEntity(sink.getXCoord(),sink.getYCoord(),
+                        QuantumCraft.logHandler.debugPrint(w.getTileEntity(sink.getXCoord(),sink.getYCoord(),
                                 sink.getZCoord()), "Is the sink");
-                        QuantumCraft.logHandler.debugPrint(w.getBlockTileEntity(source.getXCoord(),
+                        QuantumCraft.logHandler.debugPrint(w.getTileEntity(source.getXCoord(),
                                 source.getYCoord(),source.getZCoord()), "Is the source");
                     }
                 }

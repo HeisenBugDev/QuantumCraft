@@ -4,11 +4,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import quantumcraft.core.QuantumCraft;
@@ -19,12 +19,12 @@ import quantumcraft.util.BasicUtils;
 import quantumcraft.util.Coords;
 
 public abstract class BlockMachine extends BlockRotatable {
-    protected Icon iconFront;
-    protected Icon iconSide;
-    protected Icon iconBack;
-    protected Icon iconBottom;
-    protected Icon iconTop;
-    protected Icon iconTopR;
+    protected IIcon IIconFront;
+    protected IIcon IIconSide;
+    protected IIcon IIconBack;
+    protected IIcon IIconBottom;
+    protected IIcon IIconTop;
+    protected IIcon IIconTopR;
 
     public BlockMachine(int id, Material material) {
         super(id, material);
@@ -47,7 +47,7 @@ public abstract class BlockMachine extends BlockRotatable {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityplayer, int side,
                                     float xOffset, float yOffset, float zOffset) {
-        TileMachineBase te = (TileMachineBase) world.getBlockTileEntity(x, y, z);
+        TileMachineBase te = (TileMachineBase) world.getTileEntity(x, y, z);
 
         //PLAYER IS SNEAKING, SHOULD I REMOVE THE BLOCK?
         if (entityplayer.isSneaking() && BasicUtils.isHoldingWrench(entityplayer)) {
@@ -100,51 +100,51 @@ public abstract class BlockMachine extends BlockRotatable {
         return false;
     }
 
-    public Icon getIconFromSide(int side, boolean topAlternative) {
+    public IIcon getIIconFromSide(int side, boolean topAlternative) {
         switch (side) {
             case 0:
-                return iconBottom;
+                return IIconBottom;
             case 1:
-                return (topAlternative ? iconTop : iconTopR);
+                return (topAlternative ? IIconTop : IIconTopR);
             case 2:
-                return iconBack;
+                return IIconBack;
             case 3:
-                return iconFront;
+                return IIconFront;
             case 4:
-                return iconSide;
+                return IIconSide;
             case 5:
-                return iconSide;
+                return IIconSide;
             default:
-                return Block.stone.getIcon(0, 0);
+                return Block.stone.getIIcon(0, 0);
         }
     }
 
     @SideOnly(Side.CLIENT)
-    public abstract void registerIcons(IconRegister iconRegister);
+    public abstract void registerIIcons(IIconRegister IIconRegister);
 
     @Override
-    public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side) {
-        TileEntity te = iblockaccess.getBlockTileEntity(x, y, z);
+    public IIcon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side) {
+        TileEntity te = iblockaccess.getTileEntity(x, y, z);
         //if (this.getTileEntity().getClass().isInstance(te)) {
         if (te instanceof TileMachineBase) {
             side = ((TileMachineBase) te).getRotatedSide(side);
         }
         if (te == null) {
-            return Block.stone.getIcon(0, 0);
+            return Block.stone.getIIcon(0, 0);
         }
-        return getIconFromSide(side, ((TileMachineBase) te).useRotated());
+        return getIIconFromSide(side, ((TileMachineBase) te).useRotated());
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIIcon(int side, int meta) {
         if (meta == side) {
-            return iconFront;
+            return IIconFront;
         } else if (side == side - 2) {
-            return getIconFromSide(side - 2, true);
+            return getIIconFromSide(side - 2, true);
         } else if (side == side - 3) {
-            return getIconFromSide(side - 3, true);
+            return getIIconFromSide(side - 3, true);
         } else {
-            return getIconFromSide(side, true);
+            return getIIconFromSide(side, true);
         }
 
     }

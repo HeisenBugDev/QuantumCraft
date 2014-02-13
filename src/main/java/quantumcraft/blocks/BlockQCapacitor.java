@@ -44,7 +44,7 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
 
     @Override
     public int requestQuantumEnergy(World w, Coords l, int request) {
-        return ((TileQCapacitor) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
+        return ((TileQCapacitor) w.getTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
                 .requestQuantumEnergy(l, request);
     }
 }

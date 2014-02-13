@@ -62,7 +62,7 @@ public abstract class CoordinatesPacket extends ModernPacket {
             return null;
         }
 
-        final TileEntity tile = world.getBlockTileEntity(posX, posY, posZ);
+        final TileEntity tile = world.getTileEntity(posX, posY, posZ);
         if (tile == null) {
             return null;
         }

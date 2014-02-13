@@ -7,7 +7,7 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -37,7 +37,7 @@ public abstract class UtilInventory
 			BlockPosition bp = new BlockPosition(x, y, z);
 			bp.orientation = direction;
 			bp.moveForwards(1);
-			TileEntity te = world.getBlockTileEntity(bp.x, bp.y, bp.z);
+			TileEntity te = world.getTileEntity(bp.x, bp.y, bp.z);
 			if(te instanceof IInventory)
 			{
 				chests.put(direction, checkForDoubleChest(world, te, bp));
@@ -54,7 +54,7 @@ public abstract class UtilInventory
 			{
 				if(world.getBlockId(bp.x, bp.y, bp.z) == Block.chest.blockID)
 				{
-					return new InventoryLargeChest("Large Chest", ((IInventory)te), ((IInventory)world.getBlockTileEntity(bp.x, bp.y, bp.z)));
+					return new InventoryLargeChest("Large Chest", ((IInventory)te), ((IInventory)world.getTileEntity(bp.x, bp.y, bp.z)));
 				}
 			}
 		}

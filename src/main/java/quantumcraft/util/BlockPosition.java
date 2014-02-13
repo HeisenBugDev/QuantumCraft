@@ -3,7 +3,7 @@ package quantumcraft.util;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import quantumcraft.core.interfaces.IRotateableTile;
 
 import java.util.ArrayList;
@@ -180,14 +180,14 @@ public class BlockPosition {
     }
 
     public TileEntity getTileEntity(World world) {
-        return world.getBlockTileEntity(x, y, z);
+        return world.getTileEntity(x, y, z);
     }
 
     public static TileEntity getAdjacentTileEntity(TileEntity start, ForgeDirection direction) {
         BlockPosition p = new BlockPosition(start);
         p.orientation = direction;
         p.moveForwards(1);
-        return start.worldObj.getBlockTileEntity(p.x, p.y, p.z);
+        return start.getWorldObj().getTileEntity(p.x, p.y, p.z);
     }
 
     public static TileEntity getAdjacentTileEntity(TileEntity start, ForgeDirection direction,
