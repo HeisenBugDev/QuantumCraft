@@ -2,7 +2,7 @@ package quantumcraft.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySource;
@@ -16,12 +16,12 @@ public class BlockQDematerializer extends BlockEnergySource {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world, int i) {
         return new TileQDematerializer();
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerIcons(IIconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineQDM_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineQDM_top");
         iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDM_top_r");

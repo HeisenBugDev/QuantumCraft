@@ -3,7 +3,7 @@ package quantumcraft.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockMachine;
@@ -17,12 +17,12 @@ public class BlockQDislocator extends BlockMachine {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world, int i) {
         return new TileQDislocator();
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerIcons(IIconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineQDS_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineQDS_top");
         iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDS_top_r");

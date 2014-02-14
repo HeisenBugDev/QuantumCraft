@@ -7,7 +7,7 @@ import buildcraft.api.transport.IPipeConnection;
 import buildcraft.api.transport.IPipeTile;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 import quantumcraft.util.BasicUtils;
 import quantumcraft.util.BlockPosition;
