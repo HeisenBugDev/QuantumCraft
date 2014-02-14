@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -19,12 +20,12 @@ import quantumcraft.util.BasicUtils;
 import quantumcraft.util.Coords;
 
 public abstract class BlockMachine extends BlockRotatable {
-    protected IIcon IIconFront;
-    protected IIcon IIconSide;
-    protected IIcon IIconBack;
-    protected IIcon IIconBottom;
-    protected IIcon IIconTop;
-    protected IIcon IIconTopR;
+    protected IIcon IconFront;
+    protected IIcon IconSide;
+    protected IIcon IconBack;
+    protected IIcon IconBottom;
+    protected IIcon IconTop;
+    protected IIcon IconTopR;
 
     public BlockMachine(int id, Material material) {
         super(id, material);
@@ -33,14 +34,14 @@ public abstract class BlockMachine extends BlockRotatable {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
+    public void breakBlock(World world, int x, int y, int z, Block block, int par6) {
         TileMachineBase tile =
                 (TileMachineBase) BasicUtils.getTileEntity(world, new Coords(x, y, z), TileMachineBase.class);
         if (tile != null) {
             tile.onBlockBreak();
         }
-        super.breakBlock(world, x, y, z, par5, par6);
-        world.removeBlockTileEntity(x, y, z);
+        super.breakBlock(world, x, y, z, block, par6);
+        world.removeTileEntity(x, y, z);
     }
 
 
@@ -58,8 +59,8 @@ public abstract class BlockMachine extends BlockRotatable {
                 dropItem.setItemDamage(tile.getMaxEnergy() - tile.getCurrentEnergy() + 1);
                 dropItem.getItem().setMaxDamage(tile.getMaxEnergy() + 1);
             }
-            this.dropBlockAsItem_do(world, x, y, z, dropItem);
-            this.removeBlockByPlayer(world, entityplayer, x, y, z);
+            this.dropBlockAsItem(world, x, y, z, dropItem);
+            this.removedByPlayer(world, entityplayer, x, y, z);
             return true;
         }
 
@@ -103,19 +104,19 @@ public abstract class BlockMachine extends BlockRotatable {
     public IIcon getIIconFromSide(int side, boolean topAlternative) {
         switch (side) {
             case 0:
-                return IIconBottom;
+                return IconBottom;
             case 1:
-                return (topAlternative ? IIconTop : IIconTopR);
+                return (topAlternative ? IconTop : IconTopR);
             case 2:
-                return IIconBack;
+                return IconBack;
             case 3:
-                return IIconFront;
+                return IconFront;
             case 4:
-                return IIconSide;
+                return IconSide;
             case 5:
-                return IIconSide;
+                return IconSide;
             default:
-                return Block.stone.getIIcon(0, 0);
+                return Blocks.stone.getIcon(0,0);
         }
     }
 
@@ -123,22 +124,22 @@ public abstract class BlockMachine extends BlockRotatable {
     public abstract void registerIIcons(IIconRegister IIconRegister);
 
     @Override
-    public IIcon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z, int side) {
+    public IIcon getIcon(IBlockAccess iblockaccess, int x, int y, int z, int side) {
         TileEntity te = iblockaccess.getTileEntity(x, y, z);
         //if (this.getTileEntity().getClass().isInstance(te)) {
         if (te instanceof TileMachineBase) {
             side = ((TileMachineBase) te).getRotatedSide(side);
         }
         if (te == null) {
-            return Block.stone.getIIcon(0, 0);
+            return Blocks.stone.getIcon(0, 0);
         }
         return getIIconFromSide(side, ((TileMachineBase) te).useRotated());
     }
 
-    @Override
-    public IIcon getIIcon(int side, int meta) {
+    /*@Override
+    public IIcon getIcon(int side, int meta) {
         if (meta == side) {
-            return IIconFront;
+            return IconFront;
         } else if (side == side - 2) {
             return getIIconFromSide(side - 2, true);
         } else if (side == side - 3) {
@@ -146,7 +147,7 @@ public abstract class BlockMachine extends BlockRotatable {
         } else {
             return getIIconFromSide(side, true);
         }
-
     }
+    */
 
 }

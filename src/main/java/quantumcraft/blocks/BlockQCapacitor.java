@@ -1,5 +1,6 @@
 package quantumcraft.blocks;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -26,7 +27,7 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerIcons(IIconRegister iconRegister) {
         iconFront = iconTopR =
                 iconTop = iconSide = iconBottom = iconBack = iconRegister.registerIcon("QuantumCraft:Capacitor" + maxEnergyMultiplier);
     }

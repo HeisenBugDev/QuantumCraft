@@ -1,11 +1,10 @@
 package quantumcraft.tile.abstracttiles;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.core.interfaces.IInWorldGui;
 import quantumcraft.core.interfaces.IRotateableTile;
@@ -187,7 +186,6 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
             redstonePower = BasicUtils.isRedstonePowered(this);
             QuantumCraft.logHandler.debugPrint(this, "Current Energy is: " + this.getCurrentEnergy());
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
         }
     }
 
