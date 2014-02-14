@@ -2,10 +2,10 @@ package quantumcraft.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergyComponent;
@@ -14,7 +14,7 @@ import quantumcraft.render.RenderFiberWire;
 import quantumcraft.util.BasicUtils;
 
 public class BlockQuantumFiberWire extends BlockEnergyComponent {
-    public static Icon iconTexture;
+    public static IIcon iconTexture;
 
     public BlockQuantumFiberWire(int id) {
         super(id, Material.circuits);
@@ -81,12 +81,12 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         return iconTexture;
     }
 
     @Override
-    public Icon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
+    public IIcon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
                                 int side) {
         return iconTexture;
     }
@@ -102,7 +102,7 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerIcons(IIconRegister iconRegister) {
         iconFront =
                 iconTexture =
                         iconSide = iconBack =

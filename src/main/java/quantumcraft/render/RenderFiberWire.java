@@ -2,7 +2,7 @@ package quantumcraft.render;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import quantumcraft.blocks.BlockQuantumFiberWire;
 import quantumcraft.net.IQEnergyComponent;
@@ -89,7 +89,7 @@ public class RenderFiberWire extends BaseBlockRenderer {
             }
         }
         if (joints > 2) {
-            Icon joint = BlockQuantumFiberWire.iconTexture;
+            IIcon joint = BlockQuantumFiberWire.iconTexture;
             coremin -= 0.0625F;
             coremax += 0.0625F;
             block.setBlockBounds(coremin, coremin, coremin, coremax, coremax, coremax);

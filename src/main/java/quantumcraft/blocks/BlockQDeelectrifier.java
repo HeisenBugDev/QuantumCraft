@@ -1,6 +1,6 @@
 package quantumcraft.blocks;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySource;
@@ -13,7 +13,7 @@ public class BlockQDeelectrifier extends BlockEnergySource {
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerIcons(IIconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineQDL_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineQDL_top");
         iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDL_top_r");
@@ -24,7 +24,7 @@ public class BlockQDeelectrifier extends BlockEnergySource {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world, int i) {
         return new TileQDeelectrifier();
     }
 }

@@ -1,7 +1,7 @@
 package quantumcraft.items;
 
 import cpw.mods.fml.common.FMLLog;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,7 +21,7 @@ public class ItemLocationCardBlank extends ItemBase {
         return true;
     }
 
-    public void registerIcons(IconRegister par1IconRegister) {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
     }
 

@@ -3,7 +3,7 @@ package quantumcraft.render;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import quantumcraft.core.Loader;
 
@@ -20,8 +20,8 @@ public class RenderOre extends BaseBlockRenderer {
         return INSTANCE;
     }
 
-    Icon base;
-    Icon ore;
+    IIcon base;
+    IIcon ore;
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks r) {

@@ -1,9 +1,9 @@
 package quantumcraft.research;
 
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public class ResearchIcons {
 
-    public static Icon test;
+    public static IIcon test;
 
 }

@@ -1,7 +1,6 @@
 package quantumcraft.blocks;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -33,7 +32,7 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world, int i) {
         TileQCapacitor te = new TileQCapacitor();
         te.setMaxEnergyMultiplier(maxEnergyMultiplier);
         return te;

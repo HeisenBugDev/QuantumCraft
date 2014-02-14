@@ -20,12 +20,12 @@ import quantumcraft.util.BasicUtils;
 import quantumcraft.util.Coords;
 
 public abstract class BlockMachine extends BlockRotatable {
-    protected IIcon IconFront;
-    protected IIcon IconSide;
-    protected IIcon IconBack;
-    protected IIcon IconBottom;
-    protected IIcon IconTop;
-    protected IIcon IconTopR;
+    protected IIcon iconFront;
+    protected IIcon iconSide;
+    protected IIcon iconBack;
+    protected IIcon iconBottom;
+    protected IIcon iconTop;
+    protected IIcon iconTopR;
 
     public BlockMachine(int id, Material material) {
         super(id, material);
@@ -104,24 +104,24 @@ public abstract class BlockMachine extends BlockRotatable {
     public IIcon getIIconFromSide(int side, boolean topAlternative) {
         switch (side) {
             case 0:
-                return IconBottom;
+                return iconBottom;
             case 1:
-                return (topAlternative ? IconTop : IconTopR);
+                return (topAlternative ? iconTop : iconTopR);
             case 2:
-                return IconBack;
+                return iconBack;
             case 3:
-                return IconFront;
+                return iconFront;
             case 4:
-                return IconSide;
+                return iconSide;
             case 5:
-                return IconSide;
+                return iconSide;
             default:
                 return Blocks.stone.getIcon(0,0);
         }
     }
 
     @SideOnly(Side.CLIENT)
-    public abstract void registerIIcons(IIconRegister IIconRegister);
+    public abstract void registerIcons(IIconRegister IIconRegister);
 
     @Override
     public IIcon getIcon(IBlockAccess iblockaccess, int x, int y, int z, int side) {

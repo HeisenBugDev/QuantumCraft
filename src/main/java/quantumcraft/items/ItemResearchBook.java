@@ -1,6 +1,6 @@
 package quantumcraft.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -22,7 +22,7 @@ public class ItemResearchBook extends ItemBase {
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister) {
+    public void registerIcons(IIconRegister par1IconRegister) {
         super.registerIcons(par1IconRegister);
         ResearchIcons.test = par1IconRegister.registerIcon(Config.NameRIconTest);
     }

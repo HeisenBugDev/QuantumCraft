@@ -2,7 +2,7 @@ package quantumcraft.util;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.HashMap;
 import java.util.Map;

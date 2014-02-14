@@ -6,10 +6,10 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import quantumcraft.blocks.*;
@@ -335,7 +335,7 @@ public class Loader {
 
     public static boolean hasBuildCraft() {
 
-        return cpw.mods.fml.common.Loader.isModLoaded("BuildCraft|Silicon");
+        return cpw.mods.fml.common.Loader.isModLoaded("BuildCraft|SilIIcon");
     }
 
     public static class ToolMaterials {
@@ -347,10 +347,10 @@ public class Loader {
 
     public static class IconLoader {
 
-        public static Icon oreQuantonium_ore;
-        public static Icon oreQuantonium_base;
+        public static IIcon oreQuantonium_ore;
+        public static IIcon oreQuantonium_base;
 
-        public static void loadAll(IconRegister i) {
+        public static void loadAll(IIconRegister i) {
             QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQOre));
             oreQuantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQOre));
             QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQBase));
