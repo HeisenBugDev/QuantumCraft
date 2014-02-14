@@ -17,10 +17,11 @@ import quantumcraft.render.BlockHighlighterHandler;
 
 import java.util.EnumMap;
 
-@Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
+@Mod(modid = "quantumcraft", name = "QuantumCraft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
 public class QuantumCraft {
 
-    EnumMap<Side, FMLEmbeddedChannel> channels = NetworkRegistry.INSTANCE.newChannel(Config.modNetworkChannel, new ChannelHandler());
+    EnumMap<Side, FMLEmbeddedChannel> channels =
+            NetworkRegistry.INSTANCE.newChannel(Config.modNetworkChannel, new ChannelHandler());
     @SidedProxy(clientSide = "quantumcraft.core.ClientProxy", serverSide = "quantumcraft.core.CommonProxy")
     public static CommonProxy proxy;
     @Instance("QuantumCraft")
@@ -32,7 +33,7 @@ public class QuantumCraft {
         DebugRegistry.addLogHandler(logHandler);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new BlockHighlighterHandler());
-        NetworkRegistry.instance().registerGuiHandler(this, new ClientProxy());
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new ClientProxy());
         Config.initConfig(event);
     }
 
@@ -46,4 +47,5 @@ public class QuantumCraft {
     public void postInit(FMLPostInitializationEvent event) {
 
     }
+}
 
