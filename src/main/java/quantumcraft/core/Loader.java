@@ -7,10 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import quantumcraft.blocks.*;
 import quantumcraft.items.*;
@@ -55,9 +53,7 @@ public class Loader {
     public static BlockQDislocator BlockQDislocator;
     public static BlockQEnergySucker BlockQEnergySucker;
     public static BlockQDematerializer BlockQDematerializer;
-    public static BlockQElectrifier BlockQElectrifier;
     public static BlockQEExtractor BlockQEExtractor;
-    public static BlockQDeelectrifier BlockQDeelectrifier;
     public static BlockQCapacitor BlockQCapacitor;
     public static BlockIONForge BlockIONForge;
     public static BlockIONTunneler BlockIONTunneler;
@@ -331,11 +327,6 @@ public class Loader {
         if (Config.beta.getBoolean(false)) {
             GameRegistry.registerTileEntity(TileQDislocator.class, "QDislocatorTE");
         }
-    }
-
-    public static boolean hasBuildCraft() {
-
-        return cpw.mods.fml.common.Loader.isModLoaded("BuildCraft|SilIIcon");
     }
 
     public static class ToolMaterials {
