@@ -1,6 +1,7 @@
 package quantumcraft.render;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -12,7 +13,6 @@ import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import net.minecraftforge.event.ForgeSubscribe;
 import quantumcraft.core.interfaces.IInWorldGui;
 import quantumcraft.tile.TileIONScanner;
 import quantumcraft.util.BasicUtils;
@@ -20,7 +20,7 @@ import quantumcraft.util.Coords;
 
 public class BlockHighlighterHandler {
 
-    @ForgeSubscribe
+    @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onDrawBlockHighlightEvent(DrawBlockHighlightEvent event) {
         if (BasicUtils.getTileEntityAtTarget(event) instanceof IInWorldGui) {

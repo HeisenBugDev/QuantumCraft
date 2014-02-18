@@ -21,8 +21,7 @@ public class EnergySourceList {
     public int requestQuantumEnergy(World w, int request) {
         int retrieved = 0;
         for (Coords source : sources) {
-            int id = w.getBlockId(source.getXCoord(), source.getYCoord(), source.getZCoord());
-            Block b = Block.blocksList[id];
+            Block b = w.getBlock(source.getXCoord(), source.getYCoord(), source.getZCoord());
             if (b instanceof IQEnergySource) {
                 retrieved += ((IQEnergySource) b).requestQuantumEnergy(w, source, request - retrieved);
             }
@@ -58,7 +57,7 @@ public class EnergySourceList {
         nbt.setInteger("size", sources.size());
         for (int i = 0; i < sources.size(); i++) {
             Coords source = sources.get(i);
-            nbt.setCompoundTag("location_" + i, source.write());
+            nbt.setTag("location_" + i, source.write());
         }
         return nbt;
     }

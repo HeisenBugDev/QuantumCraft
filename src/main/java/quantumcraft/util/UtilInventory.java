@@ -2,6 +2,7 @@ package quantumcraft.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
@@ -48,11 +49,11 @@ public abstract class UtilInventory
 
     private static IInventory checkForDoubleChest(World world, TileEntity te, BlockPosition chestloc)
     {
-        if(world.getBlockId(chestloc.x, chestloc.y, chestloc.z) == Block.chest.blockID)
+        if (world.getBlock(chestloc.x, chestloc.y, chestloc.z) == Blocks.chest)
         {
             for(BlockPosition bp : chestloc.getAdjacent(false))
             {
-                if(world.getBlockId(bp.x, bp.y, bp.z) == Block.chest.blockID)
+                if(world.getBlock(bp.x, bp.y, bp.z) == Blocks.chest)
                 {
                     return new InventoryLargeChest("Large Chest", ((IInventory)te), ((IInventory)world.getTileEntity(bp.x, bp.y, bp.z)));
                 }
@@ -68,7 +69,7 @@ public abstract class UtilInventory
      */
     public static ItemStack dropStack(TileEntity from, ItemStack stack)
     {
-        return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, ForgeDirection.VALID_DIRECTIONS, ForgeDirection.UNKNOWN);
+        return dropStack(from.getWorldObj(), new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, ForgeDirection.VALID_DIRECTIONS, ForgeDirection.UNKNOWN);
     }
 
     /**
@@ -79,7 +80,7 @@ public abstract class UtilInventory
      */
     public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection airdropdirection)
     {
-        return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, ForgeDirection.VALID_DIRECTIONS, airdropdirection);
+        return dropStack(from.getWorldObj(), new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, ForgeDirection.VALID_DIRECTIONS, airdropdirection);
     }
 
     /**
@@ -92,7 +93,7 @@ public abstract class UtilInventory
     public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection dropdirection, ForgeDirection airdropdirection)
     {
         ForgeDirection[] dropdirections = {dropdirection};
-        return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, dropdirections, airdropdirection);
+        return dropStack(from.getWorldObj(), new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, dropdirections, airdropdirection);
     }
 
     /**
@@ -105,7 +106,7 @@ public abstract class UtilInventory
      */
     public static ItemStack dropStack(TileEntity from, ItemStack stack, ForgeDirection[] dropdirections, ForgeDirection airdropdirection)
     {
-        return dropStack(from.worldObj, new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, dropdirections, airdropdirection);
+        return dropStack(from.getWorldObj(), new BlockPosition(from.xCoord, from.yCoord, from.zCoord), stack, dropdirections, airdropdirection);
     }
 
     /**
@@ -208,7 +209,7 @@ public abstract class UtilInventory
         {
             if(stack.getItem().hasContainerItem())
             {
-                return stack.getItem().getContainerItemStack(stack);
+                return stack.getItem().getContainerItem(stack);
             }
             else
             {
@@ -225,7 +226,7 @@ public abstract class UtilInventory
     {
         if(to == null || from == null) return;
 
-        if(to.itemID != from.itemID || to.getItemDamage() != from.getItemDamage()) return;
+        if(to != from || to.getItemDamage() != from.getItemDamage()) return;
         if(to.getTagCompound() != null || from.getTagCompound() != null) return;
 
         int amountToCopy = Math.min(to.getMaxStackSize() - to.stackSize, from.stackSize);
