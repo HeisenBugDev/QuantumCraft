@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import quantumcraft.core.interfaces.IMultiTool;
 
 public class ItemMultiTool extends ItemBase implements IMultiTool {
@@ -17,7 +17,7 @@ public class ItemMultiTool extends ItemBase implements IMultiTool {
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player,
                                   World world, int x, int y, int z, int side, float hitX, float hitY,
                                   float hitZ) {
-        Block block = Block.blocksList[world.getBlockId(x, y, z)];
+        Block block = world.getBlock(x, y, z);
         if (block != null) {
             if (block.rotateBlock(world, x, y, z,
                     ForgeDirection.getOrientation(side))) {
@@ -29,8 +29,7 @@ public class ItemMultiTool extends ItemBase implements IMultiTool {
     }
 
     @Override
-    public boolean shouldPassSneakingClickToBlock(World world, int x, int y,
-                                                  int z) {
+    public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player) {
         return true;
     }
 

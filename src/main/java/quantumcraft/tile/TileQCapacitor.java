@@ -111,12 +111,12 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "Quantum " + CapacitorName.getName(maxEnergyMultiplier) + " Capacitor";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
@@ -132,16 +132,18 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
+
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
+
     }
 
     @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        return true;
+    public boolean isItemValidForSlot(int i, ItemStack itemStack) {
+        return false;
     }
 
     @Override
