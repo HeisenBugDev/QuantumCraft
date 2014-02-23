@@ -10,10 +10,6 @@ public class ItemBase extends Item {
 
     private int _metaMax = 0;
 
-    public ItemBase(int id) {
-        super(id);
-    }
-
     protected void setMetaMax(int max) {
         _metaMax = max;
     }
@@ -24,9 +20,9 @@ public class ItemBase extends Item {
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
-    public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes) {
+    public void getSubItems(Item item, CreativeTabs creativeTab, List subTypes) {
         for (int meta = 0; meta <= _metaMax; meta++) {
-            subTypes.add(new ItemStack(itemId, 1, meta));
+            subTypes.add(new ItemStack(item, 1, meta));
         }
     }
 }

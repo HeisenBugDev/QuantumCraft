@@ -68,7 +68,7 @@ public class TileQDeenergizer extends TileEnergySource implements ISidedInventor
         if (inventory[0] == null) flag = false;
         if (inventory[0] != null) {
             if (inventory[1] != null) {
-                if (inventory[1].itemID != r.getOutputItem().itemID) flag = false;
+                if (inventory[1] != r.getOutputItem()) flag = false;
             }
         }
         if (this.getMaxEnergy() - this.getCurrentEnergy() < r.getEnergyValue()) flag = false;
@@ -110,7 +110,6 @@ public class TileQDeenergizer extends TileEnergySource implements ISidedInventor
             // texture.
             updateNextTick = false;
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
         }
 
     }
@@ -130,12 +129,12 @@ public class TileQDeenergizer extends TileEnergySource implements ISidedInventor
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "Quantum De-Energizer";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
@@ -152,11 +151,13 @@ public class TileQDeenergizer extends TileEnergySource implements ISidedInventor
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
+
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
+
     }
 
     @Override
@@ -179,10 +180,6 @@ public class TileQDeenergizer extends TileEnergySource implements ISidedInventor
     @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
         return i != 0;
-    }
-
-    @Override
-    public void onInventoryChanged() {
     }
 
     @Override

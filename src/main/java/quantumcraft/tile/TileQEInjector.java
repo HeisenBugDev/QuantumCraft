@@ -72,12 +72,12 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "Quantum Energy Injector";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
@@ -96,11 +96,13 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
+
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
+
     }
 
     @Override
@@ -149,7 +151,6 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
             // texture.
             updateNextTick = false;
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
         }
     }
 

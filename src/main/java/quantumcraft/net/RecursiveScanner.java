@@ -19,13 +19,13 @@ class RecursiveScanner {
 
     public static void scan(World w, Coords l, IDataGatherer dataGatherer, List<Coords> memory) {
         if (l == null || memory.contains(l)) return;
-        Block block = Block.blocksList[w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord())];
+        Block block = w.getBlock(l.getXCoord(),l.getYCoord(),l.getZCoord());
         if (block instanceof IQEnergyComponent) {
             memory.add(l);
             dataGatherer.gatherDataOnTile(w, l);
             Coords[] connections = ((IQEnergyComponent) block).getPossibleConnections(w, l);
             for (Coords c : connections) {
-                Block peer = Block.blocksList[w.getBlockId(c.getXCoord(), c.getYCoord(), c.getZCoord())];
+                Block peer = w.getBlock(c.getXCoord(),c.getYCoord(),c.getZCoord());
                 if (peer instanceof IQEnergyComponent) {
                     Coords[] peerconns = ((IQEnergyComponent) peer).getPossibleConnections(w, c);
                     for (Coords p : peerconns) {
