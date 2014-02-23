@@ -8,8 +8,7 @@ import java.util.List;
 
 public class ItemLocationCard extends ItemBase {
 
-    public ItemLocationCard(int id) {
-        super(id);
+    public ItemLocationCard() {
         this.setMaxStackSize(1);
     }
 

@@ -11,19 +11,16 @@ import java.util.List;
 public class ItemChargable extends ItemBase implements IQEnergizable {
 
     /**
-     * @param id            itemID
      * @param maxenergy     max energy this chargeable item can hold
      * @param displayEnergy display energy on item (damage bar + tooltip) (DEFAULT IS TRUE)
      */
-    public ItemChargable(int id, int maxenergy, boolean displayEnergy) {
-        super(id);
+    public ItemChargable(int maxenergy, boolean displayEnergy) {
         this.setMaxDamage(maxenergy);
         this.maxenergy = maxenergy;
         this.displayEnergy = displayEnergy;
     }
 
-    public ItemChargable(int id, int maxenergy) {
-        super(id);
+    public ItemChargable(int maxenergy) {
         this.maxenergy = maxenergy;
         this.displayEnergy = true;
     }

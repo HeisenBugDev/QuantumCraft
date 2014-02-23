@@ -2,6 +2,7 @@ package quantumcraft.blocks;
 
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import quantumcraft.core.Loader;
 import quantumcraft.render.RenderOre;
@@ -21,14 +22,14 @@ public class BlockOreQuantonium extends BlockOre {
     }
 
     @Override
-    public void registerIcons(IIconRegister par1IconRegister) {
-        super.registerIcons(par1IconRegister);
+    public void registerBlockIcons(IIconRegister par1IconRegister) {
+        super.registerBlockIcons(par1IconRegister);
         Loader.IconLoader.loadAll(par1IconRegister);
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return Loader.ItemRawQuantonium.itemID;
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
+        return Loader.ItemRawQuantonium;
     }
 
     @Override

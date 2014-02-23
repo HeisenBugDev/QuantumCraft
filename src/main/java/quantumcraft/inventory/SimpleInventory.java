@@ -19,7 +19,7 @@ import quantumcraft.util.BasicUtils;
 
 import java.util.LinkedList;
 
-public class SimpleInventory implements IInventory {
+public class SimpleInventory implements IInventory   {
 
     private final String _name;
     private final int _stackLimit;
@@ -216,11 +216,6 @@ public class SimpleInventory implements IInventory {
         }
         onInventoryChanged();
         return stack.stackSize;
-    }
-
-    @Override
-    public boolean isInvNameLocalized() {
-        return true;
     }
 
     @Override

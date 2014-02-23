@@ -83,7 +83,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
                 // texture.
                 updateNextTick = false;
                 worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-                worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
             }
         }
     }
@@ -155,7 +154,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         }
         if (inventory[input] != null) {
             if (inventory[output] != null) {
-                if (inventory[output].itemID != r.itemID) {
+                if (inventory[output] != r) {
                     process = false;
                 }
             }
@@ -198,12 +197,12 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "ION Forge";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
@@ -220,12 +219,12 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
 
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
 
     }
 

@@ -1,5 +1,6 @@
 package quantumcraft.tile;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -21,7 +22,7 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        return itemstack.getItem().itemID == Loader.ItemLocationCard.itemID;
+        return itemstack.getItem() == Loader.ItemLocationCard;
     }
 
 
@@ -66,18 +67,12 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "Quantum Dislocator";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
-        return false;
-    }
-
-    @Override
     public int getInventoryStackLimit() {
-
         return 1;
     }
 
@@ -87,14 +82,6 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
         return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
                 .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
                 64.0D;
-    }
-
-    @Override
-    public void openChest() {
-    }
-
-    @Override
-    public void closeChest() {
     }
 
     @Override
@@ -123,8 +110,8 @@ public class TileQDislocator extends TileMachineBase implements ISidedInventory 
                 (inventory[0].hasTagCompound() && inventory[1].hasTagCompound());
     }
 
-    public int getCardBID(int index) {
-        return worldObj.getBlockId(getx(index), gety(index), getz(index));
+    public Block getCardBID(int index) {
+        return worldObj.getBlock(getx(index), gety(index), getz(index));
     }
 
     public int getCardBMT(int index) {

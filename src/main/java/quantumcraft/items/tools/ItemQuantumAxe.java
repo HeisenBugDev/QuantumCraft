@@ -14,8 +14,8 @@ public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
 
     int maxQenergyValue = 10000;
 
-    public ItemQuantumAxe(int par1) {
-        super(par1, Loader.ToolMaterials.QUANTUMTOOL);
+    public ItemQuantumAxe() {
+        super(Loader.ToolMaterials.QUANTUMTOOL);
         this.setMaxDamage(maxQenergyValue + 1);
     }
 
@@ -45,20 +45,21 @@ public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6,
-                                    EntityLivingBase par7EntityLivingBase) {
-        return ToolHelper
-                .onBlockDestroyed(par1ItemStack, par2World, par3, par4, par5, par6, par7EntityLivingBase, this);
+    public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_,
+                                    int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_) {
+        return ToolHelper.onBlockDestroyed(p_150894_1_, p_150894_2_, p_150894_3_, p_150894_4_, p_150894_5_, p_150894_6_,
+                p_150894_7_, this);
     }
 
+
     @Override
-    public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
+    public float getDigSpeed(ItemStack par1ItemStack, Block par2Block, int i) {
         if (getCurrentQEnergyBuffer(par1ItemStack) >= 50) {
-            if (!(par2Block.blockMaterial == Material.ground || par2Block.blockMaterial == Material.grass ||
-                    par2Block.blockMaterial == Material.sand)) {
-                return (par2Block.blockMaterial == Material.wood || par2Block.blockMaterial == Material.plants ||
-                        par2Block.blockMaterial == Material.vine) ? this.efficiencyOnProperMaterial :
-                        super.getStrVsBlock(par1ItemStack, par2Block);
+            if (!(par2Block.getMaterial() == Material.ground || par2Block.getMaterial() == Material.grass ||
+                    par2Block.getMaterial() == Material.sand)) {
+                return (par2Block.getMaterial() == Material.wood || par2Block.getMaterial() == Material.plants ||
+                        par2Block.getMaterial() == Material.vine) ? this.efficiencyOnProperMaterial :
+                        super.getDigSpeed(par1ItemStack, par2Block, i);
             } else return 0.001F;
         } else {
             ItemEnergyUtils.emptyEnergy(par1ItemStack, maxQenergyValue);

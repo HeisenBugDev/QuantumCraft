@@ -57,12 +57,12 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "Quantum De-Materializer";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
@@ -79,12 +79,12 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
 
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
 
     }
 
@@ -125,7 +125,6 @@ public class TileQDematerializer extends TileEnergySource implements ISidedInven
             // texture.
             updateNextTick = false;
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
         }
     }
 

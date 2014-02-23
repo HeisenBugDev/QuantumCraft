@@ -75,9 +75,9 @@ public abstract class GuiBase extends GuiContainer {
     }
 
     protected void renderStandardText() {
-        this.fontRenderer.drawString(((IInventory) tile).getInvName(), 15, 15, 0x000000);
-        this.fontRenderer.drawString("Reserved for", 128, 55, 0x333333);
-        this.fontRenderer.drawString("upgrades", 138, 65, 0x333333);
+        this.fontRendererObj.drawString(((IInventory) tile).getInventoryName(), 15, 15, 0x000000);
+        this.fontRendererObj.drawString("Reserved for", 128, 55, 0x333333);
+        this.fontRendererObj.drawString("upgrades", 138, 65, 0x333333);
     }
 
     protected void drawProgressBelow(int width, int x, int y, int widthCheck) {
@@ -187,7 +187,7 @@ public abstract class GuiBase extends GuiContainer {
     protected void renderTooltipText(String text, int x, int y) {
         List<String> l = new ArrayList<String>();
         l.add(text);
-        this.drawHoveringText(l, x, y, this.fontRenderer);
+        this.drawHoveringText(l, x, y, this.fontRendererObj);
 
     }
 
@@ -413,10 +413,10 @@ public abstract class GuiBase extends GuiContainer {
     protected void drawLeft(String s, int x, int y, int color) {
         x += 9;
         y += 9;
-        fontRenderer.drawString(s, x, y, color);
+        fontRendererObj.drawString(s, x, y, color);
     }
 
     protected void drawCentered(String s, int xMid, int y, int color) {
-        drawLeft(s, xMid - fontRenderer.getStringWidth(s) / 2, y, color);
+        drawLeft(s, xMid - fontRendererObj.getStringWidth(s) / 2, y, color);
     }
 }

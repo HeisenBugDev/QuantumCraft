@@ -10,10 +10,6 @@ import quantumcraft.research.ResearchIcons;
 
 public class ItemResearchBook extends ItemBase {
 
-    public ItemResearchBook(int par1) {
-        super(par1);
-    }
-
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         player.openGui(QuantumCraft.instance, 0, world, 0, 0, 0);

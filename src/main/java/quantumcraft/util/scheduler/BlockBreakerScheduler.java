@@ -36,7 +36,7 @@ public class BlockBreakerScheduler extends Scheduler {
     }
 
     public boolean breakBlock(int x, int y, int z) {
-        tile.worldObj.setBlockToAir(x, y, z);
+        tile.getWorldObj().setBlockToAir(x, y, z);
         return true;
     }
 

@@ -20,7 +20,7 @@ public class QRecipeHandler {
     public static QDERecipe getQDERecipeFromInput(ItemStack input) {
         if (input == null) return null;
         for (QDERecipe r : QDERecipes) {
-            if (r.getInputItem().itemID == input.itemID) return r;
+            if (r.getInputItem() == input) return r;
         }
         return null;
     }
