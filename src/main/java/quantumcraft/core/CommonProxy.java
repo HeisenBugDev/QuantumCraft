@@ -25,9 +25,6 @@ public class CommonProxy implements IGuiHandler {
                 case 2:
                     return new ContainerQEInjector(player.inventory,
                             (TileQEInjector) world.getTileEntity(x, y, z));
-                case 3:
-                    return new ContainerQDislocator(player.inventory,
-                            (TileQDislocator) world.getTileEntity(x, y, z));
                 case 4:
                     return new ContainerQDematerializer(player.inventory,
                             (TileQDematerializer) world.getTileEntity(x, y, z));

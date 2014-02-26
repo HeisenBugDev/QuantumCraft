@@ -29,7 +29,7 @@ public class SlotCustomInput extends Slot {
 
     public boolean isItemValid(ItemStack par1ItemStack) {
         for (Item i : itemList) {
-            if (i.itemID == par1ItemStack.getItem().itemID) return true;
+            if (i == par1ItemStack.getItem()) return true;
 
         }
         return false;

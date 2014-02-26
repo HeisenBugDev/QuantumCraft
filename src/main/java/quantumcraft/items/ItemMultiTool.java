@@ -9,8 +9,7 @@ import quantumcraft.core.interfaces.IMultiTool;
 
 public class ItemMultiTool extends ItemBase implements IMultiTool {
 
-    public ItemMultiTool(int i) {
-        super(i);
+    public ItemMultiTool() {
     }
 
     @Override

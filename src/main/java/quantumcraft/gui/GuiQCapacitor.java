@@ -49,7 +49,7 @@ public class GuiQCapacitor extends GuiBase {
             drawBaseForeground();
             drawPowerBar();
             renderStandardText();
-            this.fontRenderer.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 63, 0x333333);
+            this.fontRendererObj.drawString(tile.getCurrentEnergy() + " / " + tile.getMaxEnergy(), 23, 63, 0x333333);
 
             handleHover();
         }

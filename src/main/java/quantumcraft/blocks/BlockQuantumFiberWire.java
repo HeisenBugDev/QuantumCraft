@@ -1,6 +1,5 @@
 package quantumcraft.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
@@ -21,7 +20,7 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world, int i) {
         return null;
     }
 
@@ -29,32 +28,32 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
         float[] min = {0.25F, 0.25F, 0.25F};
         float[] max = {0.75F, 0.75F, 0.75F};
-        if (Block.blocksList[world.getBlockId(x - 1, y, z)] instanceof IQEnergyComponent) {
+        if (world.getBlock(x - 1, y, z) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x - 1, y, z))
                     .canFiberConnectOnSide(world, x - 1, y, z, BasicUtils.dirXPos))
                 min[0] = 0.0F;
         }
-        if (Block.blocksList[world.getBlockId(x + 1, y, z)] instanceof IQEnergyComponent) {
+        if (world.getBlock(x + 1, y, z) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x + 1, y, z))
                     .canFiberConnectOnSide(world, x + 1, y, z, BasicUtils.dirXNeg))
                 max[0] = 1.0F;
         }
-        if (Block.blocksList[world.getBlockId(x, y - 1, z)] instanceof IQEnergyComponent) {
+        if (world.getBlock(x, y - 1, z) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y - 1, z))
                     .canFiberConnectOnSide(world, x, y - 1, z, BasicUtils.dirYPos))
                 min[1] = 0.0F;
         }
-        if (Block.blocksList[world.getBlockId(x, y + 1, z)] instanceof IQEnergyComponent) {
+        if (world.getBlock(x, y + 1, z) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y + 1, z))
                     .canFiberConnectOnSide(world, x, y + 1, z, BasicUtils.dirYNeg))
                 max[1] = 1.0F;
         }
-        if (Block.blocksList[world.getBlockId(x, y, z - 1)] instanceof IQEnergyComponent) {
+        if (world.getBlock(x, y, z - 1) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y, z - 1))
                     .canFiberConnectOnSide(world, x, y, z - 1, BasicUtils.dirZPos))
                 min[2] = 0.0F;
         }
-        if (Block.blocksList[world.getBlockId(x, y, z + 1)] instanceof IQEnergyComponent) {
+        if (world.getBlock(x, y, z + 1) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x, y, z + 1))
                     .canFiberConnectOnSide(world, x, y, z + 1, BasicUtils.dirZNeg))
                 max[2] = 1.0F;
@@ -86,9 +85,8 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
     }
 
     @Override
-    public IIcon getBlockTexture(IBlockAccess iblockaccess, int x, int y, int z,
-                                int side) {
-        return iconTexture;
+    public IIcon getIcon(IBlockAccess iblockaccess, int x, int y, int z, int side) {
+       return iconTexture;
     }
 
     @Override

@@ -11,17 +11,12 @@ public class ClientProxy extends CommonProxy {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch (ID) {
-            case 0:
-                return new GuiResearch(new ResearchHandler(player));
             case 1:
                 TileQDeenergizer te1 = (TileQDeenergizer) world.getTileEntity(x, y, z);
                 return new GuiQDeenergizer(new ContainerQDeenergizer(player.inventory, te1));
             case 2:
                 TileQEInjector te2 = (TileQEInjector) world.getTileEntity(x, y, z);
                 return new GuiQEInjector(new ContainerQEInjector(player.inventory, te2));
-            case 3:
-                TileQDislocator te3 = (TileQDislocator) world.getTileEntity(x, y, z);
-                return new GuiQDislocator(new ContainerQDislocator(player.inventory, te3));
             case 4:
                 TileQDematerializer te4 = (TileQDematerializer) world.getTileEntity(x, y, z);
                 return new GuiQDematerializer(new ContainerQDematerializer(player.inventory, te4));

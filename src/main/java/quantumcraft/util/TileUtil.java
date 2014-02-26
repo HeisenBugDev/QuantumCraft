@@ -7,10 +7,10 @@ import net.minecraft.nbt.NBTTagList;
 public class TileUtil {
 
     public static void readInventory(NBTTagCompound NBTTagCompound, ItemStack[] inventory){
-        NBTTagList nbttaglist = NBTTagCompound.getTagList("Items");
+        NBTTagList nbttaglist = NBTTagCompound.getTagList("Items", 9);
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < inventory.length) {

@@ -2,6 +2,9 @@ package quantumcraft.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagInt;
+import net.minecraft.nbt.NBTTagString;
+import net.minecraftforge.common.util.Constants;
 
 public class ItemEnergyUtils {
     /**
@@ -25,13 +28,13 @@ public class ItemEnergyUtils {
      * @param e  ENERGY
      */
     public static void setEnergy(ItemStack is, int e) {
-        NBTTagCompound QEV = new NBTTagCompound("QEV");
+        NBTTagCompound QEV = new NBTTagCompound();
         QEV.setInteger("VALUE", e);
         NBTTagCompound IS = is.getTagCompound();
         if (IS == null) {
             IS = new NBTTagCompound();
         }
-        IS.setCompoundTag("QEV", QEV);
+        IS.setTag("QEV", QEV);
         is.setTagCompound(IS);
     }
 

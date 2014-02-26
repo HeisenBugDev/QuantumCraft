@@ -15,8 +15,7 @@ public class ItemUpgrade extends ItemBase implements IUpgrade {
     public IIcon[] icons = new IIcon[2];
     public String[] names = {"Upgrade Template", "Overclock Upgrade"};
 
-    public ItemUpgrade(int id) {
-        super(id);
+    public ItemUpgrade() {
         this.setMetaMax(1);
         this.setMaxStackSize(
                 1);   //THIS IS SUPPOSED TO BE 16 BUT DIFFERENT UPGRADES STACK INTO ONE WHEN PICKED UP. <= You must register the in the loader separately!

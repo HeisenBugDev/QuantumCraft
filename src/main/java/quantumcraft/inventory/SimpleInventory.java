@@ -78,20 +78,33 @@ public class SimpleInventory implements IInventory   {
     }
 
     @Override
+    public boolean hasCustomInventoryName() {
+        return false;
+    }
+
+    @Override
     public int getInventoryStackLimit() {
         return _stackLimit;
     }
 
     @Override
-    public void onInventoryChanged() {
-        for (ISimpleInventoryListener handler : _listener) {
-            handler.InventoryChanged(this);
-        }
+    public void markDirty() {
+
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
         return false;
+    }
+
+    @Override
+    public void openInventory() {
+
+    }
+
+    @Override
+    public void closeInventory() {
+
     }
 
     public void readFromNBT(NBTTagCompound nbttagcompound) {
@@ -102,7 +115,7 @@ public class SimpleInventory implements IInventory   {
         if (nbt == null) {
             nbt = new NBTTagCompound();
         }
-        NBTTagList nbttaglist = nbt.getTagList(prefix + "items");
+        NBTTagList nbttaglist = nbt.getTagList(prefix + "items", 9);
 
         for (int j = 0; j < nbttaglist.tagCount(); ++j) {
             NBTTagCompound nbttagcompound2 = nbttaglist.getCompoundTagAt(j);
@@ -111,7 +124,6 @@ public class SimpleInventory implements IInventory   {
                 _contents[index] = ItemStack.loadItemStackFromNBT(nbttagcompound2);
             }
         }
-        onInventoryChanged();
     }
 
     public void writeToNBT(NBTTagCompound nbttagcompound) {
@@ -147,7 +159,6 @@ public class SimpleInventory implements IInventory   {
                     BasicUtils.dropItem(worldObj, posX, posY, posZ, todrop);
                 }
             }
-            onInventoryChanged();
         }
     }
 
@@ -170,7 +181,6 @@ public class SimpleInventory implements IInventory   {
 
         ItemStack stackToTake = this._contents[i];
         this._contents[i] = null;
-        onInventoryChanged();
         return stackToTake;
     }
 
@@ -214,7 +224,6 @@ public class SimpleInventory implements IInventory   {
             int added = tryAddToSlot(i, stack);
             stack.stackSize -= added;
         }
-        onInventoryChanged();
         return stack.stackSize;
     }
 

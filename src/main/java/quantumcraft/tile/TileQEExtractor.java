@@ -68,12 +68,12 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
     }
 
     @Override
-    public String getInvName() {
-        return "Quantum Energy Extractor";
+    public String getInventoryName() {
+        return null;
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
@@ -92,11 +92,13 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
+
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
+
     }
 
     @Override
@@ -127,7 +129,6 @@ public class TileQEExtractor extends TileEnergySource implements ISidedInventory
             // texture.
             updateNextTick = false;
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
         }
     }
 

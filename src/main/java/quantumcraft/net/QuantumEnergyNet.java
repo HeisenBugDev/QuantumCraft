@@ -20,8 +20,7 @@ public class QuantumEnergyNet {
 
         @Override
         public void gatherDataOnTile(World w, Coords l) {
-            int id = w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord());
-            Block b = Block.blocksList[id];
+            Block b = w.getBlock(l.getXCoord(), l.getYCoord(), l.getZCoord());
             if (b instanceof IQEnergySink) {
                 ((IQEnergySink) b).addSourceToList(w, l, source);
             }
@@ -33,8 +32,7 @@ public class QuantumEnergyNet {
 
         @Override
         public void gatherDataOnTile(World w, Coords l) {
-            int id = w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord());
-            Block b = Block.blocksList[id];
+            Block b = w.getBlock(l.getXCoord(), l.getYCoord(), l.getZCoord());
             if (b instanceof IQEnergySource) {
                 sources.add(l);
             }
@@ -52,8 +50,7 @@ public class QuantumEnergyNet {
 
         @Override
         public void gatherDataOnTile(World w, Coords l) {
-            int id = w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord());
-            Block b = Block.blocksList[id];
+            Block b = w.getBlock(l.getXCoord(), l.getYCoord(), l.getZCoord());
             if (b instanceof IQEnergySource) {
                 sources.add(l);
             }
@@ -86,8 +83,7 @@ public class QuantumEnergyNet {
                 for (Coords source : sourcesTmp) {
                     sources2.remove(source);
                 }
-                int id = w.getBlockId(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
-                Block b = Block.blocksList[id];
+                Block b = w.getBlock(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
                 if (b instanceof IQEnergySink) {
                     ((IQEnergySink) b).replaceSourceList(w, sink, new EnergySourceList(sources2));
                 }
