@@ -71,8 +71,4 @@ We will be using [Semantic Versioning 2.0.0](http://semver.org/) _except_ anthin
 ## Helping out with the coding
 
 If you would like to help out with coding, you can fork the branch and do some coding and the whole git routine. We are using git flow for our branching model. **Naming for branch: #-Name where # is the ticket number and name is what you are adding** I may put some more stuff here eventually.
-Buildcraft API is required.
 
-CURRENTLY USING FORGE 9.11.1.964! (http://adf.ly/673885/http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.4-9.11.1.964.zip)
-
-_PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF_
