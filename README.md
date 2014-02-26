@@ -13,15 +13,15 @@ Visit the [minecraftforum post](http://www.minecraftforum.net/topic/1891103-162-
 
 [Website](http://heisenbugdev.com)
 
-[Block ID List](https://docs.google.com/spreadsheet/ccc?key=0AieTtHwOv7hFdGt5LTh5S2FmNkZUM3VEdWt6dXVQTFE&usp=sharing) Use this when adding new blocks. You too @sammko.
-
-QuantumCraft will add some fun machines and a nice research system into Minecraft.
-
 **We would love feedback so just send it on over!**
 
 ## **[Todo and bug tracker](https://github.com/QuantumCraft/QuantumCraft/issues?state=open)**
 
 If you find an issue you can either submit it on GitHub which would be the best, fork it fix it and send us a PR, or lastly send us a PM/post on [minecraftforum.net](http://www.minecraftforum.net/user/1122448-hunterboerner/)
+
+__To see what we're working on, go here https://trello.com/b/MQs4qzrU/quantumcraft.__
+
+_Trello is to be used for tracking the status of something and GitHub for what this actually is._
 
 If you do find a bug we may need you to tell us some more info. The info we will need is here:
 
@@ -36,8 +36,7 @@ The debug log is the most complicated. Go to the DebugHandler.cfg. There will be
 
 ## Downloads
 
-You MUST have DebugHandler to use this mod!
-Go here to do the downloads: http://heisenbugdev.com/downloads
+~~Go here to do the downloads: http://heisenbugdev.com/downloads~~
 
 ## Contact
 
@@ -57,10 +56,6 @@ If you would like to contact us directly for some reason (I dunno why), you can 
 - LordFokas
 - wtg62 (art)
 
-We took some of our code from MineFactory Reloaded if you are wondering why things look similar. The reason? He is a much better programmer and makes a good outline and base classes for stuff. Yeah, I have no clue what I am saying, let's hope his license allows this.
-We also got some code from MrTJP who makes [Project: Red](https://github.com/MrTJP/ProjectRed)
-We looked at TEX code for examples.
-
 Thanks @RS485 for the in game gui code. That made my life much easier.
 
 
@@ -71,8 +66,4 @@ We will be using [Semantic Versioning 2.0.0](http://semver.org/) _except_ anthin
 ## Helping out with the coding
 
 If you would like to help out with coding, you can fork the branch and do some coding and the whole git routine. We are using git flow for our branching model. **Naming for branch: #-Name where # is the ticket number and name is what you are adding** I may put some more stuff here eventually.
-Buildcraft API is required.
 
-CURRENTLY USING FORGE 9.11.1.964! (http://adf.ly/673885/http://files.minecraftforge.net/minecraftforge/minecraftforge-src-1.6.4-9.11.1.964.zip)
-
-_PLEASE USE GIT FLOW STUFF NO PUSH MASTER STUFF_
