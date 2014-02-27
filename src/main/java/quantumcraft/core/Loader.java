@@ -5,7 +5,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -94,10 +93,9 @@ public class Loader {
                 .setUnlocalizedName(Config.NameItemUnbioxeniumIngot)
                 .setTextureName(Config.getTextureName(Config.NameItemUnbioxeniumIngot));
 
-        ItemCrystalQuantonium =
-                (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
-                        .setUnlocalizedName(Config.NameItemCrystalQuantonium)
-                        .setTextureName(Config.getTextureName(Config.NameItemCrystalQuantonium));
+        ItemCrystalQuantonium = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName(Config.NameItemCrystalQuantonium)
+                .setTextureName(Config.getTextureName(Config.NameItemCrystalQuantonium));
 
         ItemRawQuantonium = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemRawQuantonium)
@@ -115,13 +113,11 @@ public class Loader {
                 .setUnlocalizedName(Config.NameItemUpgrade_).setTextureName("USELESS");
 
         if (Config.beta.getBoolean(false)) {
-            ItemResearchBook =
-                    (ItemResearchBook) new ItemResearchBook().setCreativeTab(tabQuantumCraft)
-                            .setUnlocalizedName(Config.NameItemResearchBook)
-                            .setTextureName(Config.getTextureName(Config.NameItemResearchBook));
+            ItemResearchBook = (ItemResearchBook) new ItemResearchBook().setCreativeTab(tabQuantumCraft)
+                    .setUnlocalizedName(Config.NameItemResearchBook)
+                    .setTextureName(Config.getTextureName(Config.NameItemResearchBook));
 
-            ItemLocationCard = (ItemLocationCard) new ItemLocationCard()
-                    .setUnlocalizedName(Config.NameItemLocationCard)
+            ItemLocationCard = (ItemLocationCard) new ItemLocationCard().setUnlocalizedName(Config.NameItemLocationCard)
                     .setTextureName(Config.getTextureName(Config.NameItemLocationCard));
 
             ItemLocationCardBlank = (ItemLocationCardBlank) new ItemLocationCardBlank()
@@ -129,13 +125,12 @@ public class Loader {
                     .setTextureName(Config.getTextureName(Config.NameItemLocationCardBlank));
         }
 
-        ItemPortableQCapacitor = (ItemPortableQCapacitor) new ItemPortableQCapacitor()
-                .setCreativeTab(tabQuantumCraft).setUnlocalizedName(Config.NameItemPortableQCapacitor)
+        ItemPortableQCapacitor = (ItemPortableQCapacitor) new ItemPortableQCapacitor().setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName(Config.NameItemPortableQCapacitor)
                 .setTextureName(Config.getTextureName(Config.NameItemPortableQCapacitor));
 
-        ItemInfinitePower =
-                (ItemInfinitePower) new ItemInfinitePower().setCreativeTab(tabQuantumCraft)
-                        .setUnlocalizedName("ItemInfinitePower");
+        ItemInfinitePower = (ItemInfinitePower) new ItemInfinitePower().setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName("ItemInfinitePower");
 
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemQSword).setTextureName(Config.getTextureName(Config.NameItemQSword));
@@ -146,10 +141,9 @@ public class Loader {
         ItemQuantumPick = (ItemQuantumPick) new ItemQuantumPick().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemQPick).setTextureName(Config.getTextureName(Config.NameItemQPick));
 
-        ItemQuantumShovel =
-                (ItemQuantumShovel) new ItemQuantumShovel().setCreativeTab(tabQuantumCraft)
-                        .setUnlocalizedName(Config.NameItemQShovel)
-                        .setTextureName(Config.getTextureName(Config.NameItemQShovel));
+        ItemQuantumShovel = (ItemQuantumShovel) new ItemQuantumShovel().setCreativeTab(tabQuantumCraft)
+                .setUnlocalizedName(Config.NameItemQShovel)
+                .setTextureName(Config.getTextureName(Config.NameItemQShovel));
 
         ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder().setCreativeTab(null)
                 .setUnlocalizedName(Config.NameItemRPlaceHolder)
@@ -169,15 +163,14 @@ public class Loader {
     }
 
     public static void initBlocks() {
-        OreUnbioxenium = (BlockOre) new BlockOre().setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameOreUnbioxenium)
-                .setBlockTextureName(Config.getTextureName(Config.NameOreUnbioxenium)).setHardness(2.5F);
+        OreUnbioxenium =
+                (BlockOre) new BlockOre().setCreativeTab(tabQuantumCraft).setBlockName(Config.NameOreUnbioxenium)
+                        .setBlockTextureName(Config.getTextureName(Config.NameOreUnbioxenium)).setHardness(2.5F);
         GameRegistry.registerBlock(OreUnbioxenium, Config.NameOreUnbioxenium);
 
-        OreQuantonium =
-                (BlockOreQuantonium) new BlockOreQuantonium().setCreativeTab(tabQuantumCraft)
-                        .setBlockName(Config.NameOreQuantonium)
-                        .setBlockTextureName(Config.getTextureName(Config.NameOreQuantonium));
+        OreQuantonium = (BlockOreQuantonium) new BlockOreQuantonium().setCreativeTab(tabQuantumCraft)
+                .setBlockName(Config.NameOreQuantonium)
+                .setBlockTextureName(Config.getTextureName(Config.NameOreQuantonium));
         GameRegistry.registerBlock(OreQuantonium, Config.NameOreQuantonium);
 
         BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
@@ -238,8 +231,7 @@ public class Loader {
                 .setBlockName(Config.NameBlockQEE);
         GameRegistry.registerBlock(BlockQEExtractor, Config.NameBlockQEE);
 
-        BlockMachineCasing = new BasicBlock().setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameBlockMCasing)
+        BlockMachineCasing = new BasicBlock().setCreativeTab(tabQuantumCraft).setBlockName(Config.NameBlockMCasing)
                 .setBlockTextureName(Config.getTextureName(Config.NameBlockMCasing));
         GameRegistry.registerBlock(BlockMachineCasing, Config.NameBlockMCasing);
 
