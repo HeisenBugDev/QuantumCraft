@@ -273,14 +273,16 @@ public class Loader {
 
     public static class IconLoader {
 
-        public static IIcon oreQuantonium_ore;
-        public static IIcon oreQuantonium_base;
+        public static IIcon quantonium_ore;
+        public static IIcon quantonium_ore_base;
 
         public static void loadAll(IIconRegister i) {
             QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQOre));
-            oreQuantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQOre));
+            quantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQOre));
+            System.out.println("Quantonium ore " + quantonium_ore);
             QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQBase));
-            oreQuantonium_base = i.registerIcon(Config.getTextureName(Config.NameTextureQBase));
+            quantonium_ore_base = i.registerIcon(Config.getTextureName(Config.NameTextureQBase));
+            System.out.println("Quantonium ore base " + quantonium_ore_base);
         }
     }
 
