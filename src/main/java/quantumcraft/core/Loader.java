@@ -80,8 +80,8 @@ public class Loader {
     }
 
     public static void initOreDict() {
-        OreDictionary.registerOre("oreQuantonium", new ItemStack(OreQuantonium));
-        OreDictionary.registerOre("oreUnbioxenium", new ItemStack(OreUnbioxenium));
+        OreDictionary.registerOre("ore_quantonium", new ItemStack(OreQuantonium));
+        OreDictionary.registerOre("ore_unbioxenium", new ItemStack(OreUnbioxenium));
     }
 
     public static void initTabs() {

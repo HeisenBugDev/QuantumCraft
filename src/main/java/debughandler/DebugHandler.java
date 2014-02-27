@@ -6,7 +6,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
-@Mod(modid = "debughandler", name = "debughandler", version = "@VERSION@")
+@Mod(modid = "DebugHandler", name = "DebugHandler", version = "@VERSION@")
 public class DebugHandler {
     @Mod.Instance("Debug Handler")
     public static DebugHandler instance;

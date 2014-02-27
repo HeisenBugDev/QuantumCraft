@@ -31,15 +31,12 @@ public class Config {
     public static String NameItemQuantumPlating = "quantumPlating";
     public static String NameItemQuantumConverter = "quantumConverter";
     public static String NameOreUnbioxenium = "oreUnbioxenium";
-    public static String NameOreQuantonium = "oreQuantonium";
+    public static String NameOreQuantonium = "ore_quantonium";
     public static String NameBlockQDE = "machineQDE";
     public static String NameBlockQEI = "machineQEI";
-    public static String NameBlockQDS = "machineQDS";
     public static String NameBlockQES = "machineQES";
     public static String NameBlockQDM = "machineQDM";
-    public static String NameBlockQEL = "machineQEL";
     public static String NameBlockQEE = "machineQEE";
-    public static String NameBlockQDL = "machineQDL";
     public static String NameBlockIOF = "machineIOF";  // Block ION Forge
     public static String NameBlockIOT = "machineIOT";  // Block ION Tunneler
     public static String NameBlockIOS = "machineIOS";  // Block ION Scanner
