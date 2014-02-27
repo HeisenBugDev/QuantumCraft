@@ -2,9 +2,6 @@ package quantumcraft.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagInt;
-import net.minecraft.nbt.NBTTagString;
-import net.minecraftforge.common.util.Constants;
 
 public class ItemEnergyUtils {
     /**

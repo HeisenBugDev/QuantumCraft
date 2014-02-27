@@ -16,8 +16,8 @@
 //import org.lwjgl.input.Mouse;
 //import org.lwjgl.opengl.GL11;
 //import org.lwjgl.opengl.GL12;
-//import quantumcraft.research.ResearchHandler;
-//import quantumcraft.research.ResearchItem;
+//import QuantumCraft.textures.research.ResearchHandler;
+//import QuantumCraft.textures.research.ResearchItem;
 //
 //import java.util.LinkedList;
 //import java.util.Random;
@@ -269,7 +269,7 @@
 //                } else {
 //                    icon = Block.bedrock.getIcon(0, 0);
 //                }
-//                //Draws the textures instead of using a static png RANDOMNESS FTW
+//                //Draws the assets.QuantumCraft.textures instead of using a static png RANDOMNESS FTW
 //                this.mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 //
 //                this.drawTexturedModelRectFromIcon(k1 + k3 * 16 - k2, l1 + i3 * 16 - l2, icon, 16, 16);
@@ -338,7 +338,7 @@
 //            }
 //
 //            this.mc.renderEngine.bindTexture(
-//                    new ResourceLocation("textures/gui/achievement/achievement_background.png"));
+//                    new ResourceLocation("assets.QuantumCraft.textures/gui/achievement/achievement_background.png"));
 //            i5 = k1 + j4;
 //            l4 = l1 + l3;
 //            if (ri2.getSpecial()) {
@@ -377,7 +377,7 @@
 //        GL11.glEnable(GL11.GL_BLEND);
 //        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 //
-//        this.mc.renderEngine.bindTexture(new ResourceLocation("textures/gui/achievement/achievement_background.png"));
+//        this.mc.renderEngine.bindTexture(new ResourceLocation("assets.QuantumCraft.textures/gui/achievement/achievement_background.png"));
 //        this.drawTexturedModalRect(i1, j1, 0, 0, this.achievementsPaneWidth, this.achievementsPaneHeight);
 //        GL11.glPopMatrix();
 //        this.zLevel = 0.0F;

@@ -1,6 +1,5 @@
 package quantumcraft.tile;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.ForgeDirection;
 import quantumcraft.tile.abstracttiles.TileEnergySink;

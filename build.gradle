@@ -24,7 +24,7 @@ dependencies {
 }
 
 // stuff specific to my mod
-group = 'quantumcraft'
+group = 'QuantumCraft.textures'
 archivesBaseName = 'QuantumCraft'
 
 // spit out the version for debugging sake

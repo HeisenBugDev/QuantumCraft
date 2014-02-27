@@ -4,14 +4,13 @@ import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 import quantumcraft.core.Loader;
 import quantumcraft.render.RenderOre;
 
 import java.util.Random;
 
 public class BlockOreQuantonium extends BlockOre {
-    private IIcon icon;
+
     public BlockOreQuantonium() {
         setHardness(2.5F);
         setResistance(1.0F);
@@ -26,13 +25,13 @@ public class BlockOreQuantonium extends BlockOre {
     @Override
     public IIcon getIcon(int i, int b) {
         System.out.println("returning icon");
-        return icon;
+        return Loader.IconLoader.oreQuantonium_base;
     }
 
     @Override
     public void registerBlockIcons(IIconRegister p_149651_1_) {
-        System.out.println("registering icons");
-        icon = p_149651_1_.registerIcon(this.getTextureName());
+        super.registerBlockIcons(p_149651_1_);
+        Loader.IconLoader.loadAll(p_149651_1_);
     }
 
     @Override

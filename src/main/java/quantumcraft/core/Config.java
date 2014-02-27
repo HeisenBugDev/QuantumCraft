@@ -9,8 +9,8 @@ import java.util.LinkedList;
 
 public class Config {
 
-    public static final String modNetworkChannel = "QuantumCraft";
-    public static String texturePrefix = "quantumcraft:";
+    public static final String modNetworkChannel = "quantumcraft";
+    public static String texturePrefix = "QuantumCraft:";
     public static String RIconPrefix = texturePrefix + "research.";
     public static String NameItemUnbioxeniumIngot = "ingotUnbioxenium";
     public static String NameItemCrystalQuantonium = "crystalQuantonium";
@@ -180,7 +180,7 @@ public class Config {
         networkUpdateRange.comment =
                 "This is the distance in which players will be notified.  Lower if you experience lag.";
 
-        use32x = config.get("general", "Use 32x32 textures", true).getBoolean(true);
+        use32x = config.get("general", "Use 32x32 assets.QuantumCraft.textures", true).getBoolean(true);
         beta = config.get("general", "Enable beta features", false);
         beta.comment = ("(WARNING! This could corrupt your world or break your game)");
 

@@ -17,14 +17,14 @@ import quantumcraft.render.BlockHighlighterHandler;
 
 import java.util.EnumMap;
 
-@Mod(modid = "quantumcraft", name = "QuantumCraft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
+@Mod(modid = "quantumcraft", name = "quantumcraft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
 public class QuantumCraft {
 
     EnumMap<Side, FMLEmbeddedChannel> channels =
             NetworkRegistry.INSTANCE.newChannel(Config.modNetworkChannel, new ChannelHandler());
-    @SidedProxy(clientSide = "quantumcraft.core.ClientProxy", serverSide = "quantumcraft.core.CommonProxy")
+    @SidedProxy(clientSide = "QuantumCraft.core.ClientProxy", serverSide = "QuantumCraft.core.CommonProxy")
     public static CommonProxy proxy;
-    @Instance("QuantumCraft")
+    @Instance("quantumcraft")
     public static QuantumCraft instance;
     public static LogHandler logHandler = new LogHandler("Quantumcraft");
 

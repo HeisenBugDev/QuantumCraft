@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import quantumcraft.gui.*;
 import quantumcraft.inventory.*;
-import quantumcraft.research.ResearchHandler;
 import quantumcraft.tile.*;
 
 public class ClientProxy extends CommonProxy {

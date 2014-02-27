@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class ResetLogs {
     public static void resetLogs(ArrayList<LogHandler> handlers) {
         for (LogHandler handler : handlers) {
-            File log = new File("DebugHandler/"+ handler.name + ".log");
+            File log = new File("debughandler/" + handler.name + ".log");
             System.out.println(log);
             System.out.println(handler.name);
             if (log.delete()){
