@@ -45,8 +45,8 @@ public class Config {
     public static String NameBlockQIG = "machineQIG";  // Block Q Interdimensional Generator
     public static String NameBlockQFiberWire = "blockFiberWire";
     public static String NameBlockMCasing = "quantumMachineCasing";
-    public static String NameTextureQOre = "oreQuantonium.ore";
-    public static String NameTextureQBase = "oreQuantonium.base";
+    public static String NameTextureQOre = "ore_quantonium.ore";
+    public static String NameTextureQBase = "ore_quantonium.base";
     public static String NameItemRPlaceHolder = "temp";
     public static LinkedList<String> supports32x = new LinkedList<String>();
     public static Property networkUpdateRange;
