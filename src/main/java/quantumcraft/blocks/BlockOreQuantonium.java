@@ -30,7 +30,6 @@ public class BlockOreQuantonium extends BlockOre {
 
     @Override
     public void registerBlockIcons(IIconRegister p_149651_1_) {
-        super.registerBlockIcons(p_149651_1_);
         Loader.IconLoader.loadAll(p_149651_1_);
     }
 

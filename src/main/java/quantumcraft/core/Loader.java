@@ -92,14 +92,17 @@ public class Loader {
         ItemIngotUnbioxenium = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemUnbioxeniumIngot)
                 .setTextureName(Config.getTextureName(Config.NameItemUnbioxeniumIngot));
+        GameRegistry.registerItem(ItemIngotUnbioxenium, Config.NameItemUnbioxeniumIngot);
 
         ItemCrystalQuantonium = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemCrystalQuantonium)
                 .setTextureName(Config.getTextureName(Config.NameItemCrystalQuantonium));
+        GameRegistry.registerItem(ItemCrystalQuantonium, Config.NameItemCrystalQuantonium);
 
         ItemRawQuantonium = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemRawQuantonium)
                 .setTextureName(Config.getTextureName(Config.NameItemRawQuantonium));
+        GameRegistry.registerItem(ItemRawQuantonium, Config.NameItemRawQuantonium);
 
         ItemMultiTool = (ItemMultiTool) new ItemMultiTool().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemMultiTool)
@@ -277,6 +280,7 @@ public class Loader {
         public static IIcon quantonium_ore_base;
 
         public static void loadAll(IIconRegister i) {
+            System.out.println("I AM REGISTERING ICONS!!!");
             QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQOre));
             quantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQOre));
             System.out.println("Quantonium ore " + quantonium_ore);

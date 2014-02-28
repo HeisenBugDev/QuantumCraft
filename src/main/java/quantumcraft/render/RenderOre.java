@@ -27,9 +27,6 @@ public class RenderOre extends BaseBlockRenderer {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks r) {
         base = Loader.IconLoader.quantonium_ore_base;
         ore = Loader.IconLoader.quantonium_ore;
-        if (ore == null || base == null) {
-            return false;
-        }
         r.overrideBlockTexture = base;
         r.renderStandardBlock(block, x, y, z);
         r.overrideBlockTexture = null;

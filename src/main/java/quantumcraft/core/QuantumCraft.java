@@ -35,11 +35,11 @@ public class QuantumCraft {
         MinecraftForge.EVENT_BUS.register(new BlockHighlighterHandler());
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new ClientProxy());
         Config.initConfig(event);
+        Loader.initAll();
     }
 
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
-        Loader.initAll();
         System.out.println("[QuantumCraft] Finished loading.");
     }
 
