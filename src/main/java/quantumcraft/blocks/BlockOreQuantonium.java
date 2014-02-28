@@ -24,7 +24,6 @@ public class BlockOreQuantonium extends BlockOre {
 
     @Override
     public IIcon getIcon(int i, int b) {
-        System.out.println("returning icon");
         return Loader.IconLoader.quantonium_ore_base;
     }
 
