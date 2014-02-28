@@ -107,62 +107,78 @@ public class Loader {
         ItemMultiTool = (ItemMultiTool) new ItemMultiTool().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemMultiTool)
                 .setTextureName(Config.getTextureName(Config.NameItemMultiTool));
+        GameRegistry.registerItem(ItemMultiTool, Config.NameItemMultiTool);
 
         ItemDepletedCrystal = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemDepletedCrystal)
                 .setTextureName(Config.getTextureName(Config.NameItemDepletedCrystal));
+        GameRegistry.registerItem(ItemDepletedCrystal, Config.NameItemDepletedCrystal);
 
         ItemUpgrade = (ItemUpgrade) new ItemUpgrade().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemUpgrade_).setTextureName("USELESS");
+        GameRegistry.registerItem(ItemUpgrade, Config.NameItemUpgrade_);
 
         if (Config.beta.getBoolean(false)) {
             ItemResearchBook = (ItemResearchBook) new ItemResearchBook().setCreativeTab(tabQuantumCraft)
                     .setUnlocalizedName(Config.NameItemResearchBook)
                     .setTextureName(Config.getTextureName(Config.NameItemResearchBook));
+            GameRegistry.registerItem(ItemResearchBook, Config.NameItemResearchBook);
 
             ItemLocationCard = (ItemLocationCard) new ItemLocationCard().setUnlocalizedName(Config.NameItemLocationCard)
                     .setTextureName(Config.getTextureName(Config.NameItemLocationCard));
+            GameRegistry.registerItem(ItemLocationCard, Config.NameItemLocationCard);
 
             ItemLocationCardBlank = (ItemLocationCardBlank) new ItemLocationCardBlank()
                     .setUnlocalizedName(Config.NameItemLocationCardBlank).setCreativeTab(tabQuantumCraft)
                     .setTextureName(Config.getTextureName(Config.NameItemLocationCardBlank));
+            GameRegistry.registerItem(ItemLocationCardBlank, Config.NameItemLocationCardBlank);
         }
 
         ItemPortableQCapacitor = (ItemPortableQCapacitor) new ItemPortableQCapacitor().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemPortableQCapacitor)
                 .setTextureName(Config.getTextureName(Config.NameItemPortableQCapacitor));
+        GameRegistry.registerItem(ItemPortableQCapacitor, Config.NameItemPortableQCapacitor);
 
         ItemInfinitePower = (ItemInfinitePower) new ItemInfinitePower().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName("ItemInfinitePower");
+        GameRegistry.registerItem(ItemInfinitePower, "ItemInfinitePower");
 
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemQSword).setTextureName(Config.getTextureName(Config.NameItemQSword));
+        GameRegistry.registerItem(ItemQuantumSword, Config.NameItemQSword);
 
         ItemQuantumAxe = (ItemQuantumAxe) new ItemQuantumAxe().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemQAxe).setTextureName(Config.getTextureName(Config.NameItemQAxe));
+        GameRegistry.registerItem(ItemQuantumAxe, Config.NameItemQAxe);
 
         ItemQuantumPick = (ItemQuantumPick) new ItemQuantumPick().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemQPick).setTextureName(Config.getTextureName(Config.NameItemQPick));
+        GameRegistry.registerItem(ItemQuantumPick, Config.NameItemQPick);
 
         ItemQuantumShovel = (ItemQuantumShovel) new ItemQuantumShovel().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemQShovel)
                 .setTextureName(Config.getTextureName(Config.NameItemQShovel));
+        GameRegistry.registerItem(ItemQuantumShovel, Config.NameItemQShovel);
 
         ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder().setCreativeTab(null)
                 .setUnlocalizedName(Config.NameItemRPlaceHolder)
                 .setTextureName(Config.getTextureName(Config.NameItemRPlaceHolder));
+        GameRegistry.registerItem(ItemRPlaceHolder, Config.NameItemRPlaceHolder);
 
         ItemHyperConductor = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemHyperConductor)
                 .setTextureName(Config.getTextureName(Config.NameItemHyperConductor));
+        GameRegistry.registerItem(ItemHyperConductor, Config.NameItemHyperConductor);
 
         ItemQuantumPlating = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemQuantumPlating)
                 .setTextureName(Config.getTextureName(Config.NameItemQuantumPlating));
+        GameRegistry.registerItem(ItemQuantumPlating, Config.NameItemQuantumPlating);
 
         ItemQuantumConverter = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemQuantumConverter)
                 .setTextureName(Config.getTextureName(Config.NameItemQuantumConverter));
+        GameRegistry.registerItem(ItemQuantumConverter, Config.NameItemQuantumConverter);
     }
 
     public static void initBlocks() {
@@ -261,10 +277,6 @@ public class Loader {
         GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
         GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
         GameRegistry.registerTileEntity(TileQInterdimensionalGenerator.class, "QInterdimensionalGeneratorTE");
-
-        if (Config.beta.getBoolean(false)) {
-            // Put all beta TEs here.
-        }
     }
 
     public static class ToolMaterials {
