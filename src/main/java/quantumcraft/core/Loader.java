@@ -29,7 +29,6 @@ public class Loader {
     public static ItemBase ItemCrystalQuantonium;
     public static ItemBase ItemRawQuantonium;
     public static ItemMultiTool ItemMultiTool;
-    public static ItemResearchBook ItemResearchBook;
     public static ItemBase ItemDepletedCrystal;
     public static ItemLocationCard ItemLocationCard;
     public static ItemLocationCardBlank ItemLocationCardBlank;
@@ -119,11 +118,6 @@ public class Loader {
         GameRegistry.registerItem(ItemUpgrade, Config.NameItemUpgrade_);
 
         if (Config.beta.getBoolean(false)) {
-            ItemResearchBook = (ItemResearchBook) new ItemResearchBook().setCreativeTab(tabQuantumCraft)
-                    .setUnlocalizedName(Config.NameItemResearchBook)
-                    .setTextureName(Config.getTextureName(Config.NameItemResearchBook));
-            GameRegistry.registerItem(ItemResearchBook, Config.NameItemResearchBook);
-
             ItemLocationCard = (ItemLocationCard) new ItemLocationCard().setUnlocalizedName(Config.NameItemLocationCard)
                     .setTextureName(Config.getTextureName(Config.NameItemLocationCard));
             GameRegistry.registerItem(ItemLocationCard, Config.NameItemLocationCard);

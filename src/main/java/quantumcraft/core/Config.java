@@ -11,12 +11,10 @@ public class Config {
 
     public static final String modNetworkChannel = "quantumcraft";
     public static String texturePrefix = "QuantumCraft:";
-    public static String RIconPrefix = texturePrefix + "research.";
     public static String NameItemUnbioxeniumIngot = "ingotUnbioxenium";
     public static String NameItemCrystalQuantonium = "crystalQuantonium";
     public static String NameItemRawQuantonium = "rawQuantonium";
     public static String NameItemDepletedCrystal = "depletedCrystal";
-    public static String NameItemResearchBook = "researchBook";
     public static String NameItemMultiTool = "multiTool";
     public static String NameItemPortableQCapacitor = "portQCapacitor";
     public static String NameItemUpgrade_ = "upgradeNONE";
@@ -91,7 +89,6 @@ public class Config {
     public static int BlockFiberWireID;
     public static int BlockMCasingID;
     public static int IONForgeEnergyCost;
-    public static String NameRIconTest = RIconPrefix + "test";
     protected static File _configFolder;
     protected static File _configFile;
 
