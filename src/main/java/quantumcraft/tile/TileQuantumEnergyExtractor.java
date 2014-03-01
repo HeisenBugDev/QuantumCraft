@@ -4,19 +4,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import quantumcraft.core.Loader;
-import quantumcraft.core.interfaces.IQEnergizable;
-import quantumcraft.core.interfaces.IUpgradable;
+import quantumcraft.core.interfaces.IQuantumEnergizable;
 import quantumcraft.inventory.SimpleInventory;
-import quantumcraft.tile.abstracttiles.TileEnergySink;
+import quantumcraft.items.ItemInfinitePower;
+import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.tile.abstracttiles.TileMachineBase;
-import quantumcraft.util.BasicUtils;
 import quantumcraft.util.TileUtil;
 
-public class TileQEInjector extends TileEnergySink implements ISidedInventory, IUpgradable {
+public class TileQuantumEnergyExtractor extends TileEnergySource implements ISidedInventory {
 
-    public int currentival = 0;
-    public int maxival = 0;
     public ItemStack[] inventory = new ItemStack[2];
 
     @Override
@@ -73,7 +69,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
 
     @Override
     public String getInventoryName() {
-        return "Quantum Energy Injector";
+        return null;
     }
 
     @Override
@@ -112,25 +108,13 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
 
     @Override
     public int guiID() {
-        return 2;
-    }
-
-    public void dropUpgrades() {
-        for (int u : upgradeID) {
-            if (u != 0) {
-                BasicUtils.dropItem(worldObj, xCoord, yCoord, zCoord,
-                        new ItemStack(Loader.ItemUpgrade, 1, u)); //DROP DA UPGRADE
-                u = 0;
-            }
-        }
-
+        return 5;
     }
 
     @Override
     public void onBlockBreak() {
-        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 1);
+        SimpleInventory tmp = new SimpleInventory(inventory, "tmp", 64);
         tmp.dropContents(worldObj, xCoord, yCoord, zCoord);
-        dropUpgrades();
     }
 
     //I think this method would like a refactor, but meh. if you have the nerves to do it, go ahead. AND DO NOT BREAK IT
@@ -138,13 +122,7 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
     public void updateEntity() {
         super.updateEntity();
         if (redstonePower) return;
-        if (inventory[0] == null && currentival != 0) {
-            currentival = 0;
-        }
-        if (this.getCurrentEnergy() < this.getMaxEnergy()) {
-            this.addEnergy(this.requestPacket(60));
-        }
-        injectPower(inventory, upgradeID, true, this, this);
+        extractPower(inventory, this, this, true, 0);
         if (updateNextTick) {
             // All nearby players need to be updated if the status of work
             // changes, or if heat runs out / starts up, in order to change
@@ -154,43 +132,37 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
         }
     }
 
-    public static void injectPower(ItemStack[] inventoryLocal, int[] upgradeIDLocal, boolean runProcess,
-                                   TileMachineBase tile, ISidedInventory inv) {
-        if (inventoryLocal[0] != null && inventoryLocal[1] == null) {
-            if (inventoryLocal[0].getItem() instanceof IQEnergizable) {
-                IQEnergizable e = ((IQEnergizable) inventoryLocal[0].getItem());
-                int cycle = 50 + BasicUtils.overclockMultiplier(upgradeIDLocal);
-                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) <= (e.getMaxQEnergyValue() - cycle)) {
-                    if (tile.getCurrentEnergy() < cycle) {
-                        cycle = tile.getCurrentEnergy();
-                    }
-                    if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(inventoryLocal[0],
-                                e.getCurrentQEnergyBuffer(inventoryLocal[0]) + cycle);
-                    }
-                } else {
-                    cycle = e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer(inventoryLocal[0]);
-                    if (tile.getCurrentEnergy() < cycle) {
-                        cycle = tile.getCurrentEnergy();
-                    }
-                    if (cycle != 0) {
-                        e.setCurrentQEnergyBuffer(inventoryLocal[0],
-                                e.getCurrentQEnergyBuffer(inventoryLocal[0]) + cycle);
-                    }
-                }
-                inventoryLocal[0].getItem().setDamage(inventoryLocal[0],
-                        e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer(inventoryLocal[0]));
-                tile.subtractEnergy(cycle);
-                tile.updateNextTick = true;
+    public static void extractPower(ItemStack[] inventoryLocal, TileMachineBase tile, ISidedInventory inv,
+                                    boolean runProcess, int inputSlot) {
+        if (inventoryLocal[inputSlot] != null) {
+            if (inventoryLocal[inputSlot].getItem() instanceof IQuantumEnergizable) {
+                IQuantumEnergizable e = ((IQuantumEnergizable) inventoryLocal[inputSlot].getItem());
+                int cycle;
+                if (e instanceof ItemInfinitePower) {
+                    cycle = 100000;
 
-                if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue() && runProcess) {
-                    inventoryLocal[1] = inventoryLocal[0].copy();
+                } else {
+                    cycle = 50;
+                }
+                if (!(tile.getCurrentEnergy() + cycle <= tile.getMaxEnergy())) {
+                    cycle = tile.getMaxEnergy() - tile.getCurrentEnergy();
+                }
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]) < cycle) {
+                    cycle = e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]);
+                }
+                e.setCurrentQEnergyBuffer(inventoryLocal[inputSlot],
+                        e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]) - cycle);
+                inventoryLocal[inputSlot].getItem().setDamage(inventoryLocal[inputSlot],
+                        e.getMaxQEnergyValue() - e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]));
+                tile.addEnergy(cycle);
+
+                if (e.getCurrentQEnergyBuffer(inventoryLocal[inputSlot]) == 0 && runProcess &&
+                        inventoryLocal[1] == null) {
+                    inventoryLocal[1] = inventoryLocal[inputSlot].copy();
                     inv.decrStackSize(0, 1);
-                    inventoryLocal[1].getItem().setDamage(inventoryLocal[1], 1);
-                } else if (e.getCurrentQEnergyBuffer(inventoryLocal[0]) == e.getMaxQEnergyValue()) {
-                    inventoryLocal[0].getItem().setDamage(inventoryLocal[0], 1);
                 }
             }
+
         }
     }
 
@@ -198,8 +170,6 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
         TileUtil.readInventory(par1NBTTagCompound, this.inventory);
-        this.currentival = par1NBTTagCompound.getInteger("currentival");
-        this.maxival = par1NBTTagCompound.getInteger("maxival");
         updateNextTick = true;
     }
 
@@ -209,8 +179,6 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setInteger("currentival", this.currentival);
-        par1NBTTagCompound.setInteger("maxival", this.maxival);
         TileUtil.saveInventory(par1NBTTagCompound, this.inventory);
         super.writeToNBT(par1NBTTagCompound);
     }
@@ -220,14 +188,4 @@ public class TileQEInjector extends TileEnergySink implements ISidedInventory, I
         return 100; //this is supposed to be a very small buffer
     }
 
-    @Override
-    public boolean eatUpgrade(int id) {
-        for (int i = 0; i < 4; i++) {
-            if (upgradeID[i] == 0) {
-                upgradeID[i] = id;
-                return true;
-            }
-        }
-        return false;
-    }
 }

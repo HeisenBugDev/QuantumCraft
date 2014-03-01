@@ -6,17 +6,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySource;
-import quantumcraft.tile.TileQEExtractor;
+import quantumcraft.tile.TileQuantumEnergyExtractor;
 
-public class BlockQEExtractor extends BlockEnergySource {
-
-    public BlockQEExtractor(int id) {
-        super(id);
-    }
+public class BlockQuantumEnergyExtractor extends BlockEnergySource {
 
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
-        return new TileQEExtractor();
+        return new TileQuantumEnergyExtractor();
     }
 
     @SideOnly(Side.CLIENT)

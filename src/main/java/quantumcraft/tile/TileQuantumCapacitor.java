@@ -10,7 +10,7 @@ import quantumcraft.util.CapacitorName;
 import quantumcraft.util.Coords;
 import quantumcraft.util.TileUtil;
 
-public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
+public class TileQuantumCapacitor extends TileEnergySink implements ISidedInventory {
     public ItemStack[] inventory = new ItemStack[2];
     public int upgradeID[] = {0, 0, 0, 0};
     private int maxEnergyMultiplier = 1;
@@ -71,8 +71,8 @@ public class TileQCapacitor extends TileEnergySink implements ISidedInventory {
         super.updateEntity();
         if (redstonePower) return;
         this.addEnergy(this.requestPacket(10000));
-        TileQEInjector.injectPower(inventory, upgradeID, false, this, this);
-        TileQEExtractor.extractPower(inventory, this, this, false, 1);
+        TileQuantumEnergyInjector.injectPower(inventory, upgradeID, false, this, this);
+        TileQuantumEnergyExtractor.extractPower(inventory, this, this, false, 1);
     }
 
     @Override

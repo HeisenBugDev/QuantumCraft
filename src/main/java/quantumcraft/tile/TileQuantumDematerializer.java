@@ -13,7 +13,7 @@ import quantumcraft.util.TileUtil;
 
 import java.util.Random;
 
-public class TileQDematerializer extends TileEnergySource implements ISidedInventory, IUpgradable {
+public class TileQuantumDematerializer extends TileEnergySource implements ISidedInventory, IUpgradable {
 
     public ItemStack[] inventory = new ItemStack[1];
     public int processTime = -1;

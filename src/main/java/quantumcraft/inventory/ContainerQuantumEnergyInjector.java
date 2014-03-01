@@ -4,13 +4,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import quantumcraft.inventory.abstractinv.ContainerUpdatedBase;
-import quantumcraft.tile.TileQEInjector;
+import quantumcraft.tile.TileQuantumEnergyInjector;
 
-public class ContainerQEInjector extends ContainerUpdatedBase {
+public class ContainerQuantumEnergyInjector extends ContainerUpdatedBase {
 
-    public TileQEInjector tile;
+    public TileQuantumEnergyInjector tile;
 
-    public ContainerQEInjector(InventoryPlayer ip, TileQEInjector te) {
+    public ContainerQuantumEnergyInjector(InventoryPlayer ip, TileQuantumEnergyInjector te) {
         super(ip);
         maxStackSize = 1;
         tile = te;

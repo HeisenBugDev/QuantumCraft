@@ -2,13 +2,13 @@ package quantumcraft.gui;
 
 import net.minecraft.inventory.Container;
 import quantumcraft.gui.abstractguis.GuiBase;
-import quantumcraft.inventory.ContainerQCapacitor;
+import quantumcraft.inventory.ContainerQuantumCapacitor;
 
-public class GuiQCapacitor extends GuiBase {
+public class GuiQuantumCapacitor extends GuiBase {
 
-    public GuiQCapacitor(Container container) {
+    public GuiQuantumCapacitor(Container container) {
         super(container, 200, 170);
-        tile = ((ContainerQCapacitor) container).tile;
+        tile = ((ContainerQuantumCapacitor) container).tile;
         setStripColor(0, 0.8F, 0.8F);
     }
 

@@ -11,8 +11,8 @@ import quantumcraft.util.Coords;
 
 public abstract class BlockEnergySource extends BlockEnergyComponent implements IQEnergySource {
 
-    public BlockEnergySource(int id) {
-        super(id, Material.iron);
+    public BlockEnergySource() {
+        super(Material.iron);
     }
 
     @Override

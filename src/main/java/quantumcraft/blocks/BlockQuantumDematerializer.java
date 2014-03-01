@@ -6,18 +6,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySource;
-import quantumcraft.tile.TileQDematerializer;
+import quantumcraft.tile.TileQuantumDematerializer;
 
-public class BlockQDematerializer extends BlockEnergySource {
-
-
-    public BlockQDematerializer(int id) {
-        super(id);
-    }
+public class BlockQuantumDematerializer extends BlockEnergySource {
 
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
-        return new TileQDematerializer();
+        return new TileQuantumDematerializer();
     }
 
     @SideOnly(Side.CLIENT)

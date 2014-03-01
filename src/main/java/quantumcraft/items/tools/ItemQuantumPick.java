@@ -7,10 +7,10 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import quantumcraft.core.Loader;
-import quantumcraft.core.interfaces.IQEnergizable;
+import quantumcraft.core.interfaces.IQuantumEnergizable;
 import quantumcraft.util.ItemEnergyUtils;
 
-public class ItemQuantumPick extends ItemPickaxe implements IQEnergizable {
+public class ItemQuantumPick extends ItemPickaxe implements IQuantumEnergizable {
 
     int maxQenergyValue = 10000;
 

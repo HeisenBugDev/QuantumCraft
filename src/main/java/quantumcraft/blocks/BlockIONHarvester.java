@@ -7,9 +7,6 @@ import quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import quantumcraft.tile.TileIONHarvester;
 
 public class BlockIONHarvester extends BlockEnergySink {
-    public BlockIONHarvester(int id) {
-        super(id);
-    }
 
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {

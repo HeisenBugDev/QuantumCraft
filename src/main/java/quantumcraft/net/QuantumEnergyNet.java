@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.net.RecursiveScanner.IDataGatherer;
-import quantumcraft.tile.TileQCapacitor;
+import quantumcraft.tile.TileQuantumCapacitor;
 import quantumcraft.util.Coords;
 
 import java.util.ArrayList;
@@ -69,9 +69,9 @@ public class QuantumEnergyNet {
                         //sources2.remove(source);
                     }
                     if (w.getTileEntity(sink.getXCoord(), sink.getYCoord(),
-                            sink.getZCoord()) instanceof TileQCapacitor &&
+                            sink.getZCoord()) instanceof TileQuantumCapacitor &&
                             w.getTileEntity(source.getXCoord(), source.getYCoord(),
-                                    source.getZCoord()) instanceof TileQCapacitor) {
+                                    source.getZCoord()) instanceof TileQuantumCapacitor) {
                         sourcesTmp.add(source);
                         QuantumCraft.logHandler.debugPrint("In QuantumEnergy Net, sink and source are capacitors");
                         QuantumCraft.logHandler.debugPrint(w.getTileEntity(sink.getXCoord(),sink.getYCoord(),

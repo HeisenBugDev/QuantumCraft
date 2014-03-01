@@ -2,15 +2,15 @@ package quantumcraft.gui;
 
 import net.minecraft.inventory.Container;
 import quantumcraft.gui.abstractguis.GuiBase;
-import quantumcraft.inventory.ContainerQDematerializer;
-import quantumcraft.tile.TileQDematerializer;
+import quantumcraft.inventory.ContainerQuantumDeenergizer;
+import quantumcraft.tile.TileQuantumDeenergizer;
 
-public class GuiQDematerializer extends GuiBase {
+public class GuiQuantumDeenergizer extends GuiBase {
 
-    public GuiQDematerializer(Container par1Container) {
+    public GuiQuantumDeenergizer(Container par1Container) {
         super(par1Container, 200, 170);
-        tile = ((ContainerQDematerializer) par1Container).tile;
-        setStripColor(1, 0, 0);
+        tile = ((ContainerQuantumDeenergizer) par1Container).tile;
+        setStripColor(0.7F, 0.7F, 0.7F);
     }
 
     @Override
@@ -26,21 +26,15 @@ public class GuiQDematerializer extends GuiBase {
 
     protected void drawBackground() {
         super.drawBackground();
-        if (this.renderContents) {
-            bindImage(GuiTextures.GUI_1SLOT_BG);
-            drawQuad(30, 50, 0, 1, 0, 1, 18, 18);
-            bindImage(GuiTextures.GUI_DEMAT_ARROW);
-            drawQuad(50, 55, 0, 1, 0, 1, 21, 9);
-            drawDivider();
-        }
+        drawTwoSlot();
     }
 
     protected void drawProgressBar() {
         int x = 33;
         int y = 70;
-        int width = 47 - (int) ((float) ((TileQDematerializer) tile).processTime /
-                (float) ((TileQDematerializer) tile).currentProcessTime * 47F);
-        drawProgressBelow(width, x, y, 45);
+        int width = 47 - (int) ((float) ((TileQuantumDeenergizer) tile).QEnergyItemBuffer /
+                (float) ((TileQuantumDeenergizer) tile).lastItemValue * 47F);
+        drawProgressBelow(width, x, y, 47);
     }
 
     protected void drawForeground() {
@@ -54,5 +48,7 @@ public class GuiQDematerializer extends GuiBase {
 
             handleHover();
         }
+
     }
+
 }

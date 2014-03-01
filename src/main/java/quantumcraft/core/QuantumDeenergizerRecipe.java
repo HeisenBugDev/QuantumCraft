@@ -2,7 +2,7 @@ package quantumcraft.core;
 
 import net.minecraft.item.ItemStack;
 
-public class QDERecipe {
+public class QuantumDeenergizerRecipe {
 
     private ItemStack _inputItem;
     private ItemStack _outputItem;
@@ -33,7 +33,7 @@ public class QDERecipe {
      * @param energyValue - QEnergy Value of the item, Quantonium = 100
      * @param processTime - Time to process the item (ticks)
      */
-    public QDERecipe(ItemStack inputItem, ItemStack outputItem, int energyValue, int processTime) {
+    public QuantumDeenergizerRecipe(ItemStack inputItem, ItemStack outputItem, int energyValue, int processTime) {
         this._inputItem = inputItem;
         this._outputItem = outputItem;
         this._energyValue = energyValue;
@@ -43,7 +43,7 @@ public class QDERecipe {
     /**
      * Default process time (60 ticks = 3s)
      */
-    public QDERecipe(ItemStack inputItem, ItemStack outputItem, int energyValue) {
+    public QuantumDeenergizerRecipe(ItemStack inputItem, ItemStack outputItem, int energyValue) {
         this._inputItem = inputItem;
         this._outputItem = outputItem;
         this._energyValue = energyValue;
@@ -56,7 +56,7 @@ public class QDERecipe {
      * @param inputItem   - Input Item in the recipe.
      * @param energyValue - QEnergy Value of the item, Quantonium = 100
      */
-    public QDERecipe(ItemStack inputItem, int energyValue) {
+    public QuantumDeenergizerRecipe(ItemStack inputItem, int energyValue) {
         this._inputItem = inputItem;
         this._outputItem = new ItemStack(Loader.ItemDepletedCrystal);
         this._energyValue = energyValue;

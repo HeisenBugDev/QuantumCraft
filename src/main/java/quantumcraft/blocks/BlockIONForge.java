@@ -7,10 +7,7 @@ import quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import quantumcraft.tile.TileIONForge;
 
 public class BlockIONForge extends BlockEnergySink {
-    public BlockIONForge(int id) {
-        super(id);
-    }
-
+    
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineIOF_front");

@@ -5,10 +5,10 @@ import net.minecraft.util.EnumChatFormatting;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.util.BasicUtils;
 import quantumcraft.util.Coords;
-import quantumcraft.util.QInterdimensionalGeneratorDataObject;
-import quantumcraft.util.QInterdimensionalGeneratorUtil;
+import quantumcraft.util.QuantumInterdimensionalGeneratorDataObject;
+import quantumcraft.util.QuantumInterdimensionalGeneratorUtil;
 
-public class TileQInterdimensionalGenerator extends TileEnergySource {
+public class TileQuantumInterdimensionalGenerator extends TileEnergySource {
 
     private int outputRate = 0;
     private int generatorsInChunk = 0;
@@ -26,8 +26,8 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     @Override
     public void onBlockBreak() {
         System.out.println("onblockBreak");
-        QInterdimensionalGeneratorUtil.removeGeneratorFromNewCoords(
-                new QInterdimensionalGeneratorDataObject(new Coords(xCoord, yCoord, zCoord)), worldObj);
+        QuantumInterdimensionalGeneratorUtil.removeGeneratorFromNewCoords(
+                new QuantumInterdimensionalGeneratorDataObject(new Coords(xCoord, yCoord, zCoord)), worldObj);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
 
         generatorsInChunk = 0;
 
-        for (QInterdimensionalGeneratorDataObject generator : QInterdimensionalGeneratorUtil.getGenerators()) {
+        for (QuantumInterdimensionalGeneratorDataObject generator : QuantumInterdimensionalGeneratorUtil.getGenerators()) {
             if (generator == null) return;
             int localXChunk = BasicUtils.getChunk(generator.getCoords().x);
             int localZChunk = BasicUtils.getChunk(generator.getCoords().z);
@@ -64,8 +64,8 @@ public class TileQInterdimensionalGenerator extends TileEnergySource {
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
-        QInterdimensionalGeneratorUtil
-                .addGenerator(new QInterdimensionalGeneratorDataObject(new Coords(xCoord, yCoord, zCoord)));
-        QInterdimensionalGeneratorUtil.updateAllGenerators(worldObj);
+        QuantumInterdimensionalGeneratorUtil
+                .addGenerator(new QuantumInterdimensionalGeneratorDataObject(new Coords(xCoord, yCoord, zCoord)));
+        QuantumInterdimensionalGeneratorUtil.updateAllGenerators(worldObj);
     }
 }

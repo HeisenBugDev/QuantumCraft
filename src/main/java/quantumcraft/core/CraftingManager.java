@@ -42,35 +42,35 @@ public class CraftingManager {
 
             // Q Interdimensional Generator
             GameRegistry
-                    .addShapedRecipe(new ItemStack(Loader.BlockQInterdimensionalGenerator, 1), "ucu", "kmk", "ucu", 'u',
+                    .addShapedRecipe(new ItemStack(Loader.BlockQuantumInterdimensionalGenerator, 1), "ucu", "kmk", "ucu", 'u',
                             unbioxeniumStack, 'c', crystalStack, 'k', new ItemStack(Loader.ItemQuantumConverter), 'm',
                             new ItemStack(Loader.BlockMachineCasing));
         }
         // PORT. CAPACITOR   x1
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemPortableQCapacitor, 1), "pcp", "xcx", "pcp", 'p',
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.ItemPortableQuantumCapacitor, 1), "pcp", "xcx", "pcp", 'p',
                 new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack, 'x',
                 new ItemStack(Loader.ItemHyperConductor));
         // MACHINE CASING
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockMachineCasing, 1), "ppp", "p p", "ppp", 'p',
                 new ItemStack(Loader.ItemQuantumPlating));
         // DEENERGIZER
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQDeenergizer, 1), "pcp", "xmx", "ppp", 'p',
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQuantumDeenergizer, 1), "pcp", "xmx", "ppp", 'p',
                 new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack, 'x',
                 new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing));
         // DEMATERIALIZER
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQDematerializer, 1), "cxc", "geg", "pmp", 'p',
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQuantumDematerializer, 1), "cxc", "geg", "pmp", 'p',
                 new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack, 'x',
                 new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing), 'g',
                 new ItemStack(Blocks.glass), 'e', new ItemStack(Items.ender_pearl));
         // INJECTOR
-        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQEInjector, 1), "ccc", "pmp", "pxp", 'p',
+        GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockQuantumEnergyInjector, 1), "ccc", "pmp", "pxp", 'p',
                 new ItemStack(Loader.ItemQuantumPlating), 'c', crystalStack, 'x',
                 new ItemStack(Loader.ItemHyperConductor), 'm', new ItemStack(Loader.BlockMachineCasing));
         GameRegistry
-                .addShapelessRecipe(new ItemStack(Loader.BlockQEInjector, 1), new ItemStack(Loader.BlockQEExtractor));
+                .addShapelessRecipe(new ItemStack(Loader.BlockQuantumEnergyInjector, 1), new ItemStack(Loader.BlockQuantumEnergyExtractor));
         // EXTRACTOR
         GameRegistry
-                .addShapelessRecipe(new ItemStack(Loader.BlockQEExtractor, 1), new ItemStack(Loader.BlockQEInjector));
+                .addShapelessRecipe(new ItemStack(Loader.BlockQuantumEnergyExtractor, 1), new ItemStack(Loader.BlockQuantumEnergyInjector));
 
         // ION Forge
         GameRegistry.addShapedRecipe(new ItemStack(Loader.BlockIONForge, 1), "aaa", "cbc", "aaa", 'a',
@@ -124,7 +124,7 @@ public class CraftingManager {
     }
 
     public static void addQDE() {
-        QRecipeHandler.addQDERecipe(new QDERecipe(new ItemStack(Loader.ItemCrystalQuantonium), 1100));
+        QRecipeHandler.addQDERecipe(new QuantumDeenergizerRecipe(new ItemStack(Loader.ItemCrystalQuantonium), 1100));
     }
 
 }

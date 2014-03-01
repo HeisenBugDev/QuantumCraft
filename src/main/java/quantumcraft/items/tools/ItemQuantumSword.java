@@ -8,10 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 import quantumcraft.core.Loader;
-import quantumcraft.core.interfaces.IQEnergizable;
+import quantumcraft.core.interfaces.IQuantumEnergizable;
 import quantumcraft.util.ItemEnergyUtils;
 
-public class ItemQuantumSword extends ItemSword implements IQEnergizable {
+public class ItemQuantumSword extends ItemSword implements IQuantumEnergizable {
 
     int maxQenergyValue = 10000;
 

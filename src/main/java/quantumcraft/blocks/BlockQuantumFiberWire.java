@@ -16,8 +16,8 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
 
     public static IIcon iconTexture;
 
-    public BlockQuantumFiberWire(int id) {
-        super(id, Material.circuits);
+    public BlockQuantumFiberWire() {
+        super(Material.circuits);
     }
 
     @Override

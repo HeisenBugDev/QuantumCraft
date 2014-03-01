@@ -1,9 +1,9 @@
 package quantumcraft.util;
 
-public class QInterdimensionalGeneratorDataObject {
+public class QuantumInterdimensionalGeneratorDataObject {
     private Coords coords;
 
-    public QInterdimensionalGeneratorDataObject(Coords localCoords) {
+    public QuantumInterdimensionalGeneratorDataObject(Coords localCoords) {
         coords = localCoords;
     }
 

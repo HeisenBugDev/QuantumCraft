@@ -7,10 +7,10 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import quantumcraft.core.Loader;
-import quantumcraft.core.interfaces.IQEnergizable;
+import quantumcraft.core.interfaces.IQuantumEnergizable;
 import quantumcraft.util.ItemEnergyUtils;
 
-public class ItemQuantumAxe extends ItemAxe implements IQEnergizable {
+public class ItemQuantumAxe extends ItemAxe implements IQuantumEnergizable {
 
     int maxQenergyValue = 10000;
 

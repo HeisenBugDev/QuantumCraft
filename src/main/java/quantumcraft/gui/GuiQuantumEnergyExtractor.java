@@ -2,13 +2,13 @@ package quantumcraft.gui;
 
 import net.minecraft.inventory.Container;
 import quantumcraft.gui.abstractguis.GuiBase;
-import quantumcraft.inventory.ContainerQEExtractor;
+import quantumcraft.inventory.ContainerQuantumEnergyExtractor;
 
-public class GuiQEExtractor extends GuiBase {
+public class GuiQuantumEnergyExtractor extends GuiBase {
 
-    public GuiQEExtractor(Container par1Container) {
+    public GuiQuantumEnergyExtractor(Container par1Container) {
         super(par1Container, 200, 170);
-        tile = ((ContainerQEExtractor) par1Container).tile;
+        tile = ((ContainerQuantumEnergyExtractor) par1Container).tile;
         setStripColor(0, 1, 0);
     }
 

@@ -2,7 +2,7 @@ package quantumcraft.core.interfaces;
 
 import net.minecraft.item.ItemStack;
 
-public interface IQEnergizable {
+public interface IQuantumEnergizable {
 
     /**
      * @return maximum energy the item can hold

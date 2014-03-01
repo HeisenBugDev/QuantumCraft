@@ -5,11 +5,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import quantumcraft.inventory.abstractinv.ContainerUpdatedBase;
-import quantumcraft.tile.TileQCapacitor;
+import quantumcraft.tile.TileQuantumCapacitor;
 
-public class ContainerQCapacitor extends ContainerUpdatedBase{
-    public TileQCapacitor tile;
-    public ContainerQCapacitor(InventoryPlayer ip, TileQCapacitor te) {
+public class ContainerQuantumCapacitor extends ContainerUpdatedBase{
+    public TileQuantumCapacitor tile;
+    public ContainerQuantumCapacitor(InventoryPlayer ip, TileQuantumCapacitor te) {
         super(ip);
         tile = te;
         this.addSlotToContainer(new Slot(tile, 0, 40, 77));

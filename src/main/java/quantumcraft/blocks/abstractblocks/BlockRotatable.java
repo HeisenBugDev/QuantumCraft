@@ -12,7 +12,7 @@ import quantumcraft.tile.abstracttiles.TileMachineBase;
 public abstract class BlockRotatable extends BlockContainer {
 
 
-    public BlockRotatable(int id, Material material) {
+    public BlockRotatable(Material material) {
         super(material);
     }
 

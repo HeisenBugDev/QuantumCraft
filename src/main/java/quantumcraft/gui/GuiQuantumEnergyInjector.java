@@ -2,15 +2,14 @@ package quantumcraft.gui;
 
 import net.minecraft.inventory.Container;
 import quantumcraft.gui.abstractguis.GuiBase;
-import quantumcraft.inventory.ContainerQDeenergizer;
-import quantumcraft.tile.TileQDeenergizer;
+import quantumcraft.inventory.ContainerQuantumEnergyInjector;
 
-public class GuiQDeenergizer extends GuiBase {
+public class GuiQuantumEnergyInjector extends GuiBase {
 
-    public GuiQDeenergizer(Container par1Container) {
+    public GuiQuantumEnergyInjector(Container par1Container) {
         super(par1Container, 200, 170);
-        tile = ((ContainerQDeenergizer) par1Container).tile;
-        setStripColor(0.7F, 0.7F, 0.7F);
+        tile = ((ContainerQuantumEnergyInjector) par1Container).tile;
+        setStripColor(1, 1, 0);
     }
 
     @Override
@@ -26,15 +25,7 @@ public class GuiQDeenergizer extends GuiBase {
 
     protected void drawBackground() {
         super.drawBackground();
-        drawTwoSlot();
-    }
-
-    protected void drawProgressBar() {
-        int x = 33;
-        int y = 70;
-        int width = 47 - (int) ((float) ((TileQDeenergizer) tile).QEnergyItemBuffer /
-                (float) ((TileQDeenergizer) tile).lastItemValue * 47F);
-        drawProgressBelow(width, x, y, 47);
+        super.drawTwoSlot();
     }
 
     protected void drawForeground() {
@@ -42,8 +33,6 @@ public class GuiQDeenergizer extends GuiBase {
             drawBaseForeground();
 
             drawBasePowerBar();
-            drawProgressBar();
-
             renderStandardText();
 
             handleHover();

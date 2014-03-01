@@ -4,16 +4,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import quantumcraft.inventory.abstractinv.ContainerUpdatedBase;
-import quantumcraft.tile.TileQDematerializer;
+import quantumcraft.tile.TileQuantumDeenergizer;
 
-public class ContainerQDematerializer extends ContainerUpdatedBase {
+public class ContainerQuantumDeenergizer extends ContainerUpdatedBase {
 
-    public TileQDematerializer tile;
-
-    public ContainerQDematerializer(InventoryPlayer ip, TileQDematerializer te) {
+    public TileQuantumDeenergizer tile;
+    public ContainerQuantumDeenergizer(InventoryPlayer ip, TileQuantumDeenergizer te) {
         super(ip);
         tile = te;
         this.addSlotToContainer(new Slot(tile, 0, 40, 60));
+        this.addSlotToContainer(new SlotOutput(tile, 1, 75, 60));
     }
 
     @Override

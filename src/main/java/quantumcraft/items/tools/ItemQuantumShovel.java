@@ -6,10 +6,10 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import quantumcraft.core.Loader;
-import quantumcraft.core.interfaces.IQEnergizable;
+import quantumcraft.core.interfaces.IQuantumEnergizable;
 import quantumcraft.util.ItemEnergyUtils;
 
-public class ItemQuantumShovel extends ItemSpade implements IQEnergizable {
+public class ItemQuantumShovel extends ItemSpade implements IQuantumEnergizable {
 
     int maxQenergyValue = 10000;
 

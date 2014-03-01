@@ -2,7 +2,7 @@ package quantumcraft.tile;
 
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 
-public class TileQEnergySucker extends TileEnergySink {
+public class TileQuantumEnergySucker extends TileEnergySink {
     @Override
     public int getMaxEnergy() {
         return 10;

@@ -6,16 +6,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySink;
-import quantumcraft.tile.TileQEInjector;
+import quantumcraft.tile.TileQuantumEnergyInjector;
 
-public class BlockQEInjector extends BlockEnergySink {
-    public BlockQEInjector(int id) {
-        super(id);
-    }
+public class BlockQuantumEnergyInjector extends BlockEnergySink {
 
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
-        return new TileQEInjector();
+        return new TileQuantumEnergyInjector();
     }
 
     @SideOnly(Side.CLIENT)

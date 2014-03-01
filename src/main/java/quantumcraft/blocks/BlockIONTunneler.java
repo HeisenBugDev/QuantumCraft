@@ -7,9 +7,6 @@ import quantumcraft.blocks.abstractblocks.BlockEnergySink;
 import quantumcraft.tile.TileIONTunneler;
 
 public class BlockIONTunneler extends BlockEnergySink {
-    public BlockIONTunneler(int id) {
-        super(id);
-    }
 
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {

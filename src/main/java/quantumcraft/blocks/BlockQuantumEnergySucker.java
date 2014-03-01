@@ -6,17 +6,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergySink;
-import quantumcraft.tile.TileQEnergySucker;
+import quantumcraft.tile.TileQuantumEnergySucker;
 
-public class BlockQEnergySucker extends BlockEnergySink {
-
-    public BlockQEnergySucker(int id) {
-        super(id);
-    }
+public class BlockQuantumEnergySucker extends BlockEnergySink {
 
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
-        return new TileQEnergySucker();
+        return new TileQuantumEnergySucker();
     }
 
     @SideOnly(Side.CLIENT)

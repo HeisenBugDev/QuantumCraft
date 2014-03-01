@@ -14,8 +14,8 @@ import quantumcraft.util.Coords;
 
 public abstract class BlockEnergyComponent extends BlockMachine implements IQEnergyComponent {
 
-    public BlockEnergyComponent(int id, Material material) {
-        super(id, material);
+    public BlockEnergyComponent(Material material) {
+        super(material);
     }
 
     @Override

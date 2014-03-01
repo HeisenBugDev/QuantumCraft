@@ -4,13 +4,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import quantumcraft.inventory.abstractinv.ContainerUpdatedBase;
-import quantumcraft.tile.TileQDeenergizer;
+import quantumcraft.tile.TileQuantumEnergyExtractor;
 
-public class ContainerQDeenergizer extends ContainerUpdatedBase {
+public class ContainerQuantumEnergyExtractor extends ContainerUpdatedBase {
 
-    public TileQDeenergizer tile;
-    public ContainerQDeenergizer(InventoryPlayer ip, TileQDeenergizer te) {
+    public TileQuantumEnergyExtractor tile;
+
+    public ContainerQuantumEnergyExtractor(InventoryPlayer ip, TileQuantumEnergyExtractor te) {
         super(ip);
+        maxStackSize = 1;
         tile = te;
         this.addSlotToContainer(new Slot(tile, 0, 40, 60));
         this.addSlotToContainer(new SlotOutput(tile, 1, 75, 60));

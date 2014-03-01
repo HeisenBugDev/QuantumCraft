@@ -5,19 +5,19 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
-import quantumcraft.core.QDERecipe;
 import quantumcraft.core.QRecipeHandler;
+import quantumcraft.core.QuantumDeenergizerRecipe;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
 import quantumcraft.util.TileUtil;
 
-public class TileQDeenergizer extends TileEnergySource implements ISidedInventory {
+public class TileQuantumDeenergizer extends TileEnergySource implements ISidedInventory {
 
     public int QEnergyItemBuffer = 0;
     public int lastItemValue = 0;
     public ItemStack[] inventory = new ItemStack[2];
     int processTime = -1;
-    QDERecipe r;
+    QuantumDeenergizerRecipe r;
     private boolean isProcessing = false;
 
     @Override

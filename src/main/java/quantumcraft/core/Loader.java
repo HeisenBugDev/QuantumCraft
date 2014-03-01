@@ -2,7 +2,6 @@ package quantumcraft.core;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,7 +19,6 @@ import quantumcraft.items.tools.ItemQuantumSword;
 import quantumcraft.render.RenderFiberWire;
 import quantumcraft.render.RenderOre;
 import quantumcraft.tile.*;
-import quantumcraft.util.CapacitorName;
 
 public class Loader {
 
@@ -32,14 +30,13 @@ public class Loader {
     public static ItemBase ItemDepletedCrystal;
     public static ItemLocationCard ItemLocationCard;
     public static ItemLocationCardBlank ItemLocationCardBlank;
-    public static ItemPortableQCapacitor ItemPortableQCapacitor;
+    public static ItemPortableQuantumCapacitor ItemPortableQuantumCapacitor;
     public static ItemInfinitePower ItemInfinitePower;
     public static ItemUpgrade ItemUpgrade;
     public static ItemQuantumSword ItemQuantumSword;
     public static ItemQuantumAxe ItemQuantumAxe;
     public static ItemQuantumPick ItemQuantumPick;
     public static ItemQuantumShovel ItemQuantumShovel;
-    public static ItemPlaceholder ItemRPlaceHolder;
     public static ItemBase ItemHyperConductor;
     public static ItemBase ItemQuantumPlating;
     public static ItemBase ItemQuantumConverter;
@@ -48,18 +45,18 @@ public class Loader {
     public static BlockOreQuantonium OreQuantonium;
     public static Block BlockMachineCasing;
     /* MACHINE BLOCKS */
-    public static BlockQDeenergizer BlockQDeenergizer;
-    public static BlockQEInjector BlockQEInjector;
-    public static BlockQEnergySucker BlockQEnergySucker;
-    public static BlockQDematerializer BlockQDematerializer;
-    public static BlockQEExtractor BlockQEExtractor;
-    public static BlockQCapacitor BlockQCapacitor;
+    public static BlockQuantumDeenergizer BlockQuantumDeenergizer;
+    public static BlockQuantumEnergyInjector BlockQuantumEnergyInjector;
+    public static BlockQuantumEnergySucker BlockQuantumEnergySucker;
+    public static BlockQuantumDematerializer BlockQuantumDematerializer;
+    public static BlockQuantumEnergyExtractor BlockQuantumEnergyExtractor;
+    public static BlockQuantumCapacitor BlockQuantumCapacitor;
     public static BlockIONForge BlockIONForge;
     public static BlockIONTunneler BlockIONTunneler;
     public static BlockIONScanner BlockIONScanner;
     public static BlockIONHarvester BlockIONHarvester;
-    public static BlockQInterdimensionalGenerator BlockQInterdimensionalGenerator;
-    public static BlockQCapacitor[] capacitors = new BlockQCapacitor[5];
+    public static BlockQuantumInterdimensionalGenerator BlockQuantumInterdimensionalGenerator;
+    public static BlockQuantumCapacitor[] capacitors = new BlockQuantumCapacitor[5];
     /* OTHER BLOCKS */
     public static BlockQuantumFiberWire BlockQuantumFiberWire;
     /* CREATIVE TABS */
@@ -128,36 +125,31 @@ public class Loader {
             GameRegistry.registerItem(ItemLocationCardBlank, Config.NameItemLocationCardBlank);
         }
 
-        ItemPortableQCapacitor = (ItemPortableQCapacitor) new ItemPortableQCapacitor().setCreativeTab(tabQuantumCraft)
+        ItemPortableQuantumCapacitor = (ItemPortableQuantumCapacitor) new ItemPortableQuantumCapacitor().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemPortableQCapacitor)
                 .setTextureName(Config.getTextureName(Config.NameItemPortableQCapacitor));
-        GameRegistry.registerItem(ItemPortableQCapacitor, Config.NameItemPortableQCapacitor);
+        GameRegistry.registerItem(ItemPortableQuantumCapacitor, Config.NameItemPortableQCapacitor);
 
         ItemInfinitePower = (ItemInfinitePower) new ItemInfinitePower().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName("ItemInfinitePower");
         GameRegistry.registerItem(ItemInfinitePower, "ItemInfinitePower");
 
         ItemQuantumSword = (ItemQuantumSword) new ItemQuantumSword().setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameItemQSword).setTextureName(Config.getTextureName(Config.NameItemQSword));
-        GameRegistry.registerItem(ItemQuantumSword, Config.NameItemQSword);
+                .setUnlocalizedName(Config.NameItemQuantumSword).setTextureName(Config.getTextureName(Config.NameItemQuantumSword));
+        GameRegistry.registerItem(ItemQuantumSword, Config.NameItemQuantumSword);
 
         ItemQuantumAxe = (ItemQuantumAxe) new ItemQuantumAxe().setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameItemQAxe).setTextureName(Config.getTextureName(Config.NameItemQAxe));
-        GameRegistry.registerItem(ItemQuantumAxe, Config.NameItemQAxe);
+                .setUnlocalizedName(Config.NameItemQuantumAxe).setTextureName(Config.getTextureName(Config.NameItemQuantumAxe));
+        GameRegistry.registerItem(ItemQuantumAxe, Config.NameItemQuantumAxe);
 
         ItemQuantumPick = (ItemQuantumPick) new ItemQuantumPick().setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameItemQPick).setTextureName(Config.getTextureName(Config.NameItemQPick));
-        GameRegistry.registerItem(ItemQuantumPick, Config.NameItemQPick);
+                .setUnlocalizedName(Config.NameItemQuantumPick).setTextureName(Config.getTextureName(Config.NameItemQuantumPick));
+        GameRegistry.registerItem(ItemQuantumPick, Config.NameItemQuantumPick);
 
         ItemQuantumShovel = (ItemQuantumShovel) new ItemQuantumShovel().setCreativeTab(tabQuantumCraft)
-                .setUnlocalizedName(Config.NameItemQShovel)
-                .setTextureName(Config.getTextureName(Config.NameItemQShovel));
-        GameRegistry.registerItem(ItemQuantumShovel, Config.NameItemQShovel);
-
-        ItemRPlaceHolder = (ItemPlaceholder) new ItemPlaceholder().setCreativeTab(null)
-                .setUnlocalizedName(Config.NameItemRPlaceHolder)
-                .setTextureName(Config.getTextureName(Config.NameItemRPlaceHolder));
-        GameRegistry.registerItem(ItemRPlaceHolder, Config.NameItemRPlaceHolder);
+                .setUnlocalizedName(Config.NameItemQuantumShovel)
+                .setTextureName(Config.getTextureName(Config.NameItemQuantumShovel));
+        GameRegistry.registerItem(ItemQuantumShovel, Config.NameItemQuantumShovel);
 
         ItemHyperConductor = (ItemBase) new ItemBase().setCreativeTab(tabQuantumCraft)
                 .setUnlocalizedName(Config.NameItemHyperConductor)
@@ -186,67 +178,66 @@ public class Loader {
                 .setBlockTextureName(Config.getTextureName(Config.NameOreQuantonium));
         GameRegistry.registerBlock(OreQuantonium, Config.NameOreQuantonium);
 
-        BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire(Config.BlockFiberWireID)
-                .setCreativeTab(tabQuantumCraft).setBlockName(Config.NameBlockQFiberWire);
-        GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQFiberWire);
+        BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire()
+                .setCreativeTab(tabQuantumCraft).setBlockName(Config.NameBlockQuantumFiberWire);
+        GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQuantumFiberWire);
 
-        BlockQDeenergizer = (BlockQDeenergizer) new BlockQDeenergizer(Config.BlockQDEID).setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameBlockQDE);
-        GameRegistry.registerBlock(BlockQDeenergizer, Config.NameBlockQDE);
+        BlockQuantumDeenergizer = (BlockQuantumDeenergizer) new BlockQuantumDeenergizer().setCreativeTab(tabQuantumCraft)
+                .setBlockName(Config.NameBlockQuantumDeenergizer);
+        GameRegistry.registerBlock(BlockQuantumDeenergizer, Config.NameBlockQuantumDeenergizer);
 
-        BlockQDematerializer =
-                (BlockQDematerializer) new BlockQDematerializer(Config.BlockQDMID).setCreativeTab(tabQuantumCraft)
-                        .setBlockName(Config.NameBlockQDM);
-        GameRegistry.registerBlock(BlockQDematerializer, Config.NameBlockQDM);
+        BlockQuantumDematerializer =
+                (BlockQuantumDematerializer) new BlockQuantumDematerializer().setCreativeTab(tabQuantumCraft)
+                        .setBlockName(Config.NameBlockQuantumDematerializer);
+        GameRegistry.registerBlock(BlockQuantumDematerializer, Config.NameBlockQuantumDematerializer);
 
-        BlockQEInjector = (BlockQEInjector) new BlockQEInjector(Config.BlockQEIID).setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameBlockQEI);
-        GameRegistry.registerBlock(BlockQEInjector, Config.NameBlockQEI);
+        BlockQuantumEnergyInjector = (BlockQuantumEnergyInjector) new BlockQuantumEnergyInjector().setCreativeTab(tabQuantumCraft)
+                .setBlockName(Config.NameBlockQuantumEnergyInjector);
+        GameRegistry.registerBlock(BlockQuantumEnergyInjector, Config.NameBlockQuantumEnergyInjector);
 
-        BlockIONForge = (BlockIONForge) new BlockIONForge(Config.BlockIOFID).setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameBlockIOF);
-        GameRegistry.registerBlock(BlockIONForge, Config.NameBlockIOF);
+        BlockIONForge = (BlockIONForge) new BlockIONForge().setCreativeTab(tabQuantumCraft)
+                .setBlockName(Config.NameBlockIONForge);
+        GameRegistry.registerBlock(BlockIONForge, Config.NameBlockIONForge);
 
-        BlockIONTunneler = (BlockIONTunneler) new BlockIONTunneler(Config.BlockIOTID).setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameBlockIOT);
-        GameRegistry.registerBlock(BlockIONTunneler, Config.NameBlockIOT);
+        BlockIONTunneler = (BlockIONTunneler) new BlockIONTunneler().setCreativeTab(tabQuantumCraft)
+                .setBlockName(Config.NameBlockIONTunneler);
+        GameRegistry.registerBlock(BlockIONTunneler, Config.NameBlockIONTunneler);
 
-        BlockIONScanner = (BlockIONScanner) new BlockIONScanner(Config.BlockIOSID).setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameBlockIOS);
-        GameRegistry.registerBlock(BlockIONScanner, Config.NameBlockIOS);
+        BlockIONScanner = (BlockIONScanner) new BlockIONScanner().setCreativeTab(tabQuantumCraft)
+                .setBlockName(Config.NameBlockIONScanner);
+        GameRegistry.registerBlock(BlockIONScanner, Config.NameBlockIONScanner);
 
 
-        BlockIONHarvester = (BlockIONHarvester) new BlockIONHarvester(Config.BlockIOHID).setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameBlockIOH);
-        GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIOH);
+        BlockIONHarvester = (BlockIONHarvester) new BlockIONHarvester().setCreativeTab(tabQuantumCraft)
+                .setBlockName(Config.NameBlockIONHarvester);
+        GameRegistry.registerBlock(BlockIONHarvester, Config.NameBlockIONHarvester);
 
-        BlockQInterdimensionalGenerator =
-                (BlockQInterdimensionalGenerator) new BlockQInterdimensionalGenerator(Config.BlockQIGID)
-                        .setCreativeTab(tabQuantumCraft).setBlockName(Config.NameBlockQIG);
-        GameRegistry.registerBlock(BlockQInterdimensionalGenerator, Config.NameBlockQIG);
+        BlockQuantumInterdimensionalGenerator =
+                (BlockQuantumInterdimensionalGenerator) new BlockQuantumInterdimensionalGenerator()
+                        .setCreativeTab(tabQuantumCraft).setBlockName(Config.NameBlockQuantumInterdimensionalGenerator);
+        GameRegistry.registerBlock(BlockQuantumInterdimensionalGenerator, Config.NameBlockQuantumInterdimensionalGenerator);
 
         for (int i = 1; i <= 5; i++) {
-            BlockQCapacitor = (BlockQCapacitor) new BlockQCapacitor(Config.BlockQCPID.getInt() + i)
-                    .setCreativeTab(tabQuantumCraft).setBlockName(Config.NameBlockQCP + i);
-            BlockQCapacitor.setMaxEnergyMultiplier(i);
-            capacitors[i - 1] = BlockQCapacitor;
-            LanguageRegistry.addName(BlockQCapacitor, "Quantum " + CapacitorName.getName(i) + " Capacitor");
-            GameRegistry.registerBlock(BlockQCapacitor, Config.NameBlockQCP + i);
+            BlockQuantumCapacitor = (BlockQuantumCapacitor) new BlockQuantumCapacitor()
+                    .setCreativeTab(tabQuantumCraft).setBlockName(Config.NameBlockQuantumCapacitor + i);
+            BlockQuantumCapacitor.setMaxEnergyMultiplier(i);
+            capacitors[i - 1] = BlockQuantumCapacitor;
+            GameRegistry.registerBlock(BlockQuantumCapacitor, Config.NameBlockQuantumCapacitor + i);
         }
         if (Config.beta.getBoolean(false)) {
-            BlockQEnergySucker =
-                    (BlockQEnergySucker) new BlockQEnergySucker(Config.BlockQESID).setCreativeTab(tabQuantumCraft)
-                            .setBlockName(Config.NameBlockQES);
-            GameRegistry.registerBlock(BlockQEnergySucker, Config.NameBlockQES);
+            BlockQuantumEnergySucker =
+                    (BlockQuantumEnergySucker) new BlockQuantumEnergySucker().setCreativeTab(tabQuantumCraft)
+                            .setBlockName(Config.NameBlockQuantumEnergySucker);
+            GameRegistry.registerBlock(BlockQuantumEnergySucker, Config.NameBlockQuantumEnergySucker);
         }
 
-        BlockQEExtractor = (BlockQEExtractor) new BlockQEExtractor(Config.BlockQEEID).setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameBlockQEE);
-        GameRegistry.registerBlock(BlockQEExtractor, Config.NameBlockQEE);
+        BlockQuantumEnergyExtractor = (BlockQuantumEnergyExtractor) new BlockQuantumEnergyExtractor().setCreativeTab(tabQuantumCraft)
+                .setBlockName(Config.NameBlockQuantumEnergyExtractor);
+        GameRegistry.registerBlock(BlockQuantumEnergyExtractor, Config.NameBlockQuantumEnergyExtractor);
 
-        BlockMachineCasing = new BasicBlock().setCreativeTab(tabQuantumCraft).setBlockName(Config.NameBlockMCasing)
-                .setBlockTextureName(Config.getTextureName(Config.NameBlockMCasing));
-        GameRegistry.registerBlock(BlockMachineCasing, Config.NameBlockMCasing);
+        BlockMachineCasing = new BasicBlock().setCreativeTab(tabQuantumCraft).setBlockName(Config.NameBlockMachineCasing)
+                .setBlockTextureName(Config.getTextureName(Config.NameBlockMachineCasing));
+        GameRegistry.registerBlock(BlockMachineCasing, Config.NameBlockMachineCasing);
 
     }
 
@@ -260,17 +251,17 @@ public class Loader {
     }
 
     public static void initTEs() {
-        GameRegistry.registerTileEntity(TileQDeenergizer.class, "QDeenergizerTE");
-        GameRegistry.registerTileEntity(TileQEInjector.class, "QEInjectorTE");
-        GameRegistry.registerTileEntity(TileQEnergySucker.class, "QESuckerTE");
-        GameRegistry.registerTileEntity(TileQDematerializer.class, "QDematerializerTE");
-        GameRegistry.registerTileEntity(TileQEExtractor.class, "QEExtractorTE");
+        GameRegistry.registerTileEntity(TileQuantumDeenergizer.class, "QDeenergizerTE");
+        GameRegistry.registerTileEntity(TileQuantumEnergyInjector.class, "QEInjectorTE");
+        GameRegistry.registerTileEntity(TileQuantumEnergySucker.class, "QESuckerTE");
+        GameRegistry.registerTileEntity(TileQuantumDematerializer.class, "QDematerializerTE");
+        GameRegistry.registerTileEntity(TileQuantumEnergyExtractor.class, "QEExtractorTE");
         GameRegistry.registerTileEntity(TileIONForge.class, "IONForgeTE");
         GameRegistry.registerTileEntity(TileIONHarvester.class, "IONHarvesterTE");
         GameRegistry.registerTileEntity(TileIONScanner.class, "IONScannerTE");
         GameRegistry.registerTileEntity(TileIONTunneler.class, "IONTunnelerTE");
-        GameRegistry.registerTileEntity(TileQCapacitor.class, "QCapacitorTE");
-        GameRegistry.registerTileEntity(TileQInterdimensionalGenerator.class, "QInterdimensionalGeneratorTE");
+        GameRegistry.registerTileEntity(TileQuantumCapacitor.class, "QCapacitorTE");
+        GameRegistry.registerTileEntity(TileQuantumInterdimensionalGenerator.class, "QInterdimensionalGeneratorTE");
     }
 
     public static class ToolMaterials {
@@ -287,12 +278,12 @@ public class Loader {
         public static IIcon quantonium_ore_full;
 
         public static void loadAll(IIconRegister i) {
-            QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQOre));
-            quantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQOre));
-            QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQBase));
-            quantonium_ore_base = i.registerIcon(Config.getTextureName(Config.NameTextureQBase));
-            QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQFull));
-            quantonium_ore_full = i.registerIcon(Config.getTextureName(Config.NameTextureQFull));
+            QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQuantumOre));
+            quantonium_ore = i.registerIcon(Config.getTextureName(Config.NameTextureQuantumOre));
+            QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQuantumOreBase));
+            quantonium_ore_base = i.registerIcon(Config.getTextureName(Config.NameTextureQuantumOreBase));
+            QuantumCraft.logHandler.debugPrint(Config.getTextureName(Config.NameTextureQuantumOreFull));
+            quantonium_ore_full = i.registerIcon(Config.getTextureName(Config.NameTextureQuantumOreFull));
         }
     }
 

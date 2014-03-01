@@ -7,19 +7,19 @@ import java.util.LinkedList;
 
 public class QRecipeHandler {
 
-    private static LinkedList<QDERecipe> QDERecipes = new LinkedList<QDERecipe>();
+    private static LinkedList<QuantumDeenergizerRecipe> QuantumDeenergizerRecipes = new LinkedList<QuantumDeenergizerRecipe>();
 
-    public static void addQDERecipe(QDERecipe r) {
-        if (QDERecipes == null) {
+    public static void addQDERecipe(QuantumDeenergizerRecipe r) {
+        if (QuantumDeenergizerRecipes == null) {
             FMLLog.severe("QDE Recipes list seems to be null! NOT ADDING");
         } else {
-            QDERecipes.add(r);
+            QuantumDeenergizerRecipes.add(r);
         }
     }
 
-    public static QDERecipe getQDERecipeFromInput(ItemStack input) {
+    public static QuantumDeenergizerRecipe getQDERecipeFromInput(ItemStack input) {
         if (input == null) return null;
-        for (QDERecipe r : QDERecipes) {
+        for (QuantumDeenergizerRecipe r : QuantumDeenergizerRecipes) {
             if (r.getInputItem() == input) return r;
         }
         return null;

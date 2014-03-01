@@ -2,13 +2,13 @@ package quantumcraft.items.abstractitems;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import quantumcraft.core.interfaces.IQEnergizable;
+import quantumcraft.core.interfaces.IQuantumEnergizable;
 import quantumcraft.items.ItemBase;
 import quantumcraft.util.ItemEnergyUtils;
 
 import java.util.List;
 
-public class ItemChargable extends ItemBase implements IQEnergizable {
+public class ItemChargable extends ItemBase implements IQuantumEnergizable {
 
     /**
      * @param maxenergy     max energy this chargeable item can hold

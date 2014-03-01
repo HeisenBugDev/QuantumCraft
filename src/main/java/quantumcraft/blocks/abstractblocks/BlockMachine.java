@@ -27,8 +27,8 @@ public abstract class BlockMachine extends BlockRotatable {
     protected IIcon iconTop;
     protected IIcon iconTopR;
 
-    public BlockMachine(int id, Material material) {
-        super(id, material);
+    public BlockMachine(Material material) {
+        super(material);
         setHardness(20F);
         setResistance(10F);
     }

@@ -20,23 +20,23 @@ public class CommonProxy implements IGuiHandler {
         if (tileEntity != null) {
             switch (ID) {
                 case 1:
-                    return new ContainerQDeenergizer(player.inventory,
-                            (TileQDeenergizer) world.getTileEntity(x, y, z));
+                    return new ContainerQuantumDeenergizer(player.inventory,
+                            (TileQuantumDeenergizer) world.getTileEntity(x, y, z));
                 case 2:
-                    return new ContainerQEInjector(player.inventory,
-                            (TileQEInjector) world.getTileEntity(x, y, z));
+                    return new ContainerQuantumEnergyInjector(player.inventory,
+                            (TileQuantumEnergyInjector) world.getTileEntity(x, y, z));
                 case 4:
-                    return new ContainerQDematerializer(player.inventory,
-                            (TileQDematerializer) world.getTileEntity(x, y, z));
+                    return new ContainerQuantumDematerializer(player.inventory,
+                            (TileQuantumDematerializer) world.getTileEntity(x, y, z));
                 case 5:
-                    return new ContainerQEExtractor(player.inventory,
-                            (TileQEExtractor) world.getTileEntity(x, y, z));
+                    return new ContainerQuantumEnergyExtractor(player.inventory,
+                            (TileQuantumEnergyExtractor) world.getTileEntity(x, y, z));
                 case 6:
                     return new ContainerIONForge(player.inventory,
                             (TileIONForge) world.getTileEntity(x, y, z));
                 case 7:
-                    return new ContainerQCapacitor(player.inventory,
-                            (TileQCapacitor) world.getTileEntity(x, y, z));
+                    return new ContainerQuantumCapacitor(player.inventory,
+                            (TileQuantumCapacitor) world.getTileEntity(x, y, z));
             }
         } return null;
     }

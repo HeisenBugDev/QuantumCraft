@@ -2,8 +2,8 @@ package quantumcraft.items;
 
 import quantumcraft.items.abstractitems.ItemChargable;
 
-public class ItemPortableQCapacitor extends ItemChargable {
-    public ItemPortableQCapacitor() {
+public class ItemPortableQuantumCapacitor extends ItemChargable {
+    public ItemPortableQuantumCapacitor() {
         super(100000);
         this.setMaxStackSize(1);
     }
