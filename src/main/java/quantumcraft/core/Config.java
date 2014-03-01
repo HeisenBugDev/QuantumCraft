@@ -11,6 +11,7 @@ public class Config {
 
     public static final String modNetworkChannel = "quantumcraft";
     public static String texturePrefix = "QuantumCraft:";
+    public static String NameItemInfinitePower = "item_infinite_power";
     public static String NameItemUnbioxeniumIngot = "ingot_unbioxenium";
     public static String NameItemCrystalQuantonium = "crystal_quantonium";
     public static String NameItemRawQuantonium = "raw_quantonium";
@@ -35,12 +36,12 @@ public class Config {
     public static String NameBlockQuantumEnergySucker = "machine_quantum_energy_sucker";
     public static String NameBlockQuantumDematerializer = "machine_quantum_dematerializer";
     public static String NameBlockQuantumEnergyExtractor = "machine_quantum_energy_extractor";
-    public static String NameBlockIONForge = "machine_ion_forge";  // Block ION Forge
-    public static String NameBlockIONTunneler = "machine_ion_tunneler";  // Block ION Tunneler
-    public static String NameBlockIONScanner = "machine_ion_scanner";  // Block ION Scanner
-    public static String NameBlockIONHarvester = "machine_ion_harvester";  // Block ION Harvester
-    public static String NameBlockQuantumCapacitor = "machine_quantum_capacitor";  // Block Q Capacitor
-    public static String NameBlockQuantumInterdimensionalGenerator = "machine_quantum_interdimensional_generator";  // Block Q Interdimensional Generator
+    public static String NameBlockIONForge = "machine_ion_forge";
+    public static String NameBlockIONTunneler = "machine_ion_tunneler";
+    public static String NameBlockIONScanner = "machine_ion_scanner";
+    public static String NameBlockIONHarvester = "machine_ion_harvester";
+    public static String NameBlockQuantumCapacitor = "machine_quantum_capacitor";
+    public static String NameBlockQuantumInterdimensionalGenerator = "machine_quantum_interdimensional_generator";
     public static String NameBlockQuantumFiberWire = "block_fiber_wire";
     public static String NameBlockMachineCasing = "quantum_machine_casing";
     public static String NameTextureQuantumOre = "ore_quantonium.ore";
