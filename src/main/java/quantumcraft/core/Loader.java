@@ -264,7 +264,7 @@ public class Loader {
         GameRegistry.registerTileEntity(TileQuantumDeenergizer.class, Config.NameBlockQuantumDeenergizer + te);
         GameRegistry.registerTileEntity(TileQuantumEnergyInjector.class, Config.NameBlockQuantumEnergyInjector + te);
         GameRegistry.registerTileEntity(TileQuantumEnergySucker.class, Config.NameBlockQuantumEnergySucker + te);
-        GameRegistry.registerTileEntity(TileQuantumDematerializer.class, Config.NameBlockQuantumDeenergizer + te);
+        GameRegistry.registerTileEntity(TileQuantumDematerializer.class, Config.NameBlockQuantumDematerializer + te);
         GameRegistry.registerTileEntity(TileQuantumEnergyExtractor.class, Config.NameBlockQuantumEnergyExtractor + te);
         GameRegistry.registerTileEntity(TileIONForge.class, Config.NameBlockIONForge + te);
         GameRegistry.registerTileEntity(TileIONHarvester.class, Config.NameBlockIONHarvester + te);
