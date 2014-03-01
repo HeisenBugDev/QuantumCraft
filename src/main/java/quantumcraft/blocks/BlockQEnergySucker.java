@@ -20,7 +20,7 @@ public class BlockQEnergySucker extends BlockEnergySink {
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineQES_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineQES_top");
         iconTopR = iconRegister.registerIcon("QuantumCraft:machineQES_top_r");

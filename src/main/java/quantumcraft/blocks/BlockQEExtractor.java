@@ -20,7 +20,7 @@ public class BlockQEExtractor extends BlockEnergySource {
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineQEE_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineQEE_top");
         iconTopR = iconRegister.registerIcon("QuantumCraft:machineQEE_top_r");

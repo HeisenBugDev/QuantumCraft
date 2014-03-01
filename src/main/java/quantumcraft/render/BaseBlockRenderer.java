@@ -41,7 +41,6 @@ public abstract class BaseBlockRenderer implements ISimpleBlockRenderingHandler 
         for (int i = 0; i < 6; i++) {
             tmap[i] = block.getIcon(i, 0);
         }
-        System.out.println(block.getIcon(0 ,0));
         renderAsItem(block, renderer, tmap);
     }
 

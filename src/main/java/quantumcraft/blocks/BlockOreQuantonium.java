@@ -24,7 +24,7 @@ public class BlockOreQuantonium extends BlockOre {
 
     @Override
     public IIcon getIcon(int i, int b) {
-        return Loader.IconLoader.quantonium_ore_base;
+        return Loader.IconLoader.quantonium_ore_full;
     }
 
     @Override

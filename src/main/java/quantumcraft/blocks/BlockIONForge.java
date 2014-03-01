@@ -12,7 +12,7 @@ public class BlockIONForge extends BlockEnergySink {
     }
 
     @Override
-    public void registerIcons(IIconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineIOF_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineIOF_top");
         iconTopR = iconRegister.registerIcon("QuantumCraft:machineIOF_top_r");

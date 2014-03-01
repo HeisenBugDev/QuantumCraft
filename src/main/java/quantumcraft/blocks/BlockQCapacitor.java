@@ -26,7 +26,7 @@ public class BlockQCapacitor extends BlockEnergySink implements IQEnergySource {
     }
 
     @Override
-    public void registerIcons(IIconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
         iconFront = iconTopR =
                 iconTop = iconSide = iconBottom = iconBack = iconRegister.registerIcon("QuantumCraft:Capacitor" + maxEnergyMultiplier);
     }

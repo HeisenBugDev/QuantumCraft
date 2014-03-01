@@ -12,7 +12,7 @@ public class BlockIONTunneler extends BlockEnergySink {
     }
 
     @Override
-    public void registerIcons(IIconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
         iconFront = iconRegister.registerIcon("QuantumCraft:machineIOT_front");
         iconTop = iconRegister.registerIcon("QuantumCraft:machineIOT_top");
         iconTopR = iconRegister.registerIcon("QuantumCraft:machineIOT_top_r");

@@ -17,7 +17,7 @@ public class BlockQInterdimensionalGenerator extends BlockEnergySource {
     }
 
     @Override
-    public void registerIcons(IIconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
 
     }
 

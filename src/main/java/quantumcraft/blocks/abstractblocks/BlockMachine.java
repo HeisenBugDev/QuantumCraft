@@ -121,7 +121,8 @@ public abstract class BlockMachine extends BlockRotatable {
     }
 
     @SideOnly(Side.CLIENT)
-    public abstract void registerIcons(IIconRegister IIconRegister);
+    public abstract void registerBlockIcons(IIconRegister IIconRegister);
+
 
     @Override
     public IIcon getIcon(IBlockAccess iblockaccess, int x, int y, int z, int side) {

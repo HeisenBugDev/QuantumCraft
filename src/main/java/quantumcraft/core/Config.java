@@ -47,6 +47,7 @@ public class Config {
     public static String NameBlockMCasing = "quantumMachineCasing";
     public static String NameTextureQOre = "ore_quantonium.ore";
     public static String NameTextureQBase = "ore_quantonium.base";
+    public static String NameTextureQFull = "ore_quantonium";
     public static String NameItemRPlaceHolder = "temp";
     public static LinkedList<String> supports32x = new LinkedList<String>();
     public static Property networkUpdateRange;
