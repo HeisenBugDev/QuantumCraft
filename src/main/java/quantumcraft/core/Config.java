@@ -42,7 +42,7 @@ public class Config {
     public static String NameBlockIONHarvester = "machine_ion_harvester";
     public static String NameBlockQuantumCapacitor = "machine_quantum_capacitor";
     public static String NameBlockQuantumInterdimensionalGenerator = "machine_quantum_interdimensional_generator";
-    public static String NameBlockQuantumFiberWire = "block_fiber_wire";
+    public static String NameBlockQuantumFibreWire = "block_fiber_wire";
     public static String NameBlockMachineCasing = "quantum_machine_casing";
     public static String NameTextureQuantumOre = "ore_quantonium.ore";
     public static String NameTextureQuantumOreBase = "ore_quantonium.base";

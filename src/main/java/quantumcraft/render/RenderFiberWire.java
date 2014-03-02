@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import quantumcraft.blocks.BlockQuantumFiberWire;
+import quantumcraft.blocks.BlockQuantumFibreWire;
 import quantumcraft.net.IQEnergyComponent;
 import quantumcraft.util.BasicUtils;
 
@@ -12,12 +12,12 @@ public class RenderFiberWire extends BaseBlockRenderer {
 
     private static RenderFiberWire INSTANCE = new RenderFiberWire();
 
-    public static RenderFiberWire instance(){
+    public static RenderFiberWire instance() {
         return INSTANCE;
     }
 
     @Override
-    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer){
+    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
         float min = 0.5F - 0.1875F;
         float max = 0.5F + 0.1875F;
         block.setBlockBounds(min, 0.0F, min, max, 1.0F, max);
@@ -89,17 +89,23 @@ public class RenderFiberWire extends BaseBlockRenderer {
             }
         }
         if (joints > 2) {
-            IIcon joint = BlockQuantumFiberWire.iconTexture;
+            IIcon joint = BlockQuantumFibreWire.iconTexture;
             coremin -= 0.0625F;
             coremax += 0.0625F;
             block.setBlockBounds(coremin, coremin, coremin, coremax, coremax, coremax);
             renderer.setRenderBoundsFromBlock(block);
-            renderer.renderFaceXNeg(block, x, y, z, joint);
-            renderer.renderFaceXPos(block, x, y, z, joint);
-            renderer.renderFaceZNeg(block, x, y, z, joint);
-            renderer.renderFaceZPos(block, x, y, z, joint);
-            renderer.renderFaceYNeg(block, x, y, z, joint);
-            renderer.renderFaceYPos(block, x, y, z, joint);
+            for (int i = 0; i < 1; i++) {
+                renderer.renderFaceXNeg(block, x, y, z, joint);
+                renderer.renderFaceXPos(block, x, y, z, joint);
+                renderer.renderFaceZNeg(block, x, y, z, joint);
+                renderer.renderFaceZPos(block, x, y, z, joint);
+                renderer.renderFaceYNeg(block, x, y, z, joint);
+                renderer.renderFaceYPos(block, x, y, z, joint);
+                x -= 0.1;
+                y -= 0.1;
+                z -= 0.1;
+                joint = BlockQuantumFibreWire.iconFilling;
+            }
         } else {
             block.setBlockBounds(coremin, coremin, coremin, coremax, coremax, coremax);
             renderer.setRenderBoundsFromBlock(block);

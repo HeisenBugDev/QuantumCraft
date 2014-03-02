@@ -58,7 +58,7 @@ public class Loader {
     public static BlockQuantumInterdimensionalGenerator BlockQuantumInterdimensionalGenerator;
     public static BlockQuantumCapacitor[] capacitors = new BlockQuantumCapacitor[5];
     /* OTHER BLOCKS */
-    public static BlockQuantumFiberWire BlockQuantumFiberWire;
+    public static BlockQuantumFibreWire BlockQuantumFibreWire;
     /* CREATIVE TABS */
     public static TabQuantumCraft tabQuantumCraft;
 
@@ -182,9 +182,9 @@ public class Loader {
                 .setBlockTextureName(Config.getTextureName(Config.NameOreQuantonium));
         GameRegistry.registerBlock(OreQuantonium, Config.NameOreQuantonium);
 
-        BlockQuantumFiberWire = (BlockQuantumFiberWire) new BlockQuantumFiberWire().setCreativeTab(tabQuantumCraft)
-                .setBlockName(Config.NameBlockQuantumFiberWire);
-        GameRegistry.registerBlock(BlockQuantumFiberWire, Config.NameBlockQuantumFiberWire);
+        BlockQuantumFibreWire = (BlockQuantumFibreWire) new BlockQuantumFibreWire().setCreativeTab(tabQuantumCraft)
+                .setBlockName(Config.NameBlockQuantumFibreWire);
+        GameRegistry.registerBlock(BlockQuantumFibreWire, Config.NameBlockQuantumFibreWire);
 
         BlockQuantumDeenergizer =
                 (BlockQuantumDeenergizer) new BlockQuantumDeenergizer().setCreativeTab(tabQuantumCraft)

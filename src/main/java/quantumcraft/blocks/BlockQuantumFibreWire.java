@@ -12,11 +12,12 @@ import quantumcraft.net.IQEnergyComponent;
 import quantumcraft.render.RenderFiberWire;
 import quantumcraft.util.BasicUtils;
 
-public class BlockQuantumFiberWire extends BlockEnergyComponent {
+public class BlockQuantumFibreWire extends BlockEnergyComponent {
 
     public static IIcon iconTexture;
+    public static IIcon iconFilling;
 
-    public BlockQuantumFiberWire() {
+    public BlockQuantumFibreWire() {
         super(Material.circuits);
     }
 
@@ -76,12 +77,12 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return iconTexture;
+        return iconFilling;
     }
 
     @Override
     public IIcon getIcon(IBlockAccess iblockaccess, int x, int y, int z, int side) {
-        return iconTexture;
+        return iconFilling;
     }
 
     @Override
@@ -96,7 +97,7 @@ public class BlockQuantumFiberWire extends BlockEnergyComponent {
 
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        iconFront = iconTexture = iconSide =
-                iconBack = iconTop = iconBottom = iconRegister.registerIcon("QuantumCraft:FibreWireFullBlock");
+        iconTexture = iconRegister.registerIcon("QuantumCraft:fibre_wire_full_block");
+        iconFilling = iconRegister.registerIcon("QuantumCraft:fibre_wire_side");
     }
 }
