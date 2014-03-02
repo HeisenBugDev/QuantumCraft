@@ -9,16 +9,20 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import quantumcraft.blocks.abstractblocks.BlockEnergyComponent;
 import quantumcraft.net.IQEnergyComponent;
-import quantumcraft.render.RenderFiberWire;
+import quantumcraft.render.RenderFibreWire;
 import quantumcraft.util.BasicUtils;
 
 public class BlockQuantumFibreWire extends BlockEnergyComponent {
 
-    public static IIcon iconTexture;
-    public static IIcon iconFilling;
+    public static IIcon[] icons = new IIcon[4];
 
     public BlockQuantumFibreWire() {
         super(Material.circuits);
+    }
+
+    @Override
+    public boolean canRenderInPass(int pass) {
+        return pass == 1;
     }
 
     @Override
@@ -77,12 +81,12 @@ public class BlockQuantumFibreWire extends BlockEnergyComponent {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return iconFilling;
+        return icons[3];
     }
 
     @Override
     public IIcon getIcon(IBlockAccess iblockaccess, int x, int y, int z, int side) {
-        return iconFilling;
+        return icons[3];
     }
 
     @Override
@@ -91,13 +95,27 @@ public class BlockQuantumFibreWire extends BlockEnergyComponent {
     }
 
     @Override
+    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z,
+                                        int p_149646_5_) {
+        System.out.println(world.getBlock(x, y, z) != this);
+        return true;
+    }
+
+    @Override
+    public int getRenderBlockPass() {
+        return 1;
+    }
+
+    @Override
     public int getRenderType() {
-        return RenderFiberWire.instance().getRenderId();
+        return RenderFibreWire.instance().getRenderId();
     }
 
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        iconTexture = iconRegister.registerIcon("QuantumCraft:fibre_wire_full_block");
-        iconFilling = iconRegister.registerIcon("QuantumCraft:fibre_wire_side");
+        icons[0] = iconRegister.registerIcon("QuantumCraft:fibre_wire_cross_frame");
+        icons[1] = iconRegister.registerIcon("QuantumCraft:fibre_wire_side_frame");
+        icons[2] = iconRegister.registerIcon("QuantumCraft:fibre_wire_side_filling");
+        icons[3] = iconRegister.registerIcon("QuantumCraft:fibre_wire_cross_filling");
     }
 }

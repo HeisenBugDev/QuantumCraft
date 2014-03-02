@@ -2,17 +2,15 @@ package quantumcraft.render;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import quantumcraft.blocks.BlockQuantumFibreWire;
 import quantumcraft.net.IQEnergyComponent;
 import quantumcraft.util.BasicUtils;
 
-public class RenderFiberWire extends BaseBlockRenderer {
+public class RenderFibreWire extends BaseBlockRenderer {
 
-    private static RenderFiberWire INSTANCE = new RenderFiberWire();
+    private static RenderFibreWire INSTANCE = new RenderFibreWire();
 
-    public static RenderFiberWire instance() {
+    public static RenderFibreWire instance() {
         return INSTANCE;
     }
 
@@ -32,7 +30,6 @@ public class RenderFiberWire extends BaseBlockRenderer {
         float coremax = 0.5F + 0.1875F;
         float bordermin = 0.0F;
         float bordermax = 1.0F;
-        int joints = 0;
 
         if (BasicUtils.getBlockInstance(world, x - 1, y, z) instanceof IQEnergyComponent) {
             if (((IQEnergyComponent) BasicUtils.getBlockInstance(world, x - 1, y, z))
@@ -40,7 +37,6 @@ public class RenderFiberWire extends BaseBlockRenderer {
                 block.setBlockBounds(bordermin, coremin, coremin, coremin, coremax, coremax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
-                joints++;
             }
         }
         if (BasicUtils.getBlockInstance(world, x + 1, y, z) instanceof IQEnergyComponent) {
@@ -49,7 +45,6 @@ public class RenderFiberWire extends BaseBlockRenderer {
                 block.setBlockBounds(coremax, coremin, coremin, bordermax, coremax, coremax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
-                joints++;
             }
         }
         if (BasicUtils.getBlockInstance(world, x, y - 1, z) instanceof IQEnergyComponent) {
@@ -58,7 +53,6 @@ public class RenderFiberWire extends BaseBlockRenderer {
                 block.setBlockBounds(coremin, bordermin, coremin, coremax, coremin, coremax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
-                joints++;
             }
         }
         if (BasicUtils.getBlockInstance(world, x, y + 1, z) instanceof IQEnergyComponent) {
@@ -67,7 +61,6 @@ public class RenderFiberWire extends BaseBlockRenderer {
                 block.setBlockBounds(coremin, coremax, coremin, coremax, bordermax, coremax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
-                joints++;
             }
         }
         if (BasicUtils.getBlockInstance(world, x, y, z - 1) instanceof IQEnergyComponent) {
@@ -76,7 +69,6 @@ public class RenderFiberWire extends BaseBlockRenderer {
                 block.setBlockBounds(coremin, coremin, bordermin, coremax, coremax, coremin);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
-                joints++;
             }
         }
         if (BasicUtils.getBlockInstance(world, x, y, z + 1) instanceof IQEnergyComponent) {
@@ -85,32 +77,15 @@ public class RenderFiberWire extends BaseBlockRenderer {
                 block.setBlockBounds(coremin, coremin, coremax, coremax, coremax, bordermax);
                 renderer.setRenderBoundsFromBlock(block);
                 renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
-                joints++;
             }
         }
-        if (joints > 2) {
-            IIcon joint = BlockQuantumFibreWire.iconTexture;
-            coremin -= 0.0625F;
-            coremax += 0.0625F;
-            block.setBlockBounds(coremin, coremin, coremin, coremax, coremax, coremax);
-            renderer.setRenderBoundsFromBlock(block);
-            for (int i = 0; i < 1; i++) {
-                renderer.renderFaceXNeg(block, x, y, z, joint);
-                renderer.renderFaceXPos(block, x, y, z, joint);
-                renderer.renderFaceZNeg(block, x, y, z, joint);
-                renderer.renderFaceZPos(block, x, y, z, joint);
-                renderer.renderFaceYNeg(block, x, y, z, joint);
-                renderer.renderFaceYPos(block, x, y, z, joint);
-                x -= 0.1;
-                y -= 0.1;
-                z -= 0.1;
-                joint = BlockQuantumFibreWire.iconFilling;
-            }
-        } else {
+
+        if (block.getRenderBlockPass() == 1) {
             block.setBlockBounds(coremin, coremin, coremin, coremax, coremax, coremax);
             renderer.setRenderBoundsFromBlock(block);
             renderer.renderStandardBlockWithColorMultiplier(block, x, y, z, 1.0F, 1.0F, 1.0F);
         }
+
         block.setBlockBoundsBasedOnState(world, x, y, z);
         return true;
     }

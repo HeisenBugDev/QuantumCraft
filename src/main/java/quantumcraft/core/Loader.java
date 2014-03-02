@@ -16,7 +16,7 @@ import quantumcraft.items.tools.ItemQuantumAxe;
 import quantumcraft.items.tools.ItemQuantumPick;
 import quantumcraft.items.tools.ItemQuantumShovel;
 import quantumcraft.items.tools.ItemQuantumSword;
-import quantumcraft.render.RenderFiberWire;
+import quantumcraft.render.RenderFibreWire;
 import quantumcraft.render.RenderOre;
 import quantumcraft.tile.*;
 
@@ -252,7 +252,7 @@ public class Loader {
 
     public static void initRenderers() {
         RenderingRegistry.registerBlockHandler(RenderOre.instance().getRenderId(), RenderOre.instance());
-        RenderingRegistry.registerBlockHandler(RenderFiberWire.instance().getRenderId(), RenderFiberWire.instance());
+        RenderingRegistry.registerBlockHandler(RenderFibreWire.instance().getRenderId(), RenderFibreWire.instance());
     }
 
     public static void initWGen() {
