@@ -17,14 +17,14 @@ public class BlockQuantumDematerializer extends BlockEnergySource {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        iconFront = iconRegister.registerIcon("QuantumCraft:machineQDM_front");
-        iconTop = iconRegister.registerIcon("QuantumCraft:machineQDM_top");
-        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQDM_top_r");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDM_side");
+        iconFront = iconRegister.registerIcon("QuantumCraft:machine_quantum_dematerializer_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machine_quantum_dematerializer_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machine_quantum_dematerializer_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machine_quantum_dematerializer_side");
         iconBottom = iconRegister
-                .registerIcon("QuantumCraft:machineQDM_bottom");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQDM_side");
-        iconBack = iconRegister.registerIcon("QuantumCraft:machineQDM_back");
+                .registerIcon("QuantumCraft:machine_quantum_dematerializer_bottom");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machine_quantum_dematerializer_side");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machine_quantum_dematerializer_back");
     }
 
 }

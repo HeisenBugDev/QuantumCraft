@@ -17,13 +17,13 @@ public class BlockQuantumEnergyExtractor extends BlockEnergySource {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        iconFront = iconRegister.registerIcon("QuantumCraft:machineQEE_front");
-        iconTop = iconRegister.registerIcon("QuantumCraft:machineQEE_top");
-        iconTopR = iconRegister.registerIcon("QuantumCraft:machineQEE_top_r");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQEE_side");
-        iconBottom = iconRegister.registerIcon("QuantumCraft:machineQEE_bottom");
-        iconSide = iconRegister.registerIcon("QuantumCraft:machineQEE_side");
-        iconBack = iconRegister.registerIcon("QuantumCraft:machineQEE_back");
+        iconFront = iconRegister.registerIcon("QuantumCraft:machine_quantum_energy_extractor_front");
+        iconTop = iconRegister.registerIcon("QuantumCraft:machine_quantum_energy_extractor_top");
+        iconTopR = iconRegister.registerIcon("QuantumCraft:machine_quantum_energy_extractor_top_r");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machine_quantum_energy_extractor_side");
+        iconBottom = iconRegister.registerIcon("QuantumCraft:machine_quantum_energy_extractor_bottom");
+        iconSide = iconRegister.registerIcon("QuantumCraft:machine_quantum_energy_extractor_side");
+        iconBack = iconRegister.registerIcon("QuantumCraft:machine_quantum_energy_extractor_back");
     }
 
 }
