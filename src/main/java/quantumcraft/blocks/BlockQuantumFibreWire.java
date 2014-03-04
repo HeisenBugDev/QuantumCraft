@@ -14,7 +14,7 @@ import quantumcraft.util.BasicUtils;
 
 public class BlockQuantumFibreWire extends BlockEnergyComponent {
 
-    public static IIcon[] icons = new IIcon[4];
+    public static IIcon icon;
 
     public BlockQuantumFibreWire() {
         super(Material.circuits);
@@ -81,23 +81,16 @@ public class BlockQuantumFibreWire extends BlockEnergyComponent {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return icons[3];
+        return icon;
     }
 
     @Override
     public IIcon getIcon(IBlockAccess iblockaccess, int x, int y, int z, int side) {
-        return icons[3];
+        return icon;
     }
 
     @Override
     public boolean getBlocksMovement(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
-        return true;
-    }
-
-    @Override
-    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z,
-                                        int p_149646_5_) {
-        System.out.println(world.getBlock(x, y, z) != this);
         return true;
     }
 
@@ -113,9 +106,6 @@ public class BlockQuantumFibreWire extends BlockEnergyComponent {
 
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        icons[0] = iconRegister.registerIcon("QuantumCraft:fibre_wire_cross_frame");
-        icons[1] = iconRegister.registerIcon("QuantumCraft:fibre_wire_side_frame");
-        icons[2] = iconRegister.registerIcon("QuantumCraft:fibre_wire_side_filling");
-        icons[3] = iconRegister.registerIcon("QuantumCraft:fibre_wire_cross_filling");
+        icon = iconRegister.registerIcon("QuantumCraft:fibre_wire");
     }
 }
