@@ -5,7 +5,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
-import quantumcraft.core.QRecipeHandler;
+import quantumcraft.core.QuantumRecipeHandler;
 import quantumcraft.core.QuantumDeenergizerRecipe;
 import quantumcraft.inventory.SimpleInventory;
 import quantumcraft.tile.abstracttiles.TileEnergySource;
@@ -60,7 +60,7 @@ public class TileQuantumDeenergizer extends TileEnergySource implements ISidedIn
 
     private boolean canProcess() {
 
-        r = QRecipeHandler.getQDERecipeFromInput(inventory[0]);
+        r = QuantumRecipeHandler.getQDERecipeFromInput(inventory[0]);
         boolean flag = true;
 
         if (r == null) return false;

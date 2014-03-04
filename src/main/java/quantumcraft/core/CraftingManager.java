@@ -124,7 +124,8 @@ public class CraftingManager {
     }
 
     public static void addQDE() {
-        QRecipeHandler.addQDERecipe(new QuantumDeenergizerRecipe(new ItemStack(Loader.ItemCrystalQuantonium), 1100));
+        QuantumRecipeHandler
+                .addQDERecipe(new QuantumDeenergizerRecipe(new ItemStack(Loader.ItemCrystalQuantonium), 1100));
     }
 
 }

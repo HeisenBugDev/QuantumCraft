@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.LinkedList;
 
-public class QRecipeHandler {
+public class QuantumRecipeHandler {
 
     private static LinkedList<QuantumDeenergizerRecipe> QuantumDeenergizerRecipes = new LinkedList<QuantumDeenergizerRecipe>();
 
