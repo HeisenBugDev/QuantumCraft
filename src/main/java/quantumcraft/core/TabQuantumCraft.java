@@ -16,6 +16,6 @@ public class TabQuantumCraft extends CreativeTabs {
 
     @Override
     public String getTranslatedTabLabel() {
-        return "Quantum Craft";
+        return "QuantumCraft";
     }
 }
