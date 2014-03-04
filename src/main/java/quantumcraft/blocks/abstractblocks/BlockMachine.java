@@ -127,7 +127,6 @@ public abstract class BlockMachine extends BlockRotatable {
     @Override
     public IIcon getIcon(IBlockAccess iblockaccess, int x, int y, int z, int side) {
         TileEntity te = iblockaccess.getTileEntity(x, y, z);
-        //if (this.getTileEntity().getClass().isInstance(te)) {
         if (te instanceof TileMachineBase) {
             side = ((TileMachineBase) te).getRotatedSide(side);
         }
@@ -136,18 +135,18 @@ public abstract class BlockMachine extends BlockRotatable {
         }
         return getIIconFromSide(side, ((TileMachineBase) te).useRotated());
     }
-//
-//    @Override
-//    public IIcon getIcon(int side, int meta) {
-//        if (meta == side) {
-//            return iconFront;
-//        } else if (side == side - 2) {
-//            return getIIconFromSide(side - 2, true);
-//        } else if (side == side - 3) {
-//            return getIIconFromSide(side - 3, true);
-//        } else {
-//            return getIIconFromSide(side, true);
-//        }
-//    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        if (meta == side) {
+            return iconFront;
+        } else if (side == side - 2) {
+            return getIIconFromSide(side - 2, true);
+        } else if (side == side - 3) {
+            return getIIconFromSide(side - 3, true);
+        } else {
+            return getIIconFromSide(side, true);
+        }
+    }
 
 }
