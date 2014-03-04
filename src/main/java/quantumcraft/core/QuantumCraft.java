@@ -24,7 +24,7 @@ public class QuantumCraft {
             NetworkRegistry.INSTANCE.newChannel(Config.modNetworkChannel, new ChannelHandler());
     @SidedProxy(clientSide = "quantumcraft.core.ClientProxy", serverSide = "quantumcraft.core.CommonProxy")
     public static CommonProxy proxy;
-    @Instance("quantumcraft")
+    @Instance("QuantumCraft")
     public static QuantumCraft instance;
     public static LogHandler logHandler = new LogHandler("Quantumcraft");
 
