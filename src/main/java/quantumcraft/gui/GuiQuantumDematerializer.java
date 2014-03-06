@@ -25,6 +25,7 @@ public class GuiQuantumDematerializer extends GuiBase {
     }
 
     protected void drawBackground() {
+        System.out.println("called");
         super.drawBackground();
         if (this.renderContents) {
             bindImage(GuiTextures.GUI_1SLOT_BG);

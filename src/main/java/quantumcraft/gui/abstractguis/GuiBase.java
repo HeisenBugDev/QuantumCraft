@@ -90,7 +90,7 @@ public abstract class GuiBase extends GuiContainer {
     }
 
     protected void drawBackground() {
-        if (this.renderContents) {
+//        if (this.renderContents) {
             bindImage(GuiTextures.GUI_TOP_BG);
             drawQuad(0, 0, 0, 1, 0, 1, 200, 31);
             bindImage(GuiTextures.GUI_COLOR_STRIP);
@@ -103,7 +103,7 @@ public abstract class GuiBase extends GuiContainer {
             drawQuad(8, 90, 0, 1, 0, 1, 162, 76);
             bindImage(GuiTextures.GUI_ARMOR_BG);
             drawQuad(176, 92, 0, 1, 0, 1, 18, 72);
-        }
+//        }
     }
 
     protected void drawBasePowerBar() {
