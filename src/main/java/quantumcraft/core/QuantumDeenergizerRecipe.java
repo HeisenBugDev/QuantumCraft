@@ -54,7 +54,7 @@ public class QuantumDeenergizerRecipe {
      * OutputItem = Depleted Crystal
      *
      * @param inputItem   - Input Item in the recipe.
-     * @param energyValue - QEnergy Value of the item, Quantonium = 100
+     * @param energyValue - QEnergy Value of the item
      */
     public QuantumDeenergizerRecipe(ItemStack inputItem, int energyValue) {
         this._inputItem = inputItem;
