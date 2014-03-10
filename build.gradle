@@ -45,7 +45,7 @@ def getBranch()
 {
     def stdout = new ByteArrayOutputStream()
     exec {
-        commandLine 'git', 'branch'
+        commandLine 'git', 'rev-parse', '--abbrev-ref', 'HEAD'
         standardOutput = stdout
     }
     return stdout.toString().trim()
@@ -62,13 +62,13 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.lang'
         include '**/*.info'
-    
+
     // replace version and MCVersion
     // forge version is also accessible via project.minecraftforgeVersion
     // it contains the full minecraft version, including buildNumber
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-  
+
   // copy everything else, thats not text
     from(sourceSets.main.resources.srcDirs) {
         exclude '**/*.lang'
@@ -134,7 +134,7 @@ task generateJson() { task ->
       ])
     }
 
-    jsonFile.write groovy.json.JsonOutput.prettyPrint(builder.toString()) 
+    jsonFile.write groovy.json.JsonOutput.prettyPrint(builder.toString())
   }
 }
 
