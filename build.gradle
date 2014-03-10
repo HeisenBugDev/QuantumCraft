@@ -27,9 +27,6 @@ dependencies {
 group = 'QuantumCraft.textures'
 archivesBaseName = 'QuantumCraft'
 
-// spit out the version for debugging sake
-logger.lifecycle ""+version
-
 minecraft {
   version = "1.7.2-10.12.0.1029" // grab latest forge
   assetDir = "run/assets"
@@ -38,7 +35,8 @@ minecraft {
 /*
  * Gets the version name from the latest Git tag
  */
-def getVersionName = { ->
+def getVersionName()
+{
     def stdout = new ByteArrayOutputStream()
     exec {
         commandLine 'git', 'describe', '--tags', '--abbrev=0'
@@ -47,8 +45,20 @@ def getVersionName = { ->
     return stdout.toString().trim()
 }
 
-// add some stuff to the version
-version = "${minecraft.version}-${getVersionName()}.${System.getenv().BUILD_NUMBER}"
+def getBranch()
+{
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--abbrev-ref', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+// add some stuff to the versio
+ext.rawVersion = getVersionName()
+version = "${minecraft.version}-$rawVersion.${System.getenv().BUILD_NUMBER}"
+logger.lifecycle "version = $version"
 
 processResources
 {
@@ -97,6 +107,41 @@ task deobfJar(type: Jar) {
   appendix = 'deobf'
 }
 
+def jsonFile = new File(jar.destinationDir, "manifest.json")
+task generateJson() { task ->
+  def gitBranch = getBranch()
+
+  // specify inputs and outputs so gradle can see if its upToDate
+  task.inputs.with {
+    property 'version', project.version // accounts for MCVersion, and all the other components
+    property 'branch', gitBranch
+    property 'obf', jar.archiveName
+    property 'deobf', deobfJar.archiveName
+    property 'source', sourceJar.archiveName
+    property 'javadoc', javadocJar.archiveName
+  }
+  task.outputs.file(jsonFile)
+
+  // actual work here
+  task.doLast {
+    def builder = new groovy.json.JsonBuilder()
+    def root = builder {
+      'build' System.getenv().BUILD_NUMBER
+      'minecraft_version' project.minecraft.version
+      'mod_version' project.rawVersion
+      'branch' gitBranch
+      'artifacts'([
+        ['universal' : jar.archiveName ],
+        ['deobf' : deobfJar.archiveName ],
+        ['source' : sourceJar.archiveName ],
+        ['javadoc' : deobfJar.archiveName ]
+      ])
+    }
+
+    jsonFile.write groovy.json.JsonOutput.prettyPrint(builder.toString())
+  }
+}
+
 // another obf jar
 //task obfJar(type: Jar) {
 //  from sourceSets.main.output
@@ -113,4 +158,5 @@ artifacts {
   archives deobfJar
   archives javadocJar
   //archives obfJar
+  archives(jsonFile) { builtBy generateJson }
 }
