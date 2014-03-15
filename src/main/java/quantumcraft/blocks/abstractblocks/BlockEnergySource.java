@@ -11,8 +11,8 @@ import quantumcraft.util.Coords;
 
 public abstract class BlockEnergySource extends BlockEnergyComponent implements IQEnergySource {
 
-    public BlockEnergySource(int id) {
-        super(id, Material.iron);
+    public BlockEnergySource() {
+        super(Material.iron);
     }
 
     @Override
@@ -24,7 +24,7 @@ public abstract class BlockEnergySource extends BlockEnergyComponent implements 
 
     @Override
     public int requestQuantumEnergy(World w, Coords l, int request) {
-        return ((TileEnergySource) w.getBlockTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
+        return ((TileEnergySource) w.getTileEntity(l.getXCoord(), l.getYCoord(), l.getZCoord()))
                 .requestQuantumEnergy(l, request);
     }
 }

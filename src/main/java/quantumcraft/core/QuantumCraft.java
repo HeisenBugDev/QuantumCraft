@@ -6,23 +6,22 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import debughandler.DebugRegistry;
 import debughandler.LogHandler;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
-import quantumcraft.core.network.PacketHandler;
+import quantumcraft.core.network.ChannelHandler;
 import quantumcraft.render.BlockHighlighterHandler;
 
-@Mod(modid = "QuantumCraft", name = "Quantum Craft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {Config.modNetworkChannel},
-        packetHandler = PacketHandler.class)
+import java.util.EnumMap;
+
+@Mod(modid = "QuantumCraft", name = "quantumcraft", version = "@VERSION@", dependencies = "after:BuildCraft|Silicon")
 public class QuantumCraft {
 
+    EnumMap<Side, FMLEmbeddedChannel> channels =
+            NetworkRegistry.INSTANCE.newChannel(Config.modNetworkChannel, new ChannelHandler());
     @SidedProxy(clientSide = "quantumcraft.core.ClientProxy", serverSide = "quantumcraft.core.CommonProxy")
     public static CommonProxy proxy;
     @Instance("QuantumCraft")
@@ -34,13 +33,13 @@ public class QuantumCraft {
         DebugRegistry.addLogHandler(logHandler);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new BlockHighlighterHandler());
-        NetworkRegistry.instance().registerGuiHandler(this, new ClientProxy());
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new ClientProxy());
         Config.initConfig(event);
+        Loader.initAll();
     }
 
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
-        Loader.initAll();
         System.out.println("[QuantumCraft] Finished loading.");
     }
 
@@ -48,10 +47,5 @@ public class QuantumCraft {
     public void postInit(FMLPostInitializationEvent event) {
 
     }
-
-    @ForgeSubscribe
-    @SideOnly(Side.CLIENT)
-    public void beforeTextureStitch(TextureStitchEvent.Pre event) {
-        logHandler.debugPrint("preStitch called");
-    }
 }
+

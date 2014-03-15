@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public class SlotArmor extends Slot {
     /**
@@ -41,7 +41,7 @@ public class SlotArmor extends Slot {
     /**
      * Returns the icon index on items.png that is used as background image of the slot.
      */
-    public Icon getBackgroundIconIndex() {
+    public IIcon getBackgroundIconIndex() {
         return ItemArmor.func_94602_b(this.armorType);
     }
 }

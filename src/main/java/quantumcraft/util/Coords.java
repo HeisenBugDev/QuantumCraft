@@ -3,7 +3,7 @@ package quantumcraft.util;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +83,7 @@ public class Coords {
         }
         return Coords;
     }
-    
+
     public void moveRight(int step) {
         switch (orientation) {
             case SOUTH:
@@ -253,7 +253,7 @@ public class Coords {
         Coords p = new Coords(start);
         p.orientation = direction;
         p.moveForwards(1);
-        return start.worldObj.getBlockTileEntity(p.x, p.y, p.z);
+        return start.getWorldObj().getTileEntity(p.x, p.y, p.z);
     }
 
     public static TileEntity getAdjacentTileEntity(TileEntity start, ForgeDirection direction, Class targetClass) {

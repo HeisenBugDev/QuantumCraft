@@ -1,7 +1,7 @@
 /**
  * Copyright (c) Krapht, 2011
  * hunter edit: KRAPHT IS AWEOMSE
- * "LogisticsPipes" is distributed under the terms of the Minecraft Mod Public 
+ * "LogisticsPipes" is distributed under the terms of the Minecraft Mod Public
  * License 1.0, or MMPL. Please check the contents of the license located in
  * http://www.mod-buildcraft.com/MMPL-1.0.txt
  */
@@ -19,7 +19,7 @@ import quantumcraft.util.BasicUtils;
 
 import java.util.LinkedList;
 
-public class SimpleInventory implements IInventory {
+public class SimpleInventory implements IInventory   {
 
     private final String _name;
     private final int _stackLimit;
@@ -73,8 +73,13 @@ public class SimpleInventory implements IInventory {
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return _name;
+    }
+
+    @Override
+    public boolean hasCustomInventoryName() {
+        return false;
     }
 
     @Override
@@ -83,10 +88,8 @@ public class SimpleInventory implements IInventory {
     }
 
     @Override
-    public void onInventoryChanged() {
-        for (ISimpleInventoryListener handler : _listener) {
-            handler.InventoryChanged(this);
-        }
+    public void markDirty() {
+
     }
 
     @Override
@@ -95,11 +98,13 @@ public class SimpleInventory implements IInventory {
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
+
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
+
     }
 
     public void readFromNBT(NBTTagCompound nbttagcompound) {
@@ -110,16 +115,15 @@ public class SimpleInventory implements IInventory {
         if (nbt == null) {
             nbt = new NBTTagCompound();
         }
-        NBTTagList nbttaglist = nbt.getTagList(prefix + "items");
+        NBTTagList nbttaglist = nbt.getTagList(prefix + "items", 9);
 
         for (int j = 0; j < nbttaglist.tagCount(); ++j) {
-            NBTTagCompound nbttagcompound2 = (NBTTagCompound) nbttaglist.tagAt(j);
+            NBTTagCompound nbttagcompound2 = nbttaglist.getCompoundTagAt(j);
             int index = nbttagcompound2.getInteger("index");
             if (index < _contents.length) {
                 _contents[index] = ItemStack.loadItemStackFromNBT(nbttagcompound2);
             }
         }
-        onInventoryChanged();
     }
 
     public void writeToNBT(NBTTagCompound nbttagcompound) {
@@ -155,7 +159,6 @@ public class SimpleInventory implements IInventory {
                     BasicUtils.dropItem(worldObj, posX, posY, posZ, todrop);
                 }
             }
-            onInventoryChanged();
         }
     }
 
@@ -178,7 +181,6 @@ public class SimpleInventory implements IInventory {
 
         ItemStack stackToTake = this._contents[i];
         this._contents[i] = null;
-        onInventoryChanged();
         return stackToTake;
     }
 
@@ -222,13 +224,7 @@ public class SimpleInventory implements IInventory {
             int added = tryAddToSlot(i, stack);
             stack.stackSize -= added;
         }
-        onInventoryChanged();
         return stack.stackSize;
-    }
-
-    @Override
-    public boolean isInvNameLocalized() {
-        return true;
     }
 
     @Override

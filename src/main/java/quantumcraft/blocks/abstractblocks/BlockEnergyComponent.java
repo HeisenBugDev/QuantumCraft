@@ -1,5 +1,6 @@
 package quantumcraft.blocks.abstractblocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -13,8 +14,8 @@ import quantumcraft.util.Coords;
 
 public abstract class BlockEnergyComponent extends BlockMachine implements IQEnergyComponent {
 
-    public BlockEnergyComponent(int id, Material material) {
-        super(id, material);
+    public BlockEnergyComponent(Material material) {
+        super(material);
     }
 
     @Override
@@ -31,8 +32,8 @@ public abstract class BlockEnergyComponent extends BlockMachine implements IQEne
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-        super.breakBlock(world, x, y, z, par5, par6);
+    public void breakBlock(World world, int x, int y, int z, Block block, int par6) {
+        super.breakBlock(world, x, y, z, block, par6);
         QuantumEnergyNet.onChangedLink(world, getallsides(new Coords(x, y, z)));
     }
 

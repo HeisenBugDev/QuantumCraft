@@ -47,7 +47,7 @@ public abstract class TileEnergySink extends TileMachineBase {
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setCompoundTag("ENET", sourceList.write());
+        par1NBTTagCompound.setTag("ENET", sourceList.write());
         super.writeToNBT(par1NBTTagCompound);
     }
 }

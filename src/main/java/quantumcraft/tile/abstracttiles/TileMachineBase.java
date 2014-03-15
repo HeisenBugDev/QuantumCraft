@@ -1,16 +1,12 @@
 package quantumcraft.tile.abstracttiles;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.core.interfaces.IInWorldGui;
 import quantumcraft.core.interfaces.IRotateableTile;
-import quantumcraft.core.network.PacketHandler;
-import quantumcraft.core.network.packets.MachineInitPacket;
 import quantumcraft.util.BasicUtils;
 
 public abstract class TileMachineBase extends TileEntity implements IRotateableTile, IInWorldGui {
@@ -84,21 +80,6 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
         if (energyBuffer < 0) energyBuffer = 0;
         if (energyBuffer > getMaxEnergy()) energyBuffer = getMaxEnergy();
         return energyBuffer;
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        MachineInitPacket packet = PacketHandler.getPacket(MachineInitPacket.class);
-        packet.posX = xCoord;
-        packet.posY = yCoord;
-        packet.posZ = zCoord;
-        NBTTagCompound nbt = new NBTTagCompound();
-        writeToNBT(nbt);
-        packet.tiledata = nbt;
-
-        return packet.getPacket();
-
-
     }
 
     public abstract int guiID();
@@ -176,8 +157,6 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
             }
 
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 50, worldObj.provider.dimensionId,
-                    getDescriptionPacket());
         }
     }
 
@@ -187,7 +166,6 @@ public abstract class TileMachineBase extends TileEntity implements IRotateableT
             redstonePower = BasicUtils.isRedstonePowered(this);
             QuantumCraft.logHandler.debugPrint(this, "Current Energy is: " + this.getCurrentEnergy());
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
         }
     }
 

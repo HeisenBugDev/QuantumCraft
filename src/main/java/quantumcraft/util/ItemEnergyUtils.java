@@ -25,13 +25,13 @@ public class ItemEnergyUtils {
      * @param e  ENERGY
      */
     public static void setEnergy(ItemStack is, int e) {
-        NBTTagCompound QEV = new NBTTagCompound("QEV");
+        NBTTagCompound QEV = new NBTTagCompound();
         QEV.setInteger("VALUE", e);
         NBTTagCompound IS = is.getTagCompound();
         if (IS == null) {
             IS = new NBTTagCompound();
         }
-        IS.setCompoundTag("QEV", QEV);
+        IS.setTag("QEV", QEV);
         is.setTagCompound(IS);
     }
 

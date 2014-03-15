@@ -1,7 +1,7 @@
 package quantumcraft.tile;
 
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import quantumcraft.tile.abstracttiles.TileEnergySink;
 import quantumcraft.util.Coords;
 import quantumcraft.util.IONTunnelerGlobalRemovalList;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileIONTunneler extends TileEnergySink {
+
     int length = 0;
     int shifter = 0;
     boolean stop = false;
@@ -172,14 +173,17 @@ public class TileIONTunneler extends TileEnergySink {
                                     useLengthT = useLengthT + q;
                                 }
                                 // Check to see if is NOT air
-                                if (worldObj.getBlockId(locationT, yCoord + yloop, useLengthT) != 0) {
+                                //if (worldObj.getBlockId(locationT, yCoord + yloop, useLengthT) != 0) {
+                                if (!worldObj.getBlock(locationT, yCoord + yloop, useLengthT).getUnlocalizedName()
+                                        .equals("air")) {
                                     // Flag block for removal
                                     addBlockRemoval(new Coords(locationT, yCoord + yloop, useLengthT));
                                 }
                             }
                         }
                         // Check to see if it is NOT air
-                        if (worldObj.getBlockId(location, yCoord + yloop, useLength) != 0) {
+                        if (!worldObj.getBlock(location, yCoord + yloop, useLength).getUnlocalizedName()
+                                .equals("air")) {
                             // Flag block for removal
                             addBlockRemoval(new Coords(location, yCoord + yloop, useLength));
                         }

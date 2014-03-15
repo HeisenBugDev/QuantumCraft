@@ -83,7 +83,6 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
                 // texture.
                 updateNextTick = false;
                 worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-                worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
             }
         }
     }
@@ -155,7 +154,7 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
         }
         if (inventory[input] != null) {
             if (inventory[output] != null) {
-                if (inventory[output].itemID != r.itemID) {
+                if (inventory[output] != r) {
                     process = false;
                 }
             }
@@ -198,12 +197,12 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "ION Forge";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
@@ -214,18 +213,18 @@ public class TileIONForge extends TileEnergySink implements ISidedInventory {
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer
                 .getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <=
                 64.0D;
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
 
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
 
     }
 

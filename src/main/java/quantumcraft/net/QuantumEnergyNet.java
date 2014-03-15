@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import quantumcraft.core.QuantumCraft;
 import quantumcraft.net.RecursiveScanner.IDataGatherer;
-import quantumcraft.tile.TileQCapacitor;
+import quantumcraft.tile.TileQuantumCapacitor;
 import quantumcraft.util.Coords;
 
 import java.util.ArrayList;
@@ -20,8 +20,7 @@ public class QuantumEnergyNet {
 
         @Override
         public void gatherDataOnTile(World w, Coords l) {
-            int id = w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord());
-            Block b = Block.blocksList[id];
+            Block b = w.getBlock(l.getXCoord(), l.getYCoord(), l.getZCoord());
             if (b instanceof IQEnergySink) {
                 ((IQEnergySink) b).addSourceToList(w, l, source);
             }
@@ -33,8 +32,7 @@ public class QuantumEnergyNet {
 
         @Override
         public void gatherDataOnTile(World w, Coords l) {
-            int id = w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord());
-            Block b = Block.blocksList[id];
+            Block b = w.getBlock(l.getXCoord(), l.getYCoord(), l.getZCoord());
             if (b instanceof IQEnergySource) {
                 sources.add(l);
             }
@@ -52,8 +50,7 @@ public class QuantumEnergyNet {
 
         @Override
         public void gatherDataOnTile(World w, Coords l) {
-            int id = w.getBlockId(l.getXCoord(), l.getYCoord(), l.getZCoord());
-            Block b = Block.blocksList[id];
+            Block b = w.getBlock(l.getXCoord(), l.getYCoord(), l.getZCoord());
             if (b instanceof IQEnergySource) {
                 sources.add(l);
             }
@@ -71,23 +68,22 @@ public class QuantumEnergyNet {
                         sourcesTmp.add(source);
                         //sources2.remove(source);
                     }
-                    if (w.getBlockTileEntity(sink.getXCoord(), sink.getYCoord(),
-                            sink.getZCoord()) instanceof TileQCapacitor &&
-                            w.getBlockTileEntity(source.getXCoord(), source.getYCoord(),
-                                    source.getZCoord()) instanceof TileQCapacitor) {
+                    if (w.getTileEntity(sink.getXCoord(), sink.getYCoord(),
+                            sink.getZCoord()) instanceof TileQuantumCapacitor &&
+                            w.getTileEntity(source.getXCoord(), source.getYCoord(),
+                                    source.getZCoord()) instanceof TileQuantumCapacitor) {
                         sourcesTmp.add(source);
                         QuantumCraft.logHandler.debugPrint("In QuantumEnergy Net, sink and source are capacitors");
-                        QuantumCraft.logHandler.debugPrint(w.getBlockTileEntity(sink.getXCoord(),sink.getYCoord(),
+                        QuantumCraft.logHandler.debugPrint(w.getTileEntity(sink.getXCoord(),sink.getYCoord(),
                                 sink.getZCoord()), "Is the sink");
-                        QuantumCraft.logHandler.debugPrint(w.getBlockTileEntity(source.getXCoord(),
+                        QuantumCraft.logHandler.debugPrint(w.getTileEntity(source.getXCoord(),
                                 source.getYCoord(),source.getZCoord()), "Is the source");
                     }
                 }
                 for (Coords source : sourcesTmp) {
                     sources2.remove(source);
                 }
-                int id = w.getBlockId(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
-                Block b = Block.blocksList[id];
+                Block b = w.getBlock(sink.getXCoord(), sink.getYCoord(), sink.getZCoord());
                 if (b instanceof IQEnergySink) {
                     ((IQEnergySink) b).replaceSourceList(w, sink, new EnergySourceList(sources2));
                 }

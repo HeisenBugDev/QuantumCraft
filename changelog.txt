@@ -144,7 +144,7 @@
  * add railcraft api
  * debug instructions
  * convert to new debug fixes #41
- * convert to debughandler
+ * convert to DebugHandler
  * we don't need that
  * convert to debug handler
  * remove println

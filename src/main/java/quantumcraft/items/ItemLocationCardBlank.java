@@ -1,7 +1,7 @@
 package quantumcraft.items;
 
 import cpw.mods.fml.common.FMLLog;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,8 +12,7 @@ import java.util.List;
 
 public class ItemLocationCardBlank extends ItemBase {
 
-    public ItemLocationCardBlank(int id) {
-        super(id);
+    public ItemLocationCardBlank() {
         this.setMaxStackSize(1);
     }
 
@@ -21,7 +20,7 @@ public class ItemLocationCardBlank extends ItemBase {
         return true;
     }
 
-    public void registerIcons(IconRegister par1IconRegister) {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
     }
 
@@ -42,7 +41,7 @@ public class ItemLocationCardBlank extends ItemBase {
             FMLLog.fine("Location card just got S-R-CLICKED");
 
             //ISSUE #27
-            par1ItemStack.itemID = Loader.ItemLocationCard.itemID;
+            par1ItemStack = new ItemStack(Loader.ItemLocationCard, 1);
 
             NBTTagCompound t = new NBTTagCompound();
             t.setInteger("x", par4);
@@ -54,7 +53,7 @@ public class ItemLocationCardBlank extends ItemBase {
                 pt = par1ItemStack.getTagCompound();
             }
             if (pt != null) {
-                pt.setCompoundTag("LOC", t);
+                pt.setTag("LOC", t);
             }
             par1ItemStack.setTagCompound(pt);
         }

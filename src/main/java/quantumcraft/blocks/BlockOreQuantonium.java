@@ -1,8 +1,9 @@
 package quantumcraft.blocks;
 
 import net.minecraft.block.BlockOre;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
+import net.minecraft.util.IIcon;
 import quantumcraft.core.Loader;
 import quantumcraft.render.RenderOre;
 
@@ -10,26 +11,25 @@ import java.util.Random;
 
 public class BlockOreQuantonium extends BlockOre {
 
-    public BlockOreQuantonium(int par1) {
-        super(par1);
+    public BlockOreQuantonium() {
         setHardness(2.5F);
         setResistance(1.0F);
-        setLightValue(0.3F);
-    }
-
-    public void setIcon(Icon i) {
-        this.blockIcon = i;
+        setLightLevel(0.3F);
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister) {
-        super.registerIcons(par1IconRegister);
-        Loader.IconLoader.loadAll(par1IconRegister);
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
+        return Loader.ItemRawQuantonium;
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return Loader.ItemRawQuantonium.itemID;
+    public IIcon getIcon(int i, int b) {
+        return Loader.IconLoader.quantonium_ore_full;
+    }
+
+    @Override
+    public void registerBlockIcons(IIconRegister p_149651_1_) {
+        Loader.IconLoader.loadAll(p_149651_1_);
     }
 
     @Override

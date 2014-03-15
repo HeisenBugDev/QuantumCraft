@@ -8,15 +8,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 import quantumcraft.core.Loader;
-import quantumcraft.core.interfaces.IQEnergizable;
+import quantumcraft.core.interfaces.IQuantumEnergizable;
 import quantumcraft.util.ItemEnergyUtils;
 
-public class ItemQuantumSword extends ItemSword implements IQEnergizable {
+public class ItemQuantumSword extends ItemSword implements IQuantumEnergizable {
 
     int maxQenergyValue = 10000;
 
-    public ItemQuantumSword(int id) {
-        super(id, Loader.ToolMaterials.QUANTUMTOOL);
+    public ItemQuantumSword() {
+        super(Loader.ToolMaterials.QUANTUMTOOL);
         this.setMaxDamage(maxQenergyValue + 1);
     }
 
@@ -47,16 +47,17 @@ public class ItemQuantumSword extends ItemSword implements IQEnergizable {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6,
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, Block par3, int par4, int par5, int par6,
                                     EntityLivingBase par7EntityLivingBase) {
         if (getCurrentQEnergyBuffer(par1ItemStack) < 20) return false;
-        if ((double) Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
+        if ((double) par2World.getBlock(par4, par5, par6).getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
             setCurrentQEnergyBuffer(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack) - 20);
             ItemEnergyUtils.setDamage(par1ItemStack, getCurrentQEnergyBuffer(par1ItemStack), maxQenergyValue);
         }
 
         return true;
     }
+
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {

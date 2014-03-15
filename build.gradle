@@ -6,9 +6,13 @@ buildscript {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.1-SNAPSHOT'
     }
 }
 
@@ -20,11 +24,11 @@ dependencies {
 }
 
 // stuff specific to my mod
-group = 'quantumcraft'
+group = 'QuantumCraft.textures'
 archivesBaseName = 'QuantumCraft'
 
 minecraft {
-  version = "1.6.4-9.11.1.964" // grab latest forge
+  version = "1.7.2-10.12.0.1029" // grab latest forge
   assetDir = "run/assets"
 }
 
@@ -122,7 +126,7 @@ task generateJson() { task ->
   task.doLast {
     def builder = new groovy.json.JsonBuilder()
     def root = builder {
-      'build' System.getenv().BUILD_NUMBER
+      'build_number' System.getenv().BUILD_NUMBER
       'minecraft_version' project.minecraft.version
       'mod_version' project.rawVersion
       'branch' gitBranch

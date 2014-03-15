@@ -41,7 +41,7 @@ public class TileIONScanner extends TileEnergySink {
                     if (name.contains("ore")) {
                         scheduler.add(xCoord + xLoop, yCoord + y, zCoord + z);
                     }
-                    TileEntity te = worldObj.getBlockTileEntity(xCoord + xLoop, yCoord + y, zCoord + z);
+                    TileEntity te = worldObj.getTileEntity(xCoord + xLoop, yCoord + y, zCoord + z);
 
                     if (te != null) {
                         if (te instanceof TileIONHarvester) {

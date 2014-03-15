@@ -1,6 +1,6 @@
 package quantumcraft.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -8,8 +8,7 @@ import java.util.List;
 
 public class ItemLocationCard extends ItemBase {
 
-    public ItemLocationCard(int id) {
-        super(id);
+    public ItemLocationCard() {
         this.setMaxStackSize(1);
     }
 
@@ -17,7 +16,7 @@ public class ItemLocationCard extends ItemBase {
         return true;
     }
 
-    public void registerIcons(IconRegister par1IconRegister) {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
     }
 

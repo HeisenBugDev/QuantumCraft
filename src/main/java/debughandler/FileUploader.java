@@ -24,7 +24,7 @@ public class FileUploader {
         for (LogHandler handler : handlers) {
             everything += getTitle(handler.name);
 
-            FileInputStream inputStream = new FileInputStream("DebugHandler/" + handler.name + ".log");
+            FileInputStream inputStream = new FileInputStream("debughandler/" + handler.name + ".log");
             try {
                 everything += IOUtils.toString(inputStream);
                 everything += "\n\n\n";

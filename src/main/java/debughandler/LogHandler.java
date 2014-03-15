@@ -23,9 +23,9 @@ public class LogHandler {
         if (Config.debug == null) return;
         if (!Config.debug.getBoolean(false)) return;
         try {
-            File file = new File("DebugHandler/");
+            File file = new File("debughandler/");
             file.mkdirs();
-            file = new File("DebugHandler/" + name + ".log");
+            file = new File("debughandler/" + name + ".log");
             PrintWriter out = new PrintWriter(new BufferedWriter(new java.io.FileWriter(file, true)));
             String time = "";
             if (TimeUnit.MILLISECONDS.toSeconds(new Date().getTime()) !=

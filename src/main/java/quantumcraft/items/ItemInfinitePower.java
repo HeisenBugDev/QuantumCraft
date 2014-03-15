@@ -4,8 +4,8 @@ import net.minecraft.item.ItemStack;
 import quantumcraft.items.abstractitems.ItemChargable;
 
 public class ItemInfinitePower extends ItemChargable{
-    public ItemInfinitePower(int id) {
-        super(id, 100000);
+    public ItemInfinitePower() {
+        super(100000);
         this.setMaxStackSize(1);
     }
 
