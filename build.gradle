@@ -55,6 +55,17 @@ def getBranch()
     return stdout.toString().trim()
 }
 
+
+def getSHA()
+{
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
 // add some stuff to the versio
 ext.rawVersion = getVersionName()
 version = "${minecraft.version}-$rawVersion.${System.getenv().BUILD_NUMBER}"
@@ -110,11 +121,13 @@ task deobfJar(type: Jar) {
 def jsonFile = new File(jar.destinationDir, "manifest.json")
 task generateJson() { task ->
   def gitBranch = getBranch()
+  def gitSHA = getSHA()
 
   // specify inputs and outputs so gradle can see if its upToDate
   task.inputs.with {
     property 'version', project.version // accounts for MCVersion, and all the other components
     property 'branch', gitBranch
+    property 'commit', gitSHA
     property 'obf', jar.archiveName
     property 'deobf', deobfJar.archiveName
     property 'source', sourceJar.archiveName
@@ -130,6 +143,7 @@ task generateJson() { task ->
       'minecraft_version' project.minecraft.version
       'mod_version' project.rawVersion
       'branch' gitBranch
+      'commit' gitSHA
       'artifacts'([
         ['universal' : jar.archiveName ],
         ['deobf' : deobfJar.archiveName ],
