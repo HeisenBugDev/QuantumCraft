@@ -132,6 +132,7 @@ task generateJson() { task ->
     property 'deobf', deobfJar.archiveName
     property 'source', sourceJar.archiveName
     property 'javadoc', javadocJar.archiveName
+    property 'project_name', project.archivesBaseName
   }
   task.outputs.file(jsonFile)
 
@@ -139,6 +140,7 @@ task generateJson() { task ->
   task.doLast {
     def builder = new groovy.json.JsonBuilder()
     def root = builder {
+      'project_name' project.archivesBaseName
       'build_number' System.getenv().BUILD_NUMBER
       'minecraft_version' project.minecraft.version
       'mod_version' project.rawVersion
