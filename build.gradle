@@ -126,7 +126,7 @@ task generateJson() { task ->
   task.doLast {
     def builder = new groovy.json.JsonBuilder()
     def root = builder {
-      'build' System.getenv().BUILD_NUMBER
+      'build_number' System.getenv().BUILD_NUMBER
       'minecraft_version' project.minecraft.version
       'mod_version' project.rawVersion
       'branch' gitBranch
