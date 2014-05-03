@@ -1,4 +1,4 @@
-box: pjvds/scala@0.0.83
+box: hunterboerner/scala
 # Build definition
 build:
   # The steps that will be executed on build
