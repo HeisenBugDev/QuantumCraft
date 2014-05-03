@@ -8,3 +8,6 @@ build:
         name: run gradle
         code: |
           gradle --full-stacktrace -q build
+    - script:
+        name: archive artifacts
+        code: mv build/libs/* $WERCKER_REPORT_ARTIFACTS_DIR
