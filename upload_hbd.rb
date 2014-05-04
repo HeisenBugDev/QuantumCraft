@@ -1,6 +1,7 @@
 require 'base64'
 require 'json'
 require 'net/http'
+
 manifest = JSON.parse(IO.read('build/libs/manifest.json'))
 
 manifest['artifacts'].each do |artifact|
