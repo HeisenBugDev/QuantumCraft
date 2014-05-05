@@ -9,7 +9,7 @@ build:
         code: |
           gradle --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
     - script:
-        name: Upload to HeisenBubDev
+        name: Upload to HeisenBugDev
         code: ruby upload_hbd.rb
     - script:
         name: archive artifacts
